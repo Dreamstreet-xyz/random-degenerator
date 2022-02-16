@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Icon as DefaultIcon } from 'components/common';
+import DefaultIcon from 'components/common/Icon';
 
 export const Button = styled.button`
     width: 100%;
