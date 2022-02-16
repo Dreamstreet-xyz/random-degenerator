@@ -1,3 +1,4 @@
+import { AccordionButton } from 'components/common';
 import {
     Section,
     Header,
@@ -6,7 +7,7 @@ import {
     Accordion,
     FAQContent,
     Paragraph,
-    FAQButton,
+    Anchor,
 } from './styles';
 
 export default function FAQ() {
@@ -17,25 +18,29 @@ export default function FAQ() {
                 <Title>F.A.Q.</Title>
             </Header>
             <Accordion
-                renderButton={({ handleClick }) => (
-                    <FAQButton onClick={handleClick}>What is Random Degenerator?</FAQButton>
+                renderButton={({ handleClick, isOpen }) => (
+                    <AccordionButton onClick={handleClick} isOpen={isOpen}>
+                        What is Random Degenerator?
+                    </AccordionButton>
                 )}
             >
                 <FAQContent>
                     <Paragraph>
-                        A trade randomizer for <a href="https://gains.trade">gTrade</a>, a
+                        A trade randomizer for <Anchor href="https://gains.trade">gTrade</Anchor>, a
                         decentralized leverage trading platform built by{' '}
-                        <a href="https://gainsnetwork.io">Gains Network</a>
+                        <Anchor href="https://gainsnetwork.io">Gains Network</Anchor>
                     </Paragraph>
                     <Paragraph>
                         Transactions are submitted to smart contracts running on the{' '}
-                        <a href="https://polygon.technology">Polygon blockchain</a>.
+                        <Anchor href="https://polygon.technology">Polygon blockchain</Anchor>.
                     </Paragraph>
                 </FAQContent>
             </Accordion>
             <Accordion
-                renderButton={({ handleClick }) => (
-                    <FAQButton onClick={handleClick}>How do I use Random Degenerator?</FAQButton>
+                renderButton={({ handleClick, isOpen }) => (
+                    <AccordionButton onClick={handleClick} isOpen={isOpen}>
+                        How do I use Random Degenerator?
+                    </AccordionButton>
                 )}
             >
                 <FAQContent>
@@ -57,8 +62,10 @@ export default function FAQ() {
                 </FAQContent>
             </Accordion>
             <Accordion
-                renderButton={({ handleClick }) => (
-                    <FAQButton onClick={handleClick}>How do I manage my trade?</FAQButton>
+                renderButton={({ handleClick, isOpen }) => (
+                    <AccordionButton onClick={handleClick} isOpen={isOpen}>
+                        How do I manage my trade?
+                    </AccordionButton>
                 )}
             >
                 <FAQContent>
@@ -72,17 +79,18 @@ export default function FAQ() {
                         profit %.
                     </Paragraph>
                     <Paragraph>
-                        If this is a trade, head over to <a href="https://gains.trade">gTrade</a>{' '}
-                        and utilize the trading interface. Yep, that's right, these trades magically
-                        appear on your gTrade dashboard as well.
+                        If this is a trade, head over to{' '}
+                        <Anchor href="https://gains.trade">gTrade</Anchor> and utilize the trading
+                        interface. Yep, that's right, these trades magically appear on your gTrade
+                        dashboard as well.
                     </Paragraph>
                 </FAQContent>
             </Accordion>
             <Accordion
-                renderButton={({ handleClick }) => (
-                    <FAQButton onClick={handleClick}>
+                renderButton={({ handleClick, isOpen }) => (
+                    <AccordionButton onClick={handleClick} isOpen={isOpen}>
                         What about the trade is being "randomized"?{' '}
-                    </FAQButton>
+                    </AccordionButton>
                 )}
             >
                 <FAQContent>
@@ -110,13 +118,16 @@ export default function FAQ() {
                 </FAQContent>
             </Accordion>
             <Accordion
-                renderButton={({ handleClick }) => (
-                    <FAQButton onClick={handleClick}>I still have questions!</FAQButton>
+                renderButton={({ handleClick, isOpen }) => (
+                    <AccordionButton onClick={handleClick} isOpen={isOpen}>
+                        I still have questions!
+                    </AccordionButton>
                 )}
             >
                 <FAQContent>
                     <Paragraph>
-                        Come chat in our Telegram <a href="https://t.me/randomdegenerator">chat</a>
+                        Come chat in our Telegram{' '}
+                        <Anchor href="https://t.me/randomdegenerator">chat</Anchor>
                     </Paragraph>
                 </FAQContent>
             </Accordion>

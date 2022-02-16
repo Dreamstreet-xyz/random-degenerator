@@ -49,17 +49,26 @@ export default function ActiveTrades({
                         </TableBody>
                     </Table>
                 </Content>
-                <ActionLink
-                    href={
-                        network.chainName === 'polygon'
-                            ? 'https://gains.trade/decentralized-trading/'
-                            : 'https://gains.trade/testnet-trading/'
-                    }
-                    target="_blank"
+                <div
+                    style={{
+                        display: 'flex',
+                        marginTop: 8,
+                        justifyContent: 'center',
+                    }}
                 >
-                    <GainsLogo src="/images/gains_logo.png" />
-                    Further manage on Gains
-                </ActionLink>
+                    <ActionLink
+                        href={
+                            network.chainName === 'polygon'
+                                ? 'https://gains.trade/decentralized-trading/'
+                                : 'https://gains.trade/testnet-trading/'
+                        }
+                        target="_blank"
+                        style={{ flex: '0 1 auto' }}
+                    >
+                        <GainsLogo src="/images/gains_logo.png" />
+                        Further manage on Gains
+                    </ActionLink>
+                </div>
             </Container>
         </Section>
     );

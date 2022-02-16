@@ -22,7 +22,7 @@ import useRandomTrade, {
 } from 'shared/hooks/useRandomTrade';
 import WalletOpenTradesContainer from 'containers/WalletOpenTradesContainer';
 import { TradeStatus } from 'types/Trade';
-import ProgressBar from 'components/common/Trade/ProgressBar';
+import ProgressBar from './ProgressBar';
 import { Header, Title } from './PlayForm/styles';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

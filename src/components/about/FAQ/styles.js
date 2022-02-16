@@ -42,24 +42,6 @@ export const Accordion = styled(DefaultAccordion)`
     }
 `;
 
-export const FAQButton = styled.button`
-    width: 100%;
-    padding: 32px;
-    font-size: 24px;
-    font-weight: bold;
-    background-color: transparent;
-    color: #e9e4f5;
-    text-align: left;
-
-    @media (max-width: 1000px) {
-        padding: 16px;
-    }
-
-    @media (max-width: 500px) {
-        font-size: 18px;
-    }
-`;
-
 export const FAQContent = styled.div`
     padding: 16px 32px 32px 32px;
     line-height: 1.6;
@@ -74,5 +56,13 @@ export const Paragraph = styled.p`
 
     &:not(:first-of-type) {
         margin-top: 32px;
+    }
+`;
+
+export const Anchor = styled.a`
+    color: #4c90f7;
+
+    &:visited {
+        color: #8549f5;
     }
 `;
