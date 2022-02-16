@@ -9,7 +9,9 @@ export default function ProgressBar({
     tradeStatus: TradeStatus;
     finished: boolean;
 }) {
-    const progress = getTradeProgress(finished ? TradeStatus.Success : tradeStatus);
+    const progress = getTradeProgress(
+        finished && tradeStatus === TradeStatus.Executed ? TradeStatus.Success : tradeStatus
+    );
     const percentage = progress.cur / progress.total;
     return (
         <Container>

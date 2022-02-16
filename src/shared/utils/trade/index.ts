@@ -72,10 +72,15 @@ export const transitionTradeToStatus = (from: TradeStatus, to: TradeStatus): Tra
                 return to;
             }
             return from;
+        case TradeStatus.Success:
+            if (from === TradeStatus.Executed) {
+                return to;
+            }
+            return from;
         case TradeStatus.Canceled:
         case TradeStatus.TimedOut:
         case TradeStatus.Failed:
-            if (from !== TradeStatus.Executed) {
+            if (from !== TradeStatus.Executed && from !== TradeStatus.Success) {
                 return to;
             }
             return from;
