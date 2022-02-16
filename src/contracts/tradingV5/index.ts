@@ -1,0 +1,1 @@
+export const CONTRACT_ADDRESS = '0xec1c66a898ba26bca60a8f5129802d1727d9f918';

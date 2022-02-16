@@ -1,0 +1,70 @@
+import styled, { keyframes } from 'styled-components';
+
+const dotPulse = keyframes`
+    0% {
+        transform: scale(.8);
+        opacity: .8;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(.8);
+        opacity: .8;
+    }
+`;
+
+export const Container = styled.div`
+    display: flex;
+    min-height: 32px;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const Dot = styled.div`
+    background-color: #ffffff;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    margin: 0 6px;
+    animation: ${dotPulse} 1.2s infinite;
+    animation-delay: ${({ delay }) => `${delay}s`};
+`;
+
+const rotate = keyframes`
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+`;
+
+export const SquareContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const SpinnerContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 16px;
+`;
+
+export const Spinner = styled.div`
+    width: 32px;
+    height: 32px;
+    border: 3px solid #ff40d6;
+    animation: ${rotate} 2s infinite;
+`;
+
+export const LoadingText = styled.span`
+    color: #ff40d6;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Montserrat;
+    text-transform: uppercase;
+`;
