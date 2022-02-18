@@ -48,13 +48,13 @@ export const SquareContainer = styled.div`
     justify-content: center;
 `;
 
-export const SpinnerContainer = styled.div`
+export const SquareSpinnerContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-bottom: 16px;
 `;
 
-export const Spinner = styled.div`
+export const SquareSpinner = styled.div`
     width: 32px;
     height: 32px;
     border: 3px solid #ff40d6;
@@ -67,4 +67,23 @@ export const LoadingText = styled.span`
     font-size: 18px;
     font-family: Montserrat;
     text-transform: uppercase;
+`;
+
+export const SpinnerContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const Spinner = styled.div`
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: ${({ width }) => `${width}px`};
+    height: ${({ width }) => `${width}px`};
+    border: ${({ width }) => `${width / 8}px solid #fff`};
+    border-radius: 50%;
+    animation: ${rotate} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
 `;

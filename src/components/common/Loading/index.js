@@ -1,4 +1,13 @@
-import { Container, Dot, LoadingText, Spinner, SpinnerContainer, SquareContainer } from './styles';
+import {
+    Container,
+    Dot,
+    LoadingText,
+    SquareContainer,
+    SquareSpinnerContainer,
+    SquareSpinner,
+    Spinner,
+    SpinnerContainer,
+} from './styles';
 
 export default function Loading({ style, containerStyle }) {
     return (
@@ -13,18 +22,26 @@ export default function Loading({ style, containerStyle }) {
 export function SquareLoadingSpinner({ containerStyle }) {
     return (
         <SquareContainer style={containerStyle}>
-            <SpinnerContainer>
+            <SquareSpinnerContainer>
                 <div />
-                <Spinner />
+                <SquareSpinner />
                 <div />
-                <Spinner />
+                <SquareSpinner />
                 <div />
-                <Spinner />
+                <SquareSpinner />
                 <div />
-                <Spinner />
+                <SquareSpinner />
                 <div />
-            </SpinnerContainer>
+            </SquareSpinnerContainer>
             <LoadingText>Loading...</LoadingText>
         </SquareContainer>
+    );
+}
+
+export function LoadingSpinner({ containerStyle, width = 32 }) {
+    return (
+        <SpinnerContainer style={containerStyle}>
+            <Spinner width={width} />
+        </SpinnerContainer>
     );
 }

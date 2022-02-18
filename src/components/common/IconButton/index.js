@@ -1,4 +1,5 @@
 import { Icon, Loading } from 'components/common';
+import { LoadingSpinner } from '../Loading';
 import { StyledButton } from './styles';
 
 export default function IconButton(props) {
@@ -14,7 +15,7 @@ export default function IconButton(props) {
             {...rest}
         >
             {loading ? (
-                <Loading />
+                <LoadingSpinner width={24} />
             ) : (
                 icon && <Icon icon={icon} size={size} color={color} style={iconStyle} />
             )}
