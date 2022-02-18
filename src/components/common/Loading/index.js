@@ -38,10 +38,10 @@ export function SquareLoadingSpinner({ containerStyle }) {
     );
 }
 
-export function LoadingSpinner({ containerStyle, width = 32 }) {
+export function LoadingSpinner({ containerStyle, style, width = 32, color = '#fff' }) {
     return (
         <SpinnerContainer style={containerStyle}>
-            <Spinner width={width} />
+            <Spinner style={style} width={width} color={color} />
         </SpinnerContainer>
     );
 }
