@@ -84,13 +84,17 @@ const BetInput = styled.input`
     padding: 8px 8px 0 8px;
     border: none;
     border-bottom: 3px solid #5526c4;
+    border-radius: 0;
     outline: none;
     caret-color: #ff37a5;
     color: #ff86f5;
-    ${textGradientCustom(['#ff86f5', '#fd8ba8'])}
 
     &:focus {
         border-bottom: 3px solid #c23bb7;
+    }
+
+    @media (min-width: 501px) {
+        ${textGradientCustom(['#ff86f5', '#fd8ba8'])}
     }
 
     @media (max-width: 500px) {
