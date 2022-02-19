@@ -71,10 +71,10 @@ export const retroTextGradient = css`
     color: #c6cbf5;
     background: -webkit-linear-gradient(
         top,
-        #be9ff8,
-        #63d4f0 40%,
-        #b913b9 40%,
-        #e1a0ce 65%,
+        #b5b4fa,
+        #48d5f8 40%,
+        #7414c4 40%,
+        #f193d5 65%,
         white 90%
     );
     background-clip: text;
@@ -202,6 +202,15 @@ export const pulsingGlow = css`
         opacity: 0;
         animation: ${glow} 2s alternate infinite;
     }
+`;
+
+export const retroTextMarker = css`
+    position: relative;
+    font-family: 'Permanent Marker', cursive;
+    background-image: -webkit-linear-gradient(#ff0ff8 0%, #f9f9f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-filter: drop-shadow(2px 2px 20px #f008b7);
 `;
 
 export { colors, theme };

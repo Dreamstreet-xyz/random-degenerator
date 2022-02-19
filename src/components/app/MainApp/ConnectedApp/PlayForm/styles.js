@@ -52,7 +52,7 @@ export const SettingsButton = styled(IconButton).attrs(() => ({
 }))`
     background-color: transparent;
     color: #fff;
-    pointer-events: ${({ isOpen }) => (isOpen ? 'none' : 'initial')};;
+    pointer-events: ${({ isOpen }) => (isOpen ? 'none' : 'initial')};
 `;
 
 export const FieldContainer = styled.div`

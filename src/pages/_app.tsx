@@ -95,7 +95,7 @@ export default function App({ Component, pageProps }) {
                         rel="stylesheet"
                     />
                     <link
-                        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+                        href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
                         rel="stylesheet"
                     />
                 </Head>

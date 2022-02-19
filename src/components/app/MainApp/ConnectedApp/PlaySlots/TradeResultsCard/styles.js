@@ -143,7 +143,6 @@ const actionStyle = css`
 
 export const ActionButton = styled.button`
     ${actionStyle}
-    display: none;
 `;
 
 export const ActionLink = styled.a`

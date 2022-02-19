@@ -130,7 +130,7 @@ export default function TradeResultsCard({
                     <GainsLogo src="/images/gains_logo.png" />
                     Manage trade on Gains
                 </ActionLink>
-                <ActionButton onClick={handleDownloadImage}>
+                <ActionButton onClick={handleDownloadImage} style={{ display: 'none' }}>
                     <Icon icon="share-square" size={16} style={{ marginRight: 8 }} />
                     Share Trade
                 </ActionButton>

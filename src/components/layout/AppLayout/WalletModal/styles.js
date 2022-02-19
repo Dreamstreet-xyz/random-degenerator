@@ -28,7 +28,7 @@ export const WalletOption = styled.button`
     align-items: center;
     padding: 16px;
 
-    &:hover {
+    &:hover:enabled {
         background-color: #281b4b;
     }
 `;
