@@ -23,6 +23,8 @@ export const Header = styled.div`
 
     @media (max-width: 500px) {
         padding: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #20084d;
     }
 `;
 
@@ -64,7 +66,7 @@ export const FieldContainer = styled.div`
     @media (max-width: 500px) {
         border-radius: 0;
         padding: 16px;
-        background-color: #1b0f3a;
+        background-color: transparent;
     }
 `;
 
