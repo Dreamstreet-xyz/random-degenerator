@@ -7,6 +7,5 @@ export const Section = styled(DefaultSection)`
 
     @media (max-width: 500px) {
         align-items: flex-start;
-        margin-top: 80px;
     }
 `;

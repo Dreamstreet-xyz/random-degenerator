@@ -46,7 +46,7 @@ export default function MainApp({ gas }) {
         (walletConnectionStatus === WalletConnectionStatus.Connected && !user.daiBalance)
     ) {
         return (
-            <Section style={{ alignItems: 'center', marginTop: 0 }}>
+            <Section style={{ alignItems: 'center' }}>
                 <SquareLoadingSpinner />
             </Section>
         );

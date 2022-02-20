@@ -14,7 +14,15 @@ import { getLevRangeForPosSizeAllPairs } from 'shared/utils/gains/pairs';
 import { WalletConnectionStatus } from 'types/Wallet';
 import PlayForm from './PlayForm';
 import PlaySlots, { SlotOptionType, positions } from './PlaySlots';
-import { Container, AppContainer, BannerContainer, Banner, GlowBanner } from './styles';
+import {
+    Container,
+    AppContainer,
+    BannerContainer,
+    Banner,
+    GlowBanner,
+    InsufficientFundsContainer,
+    InsufficientFunds,
+} from './styles';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import useRandomTrade, {
     getRandomFloorNumberIncl,
@@ -23,7 +31,6 @@ import useRandomTrade, {
 import WalletOpenTradesContainer from 'containers/WalletOpenTradesContainer';
 import { TradeStatus } from 'types/Trade';
 import ProgressBar from './ProgressBar';
-import { Header, Title } from './PlayForm/styles';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -364,9 +371,14 @@ export default function ConnectedApp({ gas }) {
         walletConnectionStatus === WalletConnectionStatus.Connected
     ) {
         return (
-            <Header>
-                <Title>You need at least {tradingVariables.minPosDaiInt} DAI to play</Title>
-            </Header>
+            <InsufficientFundsContainer>
+                <h2 style={{ marginTop: -50 }}>
+                    <InsufficientFunds>You need at least </InsufficientFunds>
+                    <InsufficientFunds>
+                        {tradingVariables.minPosDaiInt} DAI to play
+                    </InsufficientFunds>
+                </h2>
+            </InsufficientFundsContainer>
         );
     }
 

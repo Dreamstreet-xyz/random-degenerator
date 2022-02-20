@@ -1,10 +1,35 @@
 import styled, { css } from 'styled-components';
 import { Banner as DefaultBanner } from 'components/common';
-import { pulsingGlow } from 'shared/styles';
+import { pulsingGlow, retroTextGradient } from 'shared/styles';
 
 export const Container = styled.div`
     width: 100%;
     overflow-x: hidden;
+    @media (max-width: 500px) {
+        margin-top: 80px;
+    }
+`;
+
+export const InsufficientFundsContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+`;
+
+export const InsufficientFunds = styled.span`
+    color: #c6cbf5;
+    font-family: Roboto;
+    font-size: 1.8rem;
+    font-weight: 1000;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+    ${retroTextGradient}
+
+    @media (max-width: 550px) {
+        display: block;
+    }
 `;
 
 export const AppContainer = styled.div`
