@@ -376,17 +376,21 @@ export default function ConnectedApp({ gas }) {
     if (
         user.daiBalance &&
         !hasMinDai &&
-        walletConnectionStatus === WalletConnectionStatus.Connected
+        walletConnectionStatus === WalletConnectionStatus.Connected &&
+        !isPlaying
     ) {
         return (
-            <InsufficientFundsContainer>
-                <h2 style={{ marginTop: -50 }}>
-                    <InsufficientFunds>You need at least </InsufficientFunds>
-                    <InsufficientFunds>
-                        {tradingVariables.minPosDaiInt} DAI to play
-                    </InsufficientFunds>
-                </h2>
-            </InsufficientFundsContainer>
+            <Container>
+                <InsufficientFundsContainer>
+                    <h2 style={{ marginTop: -50 }}>
+                        <InsufficientFunds>You need at least </InsufficientFunds>
+                        <InsufficientFunds>
+                            {tradingVariables.minPosDaiInt} DAI to play
+                        </InsufficientFunds>
+                    </h2>
+                </InsufficientFundsContainer>
+                <WalletOpenTradesContainer />
+            </Container>
         );
     }
 
