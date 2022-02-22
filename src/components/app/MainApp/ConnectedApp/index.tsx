@@ -232,7 +232,7 @@ export default function ConnectedApp({ gas }) {
                 setBanner({
                     display: true,
                     message:
-                        "Your trade timed out. Go to https://gains.trade to claim your collateral back (we're working on integrating).",
+                        "Your trade timed out or we lost connection. Refresh and check active trades below. If the new trade is not there, go to https://gains.trade to claim your collateral back (we're working on integrating).",
                     close: () => setBanner({ display: false, message: '', close: false }),
                 });
                 break;
