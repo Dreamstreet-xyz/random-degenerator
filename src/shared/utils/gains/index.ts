@@ -37,7 +37,7 @@ export const transformTradeWrapper = (
     const pair = tv?.pairs[ot?.trade?.pairIndex];
 
     const positionSizeDai =
-        ot.trade?.positionSizeDai === '0'
+        !ot.trade?.positionSizeDai || ot.trade?.positionSizeDai === '0'
             ? BigNumber.from(ot.tradeInfo.openInterestDai)
                   .div(parseInt(ot?.trade?.leverage) || 1)
                   .toString()
