@@ -20,12 +20,17 @@ export default function TradeItem({
     onClose,
     loading,
     trade,
+    onClick,
     isClosed,
 }: {
     trade: GainsCoreDataInterface.TradeWrapper;
 }) {
+    const handleClick = () => {
+        onClick?.();
+    };
+
     return (
-        <TableRow>
+        <TableRow onClick={handleClick}>
             <PositionData position={position}>{position}</PositionData>
             <Pair>{pair}</Pair>
             <Leverage>{leverage}x</Leverage>

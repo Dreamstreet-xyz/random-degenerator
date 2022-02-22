@@ -9,6 +9,7 @@ import TradeItem from 'components/app/ActiveTrades/TradeItem';
 
 export default function ActiveTradeContainer({
     tradeWrapper,
+    onClick,
 }: {
     tradeWrapper: GainsCoreDataInterface.TradeWrapper;
 }) {
@@ -54,6 +55,7 @@ export default function ActiveTradeContainer({
             leverage={tradeWrapper.trade.leverage}
             pair={tradeWrapper.trade.pairString}
             trade={tradeWrapper}
+            onClick={onClick}
             onClose={() => closeTrade()}
             loading={['PendingSignature', 'Mining'].includes(state?.status)}
             isClosed={state?.status === 'Success'}

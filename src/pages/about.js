@@ -36,10 +36,12 @@ const Header = styled.header`
     margin-bottom: 32px;
 `;
 
-const Title = styled.h2`
-    font-size: 36px;
+const Title = styled.span`
+    font-size: 32px;
     font-weight: bold;
     font-family: Montserrat;
+    text-transform: uppercase;
+    text-align: center;
     ${retroTextGradient}
 
     @media (max-width: 700px) {
@@ -113,7 +115,9 @@ export default function About() {
                     <MainContent>
                         <Section>
                             <Header>
-                                <Title>Embrace your inner degen!</Title>
+                                <h2>
+                                    <Title>Embrace your inner degen!</Title>
+                                </h2>
                             </Header>
                         </Section>
                         <FAQ />
