@@ -215,16 +215,18 @@ export default function ConnectedApp({ gas }) {
     useEffect(() => {
         switch (tradeStatus) {
             case TradeStatus.Canceled:
+                toast.dismiss();
                 handleBack();
                 toast.error('Trade cancelled');
                 setBanner({
                     display: true,
                     message:
-                        'Your trade was cancelled! If markets are volatile, adjust your slippage.',
+                        'Your trade was cancelled! If markets are volatile, adjust your slippage. If Polygon is busy, up your gas.',
                     close: () => setBanner({ display: false, message: '', close: false }),
                 });
                 break;
             case TradeStatus.TimedOut:
+                toast.dismiss();
                 handleBack();
                 toast.error('Trade timed out');
                 setBanner({
@@ -234,10 +236,16 @@ export default function ConnectedApp({ gas }) {
                     close: () => setBanner({ display: false, message: '', close: false }),
                 });
                 break;
+            case TradeStatus.Mining:
+                toast.dismiss();
+                toast.info('Trade submitted', { autoClose: false });
+                break;
             case TradeStatus.PendingExecution:
-                toast.info('Trade pending');
+                toast.dismiss();
+                toast.info('Trade pending', { autoClose: false });
                 break;
             case TradeStatus.Executed:
+                toast.dismiss();
                 toast('Transaction completed!', { icon: '🚀' });
                 break;
             case TradeStatus.Failed:
