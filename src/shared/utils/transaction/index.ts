@@ -28,7 +28,7 @@ export const getTransactionStatusMessage = (transactionStatus: TransactionStatus
                 return 'You rejected the tx';
             }
         default:
-            return 'Unknown error occurred... please reach out to us on Telegram';
+            return "Unknown error occurred... please check your RPC and try again. If it's not resolved, reach out to us on Telegram";
     }
 };
 
