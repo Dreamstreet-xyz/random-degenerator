@@ -20,7 +20,6 @@ export default function ActiveTrades({
     network: NetworkInterface;
 }) {
     const [isModalVisible, setModalVisible] = useState(false);
-    console.log(network);
     const handleTradeClick = id => {
         setModalVisible(true);
     };
