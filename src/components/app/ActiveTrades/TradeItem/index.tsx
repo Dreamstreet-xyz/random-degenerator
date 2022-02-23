@@ -29,6 +29,11 @@ export default function TradeItem({
         onClick?.();
     };
 
+    const handleClose = e => {
+        e.stopPropagation();
+        onClose?.();
+    };
+
     return (
         <TableRow onClick={handleClick}>
             <PositionData position={position}>{position}</PositionData>
@@ -38,7 +43,7 @@ export default function TradeItem({
             <LivePnl trade={trade} />
             <CloseButtonWrapper>
                 <CloseButton
-                    onClick={onClose}
+                    onClick={handleClose}
                     disabled={isClosed}
                     loading={loading}
                     icon={isClosed ? 'check-circle' : 'times'}

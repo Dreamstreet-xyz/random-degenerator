@@ -3,6 +3,25 @@ import { IconButton } from 'components/common';
 
 export const TableRow = styled.tr`
     position: relative;
+    cursor: pointer;
+
+    &:last-of-type {
+        td:first-of-type {
+            border-radius: 0 0 0 10px;
+        }
+        td:last-of-type {
+            border-radius: 0 0 10px 0;
+        }
+    }
+
+    &:hover {
+        background-color: #261663;
+    }
+
+    &:active {
+        background-color: #2a1a68;
+    }
+    
     @media (max-width: 800px) {
         display: flex;
         padding: 16px;
@@ -90,7 +109,7 @@ export const CloseButton = styled(IconButton).attrs({
         &:hover:enabled,
         &:active,
         &:focus {
-            background-color: #2a1463;
+            background-color: #381e77;
         }
     }
 `;

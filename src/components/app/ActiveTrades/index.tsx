@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { formatEther } from '@ethersproject/units';
 import { GainsStreamingDataInterface } from 'types/gains/GainsStreamingData';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
@@ -9,6 +10,7 @@ import {
     GainsLogo,
 } from 'components/app/MainApp/ConnectedApp/PlaySlots/TradeResultsCard/styles';
 import { NetworkInterface } from 'shared/constants/networks';
+import TradeDetailsModal from './TradeDetailsModal';
 
 export default function ActiveTrades({
     trades,
@@ -17,59 +19,73 @@ export default function ActiveTrades({
     trades: GainsCoreDataInterface.TradeWrapper[];
     network: NetworkInterface;
 }) {
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const handleTradeClick = id => {
+        setModalVisible(true);
+    };
+
     return (
-        <Section>
-            <Container>
-                <Header>
-                    <Title>Your Active Trades</Title>
-                </Header>
-                <Content>
-                    <Table>
-                        <TableHead>
-                            <TableHeadRow>
-                                <TableHeader style={{ borderTopLeftRadius: 10 }}>
-                                    Position
-                                </TableHeader>
-                                <TableHeader>Pair</TableHeader>
-                                <TableHeader>Leverage</TableHeader>
-                                <TableHeader style={{ textAlign: 'right' }}>Collateral</TableHeader>
-                                <TableHeader style={{ textAlign: 'right' }}>Net PnL</TableHeader>
-                                <TableHeader style={{ borderTopRightRadius: 10 }}>
-                                    Close
-                                </TableHeader>
-                            </TableHeadRow>
-                        </TableHead>
-                        <TableBody>
-                            {trades.map((item, ix) => (
-                                <ActiveTradeContainer
-                                    key={`${item.trade.pairIndex}-${item.trade.index}`}
-                                    tradeWrapper={item}
-                                />
-                            ))}
-                        </TableBody>
-                    </Table>
-                </Content>
-                <div
-                    style={{
-                        display: 'flex',
-                        marginTop: 8,
-                        justifyContent: 'center',
-                    }}
-                >
-                    <ActionLink
-                        href={
-                            network.chainName === 'polygon'
-                                ? 'https://gains.trade/decentralized-trading/'
-                                : 'https://gains.trade/testnet-trading/'
-                        }
-                        target="_blank"
-                        style={{ flex: '0 1 auto' }}
+        <>
+            <Section>
+                <Container>
+                    <Header>
+                        <Title>Your Active Trades</Title>
+                    </Header>
+                    <Content>
+                        <Table>
+                            <TableHead>
+                                <TableHeadRow>
+                                    <TableHeader style={{ borderTopLeftRadius: 10 }}>
+                                        Position
+                                    </TableHeader>
+                                    <TableHeader>Pair</TableHeader>
+                                    <TableHeader>Leverage</TableHeader>
+                                    <TableHeader style={{ textAlign: 'right' }}>
+                                        Collateral
+                                    </TableHeader>
+                                    <TableHeader style={{ textAlign: 'right' }}>
+                                        Net PnL
+                                    </TableHeader>
+                                    <TableHeader style={{ borderTopRightRadius: 10 }}>
+                                        Close
+                                    </TableHeader>
+                                </TableHeadRow>
+                            </TableHead>
+                            <TableBody>
+                                {trades.map((item, ix) => (
+                                    <ActiveTradeContainer
+                                        key={`${item.trade.pairIndex}-${item.trade.index}`}
+                                        tradeWrapper={item}
+                                        onClick={handleTradeClick}
+                                    />
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Content>
+                    <div
+                        style={{
+                            display: 'flex',
+                            marginTop: 8,
+                            justifyContent: 'center',
+                        }}
                     >
-                        <GainsLogo src="/images/gains_logo.png" />
-                        Further manage on Gains
-                    </ActionLink>
-                </div>
-            </Container>
-        </Section>
+                        <ActionLink
+                            href={
+                                network.chainName === 'polygon'
+                                    ? 'https://gains.trade/decentralized-trading/'
+                                    : 'https://gains.trade/testnet-trading/'
+                            }
+                            target="_blank"
+                            style={{ flex: '0 1 auto' }}
+                        >
+                            <GainsLogo src="/images/gains_logo.png" />
+                            Further manage on Gains
+                        </ActionLink>
+                    </div>
+                </Container>
+            </Section>
+            <TradeDetailsModal isVisible={isModalVisible} close={() => setModalVisible(false)} />
+        </>
     );
 }

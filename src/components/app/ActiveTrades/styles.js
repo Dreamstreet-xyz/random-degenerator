@@ -10,8 +10,6 @@ export const Section = styled.div`
 `;
 
 export const Table = styled.table`
-    border-collapse: collapse;
-    table-layout: auto;
     width: 100%;
     background-color: #21115c;
     border-radius: 10px;
