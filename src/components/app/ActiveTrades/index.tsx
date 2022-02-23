@@ -9,7 +9,7 @@ import {
     ActionLink,
     GainsLogo,
 } from 'components/app/MainApp/ConnectedApp/PlaySlots/TradeResultsCard/styles';
-import { NetworkInterface } from 'shared/constants/networks';
+import { NetworkInterface, polygon } from 'shared/constants/networks';
 import TradeDetailsModal from './TradeDetailsModal';
 
 export default function ActiveTrades({
@@ -20,7 +20,7 @@ export default function ActiveTrades({
     network: NetworkInterface;
 }) {
     const [isModalVisible, setModalVisible] = useState(false);
-
+    console.log(network);
     const handleTradeClick = id => {
         setModalVisible(true);
     };
@@ -72,7 +72,7 @@ export default function ActiveTrades({
                     >
                         <ActionLink
                             href={
-                                network.chainName === 'polygon'
+                                network.chainId === polygon.chainId
                                     ? 'https://gains.trade/decentralized-trading/'
                                     : 'https://gains.trade/testnet-trading/'
                             }

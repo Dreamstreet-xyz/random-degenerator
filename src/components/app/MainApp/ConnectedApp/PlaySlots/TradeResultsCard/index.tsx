@@ -20,6 +20,7 @@ import { formatEther, formatUnits } from '@ethersproject/units';
 import { LONG_POSITION, SHORT_POSITION } from 'shared/hooks/useOpenTradeV6';
 import { FinalizedTradeDetailsType } from 'types/Trade';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
+import { polygon } from 'shared/constants/networks';
 
 export default function TradeResultsCard({
     transaction,
@@ -121,7 +122,7 @@ export default function TradeResultsCard({
                 </ActionLink>
                 <ActionLink
                     href={
-                        network.chainName === 'polygon'
+                        network.chainId === polygon.chainId
                             ? 'https://gains.trade/decentralized-trading/'
                             : 'https://gains.trade/testnet-trading/'
                     }
