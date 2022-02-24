@@ -8,6 +8,7 @@ import { GainsTradingDataInterface } from 'types/gains/GainsTradingData';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import { transformTradeWrapper } from 'shared/utils/gains';
 import { GainsLiveEventDataInterface, LiveEventTypeName } from 'types/gains/GainsLiveEventData';
+import fetchTradingVariables from 'api/gains/rest/fetchTradingVariables';
 
 const WSS = 'wss://';
 
@@ -22,7 +23,7 @@ export const getGainsDataStoreFromNetwork = (network: NetworkInterface) => {
     }
 };
 
-export const handleStream = (
+export const handleStream = async (
     socket: WebSocket,
     network: NetworkInterface,
     setIsHealthy: (isHealthy: boolean, _network: NetworkInterface) => void
@@ -62,16 +63,21 @@ export const handleStream = (
             case StreamTypeName.liveEvent:
                 const le: GainsLiveEventDataInterface.Data = data;
                 if (wallet && data?.value?.event === LiveEventTypeName.MarketExecuted) {
-                    console.log('MarketExecuted');
                     const me: GainsLiveEventDataInterface.LiveEvent = data.value;
+                    console.log('MarketExecuted', me);
                     const t = me?.returnValues?.t || [];
                     if (wallet === t[0]) {
                         dataStore.getState().setLatestMarketOrderForWallet(me);
+                        const userTrades = dataStore.getState().openTradesForWallet;
+                        // fetch trading variables again to get updated open trades with proper data
+                        const newTvs = await fetchTradingVariables(network);
+                        dataStore.getState().setOpenTrades(newTvs.allTrades);
                     }
                 }
                 break;
             case StreamTypeName.openTrades:
                 const oo: GainsStreamingDataInterface.OpenTrades = data;
+                console.log('OpenTrades', oo);
                 dataStore.getState().setOpenTrades(oo.value);
                 // if (wallet) {
                 //     const tradesForWallet = (
