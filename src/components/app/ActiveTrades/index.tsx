@@ -19,9 +19,9 @@ export default function ActiveTrades({
     trades: GainsCoreDataInterface.TradeWrapper[];
     network: NetworkInterface;
 }) {
-    const [isModalVisible, setModalVisible] = useState(false);
-    const handleTradeClick = id => {
-        setModalVisible(true);
+    const [target, setTarget] = useState(null);
+    const handleTradeClick = index => {
+        setTarget(trades[index]);
     };
 
     return (
@@ -56,7 +56,7 @@ export default function ActiveTrades({
                                     <ActiveTradeContainer
                                         key={`${item.trade.pairIndex}-${item.trade.index}`}
                                         tradeWrapper={item}
-                                        onClick={handleTradeClick}
+                                        onClick={() => handleTradeClick(ix)}
                                     />
                                 ))}
                             </TableBody>
@@ -84,7 +84,7 @@ export default function ActiveTrades({
                     </div>
                 </Container>
             </Section>
-            <TradeDetailsModal isVisible={isModalVisible} close={() => setModalVisible(false)} />
+            <TradeDetailsModal isVisible={target} close={() => setTarget(null)} trade={target} />
         </>
     );
 }
