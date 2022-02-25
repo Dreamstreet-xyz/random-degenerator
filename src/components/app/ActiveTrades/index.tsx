@@ -84,7 +84,14 @@ export default function ActiveTrades({
                     </div>
                 </Container>
             </Section>
-            <TradeDetailsModal isVisible={target} close={() => setTarget(null)} trade={target} />
+            {target && (
+                <TradeDetailsModal
+                    isVisible={target}
+                    close={() => setTarget(null)}
+                    trade={target.trade}
+                    tradeInfo={target.tradeInfo}
+                />
+            )}
         </>
     );
 }
