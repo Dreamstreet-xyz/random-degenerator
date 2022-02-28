@@ -45,6 +45,9 @@ export default function MainApp({ gas }) {
         !tradingVariables ||
         (walletConnectionStatus === WalletConnectionStatus.Connected && !user.daiBalance)
     ) {
+        // console.log(walletConnectionStatus);
+        // console.log(user.daiBalance);
+        // console.log(user);
         return (
             <Section style={{ alignItems: 'center' }}>
                 <SquareLoadingSpinner />

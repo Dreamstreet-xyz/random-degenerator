@@ -10,7 +10,7 @@ const getTradesForWallet = (
     trades: GainsCoreDataInterface.TradeWrapper[],
     tv: GainsTradingDataInterface.Data
 ) => {
-    if (!trades || !tv) {
+    if (!trades || !tv || !wallet) {
         return [];
     }
 

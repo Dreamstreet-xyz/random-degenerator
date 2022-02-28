@@ -126,7 +126,11 @@ export default function ConnectedApp({ gas }) {
 
     useEffect(() => {
         if (walletConnectionStatus !== WalletConnectionStatus.Connected) {
-            setBanner({ display: true, message, close: false });
+            setBanner({
+                display: true,
+                message: message + ' ' + walletConnectionStatus,
+                close: false,
+            });
         } else if (displayTxMessage) {
             setBanner({ display: true, message: txMessage, close: () => resetTxStateAndPlay() });
         } else if (!network.isActive) {
@@ -141,17 +145,6 @@ export default function ConnectedApp({ gas }) {
             setBanner({ display: false, message: '', close: false });
         }
     }, [walletConnectionStatus, displayTxMessage, displayDaiMessage, network]);
-
-    // const pairIndexToPairString = useMemo(
-    //     () =>
-    //         tradingVariables.pairs.reduce((acc, pair, index) => {
-    //             return {
-    //                 ...acc,
-    //                 [index]: `${pair.from}/${pair.to}`,
-    //             };
-    //         }, {}),
-    //     [tradingVariables]
-    // );
 
     const setBetFromPlay = (proposedBet: [string, string]) => {
         const pMin = parseInt(proposedBet[0]) || parseInt(bet[0]);

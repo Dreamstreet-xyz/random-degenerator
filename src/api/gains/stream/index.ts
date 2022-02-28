@@ -79,15 +79,6 @@ export const handleStream = async (
                 const oo: GainsStreamingDataInterface.OpenTrades = data;
                 console.log('OpenTrades', oo);
                 dataStore.getState().setOpenTrades(oo.value);
-                // if (wallet) {
-                //     const tradesForWallet = (
-                //         oo?.value?.filter(
-                //             (o: GainsCoreDataInterface.TradeWrapper) => o?.trade?.trader === wallet
-                //         ) || []
-                //     ).map(t => transformTradeWrapper(t, dataStore.getState().tradingVariables));
-
-                //     dataStore.getState().setOpenTradesForWallet(tradesForWallet);
-                // }
                 break;
             case StreamTypeName.openMarketOrderCanceled:
                 const omo: GainsStreamingDataInterface.OpenMarketOrderCanceled = data;

@@ -1,5 +1,7 @@
 import { useState, useEffect, useMemo, useContext, createContext } from 'react';
 import { useEtherBalance, useEthers, useTokenBalance } from '@usedapp/core';
+import WalletConnectProvider from '@walletconnect/web3-provider';
+import Web3Modal from 'web3modal';
 import ConnectWalletContainer from 'containers/ConnectWalletContainer';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import { UserInterface } from 'types/User';
@@ -15,6 +17,41 @@ import {
     ActiveGainsDataStoreInterface,
 } from 'shared/stores/ActiveGainsDataStore';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
+import { ethers } from '@usedapp/core/node_modules/ethers';
+
+const providerOptions = typeof window !== 'undefined' && {
+    injected: {
+        display: {
+            name: 'Metamask',
+            description: 'Connect with the provider in your Browser',
+        },
+        package: null,
+    },
+    walletconnect: {
+        package: WalletConnectProvider,
+        options: {
+            bridge: 'https://bridge.walletconnect.org',
+            infuraId: process.env.NEXT_PUBLIC_INFURA_ID,
+            rpc: {
+                80001:
+                    'https://polygon-mumbai.g.alchemy.com/v2/' +
+                    process.env.NEXT_PUBLIC_MUMBAI_API_KEY,
+                137:
+                    'https://polygon-mainnet.g.alchemy.com/v2/' +
+                    process.env.NEXT_PUBLIC_POLYGON_API_KEY,
+            },
+        },
+    },
+};
+
+const web3Modal =
+    typeof window !== 'undefined' &&
+    new Web3Modal({
+        network: 'any',
+        cacheProvider: true,
+        providerOptions,
+        theme: 'dark',
+    });
 
 type UserContextInterface = {
     user: UserInterface | null;
@@ -38,7 +75,7 @@ export const useUser = () => {
 };
 
 export default function UserContextProvider({ children }) {
-    const { account, deactivate, chainId, error, active, library } = useEthers(); // TOOD: use activate for walletconnect
+    const { account, deactivate, chainId, error, active, library, activate } = useEthers(); // TOOD: use activate for walletconnect
     const { network } = useNetworkDetails();
     const [loading, setLoading] = useState(true);
     const [isConnectWalletActive, setIsConnectWalletActive] = useState(false);
@@ -67,10 +104,16 @@ export default function UserContextProvider({ children }) {
                 status = WalletConnectionStatus.UnsupportedNetwork;
             } else if (error?.name === 'NoEthereumProviderError') {
                 status = WalletConnectionStatus.NoEthereumProvider;
+            } else if (
+                error?.name === 'Error' &&
+                error?.message.includes('underlying network changed')
+            ) {
+                status = WalletConnectionStatus.Connected;
             } else {
                 status = WalletConnectionStatus.OtherError;
             }
             console.log(error);
+            console.log(error.message);
         } else if (loading) {
             status = WalletConnectionStatus.Connecting;
         }
@@ -79,6 +122,24 @@ export default function UserContextProvider({ children }) {
         console.log('Account ' + account);
         setWalletConnectionStatus(status);
     };
+
+    useEffect(() => {
+        if (web3Modal.cachedProvider) {
+            web3Modal.connect().then(provider => activate(provider));
+        }
+    }, []);
+
+    useEffect(() => {
+        // without a reactivate, provider becomes stale on network change.
+        // there should be a way to support "any" network, making provider's mutable, according to ethers.js
+        //      https://github.com/ethers-io/ethers.js/issues/866
+        // this doesn't appear to work with web3modal, so just reactivating as workaround
+        const reactivate = async () => {
+            const provider = await web3Modal.connect();
+            await activate(provider);
+        };
+        reactivate();
+    }, [network]);
 
     useEffect(() => {
         updateWalletConnectionStatus();
@@ -93,27 +154,22 @@ export default function UserContextProvider({ children }) {
         }
     }, [account]);
 
-    // useEffect(() => {
-    //     console.log(tradingVariables);
-    //     if (tradingVariables?.allTrades) {
-    //         const userTrades = tradingVariables.allTrades.filter(
-    //             (t: GainsCoreDataInterface.TradeWrapper) => t?.trade?.trader === account
-    //         );
-    //         useGainsDataStore.getState().setOpenTradesForWallet(userTrades);
-    //         setHasOpenTrades(userTrades.length > 0);
-    //     }
-    // }, [tradingVariables]);
-
-    // useEffect(() => {
-    //     console.log('hasOpenTrades', hasOpenTrades);
-    // }, [hasOpenTrades]);
-
-    const connectWallet = () => {
-        setIsConnectWalletActive(true);
+    const connectWallet = async () => {
         setWalletConnectionStatus(WalletConnectionStatus.Connecting);
+
+        try {
+            web3Modal.clearCachedProvider();
+            const provider = await web3Modal.connect();
+            await activate(provider);
+            // setActivateError('');
+        } catch (error: any) {
+            console.log(error);
+            // setActivateError(error.message);
+        }
     };
 
     const disconnectWallet = () => {
+        web3Modal.clearCachedProvider();
         deactivate();
     };
 
@@ -145,14 +201,14 @@ export default function UserContextProvider({ children }) {
             }}
         >
             {children}
-            <ConnectWalletContainer
+            {/* <ConnectWalletContainer
                 active={
                     isConnectWalletActive &&
                     walletConnectionStatus === WalletConnectionStatus.Connecting
                 }
                 handleSuccess={handleConnectedWallet}
                 handleFailure={handleConnectedWallet}
-            />
+            /> */}
         </UserContext.Provider>
     );
 }
