@@ -10,6 +10,7 @@ import {
     GainsLogo,
 } from 'components/app/MainApp/ConnectedApp/PlaySlots/TradeResultsCard/styles';
 import { NetworkInterface, polygon } from 'shared/constants/networks';
+import { getTradeKey } from 'shared/utils/gains/trade';
 import TradeDetailsModal from './TradeDetailsModal';
 
 export default function ActiveTrades({
@@ -20,8 +21,17 @@ export default function ActiveTrades({
     network: NetworkInterface;
 }) {
     const [target, setTarget] = useState(null);
+    const [closedTradeKeys, setClosedTradeKeys] = useState<Set<string>>(new Set([]));
     const handleTradeClick = index => {
         setTarget(trades[index]);
+    };
+
+    const addClosedTrade = (trade: string) => {
+        setClosedTradeKeys(new Set([...Array.from(closedTradeKeys), trade]));
+    };
+
+    const handleCloseModal = () => {
+        setTarget(null);
     };
 
     return (
@@ -54,9 +64,12 @@ export default function ActiveTrades({
                             <TableBody>
                                 {trades.map((item, ix) => (
                                     <ActiveTradeContainer
-                                        key={`${item.trade.pairIndex}-${item.trade.index}`}
+                                        key={getTradeKey(item)}
                                         tradeWrapper={item}
                                         onClick={() => handleTradeClick(ix)}
+                                        type={'table'}
+                                        onTradeClosed={addClosedTrade}
+                                        isClosed={closedTradeKeys.has(getTradeKey(item))}
                                     />
                                 ))}
                             </TableBody>
@@ -85,11 +98,12 @@ export default function ActiveTrades({
                 </Container>
             </Section>
             {target && (
-                <TradeDetailsModal
-                    isVisible={target}
-                    close={() => setTarget(null)}
-                    trade={target.trade}
-                    tradeInfo={target.tradeInfo}
+                <ActiveTradeContainer
+                    onClick={() => setTarget(null)}
+                    tradeWrapper={target}
+                    type={'modal'}
+                    onTradeClosed={addClosedTrade}
+                    isClosed={closedTradeKeys.has(getTradeKey(target))}
                 />
             )}
         </>

@@ -64,3 +64,6 @@ export const calculatePriceChange = (
         ? pc
         : -pc;
 };
+
+export const getTradeKey = (trade: GainsCoreDataInterface.TradeWrapper): string =>
+    `${trade.trade.pairIndex}-${trade.trade.index}`;

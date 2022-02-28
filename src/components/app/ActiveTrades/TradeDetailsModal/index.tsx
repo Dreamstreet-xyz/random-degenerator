@@ -1,6 +1,7 @@
 import { formatEther, formatUnits } from '@ethersproject/units';
 import { Button, Modal } from 'components/common';
 import useLivePnl from 'shared/hooks/useLivePnl';
+import useLivePrice from 'shared/hooks/useLivePrice';
 import {
     ModalBody,
     Row,
@@ -16,11 +17,24 @@ import {
     CloseButton,
 } from './styles';
 
-export default function TradeDetailsModal({ isVisible, close, trade, tradeInfo }) {
+export default function TradeDetailsModal({
+    isVisible,
+    close,
+    trade,
+    tradeInfo,
+    onCloseTrade,
+    loading,
+    isClosed,
+}) {
     const { pairString, leverage, buy, positionSizeDai, sl, tp, openPrice } = trade;
     const { openInterestDai } = tradeInfo;
     const pnl = useLivePnl({ trade, tradeInfo });
+    const price = useLivePrice({ trade, tradeInfo });
 
+    const handleClose = e => {
+        e.stopPropagation();
+        onCloseTrade?.();
+    };
     return (
         <Modal
             isVisible={isVisible}
@@ -55,6 +69,10 @@ export default function TradeDetailsModal({ isVisible, close, trade, tradeInfo }
                     <Sl>{sl > 0 ? Number(formatUnits(sl, 10)).toFixed(5) : 'N/A'}</Sl>
                 </Row>
                 <Row>
+                    <Label>Price</Label>
+                    <Size>{price}</Size>
+                </Row>
+                <Row>
                     <Label>Net PnL</Label>
                     <Pnl pnl={pnl}>
                         {pnl.pnlInclFee.toLocaleString(undefined, {
@@ -69,7 +87,12 @@ export default function TradeDetailsModal({ isVisible, close, trade, tradeInfo }
                         %)
                     </Pnl>
                 </Row>
-                <CloseButton title="Close Trade" />
+                <CloseButton
+                    title="Close Trade"
+                    onClick={handleClose}
+                    disabled={isClosed}
+                    loading={loading}
+                />
             </ModalBody>
         </Modal>
     );

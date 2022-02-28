@@ -8,6 +8,9 @@ export const getLivePairPrice = (
     priceData: GainsPricingDataInterface.Data
 ): number => {
     // console.log(`Getting live price for ${pairIndex}`);
+    if (!pairIndex || !priceData) {
+        return;
+    }
 
     let { name: n, closes: c } = priceData;
     if (n === 'charts') {
