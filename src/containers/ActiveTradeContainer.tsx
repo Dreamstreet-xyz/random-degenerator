@@ -62,7 +62,6 @@ export default function ActiveTradeContainer({
                 break;
         }
     }, [state]);
-    console.log('isClosed', isClosed, type);
 
     const render = () => {
         switch (type) {

@@ -30,10 +30,6 @@ export default function ActiveTrades({
         setClosedTradeKeys(new Set([...Array.from(closedTradeKeys), trade]));
     };
 
-    const handleCloseModal = () => {
-        setTarget(null);
-    };
-
     return (
         <>
             <Section>

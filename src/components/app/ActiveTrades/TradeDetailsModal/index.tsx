@@ -31,6 +31,7 @@ export default function TradeDetailsModal({
     const pnl = useLivePnl({ trade, tradeInfo });
     const price = useLivePrice({ trade, tradeInfo });
 
+    console.log(trade);
     const handleClose = e => {
         e.stopPropagation();
         onCloseTrade?.();
