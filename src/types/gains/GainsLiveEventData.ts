@@ -3,6 +3,7 @@ import { BigNumberish } from 'ethers';
 export const enum LiveEventTypeName {
     MarketExecuted = 'MarketExecuted',
     MarketOpenCanceled = 'MarketOpenCanceled',
+    LimitExecuted = 'LimitExecuted',
 }
 
 export declare module GainsLiveEventDataInterface {
@@ -21,6 +22,17 @@ export declare module GainsLiveEventDataInterface {
         pairIndex: string;
     }
 
+    export interface LimitExecuted {
+        orderId: string;
+        limitIndex: string;
+        t: any[];
+        nftHolder: string;
+        orderType: string;
+        price: string;
+        positionSizeDai: string;
+        percentProfit: string;
+    }
+
     export interface Raw {
         data: string;
         topics: string[];
@@ -35,7 +47,7 @@ export declare module GainsLiveEventDataInterface {
         logIndex: number;
         removed: boolean;
         id: string;
-        returnValues: MarketExecuted | MarketOpenCanceled | any;
+        returnValues: MarketExecuted | MarketOpenCanceled | LimitExecuted | any;
         event: string;
         signature: string;
         raw: Raw;

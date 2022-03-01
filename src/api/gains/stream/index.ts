@@ -9,6 +9,7 @@ import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import { transformTradeWrapper } from 'shared/utils/gains';
 import { GainsLiveEventDataInterface, LiveEventTypeName } from 'types/gains/GainsLiveEventData';
 import fetchTradingVariables from 'api/gains/rest/fetchTradingVariables';
+import { getTradeKey } from 'shared/utils/gains/trade';
 
 const WSS = 'wss://';
 
@@ -62,7 +63,6 @@ export const handleStream = async (
                 break;
             case StreamTypeName.liveEvent:
                 const le: GainsLiveEventDataInterface.Data = data;
-                console.log('MarketExecuted raw', le);
                 if (wallet && data?.value?.event === LiveEventTypeName.MarketExecuted) {
                     const me: GainsLiveEventDataInterface.LiveEvent = data.value;
                     const t = me?.returnValues?.t || [];
@@ -87,6 +87,21 @@ export const handleStream = async (
                             pairIndex: moc.pairIndex,
                             open: true,
                         });
+                    }
+                } else if (wallet && data?.value?.event === LiveEventTypeName.LimitExecuted) {
+                    const le: GainsLiveEventDataInterface.LimitExecuted = data.value?.returnValues;
+                    if (wallet === le.t[0]) {
+                        console.log('LimitExecuted', le);
+                        const userTrades = dataStore.getState().openTradesForWallet;
+                        if (userTrades.some(t => getTradeKey(t) === `${le.t[1]}-${le.t[2]}`)) {
+                            dataStore
+                                .getState()
+                                .setOpenTradesForWallet(
+                                    userTrades.filter(
+                                        t => getTradeKey(t) !== `${le.t[1]}-${le.t[2]}`
+                                    )
+                                );
+                        }
                     }
                 }
                 break;
