@@ -62,16 +62,31 @@ export const handleStream = async (
                 break;
             case StreamTypeName.liveEvent:
                 const le: GainsLiveEventDataInterface.Data = data;
+                console.log('MarketExecuted raw', le);
                 if (wallet && data?.value?.event === LiveEventTypeName.MarketExecuted) {
                     const me: GainsLiveEventDataInterface.LiveEvent = data.value;
-                    console.log('MarketExecuted', me);
                     const t = me?.returnValues?.t || [];
                     if (wallet === t[0]) {
-                        dataStore.getState().setLatestMarketOrderForWallet(me);
-                        const userTrades = dataStore.getState().openTradesForWallet;
+                        console.log('MarketExecuted', me);
+                        if (me?.returnValues?.open) {
+                            dataStore.getState().setLatestMarketOrderForWallet(me);
+                            const userTrades = dataStore.getState().openTradesForWallet;
+                        }
                         // fetch trading variables again to get updated open trades with proper data
                         const newTvs = await fetchTradingVariables(network);
                         dataStore.getState().setOpenTrades(newTvs.allTrades);
+                    }
+                } else if (wallet && data?.value?.event === LiveEventTypeName.MarketOpenCanceled) {
+                    const moc: GainsLiveEventDataInterface.MarketOpenCanceled =
+                        data.value.returnValues;
+                    if (wallet === moc.trader) {
+                        console.log('MarketOpenCanceled', moc);
+                        dataStore.getState().setLatestMarketOrderCanceledForWallet({
+                            address: moc.trader,
+                            id: moc.orderId,
+                            pairIndex: moc.pairIndex,
+                            open: true,
+                        });
                     }
                 }
                 break;

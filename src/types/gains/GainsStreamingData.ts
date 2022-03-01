@@ -32,7 +32,7 @@ export declare module GainsStreamingDataInterface {
     }
 
     export interface OpenMarketOrderCanceled {
-        name: string;
+        name?: string;
         address: string;
         id: string;
         pairIndex: string;
