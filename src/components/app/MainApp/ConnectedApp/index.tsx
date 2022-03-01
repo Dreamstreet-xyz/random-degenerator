@@ -128,7 +128,7 @@ export default function ConnectedApp({ gas }) {
         if (walletConnectionStatus !== WalletConnectionStatus.Connected) {
             setBanner({
                 display: true,
-                message: message + ' ' + walletConnectionStatus,
+                message,
                 close: false,
             });
         } else if (displayTxMessage) {
