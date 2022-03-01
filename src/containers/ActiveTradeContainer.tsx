@@ -28,8 +28,8 @@ export default function ActiveTradeContainer({
         network,
         library,
         tradingDetails: {
-            pairIndex: tradeWrapper.trade.pairIndex,
-            index: tradeWrapper.trade.index,
+            pairIndex: tradeWrapper?.trade.pairIndex,
+            index: tradeWrapper?.trade.index,
         },
     });
     const txMessage = useMemo(() => getTransactionStatusMessage(state), [state]);
@@ -84,7 +84,7 @@ export default function ActiveTradeContainer({
             case 'modal':
                 return (
                     <TradeDetailsModal
-                        isVisible={tradeWrapper}
+                        isVisible={!!tradeWrapper}
                         close={onClick}
                         trade={tradeWrapper?.trade}
                         tradeInfo={tradeWrapper?.tradeInfo}

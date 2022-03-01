@@ -93,15 +93,13 @@ export default function ActiveTrades({
                     </div>
                 </Container>
             </Section>
-            {target && (
-                <ActiveTradeContainer
-                    onClick={() => setTarget(null)}
-                    tradeWrapper={target}
-                    type={'modal'}
-                    onTradeClosed={addClosedTrade}
-                    isClosed={closedTradeKeys.has(getTradeKey(target))}
-                />
-            )}
+            <ActiveTradeContainer
+                onClick={() => setTarget(null)}
+                tradeWrapper={target}
+                type={'modal'}
+                onTradeClosed={addClosedTrade}
+                isClosed={target && closedTradeKeys.has(getTradeKey(target))}
+            />
         </>
     );
 }
