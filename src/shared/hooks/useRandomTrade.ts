@@ -147,11 +147,13 @@ export default function useRandomTrade(): UseRandomTradeInterface {
 
     useEffect(() => {
         if (
-            (unconfirmedMarketOrder && tradeDetails && tradeStatus === TradeStatus.PendingExecution,
+            unconfirmedMarketOrder &&
+            tradeDetails &&
+            tradeStatus === TradeStatus.PendingExecution &&
             unconfirmedMarketOrder?.returnValues?.t[1]?.toString() ===
                 tradeDetails?.pairIndex?.toString() &&
-                unconfirmedMarketOrder?.returnValues?.t[6] === tradeDetails?.buy &&
-                unconfirmedMarketOrder?.returnValues?.t[7] === tradeDetails?.leverage?.toString())
+            unconfirmedMarketOrder?.returnValues?.t[6] === tradeDetails?.buy &&
+            unconfirmedMarketOrder?.returnValues?.t[7] === tradeDetails?.leverage?.toString()
         ) {
             toast.info('Order executed: waiting on block confirmation', {
                 autoClose: false,

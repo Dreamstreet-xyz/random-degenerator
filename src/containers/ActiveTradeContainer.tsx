@@ -88,7 +88,12 @@ export default function ActiveTradeContainer({
                         close={onClick}
                         trade={tradeWrapper?.trade}
                         tradeInfo={tradeWrapper?.tradeInfo}
-                        onCloseTrade={() => closeTrade()}
+                        onCloseTrade={() =>
+                            closeTrade({
+                                pairIndex: tradeWrapper?.trade.pairIndex,
+                                index: tradeWrapper?.trade.index,
+                            })
+                        }
                         isClosed={isClosed || state?.status === 'Success'}
                         loading={['PendingSignature', 'Mining'].includes(state?.status)}
                     />

@@ -33,9 +33,10 @@ export default function useCloseTradeV6({
         'closeTradeMarket'
     );
 
-    const closeTrade = async () => {
-        console.log('Closing trade', _tradingDetails);
-        send(_tradingDetails.pairIndex, _tradingDetails.index);
+    const closeTrade = async (overrides?: CloseTradeDetails) => {
+        console.log('Closing trade', _tradingDetails, overrides);
+        const td = { ..._tradingDetails, ...overrides };
+        send(td.pairIndex, td.index);
     };
 
     return {
