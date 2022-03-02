@@ -322,9 +322,7 @@ export default function ConnectedApp({ gas }) {
             case 'Exception':
                 if (didUserRejectTransaction(state)) {
                     setPlay(false);
-                    toast.error(txMessage, {
-                        onClose: resetTxStateAndPlay,
-                    });
+                    toast.error(txMessage);
                     break;
                 }
             case 'Fail':
