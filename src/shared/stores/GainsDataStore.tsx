@@ -10,13 +10,17 @@ const getTradesForWallet = (
     trades: GainsCoreDataInterface.TradeWrapper[],
     tv: GainsTradingDataInterface.Data
 ) => {
-    if (!trades || !tv || !wallet) {
+    if (!trades || !tv || !wallet || trades?.length === 0) {
         return [];
     }
-
+    console.log(trades);
     return (
-        trades.filter((o: GainsCoreDataInterface.TradeWrapper) => o?.trade?.trader === wallet) || []
-    ).map(t => transformTradeWrapper(t, tv));
+        (
+            trades?.filter(
+                (o: GainsCoreDataInterface.TradeWrapper) => o?.trade?.trader === wallet
+            ) || []
+        )?.map(t => transformTradeWrapper(t, tv)) || []
+    );
 };
 
 export interface GainsDataStoreInterface {
@@ -28,6 +32,11 @@ export interface GainsDataStoreInterface {
 
     latestMarketOrderForWallet: GainsLiveEventDataInterface.LiveEvent;
     setLatestMarketOrderForWallet: (
+        latestMarketOrderForWallet: GainsLiveEventDataInterface.LiveEvent
+    ) => void;
+
+    latestUnconfirmedMarketOrderForWallet: GainsLiveEventDataInterface.LiveEvent;
+    setLatestUnconfirmedMarketOrderForWallet: (
         latestMarketOrderForWallet: GainsLiveEventDataInterface.LiveEvent
     ) => void;
 
@@ -92,6 +101,10 @@ export const useGainsDataStoreScaffolding = set => ({
     latestMarketOrderForWallet: null,
     setLatestMarketOrderForWallet: (latestMarketOrderForWallet: any) =>
         set(state => ({ latestMarketOrderForWallet })),
+
+    latestUnconfirmedMarketOrderForWallet: null,
+    setLatestUnconfirmedMarketOrderForWallet: (latestUnconfirmedMarketOrderForWallet: any) =>
+        set(state => ({ latestUnconfirmedMarketOrderForWallet })),
 
     latestMarketOrderCanceledForWallet: null,
     setLatestMarketOrderCanceledForWallet: (latestMarketOrderCanceledForWallet: any) =>

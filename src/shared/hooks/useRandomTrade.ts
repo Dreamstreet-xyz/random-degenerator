@@ -116,6 +116,9 @@ export default function useRandomTrade(): UseRandomTradeInterface {
     const marketOrder = useGainsDataStore(
         (state: GainsDataStoreInterface) => state.latestMarketOrderForWallet
     );
+    const unconfirmedMarketOrder = useGainsDataStore(
+        (state: GainsDataStoreInterface) => state.latestUnconfirmedMarketOrderForWallet
+    );
     const marketOrderCanceled = useGainsDataStore(
         (state: GainsDataStoreInterface) => state.latestMarketOrderCanceledForWallet
     );
@@ -141,6 +144,20 @@ export default function useRandomTrade(): UseRandomTradeInterface {
             setTradeStatus(transitionTradeToStatus(tradeStatus, TradeStatus.TimedOut));
         }
     }, [currentBlock]);
+
+    useEffect(() => {
+        if (
+            (unconfirmedMarketOrder && tradeDetails && tradeStatus === TradeStatus.PendingExecution,
+            unconfirmedMarketOrder?.returnValues?.t[1]?.toString() ===
+                tradeDetails?.pairIndex?.toString() &&
+                unconfirmedMarketOrder?.returnValues?.t[6] === tradeDetails?.buy &&
+                unconfirmedMarketOrder?.returnValues?.t[7] === tradeDetails?.leverage?.toString())
+        ) {
+            toast.info('Order executed: waiting on block confirmation', {
+                autoClose: false,
+            });
+        }
+    }, [tradeStatus, unconfirmedMarketOrder]);
 
     useEffect(() => {
         switch (state?.status) {

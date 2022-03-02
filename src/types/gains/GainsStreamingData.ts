@@ -8,6 +8,7 @@ export const enum StreamTypeName {
     liveEvent = 'liveEvent',
     openMarketOrderCanceled = 'openMarketOrderCanceled',
     currentBlock = 'currentBlock',
+    unconfirmedEvent = 'unconfirmedEvent',
 }
 
 export declare module GainsStreamingDataInterface {
