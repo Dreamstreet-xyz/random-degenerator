@@ -4,6 +4,7 @@ import { Web3Provider } from '@usedapp/core/node_modules/@ethersproject/provider
 import { useContractFunction } from 'shared/hooks/useContractFunction';
 import { TradingV6__factory } from 'types/ethers-contracts';
 import { TransactionStatus } from '@usedapp/core';
+import useGasStation from './useGasStation';
 
 type CloseTradeDetails = {
     pairIndex: string;
@@ -32,11 +33,12 @@ export default function useCloseTradeV6({
         TradingV6__factory.connect(network.tradingV6ContractAddress, library),
         'closeTradeMarket'
     );
+    const gasStation = useGasStation();
 
     const closeTrade = async (overrides?: CloseTradeDetails) => {
         console.log('Closing trade', _tradingDetails, overrides);
         const td = { ..._tradingDetails, ...overrides };
-        send(td.pairIndex, td.index);
+        send(td.pairIndex, td.index, { ...(await gasStation.getCloseTradeGas()) });
     };
 
     return {

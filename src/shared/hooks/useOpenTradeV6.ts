@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useEthers } from '@usedapp/core';
-import { BigNumberish } from 'ethers';
+import { useEthers, useGasPrice } from '@usedapp/core';
+import { BigNumberish, BigNumber } from 'ethers';
 import { parseUnits } from '@ethersproject/units';
 import { useContractFunction } from 'shared/hooks/useContractFunction';
 import { TradingV6__factory } from 'types/ethers-contracts';
 import { useGainsPriceStore, GainsPriceStoreInterface } from 'shared/stores/GainsPriceStore';
+import useGasStation from './useGasStation';
 
 const DEFAULT_POSITION_SIZE = 0;
 const DEFAULT_PAIR_INDEX = 0; // BTC/USD
@@ -12,6 +13,9 @@ const DEFAULT_LEVERAGE = 5; // minimum
 export const LONG_POSITION = 'long';
 export const SHORT_POSITION = 'short';
 const DEFAULT_POSITION = LONG_POSITION;
+
+const GAS_LIMIT = 1976821;
+const GAS_COEFFICIENT = 1.075;
 
 export interface SubmitTradeOverride {
     positionSizeDai?: number;
@@ -90,8 +94,9 @@ export default function useOpenTradeV6({ tradingAddress }: { tradingAddress: str
     const getLivePairPrice = useGainsPriceStore(
         (state: GainsPriceStoreInterface) => state.getLivePairPrice
     );
+    const gasStation = useGasStation();
 
-    const submitTrade = (trader: string, overrides?: SubmitTradeOverride): TradeStruct => {
+    const submitTrade = async (trader: string, overrides?: SubmitTradeOverride): TradeStruct => {
         const _pIx = overrides?.pairIndex ?? pairIndex;
         const openPrice: number = getLivePairPrice(_pIx);
         const _positionSizeDai = overrides?.positionSizeDai ?? positionSizeDai;
@@ -134,7 +139,9 @@ export default function useOpenTradeV6({ tradingAddress }: { tradingAddress: str
 
         console.log('Sending trade to contract', tuple, 0, 0, _slippage.toString(), _referrer);
         // TODO: before sending, ensure user is on expected network. otherwise, this won't error, it'll actually send a tx to the address...
-        send(tuple, 0, 0, _slippage, _referrer);
+        send(tuple, 0, 0, _slippage, _referrer, {
+            ...(await gasStation.getOpenTradeGas()),
+        });
         return tuple;
     };
 

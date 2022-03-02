@@ -30,7 +30,7 @@ export interface UseRandomTradeInterface {
         minCollateral?: number,
         maxCollateral?: number,
         assetTypes?: AssetType[]
-    ) => boolean;
+    ) => Promise<boolean>;
     state: TransactionStatus;
     resetState: () => void;
     generateRandomOverrides: (
@@ -315,13 +315,13 @@ export default function useRandomTrade(): UseRandomTradeInterface {
         return _tradeOverrides;
     };
 
-    const submitRandomTrade = (
+    const submitRandomTrade = async (
         trader: string,
         slippageP: number,
         minCollateral?: number,
         maxCollateral?: number,
         assetTypes?: AssetType[]
-    ): boolean => {
+    ): Promise<boolean> => {
         const _tradeOverrides: SubmitTradeOverride =
             tradeOverrides || generateRandomOverrides(minCollateral, maxCollateral, assetTypes);
 
@@ -329,7 +329,7 @@ export default function useRandomTrade(): UseRandomTradeInterface {
         _tradeOverrides.referrer = network.referralAddress;
 
         console.log('Submitting trade with overrides', _tradeOverrides);
-        const trade = submitTrade(trader, _tradeOverrides);
+        const trade = await submitTrade(trader, _tradeOverrides);
         setTradeDetails(trade);
         return true;
     };

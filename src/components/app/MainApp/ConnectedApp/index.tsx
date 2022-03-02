@@ -305,7 +305,7 @@ export default function ConnectedApp({ gas }) {
     };
 
     const handleConfirmTrade = async () => {
-        if (!submitRandomTrade(user.address, Number(slippageP))) {
+        if (!(await submitRandomTrade(user.address, Number(slippageP)))) {
             setPlay(false);
             toast.error(
                 'Your position size is either too small or too big, please adjust the band. Sorry!'
