@@ -188,4 +188,9 @@ export const handleStream = async (
         socket.close();
         setIsHealthy(false, network);
     };
+
+    socket.onclose = () => {
+        console.log('Socket closed');
+        setIsHealthy(false, network);
+    };
 };

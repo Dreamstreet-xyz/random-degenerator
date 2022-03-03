@@ -31,6 +31,7 @@ import useRandomTrade, {
 import WalletOpenTradesContainer from 'containers/WalletOpenTradesContainer';
 import { TradeStatus } from 'types/Trade';
 import ProgressBar from './ProgressBar';
+import { polygon } from 'shared/constants/networks';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -67,6 +68,12 @@ export default function ConnectedApp({ gas }) {
     );
     const [bet, setBet] = useState([minMaxBet[0].toString(), minMaxBet[1].toString()]);
     const [banner, setBanner] = useState({ display: false, message: '', close: false });
+    const [announcement, setAnnouncement] = useState({
+        display: network.chainId === polygon.chainId,
+        message:
+            'Polygon is less stable than usual. Extra block confirmations are required so be patient while playing.',
+        close: () => setAnnouncement({ ...announcement, display: false }),
+    });
     const [daiLoading, setDaiLoading] = useState(false);
     const [finalOrder, setFinalOrder] = useState(null);
     const [tradeFinished, setTradeFinished] = useState(false);
@@ -388,6 +395,11 @@ export default function ConnectedApp({ gas }) {
     return (
         <Container>
             <AppContainer>
+                {network.chainId === polygon.chainId && announcement?.display && (
+                    <BannerContainer>
+                        <Banner message={announcement?.message} close={announcement?.close} />
+                    </BannerContainer>
+                )}
                 <BannerContainer>
                     <AnimatePresence>
                         {banner?.display && (
