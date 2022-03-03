@@ -4,6 +4,7 @@ export enum WalletConnectionStatus {
     UnsupportedNetwork = 'UnsupportedNetwork',
     NetworkMismatch = 'NetworkMismatch',
     NoEthereumProvider = 'NoEthereumProvider',
+    JsonRpcError = 'JsonRpcError',
     OtherError = 'OtherError',
     Connected = 'Connected',
 }

@@ -47,7 +47,6 @@ const providerOptions = typeof window !== 'undefined' && {
 const web3Modal =
     typeof window !== 'undefined' &&
     new Web3Modal({
-        network: 'any',
         cacheProvider: true,
         providerOptions,
         theme: 'dark',
@@ -105,15 +104,23 @@ export default function UserContextProvider({ children }) {
             } else if (error?.name === 'NoEthereumProviderError') {
                 status = WalletConnectionStatus.NoEthereumProvider;
             } else if (
-                error?.name === 'Error' &&
-                error?.message.includes('underlying network changed')
+                (error?.name === 'Error' &&
+                    error?.message.includes('underlying network changed')) ||
+                (error?.message.includes('1013') &&
+                    error?.message.includes('Disconnected from chain'))
             ) {
-                status = WalletConnectionStatus.Connected;
+                status = account
+                    ? WalletConnectionStatus.Connected
+                    : WalletConnectionStatus.Disconnected;
+            } else if (error?.message.includes('Internal JSON-RPC error')) {
+                status = account
+                    ? WalletConnectionStatus.Connected
+                    : WalletConnectionStatus.Disconnected;
             } else {
                 status = WalletConnectionStatus.OtherError;
             }
             console.log(error);
-            console.log(error.message);
+            // console.log(error.message);
         } else if (loading) {
             status = WalletConnectionStatus.Connecting;
         }
@@ -123,11 +130,11 @@ export default function UserContextProvider({ children }) {
         setWalletConnectionStatus(status);
     };
 
-    useEffect(() => {
-        if (web3Modal.cachedProvider) {
-            web3Modal.connect().then(provider => activate(provider));
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (web3Modal.cachedProvider) {
+    //         web3Modal.connect().then(provider => activate(provider));
+    //     }
+    // }, [network]);
 
     useEffect(() => {
         // without a reactivate, provider becomes stale on network change.
@@ -135,11 +142,17 @@ export default function UserContextProvider({ children }) {
         //      https://github.com/ethers-io/ethers.js/issues/866
         // this doesn't appear to work with web3modal, so just reactivating as workaround
         const reactivate = async () => {
-            const provider = await web3Modal.connect();
-            await activate(provider);
+            if (web3Modal.cachedProvider) {
+                const connection = await web3Modal.connect();
+                const provider = new ethers.providers.Web3Provider(connection, 'any');
+                provider.on('chainChanged', chainId => {
+                    console.log('Chain changed to ' + chainId);
+                });
+                await activate(provider);
+            }
         };
         reactivate();
-    }, [network]);
+    }, [network, account]);
 
     useEffect(() => {
         updateWalletConnectionStatus();
@@ -159,7 +172,8 @@ export default function UserContextProvider({ children }) {
 
         try {
             web3Modal.clearCachedProvider();
-            const provider = await web3Modal.connect();
+            const connection = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(connection, 'any');
             await activate(provider);
             // setActivateError('');
         } catch (error: any) {

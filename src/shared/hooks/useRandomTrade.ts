@@ -155,9 +155,11 @@ export default function useRandomTrade(): UseRandomTradeInterface {
             unconfirmedMarketOrder?.returnValues?.t[6] === tradeDetails?.buy &&
             unconfirmedMarketOrder?.returnValues?.t[7] === tradeDetails?.leverage?.toString()
         ) {
-            toast.info('Order executed: waiting on block confirmation', {
-                autoClose: false,
-            });
+            setTimeout(() => {
+                toast.info('Order executed: waiting on block confirmation', {
+                    autoClose: false,
+                });
+            }, 1000);
         }
     }, [tradeStatus, unconfirmedMarketOrder]);
 

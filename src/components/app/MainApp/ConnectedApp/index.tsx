@@ -132,7 +132,13 @@ export default function ConnectedApp({ gas }) {
     }, [bet]);
 
     useEffect(() => {
-        if (walletConnectionStatus !== WalletConnectionStatus.Connected) {
+        if (walletConnectionStatus === WalletConnectionStatus.JsonRpcError) {
+            setBanner({
+                display: true,
+                message,
+                close: () => setBanner({ ...banner, display: false }),
+            });
+        } else if (walletConnectionStatus !== WalletConnectionStatus.Connected) {
             setBanner({
                 display: true,
                 message,

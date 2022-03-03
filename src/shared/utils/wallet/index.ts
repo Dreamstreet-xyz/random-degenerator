@@ -18,6 +18,8 @@ export const getWalletConnectionStatusMessage = (walletStatus: WalletConnectionS
             return 'Oops, something went wrong';
         case WalletConnectionStatus.Connected:
             return 'Connected';
+        case WalletConnectionStatus.JsonRpcError:
+            return 'RPC errors - please refresh or make sure your wallet has a connection to the network';
         default:
             return 'Unknown error occurred... please reach out to us on Telegram';
     }

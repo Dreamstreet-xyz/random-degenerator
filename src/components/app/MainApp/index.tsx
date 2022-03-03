@@ -29,6 +29,7 @@ export default function MainApp({ gas }) {
             case WalletConnectionStatus.UnsupportedNetwork:
             case WalletConnectionStatus.NetworkMismatch:
             case WalletConnectionStatus.OtherError:
+            case WalletConnectionStatus.JsonRpcError:
                 return <ConnectedApp gas={gas} />;
             case WalletConnectionStatus.Connecting:
                 return <NeonButton title="Connect Wallet" onClick={handleConnect} loading />;
