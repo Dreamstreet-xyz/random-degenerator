@@ -20,6 +20,7 @@ export interface NetworkInterface extends Chain {
     tradingV6ContractAddress: string;
     storageContractAddress: string;
     isActive: boolean;
+    gasStationUrl: string;
 }
 
 export const polygon: NetworkInterface = {
@@ -37,6 +38,7 @@ export const polygon: NetworkInterface = {
     tradingV6ContractAddress: '0xF8a140DB8B05BEC52C7e86D0D40D72f8e54Fe559',
     storageContractAddress: '0xaee4d11a16B2bc65EDD6416Fb626EB404a6D65BD',
     isActive: true,
+    gasStationUrl: 'https://gasstation-mainnet.matic.network/v2',
 };
 
 export const kovan: NetworkInterface = {
@@ -54,6 +56,7 @@ export const kovan: NetworkInterface = {
     tradingV6ContractAddress: '0xec1c66a898ba26bca60a8f5129802d1727d9f918',
     storageContractAddress: '0x7ef89abe6830e00580a8fc8c298afdad038cbced',
     isActive: false,
+    gasStationUrl: 'https://ethgasstation.info/api/ethgasAPI.json?',
 };
 
 export const mumbai: NetworkInterface = {
@@ -71,6 +74,7 @@ export const mumbai: NetworkInterface = {
     tradingV6ContractAddress: '0x49370dc7319d8439c895015cbad8e35d381e7d73',
     storageContractAddress: '0x4d2df485c608aa55a23d8d98dd2b4fa24ba0f2cf',
     isActive: true,
+    gasStationUrl: 'https://gasstation-mumbai.matic.today/v2',
 };
 
 export const walletPolygonChain: AddEthereumChainParameter = {

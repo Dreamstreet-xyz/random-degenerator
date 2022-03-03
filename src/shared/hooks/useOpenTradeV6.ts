@@ -14,9 +14,6 @@ export const LONG_POSITION = 'long';
 export const SHORT_POSITION = 'short';
 const DEFAULT_POSITION = LONG_POSITION;
 
-const GAS_LIMIT = 1976821;
-const GAS_COEFFICIENT = 1.075;
-
 export interface SubmitTradeOverride {
     positionSizeDai?: number;
     pairIndex?: number;

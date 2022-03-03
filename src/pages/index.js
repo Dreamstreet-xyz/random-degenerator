@@ -6,6 +6,9 @@ import MainApp from 'components/app/MainApp';
 import Leaderboard from 'components/app/Leaderboard';
 import NetworkInfo from 'components/app/NetworkInfo';
 import { Sun, SunGradient, SunGradientCity, City, Grid } from 'components/app/decorations';
+import useGasStation from 'shared/hooks/useGasStation';
+import { formatUnits } from '@ethersproject/units';
+import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 
 const Container = styled.div`
     position: relative;
@@ -16,16 +19,17 @@ export default function Home() {
     const sunGradientOpacity = useTransform(scrollYProgress, [0.5, 1], [0, 1]);
     const cityGradientOpacity = useTransform(scrollYProgress, [0.8, 1], [0, 1]);
     const [networkInfo, setNetworkInfo] = useState(null);
+    const { getGasStationPayload } = useGasStation();
+    const { network } = useNetworkDetails();
 
     useEffect(() => {
         fetchGas();
         const intervalId = setInterval(() => {
             fetchGas();
-        }, 40000);
+        }, 5000);
 
         function fetchGas() {
-            fetch('https://gasstation-mainnet.matic.network')
-                .then(response => response.json())
+            getGasStationPayload()
                 .then(json => {
                     setNetworkInfo(json);
                 })
@@ -35,18 +39,21 @@ export default function Home() {
         }
 
         return () => clearInterval(intervalId);
-    }, []);
+    }, [network]);
 
     return (
         <Container>
-            <MainApp gas={networkInfo?.fastest} />
+            <MainApp gas={networkInfo?.fast.maxPriorityFee} />
             <Sun style={{ translateY }} />
             <City />
             <SunGradient style={{ translateY, opacity: sunGradientOpacity }} />
             <Grid />
             <SunGradientCity style={{ opacity: cityGradientOpacity }} />
             {networkInfo && (
-                <NetworkInfo gas={networkInfo.fastest} block={networkInfo.blockNumber} />
+                <NetworkInfo
+                    gas={networkInfo.fast.maxPriorityFee}
+                    block={networkInfo.blockNumber}
+                />
             )}
         </Container>
     );

@@ -64,8 +64,7 @@ export default function GainsNetworkContextProvider({ children }) {
         handleStream(mainnetSocket, Networks.Polygon, setIsHealthy);
         handleStream(testnetSocket, Networks.Mumbai, setIsHealthy);
 
-        setInterval(() => {
-            console.log('checking sockets');
+        const intervalId = setInterval(() => {
             // check for dead sockets
             if (mainnetSocket === undefined || mainnetSocket.readyState === 3) {
                 handleStream(mainnetSocket, Networks.Polygon, setIsHealthy);
@@ -78,6 +77,7 @@ export default function GainsNetworkContextProvider({ children }) {
         return () => {
             mainnetSocket.close();
             testnetSocket.close();
+            clearInterval(intervalId);
         };
     }, []);
 
