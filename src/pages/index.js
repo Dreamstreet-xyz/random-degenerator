@@ -20,6 +20,7 @@ const StickyContainer = styled.div`
     width: 100%;
     z-index: 3;
     height: 100vh;
+    pointer-events: none;
 `;
 
 export const AnnouncementBannerContainer = styled.div`
@@ -29,6 +30,7 @@ export const AnnouncementBannerContainer = styled.div`
     width: 100%;
     z-index: 3;
     background: linear-gradient(45deg, #5835f5cc, #ac46ffcc);
+    pointer-events: initial;
 `;
 
 export const AnnouncementBanner = styled(DefaultBanner)`
