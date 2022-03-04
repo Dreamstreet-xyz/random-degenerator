@@ -67,13 +67,15 @@ export const transitionTradeToStatus = (from: TradeStatus, to: TradeStatus): Tra
                     TradeStatus.Mining,
                     TradeStatus.PendingSignature,
                     TradeStatus.None,
+                    TradeStatus.Unconfirmed,
                 ].includes(from)
             ) {
                 return to;
             }
             return from;
         case TradeStatus.Success:
-            if (from === TradeStatus.Executed) {
+            console.log('Success', from);
+            if (from === TradeStatus.Executed || from === TradeStatus.Unconfirmed) {
                 return to;
             }
             return from;
@@ -84,6 +86,8 @@ export const transitionTradeToStatus = (from: TradeStatus, to: TradeStatus): Tra
                 return to;
             }
             return from;
+        case TradeStatus.Unconfirmed:
+            return to;
         default:
             break;
     }
@@ -110,6 +114,7 @@ export const getTradeProgress = (status: TradeStatus): { cur: number; total: num
         case TradeStatus.PendingExecution:
             progress.cur = 3;
             break;
+        case TradeStatus.Unconfirmed:
         case TradeStatus.Executed:
             progress.cur = 4;
             break;

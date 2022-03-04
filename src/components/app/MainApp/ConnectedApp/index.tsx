@@ -254,6 +254,12 @@ export default function ConnectedApp({ gas }) {
                 toast.dismiss();
                 toast('Transaction completed!', { icon: '🚀' });
                 break;
+            case TradeStatus.Unconfirmed:
+                toast.dismiss();
+                toast.info('Order executed: waiting on block confirmation', {
+                    autoClose: false,
+                });
+                break;
             case TradeStatus.Failed:
             case TradeStatus.None:
             default:

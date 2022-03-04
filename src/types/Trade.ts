@@ -39,6 +39,7 @@ export enum TradeStatus {
     PendingSignature = 'PendingSignature',
     Mining = 'Mining',
     PendingExecution = 'PendingExecution',
+    Unconfirmed = 'Unconfirmed',
     Executed = 'Executed',
     Canceled = 'Canceled',
     TimedOut = 'TimedOut',
