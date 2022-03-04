@@ -65,7 +65,7 @@ export default function Button({
             {...rest}
         >
             {loading ? (
-                <Loading />
+                <Loading containerStyle={{ minHeight: 24 }} />
             ) : (
                 <Content center={center || (!icon && !iconName)} hasSubtitle={!!subtitle}>
                     {renderLeftIcon()}

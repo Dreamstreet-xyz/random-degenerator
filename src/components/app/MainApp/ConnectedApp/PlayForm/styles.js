@@ -90,32 +90,7 @@ export const ActionRow = styled.div`
     }
 `;
 
-export const buttonShine = keyframes`
-    0% {
-        background-position: 0% 50%;
-    } 
-    50% {
-        background-position: 100% 50%;
-    }
-    100%{
-        background-position: 0% 50%;
-    }
-`;
-
 export const SubmitButton = styled(Button)`
-    margin-left: auto;
     padding: 12px 64px;
     font-size: 28px;
-    font-weight: bold;
-    border-radius: 10px;
-    background-color: #e010cf;
-    background: linear-gradient(-45deg, #8342eb, #FF3D77); 
-    background-size: 300%;
-    animation: ${buttonShine} 8s linear infinite;
-    color: white;
-
-    &:hover:not([disabled]),
-    &:focus {
-        box-shadow: 0px 0px 0px 3px #42bef0;
-    }
 `;

@@ -1,33 +1,27 @@
 import styled from 'styled-components';
+import { gradientShine } from 'shared/styles';
 
 export const StyledButton = styled.button`
     display: flex;
+    box-sizing: border-box;
     justify-content: center;
     align-items: center;
     width: auto;
-    padding: 8px 16px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    background-color: #453794;
-    color: white;
     font-size: 14px;
     outline: none;
-    // align-self: flex-start; // makes it so each button has its own individual width dependent on its content
+    padding: 8px 16px;
+    margin-left: auto;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #e010cf;
+    background: linear-gradient(-45deg, #8342eb, #FF3D77); 
+    background-size: 300%;
+    animation: ${gradientShine} 8s linear infinite;
+    color: white;
 
-    &:hover:enabled {
-        background-color: #3c2e8b;
-    }
-
-    &:active {
-        background-color: #352788;
-    }
-
-    &:disabled {
-        background-color: #736ca0;
-    }
-
+    &:hover:not([disabled]),
     &:focus {
-        box-shadow: 0px 0px 0px 2px #4b4c55;
+        box-shadow: 0px 0px 0px 3px #42bef0;
     }
 `;
 
