@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Banner as DefaultBanner } from 'components/common';
-import { pulsingGlow, retroTextGradient } from 'shared/styles';
+import { retroTextGradient } from 'shared/styles';
 
 export const Container = styled.div`
     width: 100%;
@@ -62,22 +62,9 @@ export const Banner = styled(DefaultBanner)`
     width: 100%;
     border-radius: 20px;
     z-index: 5;
-
-    ${({ invalid }) => (invalid && css`
-        background-color: #f5355f;
-        background: linear-gradient(45deg, #f5355f, #ff465f);
-    `)}
+    background: linear-gradient(45deg, #f5355f, #ff465f);
 
     @media (max-width: 768px) {
         position: relative;
-    }
-`;
-
-export const GlowBanner = styled(Banner)`
-    box-shadow: 0px 0px 8px 4px #ff1bce61;
-    ${pulsingGlow}
-    &::after {
-        border-radius: 20px;
-        box-shadow: 0px 0px 8px 4px #ff1b7a61;
     }
 `;

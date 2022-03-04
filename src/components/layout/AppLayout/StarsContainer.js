@@ -13,9 +13,10 @@ const animStar = keyframes`
 
 const Container = styled.div`
     position: absolute;
-    height: 200vh;
+    height: 100%;
     width: 100%;
     pointer-events: none;
+    overflow: hidden;
 `;
 
 const baseStars = css`

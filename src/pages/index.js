@@ -6,13 +6,44 @@ import MainApp from 'components/app/MainApp';
 import Leaderboard from 'components/app/Leaderboard';
 import NetworkInfo from 'components/app/NetworkInfo';
 import { Sun, SunGradient, SunGradientCity, City, Grid } from 'components/app/decorations';
+import { Banner as DefaultBanner } from 'components/common';
 import useGasStation from 'shared/hooks/useGasStation';
-import { formatUnits } from '@ethersproject/units';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
+import { polygon } from 'shared/constants/networks';
 
 const Container = styled.div`
     position: relative;
 `;
+
+const StickyContainer = styled.div`
+    position: absolute;
+    width: 100%;
+    z-index: 3;
+    height: 100vh;
+`;
+
+export const AnnouncementBannerContainer = styled.div`
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    background: linear-gradient(45deg, #5835f5cc, #ac46ffcc);
+`;
+
+export const AnnouncementBanner = styled(DefaultBanner)`
+    z-index: 3;
+    margin: 0 auto;
+    margin-top: 96px;
+    max-width: 600px;
+    padding: 16px;
+    background-color: transparent;
+
+    @media (max-width: 500px) {
+        margin-top: 64px;
+    }
+`;
+
 export default function Home() {
     const { scrollYProgress } = useViewportScroll();
     const translateY = useTransform(scrollYProgress, [0.75, 1], [107, 0]);
@@ -21,6 +52,12 @@ export default function Home() {
     const [networkInfo, setNetworkInfo] = useState(null);
     const { getGasStationPayload } = useGasStation();
     const { network } = useNetworkDetails();
+    const [announcement, setAnnouncement] = useState({
+        display: true,
+        message:
+            'Polygon is less stable than usual. Extra block confirmations are required so be patient while playing.',
+        close: () => setAnnouncement({ ...announcement, display: false }),
+    });
 
     useEffect(() => {
         fetchGas();
@@ -43,6 +80,17 @@ export default function Home() {
 
     return (
         <Container>
+            {network.chainId === polygon.chainId && announcement?.display && (
+                <StickyContainer>
+                    <AnnouncementBannerContainer>
+                        <AnnouncementBanner
+                            message={announcement?.message}
+                            close={announcement?.close}
+                            iconStyle={{ top: -10 }}
+                        />
+                    </AnnouncementBannerContainer>
+                </StickyContainer>
+            )}
             <MainApp gas={networkInfo?.fast.maxPriorityFee} />
             <Sun style={{ translateY }} />
             <City />

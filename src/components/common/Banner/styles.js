@@ -3,18 +3,21 @@ import { motion } from 'framer-motion';
 import IconButton from 'components/common/IconButton';
 
 export const Container = styled(motion.div)`
+    position: relative;
     background-color: #e63b82;
     border-radius: 10px;
-    padding: 24px;
     display: flex;
+    padding: 24px;
 `;
 
 export const Content = styled.div`
     font-weight: bold;
+    flex: 1;
 `;
 
 export const IconContainer = styled.div`
-    width: 32px;
+    flex-basis: 16px;
+    position: relative;
 `;
 
 export const CloseButton = styled(IconButton).attrs(() => ({
@@ -26,9 +29,9 @@ export const CloseButton = styled(IconButton).attrs(() => ({
     border-radius: 6px;
     color: #ffb5c2;
     position: absolute;
-    top: 8px;
-    right: 12px;
-
+    top: -20px;
+    right: -12px;
+   
     &:hover:enabled {
         background-color: transparent;
     }

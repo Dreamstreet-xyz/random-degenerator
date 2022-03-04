@@ -8,7 +8,6 @@ import StarsContainer from './StarsContainer';
 const Container = styled.div`
     position: relative;
     background: radial-gradient(circle at 50% 1800px, #330f96 0, #160231 100%);
-    overflow-y: hidden;
 `;
 
 const Content = styled.div`

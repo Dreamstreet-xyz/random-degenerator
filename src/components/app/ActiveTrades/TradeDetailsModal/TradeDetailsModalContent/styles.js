@@ -26,7 +26,7 @@ const fieldStyle = css`
 export const Pair = styled.p`
     font-size: 36px;
     font-weight: bold;
-    color: #57e08b;
+    color: #6557e0;
     text-align: center;
 `;
 

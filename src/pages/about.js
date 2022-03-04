@@ -113,13 +113,6 @@ export default function About() {
             <Container>
                 <Content>
                     <MainContent>
-                        <Section>
-                            <Header>
-                                <h2>
-                                    <Title>Embrace your inner degen!</Title>
-                                </h2>
-                            </Header>
-                        </Section>
                         <FAQ />
                     </MainContent>
                 </Content>
