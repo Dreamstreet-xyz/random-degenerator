@@ -14,6 +14,7 @@ const GAS_LIMIT_COEFFICIENT = 1.25;
 
 const AVG_OPEN_TRADE_UNITS = 1315614;
 const AVG_CLOSE_TRADE_UNITS = 1250751;
+const AVG_OPEN_TRADE_MARKET_TIMEOUT_UNITS = 115000;
 
 export default function useGasStation() {
     const { library } = useEthers();
@@ -54,9 +55,18 @@ export default function useGasStation() {
         return { gasLimit, maxPriorityFeePerGas: gasPrice, maxFeePerGas: gasPrice };
     };
 
+    const getOpenTradeMarketTimeoutGas = async (): Promise<GasStationReturnValues> => {
+        const gasPrice = (await _getMaxPriorityFee()).toString();
+        const gasLimit = parseInt(
+            (GAS_LIMIT_COEFFICIENT * AVG_OPEN_TRADE_MARKET_TIMEOUT_UNITS).toString()
+        );
+        return { gasLimit, maxPriorityFeePerGas: gasPrice, maxFeePerGas: gasPrice };
+    };
+
     return {
         getOpenTradeGas,
         getCloseTradeGas,
+        getOpenTradeMarketTimeoutGas,
         getGasPrice: () => _getMaxPriorityFee(),
         getGasStationPayload: () => getGasStationPayload(),
     };

@@ -30,6 +30,8 @@ import useRandomTrade, {
 import WalletOpenTradesContainer from 'containers/WalletOpenTradesContainer';
 import { TradeStatus } from 'types/Trade';
 import ProgressBar from './ProgressBar';
+import TimedOutTrades from 'components/app/TimedOutTrades';
+import { useEthers } from '@usedapp/core';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -39,11 +41,15 @@ export default function ConnectedApp({ gas }) {
     const [displayDaiMessage, setDisplayDaiMessage] = useState(false);
     const [slippageP, setSlippageP] = useState('2');
     const { network } = useNetworkDetails();
+    const { library } = useEthers();
     const useGainsDataStore = useActiveGainsDataStore(
         (state: ActiveGainsDataStoreInterface) => state.store
     );
     const tradingVariables = useGainsDataStore(
         (state: GainsDataStoreInterface) => state.tradingVariables
+    );
+    const timedOutTradeIds = useGainsDataStore(
+        (state: GainsDataStoreInterface) => state.timedOutTradeIdsForWallet
     );
     const { user, walletConnectionStatus } = useUser();
     const minMaxBet: [number, number] = useMemo(
@@ -64,6 +70,7 @@ export default function ConnectedApp({ gas }) {
         () => parseInt(prettifyEther(user.daiBalance || '0')) >= tradingVariables.minPosDaiInt,
         [user, tradingVariables]
     );
+
     const [bet, setBet] = useState([minMaxBet[0].toString(), minMaxBet[1].toString()]);
     const [banner, setBanner] = useState({ display: false, message: '', close: false });
     const [daiLoading, setDaiLoading] = useState(false);
@@ -439,6 +446,9 @@ export default function ConnectedApp({ gas }) {
                     />
                 )}
             </AppContainer>
+            {!isPlaying && timedOutTradeIds?.length > 0 && (
+                <TimedOutTrades tradeIds={timedOutTradeIds} network={network} library={library} />
+            )}
             {!isPlaying && <WalletOpenTradesContainer />}
         </Container>
     );
