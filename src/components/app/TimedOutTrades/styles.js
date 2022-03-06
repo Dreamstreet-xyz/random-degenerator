@@ -35,11 +35,7 @@ export const TableData = styled.td`
 `;
 
 export const ClaimCollateralButtonWrapper = styled(TableData)`
-@media (max-width: 800px) {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
+
 `;
 
 export const ClaimCollateralButton = styled(Button).attrs({

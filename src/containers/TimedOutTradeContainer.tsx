@@ -4,6 +4,11 @@ import { NetworkInterface } from 'shared/constants/networks';
 import useCloseTradeMarketTimeout from 'shared/hooks/useCloseTradeMarketTimeout';
 import TimedOutTradeItem from 'components/app/TimedOutTrades/TimedOutTradeItem';
 import { toast } from 'react-toastify';
+import ToastChannel from 'shared/utils/ToastChannel';
+import {
+    useToastChannelDataStore,
+    ToastChannelDataStoreInterface,
+} from 'shared/stores/ToastChannelDataStore';
 
 export default function TimedOutTradeContainer({
     key,
@@ -22,18 +27,49 @@ export default function TimedOutTradeContainer({
         tradeId,
     });
 
+    const activeToastChannels = useToastChannelDataStore(
+        (state: ToastChannelDataStoreInterface) => state.activeToastChannels
+    );
+
     useEffect(() => {
+        console.log('Curernt active channels');
+        console.log(activeToastChannels);
+    }, [activeToastChannels]);
+
+    useEffect(() => {
+        console.log(state);
+        const channel = state?.transaction?.hash || tradeId;
         switch (state?.status) {
+            case 'Mining':
+                ToastChannel.addToastToChannel(channel, {
+                    toast: toast.info,
+                    content: 'Claim collateral submitted',
+                    options: { autoClose: false },
+                });
+                break;
             case 'Exception':
             case 'Fail':
-                toast.error('Failed to claim collateral', { onClose: () => resetState() });
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Failed to claim collateral',
+                        type: 'error',
+                        onClose: () => resetState(),
+                        autoClose: 5000,
+                    },
+                });
                 break;
             case 'Success':
-                toast.info('Collateral claimed', { onClose: () => resetState() });
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Collateral claimed',
+                        type: 'info',
+                        onClose: () => resetState(),
+                        autoClose: 5000,
+                    },
+                });
                 break;
-            case 'None':
             case 'PendingSignature':
-            case 'Mining':
+            case 'None':
             default:
                 break;
         }
