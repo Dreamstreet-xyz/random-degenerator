@@ -27,7 +27,9 @@ export const Container = styled(motion.div)`
     }
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+    overflow-x: scroll;
+`;
 
 export const Header = styled.div`
     display: flex;

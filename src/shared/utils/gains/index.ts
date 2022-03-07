@@ -39,6 +39,14 @@ export const transformUserTradingVariables = (
     return newData;
 };
 
+export const transformUserTradingHistory = (
+    data: GainsCoreDataInterface.HistoricalTrade[]
+): GainsCoreDataInterface.HistoricalTrade[] => {
+    // TODO: add types and transforms
+    const newData = [...data];
+    return newData.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
+};
+
 export const transformTradeWrapper = (
     ot: GainsCoreDataInterface.TradeWrapper,
     tv: GainsTradingDataInterface.Data
