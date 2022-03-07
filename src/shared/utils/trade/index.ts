@@ -87,6 +87,9 @@ export const transitionTradeToStatus = (from: TradeStatus, to: TradeStatus): Tra
             }
             return from;
         case TradeStatus.Unconfirmed:
+            if (from === TradeStatus.Executed || from === TradeStatus.Success) {
+                return from;
+            }
             return to;
         default:
             break;
