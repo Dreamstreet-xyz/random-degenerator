@@ -8,6 +8,7 @@ import useCloseTradeV6 from 'shared/hooks/useCloseTradeV6';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import TradeItem from 'components/app/ActiveTrades/TradeItem';
 import TradeDetailsModal from 'components/app/ActiveTrades/TradeDetailsModal';
+import ToastChannel from 'shared/utils/ToastChannel';
 
 export default function ActiveTradeContainer({
     tradeWrapper,
@@ -39,16 +40,34 @@ export default function ActiveTradeContainer({
         // if other exception, display banner and backout
         // if success, display toast
         // anything else, do nothing
+        const channel = `${tradeWrapper?.trade?.pairIndex}-${tradeWrapper?.trade?.index}`;
         switch (state?.status) {
+            case 'Mining':
+                ToastChannel.addToastToChannel(channel, {
+                    toast: toast.info,
+                    content: 'Close trade submitted',
+                    options: { autoClose: false },
+                });
+                break;
             case 'Exception':
             case 'Fail':
-                toast.error(txMessage, {
-                    onClose: () => resetState(),
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: txMessage,
+                        onClose: () => resetState(),
+                        type: 'error',
+                        autoClose: 5000,
+                    },
                 });
                 break;
             case 'Success':
-                toast.info('Trade closed', {
-                    onClose: () => resetState(),
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Trade closed',
+                        onClose: () => resetState(),
+                        type: 'info',
+                        autoClose: 5000,
+                    },
                 });
                 onTradeClosed(getTradeKey(tradeWrapper));
                 if (type === 'modal') {
@@ -57,7 +76,6 @@ export default function ActiveTradeContainer({
                 break;
             case 'None':
             case 'PendingSignature':
-            case 'Mining':
             default:
                 break;
         }

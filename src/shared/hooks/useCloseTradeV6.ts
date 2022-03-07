@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NetworkInterface } from 'shared/constants/networks';
-import { Web3Provider } from '@usedapp/core/node_modules/@ethersproject/providers';
+import { JsonRpcProvider } from '@ethersproject/providers';
 import { useContractFunction } from 'shared/hooks/useContractFunction';
 import { TradingV6__factory } from 'types/ethers-contracts';
 import { TransactionStatus } from '@usedapp/core';
@@ -13,7 +13,7 @@ type CloseTradeDetails = {
 
 interface UseCloseTradeV6InputInterface {
     network: NetworkInterface;
-    library: Web3Provider;
+    library: JsonRpcProvider;
     tradingDetails: CloseTradeDetails;
 }
 

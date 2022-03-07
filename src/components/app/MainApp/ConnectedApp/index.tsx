@@ -30,6 +30,14 @@ import useRandomTrade, {
 import WalletOpenTradesContainer from 'containers/WalletOpenTradesContainer';
 import { TradeStatus } from 'types/Trade';
 import ProgressBar from './ProgressBar';
+import TimedOutTrades from 'components/app/TimedOutTrades';
+import { useEthers } from '@usedapp/core';
+import ToastChannel from 'shared/utils/ToastChannel';
+import {
+    getTradeKey,
+    getTradeKeyFromTradeStruct,
+    getTradeKeyFromTradeOverrides,
+} from 'shared/utils/gains/trade';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -39,11 +47,15 @@ export default function ConnectedApp({ gas }) {
     const [displayDaiMessage, setDisplayDaiMessage] = useState(false);
     const [slippageP, setSlippageP] = useState('2');
     const { network } = useNetworkDetails();
+    const { library } = useEthers();
     const useGainsDataStore = useActiveGainsDataStore(
         (state: ActiveGainsDataStoreInterface) => state.store
     );
     const tradingVariables = useGainsDataStore(
         (state: GainsDataStoreInterface) => state.tradingVariables
+    );
+    const timedOutTradeIds = useGainsDataStore(
+        (state: GainsDataStoreInterface) => state.timedOutTradeIdsForWallet
     );
     const { user, walletConnectionStatus } = useUser();
     const minMaxBet: [number, number] = useMemo(
@@ -64,6 +76,7 @@ export default function ConnectedApp({ gas }) {
         () => parseInt(prettifyEther(user.daiBalance || '0')) >= tradingVariables.minPosDaiInt,
         [user, tradingVariables]
     );
+
     const [bet, setBet] = useState([minMaxBet[0].toString(), minMaxBet[1].toString()]);
     const [banner, setBanner] = useState({ display: false, message: '', close: false });
     const [daiLoading, setDaiLoading] = useState(false);
@@ -211,11 +224,19 @@ export default function ConnectedApp({ gas }) {
     }, [network]);
 
     useEffect(() => {
+        const channel =
+            getTradeKeyFromTradeStruct(tradeDetails) ||
+            getTradeKeyFromTradeOverrides(tradeOverrides);
         switch (tradeStatus) {
             case TradeStatus.Canceled:
-                toast.dismiss();
                 handleBack();
-                toast.error('Trade cancelled');
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Trade canceled',
+                        type: 'error',
+                        autoClose: 5000,
+                    },
+                });
                 setBanner({
                     display: true,
                     message:
@@ -224,32 +245,49 @@ export default function ConnectedApp({ gas }) {
                 });
                 break;
             case TradeStatus.TimedOut:
-                toast.dismiss();
                 handleBack();
-                toast.error('Trade timed out');
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Trade timed out',
+                        type: 'error',
+                        autoClose: 5000,
+                    },
+                });
                 setBanner({
                     display: true,
                     message:
-                        "Your trade timed out or we lost connection. Refresh and check active trades below. If the new trade is not there, go to https://gains.trade to claim your collateral back (we're working on integrating).",
+                        'Your trade timed out or we lost connection. Refresh and check active trades below.',
                     close: () => setBanner({ display: false, message: '', close: false }),
                 });
                 break;
             case TradeStatus.Mining:
-                toast.dismiss();
-                toast.info('Trade submitted', { autoClose: false });
+                ToastChannel.addToastToChannel(channel, {
+                    toast: toast.info,
+                    content: 'Trade submitted',
+                    options: { autoClose: false },
+                });
                 break;
             case TradeStatus.PendingExecution:
-                toast.dismiss();
-                toast.info('Trade pending', { autoClose: false });
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Trade pending',
+                    },
+                });
                 break;
             case TradeStatus.Executed:
-                toast.dismiss();
-                toast('Transaction completed!', { icon: '🚀' });
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Trade completed!',
+                        icon: '🚀',
+                        autoClose: 5000,
+                    },
+                });
                 break;
             case TradeStatus.Unconfirmed:
-                toast.dismiss();
-                toast.info('Order executed: waiting on block confirmation', {
-                    autoClose: false,
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Order executed: waiting on block confirmation',
+                    },
                 });
                 break;
             case TradeStatus.Failed:
@@ -439,6 +477,9 @@ export default function ConnectedApp({ gas }) {
                     />
                 )}
             </AppContainer>
+            {!isPlaying && timedOutTradeIds?.length > 0 && (
+                <TimedOutTrades tradeIds={timedOutTradeIds} network={network} library={library} />
+            )}
             {!isPlaying && <WalletOpenTradesContainer />}
         </Container>
     );

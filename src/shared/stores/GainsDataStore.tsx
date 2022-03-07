@@ -4,7 +4,7 @@ import { GainsStreamingDataInterface } from 'types/gains/GainsStreamingData';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import { transformTradeWrapper } from 'shared/utils/gains';
 import { GainsLiveEventDataInterface } from 'types/gains/GainsLiveEventData';
-
+import { GainsUserTradingData } from 'types/gains/GainsUserTradingData';
 const getTradesForWallet = (
     wallet: string,
     trades: GainsCoreDataInterface.TradeWrapper[],
@@ -59,6 +59,9 @@ export interface GainsDataStoreInterface {
 
     currentBlock: number;
     setCurrentBlock: (currentBlock: number) => void;
+
+    timedOutTradeIdsForWallet: string[];
+    setTimedOutTradeIdsForWallet: (tradeIds: string[]) => void;
 }
 
 export const useGainsDataStoreScaffolding = set => ({
@@ -145,6 +148,24 @@ export const useGainsDataStoreScaffolding = set => ({
 
     currentBlock: null,
     setCurrentBlock: (currentBlock: number) => set(state => ({ currentBlock })),
+
+    timedOutTradeIdsForWallet: [],
+    setTimedOutTradeIdsForWallet: (tradeIds: string[]) =>
+        set(state => {
+            const existingTradeIds = state.timedOutTradeIdsForWallet || [];
+            console.log('\n\n\nsetTimedOutTradeIdsForWallet');
+            console.log(existingTradeIds);
+            console.log(tradeIds);
+            console.log('\n\n\n');
+            // if all trades are the same, don't touch
+            if (
+                existingTradeIds.every(id => tradeIds.includes(id)) &&
+                tradeIds.every(id => existingTradeIds.includes(id))
+            ) {
+                return {};
+            }
+            return { timedOutTradeIdsForWallet: tradeIds };
+        }),
 });
 
 // used by GainsNetworkContextProvider to set useGainsDataStore based on network

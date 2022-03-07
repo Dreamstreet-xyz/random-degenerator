@@ -10,6 +10,9 @@ import {
 import { useActiveGainsDataStore } from 'shared/stores/ActiveGainsDataStore';
 import { Networks, NetworkInterface } from 'shared/constants/networks';
 import { handleStream, getGainsDataStoreFromNetwork } from 'api/gains/stream';
+import { useEthers } from '@usedapp/core';
+import fetchUserTradingVariables from 'api/gains/rest/fetchUserTradingVariables';
+import { toast } from 'react-toastify';
 
 const WSS = 'wss://';
 const isBrowser = typeof window !== 'undefined';
@@ -32,12 +35,7 @@ export default function GainsNetworkContextProvider({ children }) {
     const [streamError, setStreamError] = useState<string | null>(null);
     const [streamIsHealthy, setStreamIsHealthy] = useState<boolean>(false);
     const { network } = useNetworkDetails();
-    const mainnetTradingVariables = useGainsMainnetDataStore(
-        (state: GainsDataStoreInterface) => state.tradingVariables
-    );
-    const testnetTradingVariables = useGainsTestnetDataStore(
-        (state: GainsDataStoreInterface) => state.tradingVariables
-    );
+    const { account } = useEthers();
 
     const setIsHealthy = (isHealthy: boolean, _network: NetworkInterface) => {
         setStreamIsHealthy(isHealthy); // TODO: please do more with this lol
@@ -47,10 +45,10 @@ export default function GainsNetworkContextProvider({ children }) {
             setTimeout(() => {
                 if (_network.chainId === Networks.Polygon.chainId) {
                     mainnetSocket = new WebSocket(WSS + Networks.Polygon.backendEndpoint);
-                    handleStream(mainnetSocket, network, setIsHealthy);
+                    handleStream(mainnetSocket, _network, setIsHealthy);
                 } else if (_network.chainId === Networks.Mumbai.chainId) {
                     testnetSocket = new WebSocket(WSS + Networks.Mumbai.backendEndpoint);
-                    handleStream(testnetSocket, network, setIsHealthy);
+                    handleStream(testnetSocket, _network, setIsHealthy);
                 }
             }, 3000);
         }
@@ -80,6 +78,41 @@ export default function GainsNetworkContextProvider({ children }) {
             clearInterval(intervalId);
         };
     }, []);
+
+    useEffect(() => {
+        const checkForTimeouts = async () => {
+            if (account) {
+                const tvs = await fetchUserTradingVariables(network, account);
+                const pendingOrders = tvs.pendingMarketOrders;
+                if (pendingOrders && pendingOrders.length > 0) {
+                    const timedOutOrderIds: string[] = [];
+                    const store = useActiveGainsDataStore.getState().store.getState();
+                    const curBlock = store.currentBlock;
+                    const maxBlocks = Number(store.tradingVariables.marketOrdersTimeout);
+                    pendingOrders.forEach((order, index) => {
+                        const block = order[1];
+                        if (block) {
+                            const blockDiff = curBlock - Number(block);
+                            if (blockDiff > maxBlocks) {
+                                timedOutOrderIds.push(tvs?.pendingMarketOrdersIds[index]);
+                            }
+                        }
+                    });
+                    // update store, the update fn will check against existing data
+                    store.setTimedOutTradeIdsForWallet(timedOutOrderIds);
+                }
+            }
+        };
+        checkForTimeouts();
+
+        const intervalId = setInterval(() => {
+            checkForTimeouts();
+        }, 10000);
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, [account]);
 
     // useEffect(() => {
     //     // whenever a new trading variable is set, we're updating used store

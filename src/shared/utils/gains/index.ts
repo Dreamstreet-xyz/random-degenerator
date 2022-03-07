@@ -4,6 +4,7 @@ import { GainsStreamingDataInterface } from 'types/gains/GainsStreamingData';
 import { GainsCoreDataInterface, AssetType } from 'types/gains/GainsCoreData';
 import { getMinPositionSizeForAssetTypes } from 'shared/utils/gains/pairs';
 import { BigNumber } from 'ethers';
+import { GainsUserTradingData } from 'types/gains/GainsUserTradingData';
 
 export const transformTradingVariables = (
     data: GainsTradingDataInterface.Data
@@ -28,6 +29,14 @@ export const transformTradingVariables = (
     }
 
     return data;
+};
+
+export const transformUserTradingVariables = (
+    data: GainsUserTradingData.Data
+): GainsUserTradingData.Data => {
+    // TODO: add types and transforms
+    const newData = { ...data };
+    return newData;
 };
 
 export const transformTradeWrapper = (
