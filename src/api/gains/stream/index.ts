@@ -155,10 +155,10 @@ export const handleStream = async (
                                 const key = `${le.t[1]}-${le.t[2]}`;
                                 if (userTrades.some(t => getTradeKey(t) === key)) {
                                     const limitType = Number(le?.percentProfit) >= 0 ? 'TP' : 'SL';
-                                    ToastChannel.addToastToChannel(key, {
-                                        toast: toast.info,
-                                        content: `${limitType} hit: waiting on block confirmation`,
+                                    ToastChannel.updateToastInChannel(key, {
                                         options: {
+                                            render: `${limitType} hit: waiting on block confirmation`,
+                                            type: 'info',
                                             autoClose: false,
                                         },
                                     });
