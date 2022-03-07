@@ -13,6 +13,7 @@ export default function HistoricalTradesContainer() {
 
     useEffect(() => {
         // read trade history
+        setTrades([]);
         const getTradingVariables = async () => {
             const trades = await fetchUserTradingHistory(network, account);
             console.log('Historical trades for account ', account, ':', trades);

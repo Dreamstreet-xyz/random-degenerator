@@ -29,6 +29,7 @@ export const Container = styled(motion.div)`
 
 export const Content = styled.div`
     overflow-x: scroll;
+    overflow: auto;
 `;
 
 export const Header = styled.div`

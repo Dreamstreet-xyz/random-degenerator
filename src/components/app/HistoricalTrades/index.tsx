@@ -29,7 +29,7 @@ export default function HistoricalTrades({
                                     <TableHeader style={{ textAlign: 'right' }}>
                                         Collateral
                                     </TableHeader>
-                                    {/* <TableHeader>Outcome</TableHeader> */}
+                                    <TableHeader>Outcome</TableHeader>
                                     <TableHeader style={{ textAlign: 'right' }}>
                                         Net PnL
                                     </TableHeader>

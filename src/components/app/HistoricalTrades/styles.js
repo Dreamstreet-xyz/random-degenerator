@@ -29,6 +29,11 @@ export const TableHeader = styled.th`
     padding: 24px 16px;
     font-weight: bold;
     ${textGradientCustom(['#e386ff', '#fd8b8b'])}
+
+    @media (max-width: 800px) {
+        font-size: 16px;
+        padding: 12px 12px;
+    }
 `;
 
 export const TableBody = styled.tbody`

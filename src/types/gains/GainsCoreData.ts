@@ -35,7 +35,7 @@ export declare module GainsCoreDataInterface {
         pair: string;
         block: number;
         address: string;
-        action: string;
+        action: ActionType;
         price: number;
         buy: number;
         size: number;
@@ -49,4 +49,11 @@ export declare module GainsCoreDataInterface {
 export enum AssetType {
     CRYPTO = 'crypto',
     FOREX = 'forex',
+}
+
+export enum ActionType {
+    LIQ = 'TradeClosedLIQ',
+    TP = 'TradeClosedTP',
+    SL = 'TradeClosedSL',
+    MAR = 'TradeClosedMarket',
 }

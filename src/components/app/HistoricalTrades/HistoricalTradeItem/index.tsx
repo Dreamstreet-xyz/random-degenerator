@@ -1,5 +1,14 @@
-import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
-import { TableRow, PositionData, Pair, Leverage, Collateral, TableData } from './styles';
+import { GainsCoreDataInterface, ActionType } from 'types/gains/GainsCoreData';
+import {
+    TableRow,
+    PositionData,
+    Pair,
+    Leverage,
+    Collateral,
+    TableData,
+    PnlData,
+    Action,
+} from './styles';
 
 export default function HistoricalTradeItem({
     trade: { date, pair, action, price, buy, size, leverage, pnl, tx },
@@ -7,6 +16,23 @@ export default function HistoricalTradeItem({
     trade: GainsCoreDataInterface.HistoricalTrade;
 }) {
     const _date = new Date(date);
+
+    const actionToString = (action: ActionType) => {
+        switch (action) {
+            case ActionType.LIQ:
+                return 'LIQ';
+            case ActionType.MAR:
+                return 'MARKET';
+            case ActionType.SL:
+                return 'SL';
+            case ActionType.TP:
+                return 'TP';
+            default:
+                break;
+        }
+        return action;
+    };
+
     return (
         <TableRow>
             <TableData>{`${_date.getMonth()}/${_date.getDate()}`}</TableData>
@@ -20,14 +46,14 @@ export default function HistoricalTradeItem({
                 })}{' '}
                 DAI
             </Collateral>
-            {/* <TableData>{action}</TableData> */}
-            <TableData>
+            <Action action={action}>{actionToString(action)}</Action>
+            <PnlData pnl={Number(pnl)}>
                 {Number(pnl).toLocaleString(undefined, {
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
                 })}{' '}
                 DAI
-            </TableData>
+            </PnlData>
         </TableRow>
     );
 }

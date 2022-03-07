@@ -17,6 +17,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     max-width: 1280px;
+    max-height: 6000px;
     width: 100%;
     border-radius: 20px;
     padding: 64px;
