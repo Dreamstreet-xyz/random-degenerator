@@ -1,6 +1,6 @@
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import HistoricalTradeItem from 'components/app/HistoricalTrades/HistoricalTradeItem';
-import { Container, Header, Title, Content } from '../sharedStyles';
+import { Container, Header, Title, Content, Subtitle } from '../sharedStyles';
 import { Section, Table, TableHead, TableHeadRow, TableHeader, TableBody } from './styles';
 
 export default function HistoricalTrades({
@@ -15,6 +15,7 @@ export default function HistoricalTrades({
                 <Container>
                     <Header>
                         <Title>Your Historical Trades</Title>
+                        <Subtitle>Appear ~10 mins after close</Subtitle>
                     </Header>
                     <Content>
                         <Table>

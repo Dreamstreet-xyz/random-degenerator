@@ -33,7 +33,7 @@ export const Content = styled.div`
 `;
 
 export const Header = styled.div`
-    display: flex;
+    display: block;
     margin-bottom: 24px;
 `;
 
@@ -50,4 +50,12 @@ export const Title = styled.h2`
     @media (max-width: 768px) {
         font-size: 1.5rem;
     }
+`;
+
+export const Subtitle = styled.h2`
+    font-size: 1rem;
+    font-weight: 500;
+    z-index: 2;
+    padding: 8px;
+    color: #e9e9e9;
 `;
