@@ -11,6 +11,7 @@ import { GainsLiveEventDataInterface, LiveEventTypeName } from 'types/gains/Gain
 import fetchTradingVariables from 'api/gains/rest/fetchTradingVariables';
 import { getTradeKey } from 'shared/utils/gains/trade';
 import { toast } from 'react-toastify';
+import ToastChannel from 'shared/utils/ToastChannel';
 
 const WSS = 'wss://';
 
@@ -100,13 +101,18 @@ export const handleStream = async (
                                 const userTrades = dataStore.getState().openTradesForWallet;
                                 const key = `${le.t[1]}-${le.t[2]}`;
                                 if (userTrades.some(t => getTradeKey(t) === key)) {
+                                    const limitType = Number(le?.percentProfit) >= 0 ? 'TP' : 'SL';
                                     dataStore
                                         .getState()
                                         .setOpenTradesForWallet(
                                             userTrades.filter(t => getTradeKey(t) !== key)
                                         );
-                                    toast.dismiss();
-                                    toast.info('Trade closed');
+                                    ToastChannel.updateToastInChannel(key, {
+                                        options: {
+                                            render: `${limitType} hit: trade closed`,
+                                            autoClose: 3000,
+                                        },
+                                    });
                                 }
                             }
                             break;
@@ -136,7 +142,7 @@ export const handleStream = async (
                                 data.value.returnValues;
                             if (wallet === moc.trader) {
                                 toast.info('Order canceled: waiting on block confirmation', {
-                                    autoClose: false,
+                                    autoClose: 5000,
                                 });
                             }
                             break;
@@ -149,8 +155,12 @@ export const handleStream = async (
                                 const key = `${le.t[1]}-${le.t[2]}`;
                                 if (userTrades.some(t => getTradeKey(t) === key)) {
                                     const limitType = Number(le?.percentProfit) >= 0 ? 'TP' : 'SL';
-                                    toast.info(`${limitType} hit: waiting on block confirmation`, {
-                                        autoClose: false,
+                                    ToastChannel.addToastToChannel(key, {
+                                        toast: toast.info,
+                                        content: `${limitType} hit: waiting on block confirmation`,
+                                        options: {
+                                            autoClose: false,
+                                        },
                                     });
                                 }
                             }

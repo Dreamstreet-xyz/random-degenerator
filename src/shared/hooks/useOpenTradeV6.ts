@@ -107,7 +107,7 @@ export default function useOpenTradeV6({ tradingAddress }: { tradingAddress: str
                   calculateStopLossFromPercentage(openPrice, overrides.slP, _leverage, _position)
                       .toFixed(9)
                       .toString(),
-                  10
+                  18
               ).toString()
             : '0';
         const tp = overrides?.tpP
@@ -115,7 +115,7 @@ export default function useOpenTradeV6({ tradingAddress }: { tradingAddress: str
                   calculateTakeProfitFromPercentage(openPrice, overrides.tpP, _leverage, _position)
                       .toFixed(9)
                       .toString(),
-                  10
+                  18
               ).toString()
             : '0';
 
@@ -125,7 +125,7 @@ export default function useOpenTradeV6({ tradingAddress }: { tradingAddress: str
             index: _index,
             initialPosToken: 0, // TODO: ask Seb for docs on this
             positionSizeDai: parseUnits(_positionSizeDai.toString(), 18).toString(),
-            openPrice: parseUnits(openPrice.toString(), 10).toString(),
+            openPrice: parseUnits(openPrice.toString(), 18).toString(),
             buy: _position === LONG_POSITION,
             leverage: _leverage,
             tp,

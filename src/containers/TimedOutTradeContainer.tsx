@@ -5,10 +5,6 @@ import useCloseTradeMarketTimeout from 'shared/hooks/useCloseTradeMarketTimeout'
 import TimedOutTradeItem from 'components/app/TimedOutTrades/TimedOutTradeItem';
 import { toast } from 'react-toastify';
 import ToastChannel from 'shared/utils/ToastChannel';
-import {
-    useToastChannelDataStore,
-    ToastChannelDataStoreInterface,
-} from 'shared/stores/ToastChannelDataStore';
 
 export default function TimedOutTradeContainer({
     key,
@@ -26,15 +22,6 @@ export default function TimedOutTradeContainer({
         library,
         tradeId,
     });
-
-    const activeToastChannels = useToastChannelDataStore(
-        (state: ToastChannelDataStoreInterface) => state.activeToastChannels
-    );
-
-    useEffect(() => {
-        console.log('Curernt active channels');
-        console.log(activeToastChannels);
-    }, [activeToastChannels]);
 
     useEffect(() => {
         console.log(state);

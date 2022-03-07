@@ -32,6 +32,12 @@ import { TradeStatus } from 'types/Trade';
 import ProgressBar from './ProgressBar';
 import TimedOutTrades from 'components/app/TimedOutTrades';
 import { useEthers } from '@usedapp/core';
+import ToastChannel from 'shared/utils/ToastChannel';
+import {
+    getTradeKey,
+    getTradeKeyFromTradeStruct,
+    getTradeKeyFromTradeOverrides,
+} from 'shared/utils/gains/trade';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -218,11 +224,19 @@ export default function ConnectedApp({ gas }) {
     }, [network]);
 
     useEffect(() => {
+        const channel =
+            getTradeKeyFromTradeStruct(tradeDetails) ||
+            getTradeKeyFromTradeOverrides(tradeOverrides);
         switch (tradeStatus) {
             case TradeStatus.Canceled:
-                toast.dismiss();
                 handleBack();
-                toast.error('Trade cancelled');
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Trade canceled',
+                        type: 'error',
+                        autoClose: 5000,
+                    },
+                });
                 setBanner({
                     display: true,
                     message:
@@ -231,9 +245,14 @@ export default function ConnectedApp({ gas }) {
                 });
                 break;
             case TradeStatus.TimedOut:
-                toast.dismiss();
                 handleBack();
-                toast.error('Trade timed out');
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Trade timed out',
+                        type: 'error',
+                        autoClose: 5000,
+                    },
+                });
                 setBanner({
                     display: true,
                     message:
@@ -242,21 +261,33 @@ export default function ConnectedApp({ gas }) {
                 });
                 break;
             case TradeStatus.Mining:
-                toast.dismiss();
-                toast.info('Trade submitted', { autoClose: false });
+                ToastChannel.addToastToChannel(channel, {
+                    toast: toast.info,
+                    content: 'Trade submitted',
+                    options: { autoClose: false },
+                });
                 break;
             case TradeStatus.PendingExecution:
-                toast.dismiss();
-                toast.info('Trade pending', { autoClose: false });
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Trade pending',
+                    },
+                });
                 break;
             case TradeStatus.Executed:
-                toast.dismiss();
-                toast('Transaction completed!', { icon: '🚀' });
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Trade completed!',
+                        icon: '🚀',
+                        autoClose: 5000,
+                    },
+                });
                 break;
             case TradeStatus.Unconfirmed:
-                toast.dismiss();
-                toast.info('Order executed: waiting on block confirmation', {
-                    autoClose: false,
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Order executed: waiting on block confirmation',
+                    },
                 });
                 break;
             case TradeStatus.Failed:

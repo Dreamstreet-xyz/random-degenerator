@@ -88,7 +88,7 @@ export default function GainsNetworkContextProvider({ children }) {
                     const timedOutOrderIds: string[] = [];
                     const store = useActiveGainsDataStore.getState().store.getState();
                     const curBlock = store.currentBlock;
-                    const maxBlocks = 1; //Number(store.tradingVariables.marketOrdersTimeout);
+                    const maxBlocks = Number(store.tradingVariables.marketOrdersTimeout);
                     pendingOrders.forEach((order, index) => {
                         const block = order[1];
                         if (block) {
@@ -107,7 +107,7 @@ export default function GainsNetworkContextProvider({ children }) {
 
         const intervalId = setInterval(() => {
             checkForTimeouts();
-        }, 5000);
+        }, 10000);
 
         return () => {
             clearInterval(intervalId);

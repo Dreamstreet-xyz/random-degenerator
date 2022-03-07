@@ -5,6 +5,8 @@ import type { PnlType } from 'types/Trade';
 import { calculateCloseFee } from './fees';
 import { getLivePairPrice } from './pairs';
 import { formatEther, formatUnits } from '@ethersproject/units';
+import { StorageInterfaceV5 } from 'types/ethers-contracts/TradingV6';
+import { SubmitTradeOverride } from 'shared/hooks/useOpenTradeV6';
 
 export const calculatePnL = (
     trade: GainsCoreDataInterface.TradeWrapper,
@@ -66,4 +68,10 @@ export const calculatePriceChange = (
 };
 
 export const getTradeKey = (trade: GainsCoreDataInterface.TradeWrapper): string =>
-    `${trade.trade.pairIndex}-${trade.trade.index}`;
+    `${trade?.trade?.pairIndex}-${trade?.trade?.index}`;
+
+export const getTradeKeyFromTradeStruct = (trade: StorageInterfaceV5.TradeStruct): string =>
+    `${trade?.pairIndex}-${trade?.index}`;
+
+export const getTradeKeyFromTradeOverrides = (trade: SubmitTradeOverride): string =>
+    `${trade?.pairIndex}-${trade?.index}`;
