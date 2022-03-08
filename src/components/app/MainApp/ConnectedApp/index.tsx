@@ -200,7 +200,7 @@ export default function ConnectedApp({ gas }) {
 
         const positionOptions: SlotOptionType = {
             title: 'Position',
-            options: positions,
+            options: [...positions],
         };
 
         if (tradeOverrides) {

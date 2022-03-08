@@ -28,6 +28,7 @@ import {
     NavIcon,
     Spark,
 } from './styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Navbar() {
     const { network: selectedNetwork, setNetwork } = useNetworkDetails();
@@ -106,6 +107,14 @@ export default function Navbar() {
                                     <NavLink href="/">
                                         <NavIcon icon="dice" size={20} style={{ color: 'white' }} />
                                         Play
+                                    </NavLink>
+                                    <NavLink href="/history">
+                                        <NavIcon
+                                            icon="history"
+                                            size={20}
+                                            style={{ color: 'white' }}
+                                        />
+                                        History
                                     </NavLink>
                                     <NavLink href="/about">
                                         <NavIcon

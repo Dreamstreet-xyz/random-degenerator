@@ -22,12 +22,16 @@ export const getEndpointFromNetwork = (chainId: ChainId, protocol: string) => {
 };
 
 export default async (network: NetworkInterface): Promise<GainsTradingDataInterface.Data> => {
-    const endpoint = HTTPS + network.backendEndpoint + TRADING_VARIABLES_PATH;
-    console.log(endpoint);
-    const response = await fetch(endpoint);
-    // filtering out allTrades for now since it's not supported and a large amount of data
-    const data = await response.json();
-    return transformTradingVariables(data);
+    try {
+        const endpoint = HTTPS + network.backendEndpoint + TRADING_VARIABLES_PATH;
+        console.log(endpoint);
+        const response = await fetch(endpoint);
+        // filtering out allTrades for now since it's not supported and a large amount of data
+        const data = await response.json();
+        return transformTradingVariables(data);
+    } catch (e) {
+        console.log('Error fetching trading variables', e);
+    }
 };
 
 const computeV5MaxPosDaiInt = (data: GainsTradingDataInterfaceV5.Data) => {

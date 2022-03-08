@@ -157,7 +157,6 @@ export default function PlaySlots({
     }, [state]);
 
     useEffect(() => {
-        console.log(slotOptions);
         setTimeout(
             () =>
                 setOptions(prev => [
