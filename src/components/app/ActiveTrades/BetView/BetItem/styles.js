@@ -1,17 +1,20 @@
 import { IconButton } from 'components/common';
 import { motion } from 'framer-motion';
+import { noSelect } from 'shared/styles';
 import styled from 'styled-components';
 
 export const Container = styled.div`
     padding: 24px;
     background-color: #21175e;
     border-radius: 10px;
+    ${noSelect}
 `;
 
 export const Collateral = styled.p`
     font-weight: 900;
     font-size: 24px;
     font-family: Montserrat;
+    color: #e7e7ff;
 `;
 
 export const Pnl = styled.p`
@@ -30,14 +33,16 @@ export const Row = styled.div`
 
 export const StatusBar = styled.div`
     position: relative;
-    background: linear-gradient(90deg, #ec3865 0%, #4f40d4 40%);
+    background: linear-gradient(90deg, #ce3ece, #4f40d4);
     height: 36px;
     border-radius: 4px;
     flex: 1;
+    display: flex;
+    align-items: center;
 `;
 
 export const OpenPrice = styled.span`
-    width: 6px;
+    width: 2px;
     height: 100%;
     background: linear-gradient(45deg, #d6abff, #ff97a5);
 `;
@@ -53,21 +58,45 @@ export const Indicator = styled(motion.span)`
 
     &:hover {
        ${OpenPrice} {
-            box-shadow: 0px 0px 0px 2px #ea4bff;
+            box-shadow: 0px 0px 0px 2px white;
        }
     }
 `;
 
 export const CurrentPrice = styled(motion.span)`
     position: absolute;
-    width: 32px;
-    height: 100%;
+    width: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
-    transform: translateX(-16px);
+    transform: translateX(-12px);
     z-index: 2;
+`;
+
+export const StopLoss = styled.span`
+    position: absolute;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 4px 0 0 4px;
+
+
+    &:hover {
+        background-color: #ffffff88;
+    }
+`;
+
+export const TakeProfit = styled.span`
+    position: absolute;
+    left: calc(100% - 4px);
+    width: 4px;
+    height: 100%;
+    border-radius: 0 4px 4px 0;
+
+    &:hover {
+        background-color: #ffffff88;
+    }
 `;
 
 export const CloseButtonWrapper = styled.div`

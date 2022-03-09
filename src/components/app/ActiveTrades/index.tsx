@@ -46,15 +46,12 @@ export default function ActiveTrades({
                         <Title>Your Active {bettingView ? 'Bets' : 'Trades'}</Title>
                         <HeaderRight>
                             <Tooltip content={`Switch to ${bettingView ? 'trade' : 'bet'} view`}>
-                                <Toggle onClick={handleToggleView}>
-                                    <img
-                                        src={
-                                            bettingView
-                                                ? 'images/noun/trading.png'
-                                                : 'images/noun/dice.png'
-                                        }
+                                <span>
+                                    <Toggle
+                                        onClick={handleToggleView}
+                                        icon={bettingView ? 'list' : 'dice'}
                                     />
-                                </Toggle>
+                                </span>
                             </Tooltip>
                         </HeaderRight>
                     </Header>

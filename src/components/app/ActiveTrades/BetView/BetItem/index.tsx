@@ -13,6 +13,8 @@ import {
     OpenPrice,
     CloseButtonWrapper,
     CloseButton,
+    StopLoss,
+    TakeProfit,
 } from './styles';
 
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
@@ -72,6 +74,9 @@ export default function BetItem({ trade, tradeInfo, loading, isClosed, onClose }
             </Row>
             <Row style={{ marginTop: 8 }}>
                 <StatusBar>
+                    <Tooltip content="Stop Loss">
+                        <StopLoss />
+                    </Tooltip>
                     <Tooltip content="Bet open">
                         <Indicator initial={false} animate={{ left: `${opPercentage}%` }}>
                             <OpenPrice />
@@ -81,6 +86,9 @@ export default function BetItem({ trade, tradeInfo, loading, isClosed, onClose }
                         <CurrentPrice initial={false} animate={{ left: `${curPercentage}%` }}>
                             {getStatus(pnlPercent)}
                         </CurrentPrice>
+                    </Tooltip>
+                    <Tooltip content="Take Profit">
+                        <TakeProfit />
                     </Tooltip>
                 </StatusBar>
                 <Tooltip content="Close Bet">

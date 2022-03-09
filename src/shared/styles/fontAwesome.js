@@ -28,6 +28,7 @@ import {
     faShareSquare,
     faSignOutAlt,
     faHistory,
+    faList,
 } from '@fortawesome/free-solid-svg-icons';
 
 export default [
@@ -59,4 +60,5 @@ export default [
     faShareSquare,
     faSignOutAlt,
     faHistory,
+    faList,
 ];
