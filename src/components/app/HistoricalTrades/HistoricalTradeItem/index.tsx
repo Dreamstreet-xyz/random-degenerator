@@ -16,7 +16,6 @@ export default function HistoricalTradeItem({
     trade: GainsCoreDataInterface.HistoricalTrade;
 }) {
     const _date = new Date(date);
-
     const actionToString = (action: ActionType) => {
         switch (action) {
             case ActionType.LIQ:
@@ -35,7 +34,7 @@ export default function HistoricalTradeItem({
 
     return (
         <TableRow>
-            <TableData>{`${_date.getMonth()}/${_date.getDate()}`}</TableData>
+            <TableData>{`${_date.getMonth() + 1}/${_date.getDate()}`}</TableData>
             <PositionData position={buy ? 'LONG' : 'SHORT'}>{buy ? 'LONG' : 'SHORT'}</PositionData>
             <Pair>{pair}</Pair>
             <Leverage>{leverage}x</Leverage>

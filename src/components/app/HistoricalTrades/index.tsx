@@ -1,7 +1,16 @@
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import HistoricalTradeItem from 'components/app/HistoricalTrades/HistoricalTradeItem';
-import { Container, Header, Title, Content, Subtitle } from '../sharedStyles';
-import { Section, Table, TableHead, TableHeadRow, TableHeader, TableBody } from './styles';
+import { Container, Title, Subtitle } from '../sharedStyles';
+import {
+    Section,
+    Table,
+    TableHead,
+    TableHeadRow,
+    TableHeader,
+    TableBody,
+    Content,
+    Header,
+} from './styles';
 
 export default function HistoricalTrades({
     trades,

@@ -39,3 +39,15 @@ export const TableHeader = styled.th`
 export const TableBody = styled.tbody`
 
 `;
+
+export const Content = styled.div`
+    overflow-x: scroll;
+    overflow-y: scroll;
+    max-height: 5000px;
+    overflow: auto;
+`;
+
+export const Header = styled.div`
+    display: block;
+    margin-bottom: 24px;
+`;

@@ -27,13 +27,10 @@ export const Container = styled(motion.div)`
     }
 `;
 
-export const Content = styled.div`
-    overflow-x: scroll;
-    overflow: auto;
-`;
+export const Content = styled.div``;
 
 export const Header = styled.div`
-    display: block;
+    display: flex;
     margin-bottom: 24px;
 `;
 
