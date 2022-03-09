@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { useEthers } from '@usedapp/core';
 import { toast } from 'react-toastify';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
@@ -35,6 +35,7 @@ export default function ActiveTradeContainer({
         },
     });
     const txMessage = useMemo(() => getTransactionStatusMessage(state), [state]);
+    const [frozen, setFrozen] = useState(false);
 
     useEffect(() => {
         // if user reject, display toast and backout
@@ -60,6 +61,7 @@ export default function ActiveTradeContainer({
                         autoClose: 5000,
                     },
                 });
+                setFrozen(false);
                 break;
             case 'Success':
                 ToastChannel.updateToastInChannel(channel, {
@@ -82,6 +84,11 @@ export default function ActiveTradeContainer({
         }
     }, [state]);
 
+    const _closeTrade = () => {
+        setFrozen(true);
+        closeTrade();
+    };
+
     const render = () => {
         switch (type) {
             case 'bet':
@@ -90,8 +97,8 @@ export default function ActiveTradeContainer({
                         key={`${tradeWrapper.trade.pairIndex}-${tradeWrapper.trade.index}`}
                         trade={tradeWrapper.trade}
                         tradeInfo={tradeWrapper.tradeInfo}
-                        onClose={() => closeTrade()}
-                        loading={['PendingSignature', 'Mining'].includes(state?.status)}
+                        onClose={_closeTrade}
+                        loading={frozen}
                         isClosed={isClosed || state?.status === 'Success'}
                     />
                 );
@@ -106,8 +113,8 @@ export default function ActiveTradeContainer({
                         pair={tradeWrapper.trade.pairString}
                         trade={tradeWrapper}
                         onClick={onClick}
-                        onClose={() => closeTrade()}
-                        loading={['PendingSignature', 'Mining'].includes(state?.status)}
+                        onClose={_closeTrade}
+                        loading={frozen}
                         isClosed={isClosed || state?.status === 'Success'}
                     />
                 );

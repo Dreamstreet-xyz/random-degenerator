@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { formatEther, formatUnits } from '@ethersproject/units';
 import useLivePnl from 'shared/hooks/useLivePnl';
 import useLivePrice from 'shared/hooks/useLivePrice';
@@ -25,13 +26,19 @@ export default function TradeDetailsModalContent({
 }) {
     const { pairString, leverage, buy, positionSizeDai, sl, tp, openPrice } = trade;
     const { openInterestDai } = tradeInfo;
-    const pnl = useLivePnl({ trade, tradeInfo });
-    const price = useLivePrice({ trade, tradeInfo });
+    const { pnl, freeze: pnlFreeze } = useLivePnl({ trade, tradeInfo });
+    const { price, freeze: priceFreeze } = useLivePrice({ trade, tradeInfo });
 
     const handleClose = e => {
         e.stopPropagation();
         onCloseTrade?.();
     };
+
+    useEffect(() => {
+        const _freeze = isClosed || loading;
+        pnlFreeze(_freeze);
+        priceFreeze(_freeze);
+    }, [isClosed, loading]);
 
     return (
         <ModalBody>

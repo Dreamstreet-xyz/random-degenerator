@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import type { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import {
     useActiveGainsDataStore,
@@ -9,12 +9,26 @@ import { useGainsPriceStore, GainsPriceStoreInterface } from 'shared/stores/Gain
 import { calculatePnL } from 'shared/utils/gains/trade';
 import { getLivePairPrice } from 'shared/utils/gains/pairs';
 
-export default function useLivePrice(trade: GainsCoreDataInterface.TradeWrapper) {
+export type UseLivePriceType = { price: number; freeze: (freeze: boolean) => void };
+
+export default function useLivePrice(trade: GainsCoreDataInterface.TradeWrapper): UseLivePriceType {
     const priceData = useGainsPriceStore((state: GainsPriceStoreInterface) => state.priceData);
-    const price = useMemo(
-        () => getLivePairPrice(parseInt(trade?.trade?.pairIndex), priceData) || -1,
-        [trade, priceData]
+    const [isActive, setIsActive] = useState(true);
+    const [price, setPrice] = useState(
+        getLivePairPrice(parseInt(trade?.trade?.pairIndex), priceData) || -1
     );
 
-    return price;
+    useEffect(() => {
+        if (isActive) {
+            console.log('Yep is active');
+            setPrice(getLivePairPrice(parseInt(trade?.trade?.pairIndex), priceData) || -1);
+        }
+    }, [priceData, isActive]);
+
+    const freeze = (freeze: boolean) => {
+        console.log('setting freeze', freeze);
+        setIsActive(!freeze);
+    };
+
+    return { price, freeze };
 }

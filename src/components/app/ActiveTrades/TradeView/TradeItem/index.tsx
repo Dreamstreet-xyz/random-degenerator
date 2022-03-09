@@ -40,7 +40,7 @@ export default function TradeItem({
             <Pair>{pair}</Pair>
             <Leverage>{leverage}x</Leverage>
             <Collateral>{Number(formatEther(collateral)).toFixed(1)} DAI</Collateral>
-            <LivePnl trade={trade} />
+            <LivePnl trade={trade} active={!loading && !isClosed} />
             <CloseButtonWrapper>
                 <CloseButton
                     onClick={handleClose}

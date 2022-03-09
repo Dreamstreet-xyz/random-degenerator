@@ -1,5 +1,6 @@
 import { formatEther, formatUnits } from '@ethersproject/units';
 import { Tooltip } from 'components/common';
+import { useEffect } from 'react';
 import useLivePnl from 'shared/hooks/useLivePnl';
 import useLivePrice from 'shared/hooks/useLivePrice';
 import {
@@ -40,8 +41,8 @@ const getStatus = pnl => {
 
 export default function BetItem({ trade, tradeInfo, loading, isClosed, onClose }) {
     const { sl, tp, positionSizeDai, openPrice } = trade;
-    const pnl = useLivePnl({ trade, tradeInfo });
-    const price = useLivePrice({ trade, tradeInfo });
+    const { pnl, freeze: pnlFreeze } = useLivePnl({ trade, tradeInfo });
+    const { price, freeze: priceFreeze } = useLivePrice({ trade, tradeInfo });
 
     const fsl = Number(formatUnits(sl, 10));
     const ftp = Number(formatUnits(tp, 10));
@@ -52,6 +53,12 @@ export default function BetItem({ trade, tradeInfo, loading, isClosed, onClose }
         maximumFractionDigits: 2,
         minimumFractionDigits: 2,
     });
+
+    useEffect(() => {
+        const _freeze = isClosed || loading;
+        pnlFreeze(_freeze);
+        priceFreeze(_freeze);
+    }, [isClosed, loading]);
 
     return (
         <Container>

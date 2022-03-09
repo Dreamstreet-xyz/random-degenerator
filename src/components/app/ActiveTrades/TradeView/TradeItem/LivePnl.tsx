@@ -1,10 +1,20 @@
+import { useEffect } from 'react';
 import useLivePnl from 'shared/hooks/useLivePnl';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
-import { PnlType } from 'types/Trade';
 import { PnlData } from './styles';
 
-export default function LivePnl({ trade }: { trade: GainsCoreDataInterface.TradeWrapper }) {
-    const pnl: PnlType = useLivePnl(trade);
+export default function LivePnl({
+    trade,
+    active,
+}: {
+    trade: GainsCoreDataInterface.TradeWrapper;
+    active: boolean;
+}) {
+    const { pnl, freeze } = useLivePnl(trade);
+
+    useEffect(() => {
+        freeze(!active);
+    }, [active]);
     return (
         <PnlData pnl={pnl}>
             {pnl.pnlInclFee.toLocaleString(undefined, {
