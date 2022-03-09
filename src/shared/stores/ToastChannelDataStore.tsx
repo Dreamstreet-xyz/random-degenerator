@@ -3,7 +3,7 @@ import { ReactText } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ToastStateManagementType, ToastWrapperType, UpdateToastWrapperType } from 'types/Toast';
 import { toast } from 'react-toastify';
-import { ToastChannelType } from 'shared/utils/ToastChannel';
+import { ToastChannelType } from 'shared/utils/toasts/ToastChannel';
 
 export interface ToastChannelDataStoreInterface extends ToastChannelType {
     activeToastChannels: ToastStateManagementType;

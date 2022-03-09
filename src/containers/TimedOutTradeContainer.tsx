@@ -4,7 +4,7 @@ import { NetworkInterface } from 'shared/constants/networks';
 import useCloseTradeMarketTimeout from 'shared/hooks/useCloseTradeMarketTimeout';
 import TimedOutTradeItem from 'components/app/TimedOutTrades/TimedOutTradeItem';
 import { toast } from 'react-toastify';
-import ToastChannel from 'shared/utils/ToastChannel';
+import ToastChannel from 'shared/utils/toasts/ToastChannel';
 
 export default function TimedOutTradeContainer({
     key,

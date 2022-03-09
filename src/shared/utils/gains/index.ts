@@ -2,9 +2,10 @@ import { formatEther } from '@ethersproject/units';
 import { GainsTradingDataInterface } from 'types/gains/GainsTradingData';
 import { GainsStreamingDataInterface } from 'types/gains/GainsStreamingData';
 import { GainsCoreDataInterface, AssetType } from 'types/gains/GainsCoreData';
-import { getMinPositionSizeForAssetTypes } from 'shared/utils/gains/pairs';
+import { getMinPositionSizeForAssetTypes, getPairString } from 'shared/utils/gains/pairs';
 import { BigNumber } from 'ethers';
 import { GainsUserTradingData } from 'types/gains/GainsUserTradingData';
+import { GainsLiveEventDataInterface } from 'types/gains/GainsLiveEventData';
 
 export const transformTradingVariables = (
     data: GainsTradingDataInterface.Data
@@ -68,4 +69,33 @@ export const transformTradeWrapper = (
             positionSizeDai,
         },
     };
+};
+
+export const transformCloseEventToTradeWrapper = (
+    closeEvent:
+        | GainsLiveEventDataInterface.MarketExecuted
+        | GainsLiveEventDataInterface.LimitExecuted,
+    tv: GainsTradingDataInterface.Data
+): GainsCoreDataInterface.TradeWrapper => {
+    const trade: GainsCoreDataInterface.Trade = {
+        trader: closeEvent.t[0],
+        pairIndex: closeEvent.t[1],
+        index: closeEvent.t[2],
+        initialPosToken: closeEvent.t[3],
+        positionSizeDai: closeEvent.positionSizeDai || closeEvent.t[4],
+        openPrice: closeEvent.t[5],
+        buy: closeEvent.t[6],
+        leverage: closeEvent.t[7],
+        tp: closeEvent.t[8],
+        sl: closeEvent.t[9],
+        pairString: getPairString(tv.pairs[parseInt(closeEvent.t[1])]),
+    };
+
+    const tradeInfo: GainsCoreDataInterface.TradeInfo = {
+        tokenPriceDai: closeEvent.price.toString(),
+        openInterestDai: BigNumber.from(trade.positionSizeDai).mul(trade.leverage).toString(),
+        beingMarketClosed: true,
+    };
+
+    return transformTradeWrapper({ trade, tradeInfo }, tv);
 };

@@ -7,6 +7,25 @@ import { getLivePairPrice } from './pairs';
 import { formatEther, formatUnits } from '@ethersproject/units';
 import { StorageInterfaceV5 } from 'types/ethers-contracts/TradingV6';
 import { SubmitTradeOverride } from 'shared/hooks/useOpenTradeV6';
+import { GainsLiveEventDataInterface } from 'types/gains/GainsLiveEventData';
+import { transformCloseEventToTradeWrapper } from 'shared/utils/gains';
+
+const _calculatePnL = (
+    trade: GainsCoreDataInterface.TradeWrapper,
+    pc: number,
+    tv: GainsTradingDataInterface.Data
+) => {
+    const pp = calculatePercentProfit(pc, trade?.trade);
+    const pnl = pp * Number(formatEther(trade?.trade?.positionSizeDai));
+    const feeDai = calculateCloseFee(trade, tv);
+    return {
+        pnl: pnl,
+        percentProfit: pp * 100,
+        feeDai,
+        pnlInclFee: pnl - feeDai,
+        percentProfitInclFee: (pnl - feeDai) / Number(formatEther(trade?.trade?.positionSizeDai)),
+    };
+};
 
 export const calculatePnL = (
     trade: GainsCoreDataInterface.TradeWrapper,
@@ -22,47 +41,52 @@ export const calculatePnL = (
             percentProfitInclFee: -1,
         };
     }
-    const pc = calculatePriceChange(trade, priceData);
-    const pp = calculatePercentProfit(pc, trade);
-    const pnl = pp * Number(formatEther(trade?.trade?.positionSizeDai));
-    const feeDai = calculateCloseFee(trade, tv);
-    const ret = {
-        pnl: pnl,
-        percentProfit: pp * 100,
-        feeDai,
-        pnlInclFee: pnl - feeDai,
-        percentProfitInclFee: (pnl - feeDai) / Number(formatEther(trade?.trade?.positionSizeDai)),
-    };
-    // console.log({
-    //     trade,
-    //     ret,
-    //     priceChange: pc,
-    //     percentProfit: pp,
-    //     pnlNoFees: pnl,
-    //     feeDai,
-    //     percentProfitReverse: pnl / Number(formatEther(trade?.trade?.positionSizeDai)),
-    //     percentProfitReverseFees:
-    //         (pnl + feeDai) / Number(formatEther(trade?.trade?.positionSizeDai)),
-    // });
+    const pc = calculatePriceChangeFromPriceData(trade?.trade, priceData);
+    return _calculatePnL(trade, pc, tv);
+};
 
-    return ret;
+export const calculatePnLFromCloseEvent = (
+    tradeEvent:
+        | GainsLiveEventDataInterface.MarketExecuted
+        | GainsLiveEventDataInterface.LimitExecuted,
+    tv: GainsTradingDataInterface.Data
+) => {
+    const trade = transformCloseEventToTradeWrapper(tradeEvent, tv);
+    if (!trade || !tradeEvent || !tv) {
+        return {
+            pnl: -1,
+            percentProfit: -1,
+            feeDai: -1,
+            pnlInclFee: -1,
+            percentProfitInclFee: -1,
+        };
+    }
+
+    const pc = calculatePriceChange(trade?.trade, Number(formatUnits(tradeEvent?.price, 10)));
+    return _calculatePnL(trade, pc, tv);
 };
 
 export const calculatePercentProfit = (
     priceChange: number,
-    trade: GainsCoreDataInterface.TradeWrapper
-): number => priceChange * parseInt(trade?.trade?.leverage);
+    trade: GainsCoreDataInterface.Trade
+): number => priceChange * parseInt(trade?.leverage);
 
-export const calculatePriceChange = (
-    trade: GainsCoreDataInterface.TradeWrapper,
+export const calculatePriceChangeFromPriceData = (
+    trade: GainsCoreDataInterface.Trade,
     priceData: GainsPricingDataInterface.Data
 ): number => {
-    const curPrice = getLivePairPrice(parseInt(trade?.trade?.pairIndex), priceData);
-    const openPrice = Number(formatUnits(trade?.trade?.openPrice, 10));
+    const curPrice = getLivePairPrice(parseInt(trade?.pairIndex), priceData);
+    return calculatePriceChange(trade, curPrice);
+};
+
+export const calculatePriceChange = (
+    trade: GainsCoreDataInterface.Trade,
+    curPrice: number
+): number => {
+    const openPrice = Number(formatUnits(trade?.openPrice, 10));
     const pc = curPrice > openPrice ? curPrice / openPrice - 1 : 1 - curPrice / openPrice;
 
-    return (trade?.trade?.buy && curPrice >= openPrice) ||
-        (!trade?.trade?.buy && curPrice <= openPrice)
+    return (trade?.buy && curPrice >= openPrice) || (!trade?.buy && curPrice <= openPrice)
         ? pc
         : -pc;
 };
@@ -75,3 +99,30 @@ export const getTradeKeyFromTradeStruct = (trade: StorageInterfaceV5.TradeStruct
 
 export const getTradeKeyFromTradeOverrides = (trade: SubmitTradeOverride): string =>
     `${trade?.pairIndex}-${trade?.index}`;
+
+export const getTradeKeyFromCloseEvent = (
+    tradeEvent:
+        | GainsLiveEventDataInterface.MarketExecuted
+        | GainsLiveEventDataInterface.LimitExecuted
+): string => `${tradeEvent?.t[1]}-${tradeEvent?.t[2]}`;
+
+export const getTradeDetailsFromCloseEvent = (
+    tradeEvent:
+        | GainsLiveEventDataInterface.MarketExecuted
+        | GainsLiveEventDataInterface.LimitExecuted
+): any => {
+    const percentProfit = Number(formatUnits(tradeEvent.percentProfit, 10));
+    const percentProfitS = percentProfit.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
+    const positionSizeDai = Number(formatUnits(tradeEvent.positionSizeDai, 18));
+    const positionSizeDaiS = positionSizeDai.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
+
+    const pnl = positionSizeDai * (percentProfit / 100);
+
+    return {};
+};

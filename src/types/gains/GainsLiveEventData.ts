@@ -29,7 +29,7 @@ export declare module GainsLiveEventDataInterface {
         nftHolder: string;
         orderType: string;
         price: string;
-        positionSizeDai: string;
+        positionSizeDai: BigNumberish;
         percentProfit: string;
     }
 

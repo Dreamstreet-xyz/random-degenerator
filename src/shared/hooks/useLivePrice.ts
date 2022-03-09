@@ -20,7 +20,6 @@ export default function useLivePrice(trade: GainsCoreDataInterface.TradeWrapper)
 
     useEffect(() => {
         if (isActive) {
-            console.log('Yep is active');
             setPrice(getLivePairPrice(parseInt(trade?.trade?.pairIndex), priceData) || -1);
         }
     }, [priceData, isActive]);

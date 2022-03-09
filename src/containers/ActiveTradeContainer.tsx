@@ -8,7 +8,7 @@ import useCloseTradeV6 from 'shared/hooks/useCloseTradeV6';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import TradeItem from 'components/app/ActiveTrades/TradeView/TradeItem';
 import TradeDetailsModal from 'components/app/ActiveTrades/TradeView/TradeDetailsModal';
-import ToastChannel from 'shared/utils/ToastChannel';
+import ToastChannel from 'shared/utils/toasts/ToastChannel';
 import BetItem from 'components/app/ActiveTrades/BetView/BetItem';
 
 export default function ActiveTradeContainer({
@@ -36,6 +36,12 @@ export default function ActiveTradeContainer({
     });
     const txMessage = useMemo(() => getTransactionStatusMessage(state), [state]);
     const [frozen, setFrozen] = useState(false);
+
+    useEffect(() => {
+        if (tradeWrapper?.tradeInfo?.beingMarketClosed) {
+            setFrozen(true);
+        }
+    }, [tradeWrapper]);
 
     useEffect(() => {
         // if user reject, display toast and backout
@@ -66,10 +72,10 @@ export default function ActiveTradeContainer({
             case 'Success':
                 ToastChannel.updateToastInChannel(channel, {
                     options: {
-                        render: 'Trade closed',
+                        render: 'Trade closed: waiting on block confirmation',
                         onClose: () => resetState(),
                         type: 'info',
-                        autoClose: 5000,
+                        autoClose: false,
                     },
                 });
                 onTradeClosed(getTradeKey(tradeWrapper));

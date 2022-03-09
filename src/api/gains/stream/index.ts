@@ -1,4 +1,3 @@
-import { transformTradingVariables } from 'shared/utils/gains';
 import { useGainsMainnetDataStore, useGainsTestnetDataStore } from 'shared/stores/GainsDataStore';
 import { useGainsPriceStore } from 'shared/stores/GainsPriceStore';
 import { NetworkInterface } from 'shared/constants/networks';
@@ -6,12 +5,18 @@ import { Mumbai, Polygon } from '@usedapp/core';
 import { GainsStreamingDataInterface, StreamTypeName } from 'types/gains/GainsStreamingData';
 import { GainsTradingDataInterface } from 'types/gains/GainsTradingData';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
-import { transformTradeWrapper } from 'shared/utils/gains';
+import {
+    transformTradeWrapper,
+    transformTradingVariables,
+    transformCloseEventToTradeWrapper,
+} from 'shared/utils/gains';
 import { GainsLiveEventDataInterface, LiveEventTypeName } from 'types/gains/GainsLiveEventData';
 import fetchTradingVariables from 'api/gains/rest/fetchTradingVariables';
-import { getTradeKey } from 'shared/utils/gains/trade';
+import { getTradeKey, getTradeKeyFromCloseEvent } from 'shared/utils/gains/trade';
 import { toast } from 'react-toastify';
-import ToastChannel from 'shared/utils/ToastChannel';
+import ToastChannel from 'shared/utils/toasts/ToastChannel';
+import { formatUnits } from '@ethersproject/units';
+import { runClosedTradeToast } from 'shared/utils/toasts';
 
 const WSS = 'wss://';
 
@@ -74,10 +79,20 @@ export const handleStream = async (
                                 console.log('MarketExecuted', me);
                                 if (me?.returnValues?.open) {
                                     dataStore.getState().setLatestMarketOrderForWallet(me);
+                                    // fetch trading variables again to get updated open trades with proper data
+                                    const newTvs = await fetchTradingVariables(network);
+                                    dataStore.getState().setOpenTrades(newTvs.allTrades);
+                                } else {
+                                    // market close
+                                    const closeEvent = me.returnValues;
+                                    dataStore
+                                        .getState()
+                                        .removeOpenTradeForWallet(
+                                            getTradeKeyFromCloseEvent(closeEvent)
+                                        );
+                                    const tv = dataStore.getState().tradingVariables;
+                                    runClosedTradeToast(closeEvent, tv);
                                 }
-                                // fetch trading variables again to get updated open trades with proper data
-                                const newTvs = await fetchTradingVariables(network);
-                                dataStore.getState().setOpenTrades(newTvs.allTrades);
                             }
                             break;
                         case LiveEventTypeName.MarketOpenCanceled:
@@ -102,17 +117,14 @@ export const handleStream = async (
                                 const key = `${le.t[1]}-${le.t[2]}`;
                                 if (userTrades.some(t => getTradeKey(t) === key)) {
                                     const limitType = Number(le?.percentProfit) >= 0 ? 'TP' : 'SL';
+                                    const closeEvent = le;
                                     dataStore
                                         .getState()
-                                        .setOpenTradesForWallet(
-                                            userTrades.filter(t => getTradeKey(t) !== key)
+                                        .removeOpenTradeForWallet(
+                                            getTradeKeyFromCloseEvent(closeEvent)
                                         );
-                                    ToastChannel.updateToastInChannel(key, {
-                                        options: {
-                                            render: `${limitType} hit: trade closed`,
-                                            autoClose: 3000,
-                                        },
-                                    });
+                                    const tv = dataStore.getState().tradingVariables;
+                                    runClosedTradeToast(closeEvent, tv);
                                 }
                             }
                             break;
@@ -142,7 +154,7 @@ export const handleStream = async (
                                 data.value.returnValues;
                             if (wallet === moc.trader) {
                                 toast.info('Order canceled: waiting on block confirmation', {
-                                    autoClose: 5000,
+                                    autoClose: 10000,
                                 });
                             }
                             break;
@@ -153,7 +165,10 @@ export const handleStream = async (
                                 console.log('LimitExecuted', le);
                                 const userTrades = dataStore.getState().openTradesForWallet;
                                 const key = `${le.t[1]}-${le.t[2]}`;
-                                if (userTrades.some(t => getTradeKey(t) === key)) {
+                                const trade = userTrades.find(t => getTradeKey(t) === key);
+                                if (trade) {
+                                    trade.tradeInfo.beingMarketClosed = true;
+                                    dataStore.getState().updateOpenTradeForWallet(trade);
                                     const limitType = Number(le?.percentProfit) >= 0 ? 'TP' : 'SL';
                                     ToastChannel.updateToastInChannel(key, {
                                         options: {

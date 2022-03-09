@@ -16,11 +16,10 @@ export declare module GainsCoreDataInterface {
     }
 
     export interface TradeInfo {
-        tokenId: string;
         tokenPriceDai: string;
         openInterestDai: string;
-        tpLastUpdated: string;
-        slLastUpdated: string;
+        tpLastUpdated?: string;
+        slLastUpdated?: string;
         beingMarketClosed: boolean;
     }
 

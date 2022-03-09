@@ -5,6 +5,8 @@ import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import { transformTradeWrapper } from 'shared/utils/gains';
 import { GainsLiveEventDataInterface } from 'types/gains/GainsLiveEventData';
 import { GainsUserTradingData } from 'types/gains/GainsUserTradingData';
+import { getTradeKey } from 'shared/utils/gains/trade';
+
 const getTradesForWallet = (
     wallet: string,
     trades: GainsCoreDataInterface.TradeWrapper[],
@@ -50,6 +52,8 @@ export interface GainsDataStoreInterface {
 
     openTradesForWallet: GainsCoreDataInterface.TradeWrapper[];
     setOpenTradesForWallet: (trades: GainsCoreDataInterface.TradeWrapper[]) => void;
+    updateOpenTradeForWallet: (trade: GainsCoreDataInterface.TradeWrapper) => void;
+    removeOpenTradeForWallet: (tradeKey: string) => void;
 
     cancelledTradesForWallet: any; // TODO
     setCancelledTradesForWallet: (trades: any) => void;
@@ -137,6 +141,24 @@ export const useGainsDataStoreScaffolding = set => ({
                 transformTradeWrapper(t, state.tradingVariables)
             );
             return { openTradesForWallet: transformedTrades };
+        }),
+    updateOpenTradeForWallet: (trade: GainsCoreDataInterface.TradeWrapper) =>
+        set(state => {
+            const transformedTrade = transformTradeWrapper(trade, state.tradingVariables);
+            const openTradesForWallet = state.openTradesForWallet.map(t => {
+                if (getTradeKey(t) === getTradeKey(transformedTrade)) {
+                    return transformedTrade;
+                }
+                return t;
+            });
+            return { openTradesForWallet };
+        }),
+    removeOpenTradeForWallet: (tradeKey: string) =>
+        set(state => {
+            const openTradesForWallet = state.openTradesForWallet.filter(
+                t => getTradeKey(t) !== tradeKey
+            );
+            return { openTradesForWallet };
         }),
 
     cancelledTradesForWallet: [],

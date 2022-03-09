@@ -32,12 +32,13 @@ import { TradeStatus } from 'types/Trade';
 import ProgressBar from './ProgressBar';
 import TimedOutTrades from 'components/app/TimedOutTrades';
 import { useEthers } from '@usedapp/core';
-import ToastChannel from 'shared/utils/ToastChannel';
+import ToastChannel from 'shared/utils/toasts/ToastChannel';
 import {
     getTradeKey,
     getTradeKeyFromTradeStruct,
     getTradeKeyFromTradeOverrides,
 } from 'shared/utils/gains/trade';
+import SampleToast from 'components/common/Toast/SampleToast';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -298,6 +299,8 @@ export default function ConnectedApp({ gas }) {
     }, [tradeStatus]);
 
     const handlePlay = async () => {
+        toast.info(<SampleToast />);
+        return;
         console.log('playing');
         handleBack();
 
