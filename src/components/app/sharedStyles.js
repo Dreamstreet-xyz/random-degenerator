@@ -10,6 +10,10 @@ export const Section = styled.section`
     padding: 16px;
     box-sizing: border-box;
     z-index: 1;
+
+    @media (max-width: 768px) {
+        padding: 0px;
+    }
 `;
 
 export const Container = styled(motion.div)`
@@ -23,7 +27,8 @@ export const Container = styled(motion.div)`
     padding: 48px;
 
     @media (max-width: 768px) {
-        padding: 16px;
+        padding: 16px 8px;
+        border-radius: 0;
     }
 `;
 

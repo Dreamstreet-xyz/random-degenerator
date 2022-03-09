@@ -1,6 +1,6 @@
 import { formatEther } from '@ethersproject/units';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
-import LivePnl from 'components/app/ActiveTrades/TradeItem/LivePnl';
+import LivePnl from './LivePnl';
 import {
     TableRow,
     PositionData,

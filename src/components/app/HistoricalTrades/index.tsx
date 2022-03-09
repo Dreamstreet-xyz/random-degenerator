@@ -22,7 +22,7 @@ export default function HistoricalTrades({
         <>
             <Section>
                 <Container>
-                    <Header>
+                    <Header style={{ flexDirection: 'column' }}>
                         <Title>Your Historical Trades</Title>
                         <Subtitle>Appear ~10 mins after close</Subtitle>
                     </Header>

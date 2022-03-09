@@ -10,6 +10,11 @@ const PageContainer = styled.div`
     padding: 16px;
     padding-top: min(150px, 15vh);
     padding-bottom: 76px;
+
+    @media (max-width: 768px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
 `;
 
 const Container = styled.div`
@@ -23,6 +28,10 @@ const Container = styled.div`
     padding: 64px;
     @media (max-width: 1000px) {
         padding: 32px 16px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 16px 0;
     }
 `;
 

@@ -6,9 +6,10 @@ import { getTransactionStatusMessage, didUserRejectTransaction } from 'shared/ut
 import { getTradeKey } from 'shared/utils/gains/trade';
 import useCloseTradeV6 from 'shared/hooks/useCloseTradeV6';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
-import TradeItem from 'components/app/ActiveTrades/TradeItem';
-import TradeDetailsModal from 'components/app/ActiveTrades/TradeDetailsModal';
+import TradeItem from 'components/app/ActiveTrades/TradeView/TradeItem';
+import TradeDetailsModal from 'components/app/ActiveTrades/TradeView/TradeDetailsModal';
 import ToastChannel from 'shared/utils/ToastChannel';
+import BetItem from 'components/app/ActiveTrades/BetView/BetItem';
 
 export default function ActiveTradeContainer({
     tradeWrapper,
@@ -83,6 +84,17 @@ export default function ActiveTradeContainer({
 
     const render = () => {
         switch (type) {
+            case 'bet':
+                return (
+                    <BetItem
+                        key={`${tradeWrapper.trade.pairIndex}-${tradeWrapper.trade.index}`}
+                        trade={tradeWrapper.trade}
+                        tradeInfo={tradeWrapper.tradeInfo}
+                        onClose={() => closeTrade()}
+                        loading={['PendingSignature', 'Mining'].includes(state?.status)}
+                        isClosed={isClosed || state?.status === 'Success'}
+                    />
+                );
             case 'table':
                 return (
                     <TradeItem
@@ -116,6 +128,7 @@ export default function ActiveTradeContainer({
                         loading={['PendingSignature', 'Mining'].includes(state?.status)}
                     />
                 );
+
             default:
                 break;
         }

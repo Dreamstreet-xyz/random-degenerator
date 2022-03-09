@@ -1,4 +1,4 @@
-import { textGradientCustom } from 'shared/styles';
+import { textGradientCustom, windowScrollbar } from 'shared/styles';
 import styled from 'styled-components';
 
 export const Section = styled.div`
@@ -18,11 +18,15 @@ export const Table = styled.table`
 
 export const TableHead = styled.thead`
     background-color: #21115c;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    border-bottom: 1px solid #d200b8;
 
 `; 
 
 export const TableHeadRow = styled.tr`
-    border-bottom: 1px solid #d200b8;
+
 `;
 
 export const TableHeader = styled.th`
@@ -41,10 +45,12 @@ export const TableBody = styled.tbody`
 `;
 
 export const Content = styled.div`
-    overflow-x: scroll;
+    border-radius: 10px;
     overflow-y: scroll;
-    max-height: 5000px;
+    overflow-x: scroll;
+    max-height: 90vh;
     overflow: auto;
+    ${windowScrollbar}
 `;
 
 export const Header = styled.div`

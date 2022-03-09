@@ -3,15 +3,18 @@ import { formatEther } from '@ethersproject/units';
 import { GainsStreamingDataInterface } from 'types/gains/GainsStreamingData';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import ActiveTradeContainer from 'containers/ActiveTradeContainer';
+import { getTradeKey } from 'shared/utils/gains/trade';
 import { Container, Header, Title, Content } from '../sharedStyles';
-import { Section, Table, TableHead, TableHeadRow, TableHeader, TableBody } from './styles';
+import { Section, HeaderRight, Toggle } from './styles';
 import {
     ActionLink,
     GainsLogo,
 } from 'components/app/MainApp/ConnectedApp/PlaySlots/TradeResultsCard/styles';
 import { NetworkInterface, polygon } from 'shared/constants/networks';
-import { getTradeKey } from 'shared/utils/gains/trade';
-import TradeDetailsModal from './TradeDetailsModal';
+import TradeDetailsModal from './TradeView/TradeDetailsModal';
+import BetView from './BetView';
+import TradeView from './TradeView';
+import { Tooltip } from 'components/common';
 
 export default function ActiveTrades({
     trades,
@@ -21,6 +24,7 @@ export default function ActiveTrades({
     network: NetworkInterface;
 }) {
     const [target, setTarget] = useState(null);
+    const [bettingView, setBettingView] = useState(true);
     const [closedTradeKeys, setClosedTradeKeys] = useState<Set<string>>(new Set([]));
     const handleTradeClick = index => {
         setTarget(trades[index]);
@@ -30,46 +34,45 @@ export default function ActiveTrades({
         setClosedTradeKeys(new Set([...Array.from(closedTradeKeys), trade]));
     };
 
+    const handleToggleView = () => {
+        setBettingView(!bettingView);
+    };
+
     return (
         <>
             <Section>
                 <Container>
                     <Header>
-                        <Title>Your Active Trades</Title>
+                        <Title>Your Active {bettingView ? 'Bets' : 'Trades'}</Title>
+                        <HeaderRight>
+                            <Tooltip content={`Switch to ${bettingView ? 'trade' : 'bet'} view`}>
+                                <Toggle onClick={handleToggleView}>
+                                    <img
+                                        src={
+                                            bettingView
+                                                ? 'images/noun/trading.png'
+                                                : 'images/noun/dice.png'
+                                        }
+                                    />
+                                </Toggle>
+                            </Tooltip>
+                        </HeaderRight>
                     </Header>
                     <Content>
-                        <Table>
-                            <TableHead>
-                                <TableHeadRow>
-                                    <TableHeader style={{ borderTopLeftRadius: 10 }}>
-                                        Position
-                                    </TableHeader>
-                                    <TableHeader>Pair</TableHeader>
-                                    <TableHeader>Leverage</TableHeader>
-                                    <TableHeader style={{ textAlign: 'right' }}>
-                                        Collateral
-                                    </TableHeader>
-                                    <TableHeader style={{ textAlign: 'right' }}>
-                                        Net PnL
-                                    </TableHeader>
-                                    <TableHeader style={{ borderTopRightRadius: 10 }}>
-                                        Close
-                                    </TableHeader>
-                                </TableHeadRow>
-                            </TableHead>
-                            <TableBody>
-                                {trades.map((item, ix) => (
-                                    <ActiveTradeContainer
-                                        key={getTradeKey(item)}
-                                        tradeWrapper={item}
-                                        onClick={() => handleTradeClick(ix)}
-                                        type={'table'}
-                                        onTradeClosed={addClosedTrade}
-                                        isClosed={closedTradeKeys.has(getTradeKey(item))}
-                                    />
-                                ))}
-                            </TableBody>
-                        </Table>
+                        {bettingView ? (
+                            <BetView
+                                trades={trades}
+                                closedTradeKeys={closedTradeKeys}
+                                onTradeClosed={addClosedTrade}
+                            />
+                        ) : (
+                            <TradeView
+                                trades={trades}
+                                closedTradeKeys={closedTradeKeys}
+                                onTradeClick={handleTradeClick}
+                                onTradeClosed={addClosedTrade}
+                            />
+                        )}
                     </Content>
                     <div
                         style={{
