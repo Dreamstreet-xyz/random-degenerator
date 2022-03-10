@@ -61,7 +61,7 @@ export default function BetItem({ trade, tradeInfo, loading, isClosed, onClose }
     }, [isClosed, loading]);
 
     return (
-        <Container>
+        <Container style={{ opacity: loading || isClosed ? 0.5 : 1 }}>
             <Row>
                 <Tooltip content="Bet Amount">
                     <Collateral>{Number(formatEther(positionSizeDai)).toFixed(0)} DAI</Collateral>

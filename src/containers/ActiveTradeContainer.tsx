@@ -59,14 +59,19 @@ export default function ActiveTradeContainer({
                 break;
             case 'Exception':
             case 'Fail':
-                ToastChannel.updateToastInChannel(channel, {
-                    options: {
-                        render: txMessage,
-                        onClose: () => resetState(),
-                        type: 'error',
-                        autoClose: 5000,
-                    },
-                });
+                if (!didUserRejectTransaction(state)) {
+                    ToastChannel.updateToastInChannel(channel, {
+                        options: {
+                            render: txMessage,
+                            onClose: () => resetState(),
+                            type: 'error',
+                            autoClose: 5000,
+                        },
+                    });
+                } else {
+                    resetState();
+                }
+
                 setFrozen(false);
                 break;
             case 'Success':

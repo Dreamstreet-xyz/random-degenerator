@@ -35,7 +35,7 @@ export default function TradeItem({
     };
 
     return (
-        <TableRow onClick={handleClick}>
+        <TableRow style={{ opacity: loading || isClosed ? 0.5 : 1 }} onClick={handleClick}>
             <PositionData position={position}>{position}</PositionData>
             <Pair>{pair}</Pair>
             <Leverage>{leverage}x</Leverage>

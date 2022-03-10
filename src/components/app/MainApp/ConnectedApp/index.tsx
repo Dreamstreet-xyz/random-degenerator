@@ -371,7 +371,7 @@ export default function ConnectedApp({ gas }) {
             case 'Exception':
                 if (didUserRejectTransaction(state)) {
                     setPlay(false);
-                    toast.error(txMessage);
+                    // toast.error(txMessage);
                     break;
                 }
             case 'Fail':
@@ -392,9 +392,10 @@ export default function ConnectedApp({ gas }) {
         switch (daiState.status) {
             case 'Exception':
                 if (didUserRejectTransaction(daiState)) {
-                    toast.error(txMessage, {
-                        onClose: () => resetDaiState(),
-                    });
+                    resetDaiState();
+                    // toast.error(txMessage, {
+                    //     onClose: () => resetDaiState(),
+                    // });
                     setDaiLoading(false);
                     break;
                 }
