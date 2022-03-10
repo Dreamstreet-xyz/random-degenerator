@@ -7,7 +7,11 @@ export const Container = styled.div`
     column-gap: 32px;
     row-gap: 32px;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 940px) {
         grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 450px) {
+        row-gap: 16px;
     }
 `;

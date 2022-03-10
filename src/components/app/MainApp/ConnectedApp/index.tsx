@@ -299,8 +299,8 @@ export default function ConnectedApp({ gas }) {
     }, [tradeStatus]);
 
     const handlePlay = async () => {
-        toast.info(<SampleToast />);
-        return;
+        /* toast.info(<SampleToast />);
+        return; */
         console.log('playing');
         handleBack();
 

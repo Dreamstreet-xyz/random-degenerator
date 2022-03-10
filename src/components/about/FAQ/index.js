@@ -127,7 +127,9 @@ export default function FAQ() {
                 <FAQContent>
                     <Paragraph>
                         Come chat in our Telegram{' '}
-                        <Anchor href="https://t.me/randomdegenerator">chat</Anchor>
+                        <Anchor href="https://t.me/randomdegenerator" target="_blank">
+                            chat
+                        </Anchor>
                     </Paragraph>
                 </FAQContent>
             </Accordion>

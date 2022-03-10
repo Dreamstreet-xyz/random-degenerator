@@ -8,6 +8,10 @@ export const Container = styled.div`
     background-color: #21175e;
     border-radius: 10px;
     ${noSelect}
+
+    @media (max-width: 600px) {
+        padding: 12px;
+    }
 `;
 
 export const Collateral = styled.p`
@@ -15,6 +19,22 @@ export const Collateral = styled.p`
     font-size: 24px;
     font-family: Montserrat;
     color: #e7e7ff;
+
+    @media (max-width: 1100px) {
+        font-size: 20px;
+    }
+
+    @media (max-width: 940px) {
+        font-size: 24px;
+    }
+
+    @media (max-width: 600px) {
+        font-size: 20px;
+    }
+
+    @media (max-width: 450px) {
+        font-size: 16px;
+    }
 `;
 
 export const Pnl = styled.p`
@@ -24,6 +44,28 @@ export const Pnl = styled.p`
     color: ${({ pnl }) => (pnl.pnlInclFee > 0 ? '#57e08b' : '#db5c91')};
     margin-left: auto;
     margin-right: auto;
+
+    @media (max-width: 1100px) {
+        font-size: 20px;
+    }
+
+    @media (max-width: 1000px) {
+        margin-right: 0;
+    }
+    
+    @media (max-width: 940px) {
+        font-size: 24px;
+        margin-right: auto;
+    }
+
+    @media (max-width: 600px) {
+        font-size: 20px;
+        margin-right: 0;
+    }
+
+    @media (max-width: 450px) {
+        font-size: 16px;
+    }
 `;
 
 export const Row = styled.div`
