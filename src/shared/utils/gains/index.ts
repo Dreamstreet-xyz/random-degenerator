@@ -54,7 +54,6 @@ export const transformTradeWrapper = (
 ): GainsCoreDataInterface.TradeWrapper => {
     const pair = tv?.pairs[ot?.trade?.pairIndex];
 
-    console.log(ot);
     const positionSizeDai =
         !ot.trade?.positionSizeDai || ot.trade?.positionSizeDai === '0'
             ? BigNumber.from(ot?.tradeInfo?.openInterestDai)

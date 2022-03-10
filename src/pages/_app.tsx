@@ -65,6 +65,20 @@ const GlobalStyle = createGlobalStyle`
             cursor: default;
         }
     }
+    :root {
+        --toastify-color-dark: rgba(0, 0, 0, 0.75);
+        --toastify-color-info: linear-gradient(-45deg, #8342eb, #FF3D77);
+        --toastify-color-error: linear-gradient(-45deg, #8342eb, #FF3D77);
+        --toastify-color-success: linear-gradient(-45deg, #8342eb, #FF3D77);
+        --toastify-toast-background: #4e28d8;
+        --toastify-font-family: Roboto;
+        --toastify-font-weight: bold;
+      }
+
+      .Toastify__toast-body {
+        padding-left: 10px;
+        letter-spacing: 0.025em;
+      } 
 `;
 
 export default function App({ Component, pageProps }) {
@@ -111,6 +125,7 @@ export default function App({ Component, pageProps }) {
                                         position="bottom-right"
                                         autoClose={4000}
                                         hideProgressBar={false}
+                                        icon={false}
                                         newestOnTop
                                         closeOnClick
                                         rtl={false}

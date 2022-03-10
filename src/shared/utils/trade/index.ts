@@ -40,6 +40,7 @@ export const transformFinalDetailsToTradeRecord = (
 };
 
 export const transitionTradeToStatus = (from: TradeStatus, to: TradeStatus): TradeStatus => {
+    console.log('transitionTradeToStatus', from, to);
     switch (to) {
         case TradeStatus.None:
             return to;

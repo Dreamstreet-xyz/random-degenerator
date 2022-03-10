@@ -59,6 +59,7 @@ export const useToastChannelDataStore = create<ToastChannelDataStoreInterface>(s
             }
 
             if (!toastId) {
+                console.log(options);
                 state.addToastToChannel(channel, {
                     toast: toast.info,
                     content: updateToastWrapper?.options?.render,

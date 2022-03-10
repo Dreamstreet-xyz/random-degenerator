@@ -146,6 +146,7 @@ export default function useRandomTrade(): UseRandomTradeInterface {
     }, [currentBlock]);
 
     useEffect(() => {
+        let timeout;
         if (
             unconfirmedMarketOrder &&
             tradeDetails &&
@@ -155,10 +156,19 @@ export default function useRandomTrade(): UseRandomTradeInterface {
             unconfirmedMarketOrder?.returnValues?.t[6] === tradeDetails?.buy &&
             unconfirmedMarketOrder?.returnValues?.t[7] === tradeDetails?.leverage?.toString()
         ) {
-            setTimeout(() => {
+            timeout = setTimeout(() => {
                 setTradeStatus(transitionTradeToStatus(tradeStatus, TradeStatus.Unconfirmed));
             }, 1000);
         }
+
+        // this will prevent a transition from confirmed to unconfirmed if the order was confirmed while this effect was executing
+        // useEffects create closures which cache all state values so there is a race condition that can take place
+        // because we are listening for tradeStatus updates, if it happens in the interim, we just wipe timeout
+        return () => {
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+        };
     }, [tradeStatus, unconfirmedMarketOrder]);
 
     useEffect(() => {

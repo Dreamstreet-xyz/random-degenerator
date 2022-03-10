@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { toast } from 'react-toastify';
+import { Flip, toast } from 'react-toastify';
 import useApproveDai from 'shared/hooks/useApproveDai';
 import { useUser } from 'shared/contexts/UserContext';
 import { GainsDataStoreInterface } from 'shared/stores/GainsDataStore';
@@ -34,11 +34,9 @@ import TimedOutTrades from 'components/app/TimedOutTrades';
 import { useEthers } from '@usedapp/core';
 import ToastChannel from 'shared/utils/toasts/ToastChannel';
 import {
-    getTradeKey,
     getTradeKeyFromTradeStruct,
     getTradeKeyFromTradeOverrides,
 } from 'shared/utils/gains/trade';
-import SampleToast from 'components/common/Toast/SampleToast';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -280,6 +278,7 @@ export default function ConnectedApp({ gas }) {
                     options: {
                         render: 'Trade completed!',
                         icon: '🚀',
+                        transition: Flip,
                         autoClose: 5000,
                     },
                 });
@@ -299,8 +298,6 @@ export default function ConnectedApp({ gas }) {
     }, [tradeStatus]);
 
     const handlePlay = async () => {
-        /* toast.info(<SampleToast />);
-        return; */
         console.log('playing');
         handleBack();
 
