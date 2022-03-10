@@ -20,7 +20,6 @@ import { getPairString, isValidPair } from 'shared/utils/gains/pairs';
 import { formatEther, parseEther } from '@ethersproject/units';
 import { BigNumber } from 'ethers';
 import { transformFinalDetailsToTradeRecord } from 'shared/utils/trade';
-import { toast } from 'react-toastify';
 import { transitionTradeToStatus } from 'shared/utils/trade';
 
 export interface UseRandomTradeInterface {
@@ -86,7 +85,7 @@ export const getRandomFloorNumberIncl = (min: number, max: number): number =>
 
 const getRandomStopLossP = (leverage: number, maxLossP: number) => {
     // too tight of sl on high leverage will instantly trigger so set min based on
-    const minLossP = leverage > 100 ? 25 : leverage > 50 ? 15 : 10;
+    const minLossP = leverage > 100 ? 50 : leverage > 50 ? 25 : 10;
     return getRandomFloorNumberIncl(minLossP, maxLossP);
 };
 const getRandomTakeProfitP = (leverage: number, maxGainP: number) => {
@@ -138,9 +137,6 @@ export default function useRandomTrade(): UseRandomTradeInterface {
             currentBlock - orderTxReceipt.blockNumber >=
                 parseInt(tradingVariables.marketOrdersTimeout)
         ) {
-            // toast.error('The trade timed out - claim your collateral at Gains.Trade now!', {
-            //     autoClose: false,
-            // });
             setTradeStatus(transitionTradeToStatus(tradeStatus, TradeStatus.TimedOut));
         }
     }, [currentBlock]);
@@ -309,7 +305,10 @@ export default function useRandomTrade(): UseRandomTradeInterface {
 
         // get sl & tp percentages
         const slP = getRandomStopLossP(leverage, MAX_LOSS_P);
-        const tpP = getRandomTakeProfitP(leverage, tradingVariables.maxGainP);
+
+        // stop gap solution for limiting TP size a bit. without trades are too asymmetrical
+        const maxTp = getRandomFloorNumberIncl(1, tradingVariables.maxGainP / 100);
+        const tpP = getRandomTakeProfitP(leverage, maxTp * 100);
         const pIx = getRandomFloorNumberIncl(0, 1);
 
         const _tradeOverrides = {
