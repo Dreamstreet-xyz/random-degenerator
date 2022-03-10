@@ -307,7 +307,11 @@ export default function useRandomTrade(): UseRandomTradeInterface {
         const slP = getRandomStopLossP(leverage, MAX_LOSS_P);
 
         // stop gap solution for limiting TP size a bit. without trades are too asymmetrical
-        const maxTp = getRandomFloorNumberIncl(1, tradingVariables.maxGainP / 100);
+        let maxTp = getRandomFloorNumberIncl(1, tradingVariables.maxGainP / 100);
+        if (maxTp >= 5) {
+            // reroll to double odds it's less than 5
+            maxTp = getRandomFloorNumberIncl(1, tradingVariables.maxGainP / 100);
+        }
         const tpP = getRandomTakeProfitP(leverage, maxTp * 100);
         const pIx = getRandomFloorNumberIncl(0, 1);
 
