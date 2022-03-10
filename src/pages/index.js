@@ -57,7 +57,7 @@ export default function Home() {
     const [announcement, setAnnouncement] = useState({
         display: true,
         message:
-            'Polygon is less stable than usual. Extra block confirmations are required so be patient while playing.',
+            'Polygon will be offline at 5:50 PM UTC today. Please follow 0xPolygonDevs on Twitter for live updates.',
         close: () => setAnnouncement({ ...announcement, display: false }),
     });
 
@@ -82,7 +82,7 @@ export default function Home() {
 
     return (
         <Container>
-            {network.chainId === polygon.chainId && announcement?.display && (
+            {announcement?.display && (
                 <StickyContainer>
                     <AnnouncementBannerContainer>
                         <AnnouncementBanner
