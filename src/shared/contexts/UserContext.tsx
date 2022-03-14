@@ -49,7 +49,13 @@ const web3Modal =
     new Web3Modal({
         cacheProvider: true,
         providerOptions,
-        theme: 'dark',
+        theme: {
+            background: '#271663',
+            main: 'rgb(231, 230, 248)',
+            secondary: 'rgb(153, 148, 209)',
+            border: 'rgba(212, 103, 212, 0.14)',
+            hover: '#342275',
+        },
     });
 
 type UserContextInterface = {

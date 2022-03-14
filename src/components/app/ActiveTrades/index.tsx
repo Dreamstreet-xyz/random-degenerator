@@ -24,7 +24,9 @@ export default function ActiveTrades({
     network: NetworkInterface;
 }) {
     const [target, setTarget] = useState(null);
-    const [bettingView, setBettingView] = useState(true);
+    const [bettingView, setBettingView] = useState(
+        JSON.parse(localStorage.getItem('bettingView')) ?? true
+    );
     const [closedTradeKeys, setClosedTradeKeys] = useState<Set<string>>(new Set([]));
     const handleTradeClick = index => {
         setTarget(trades[index]);
@@ -36,6 +38,7 @@ export default function ActiveTrades({
 
     const handleToggleView = () => {
         setBettingView(!bettingView);
+        localStorage.setItem('bettingView', JSON.stringify(!bettingView));
     };
 
     return (

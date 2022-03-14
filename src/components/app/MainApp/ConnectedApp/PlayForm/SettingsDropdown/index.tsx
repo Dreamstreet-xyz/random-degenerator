@@ -26,12 +26,14 @@ export default function SettingsDropdown({
         details: { degenOptions, directionOptions },
     } = settings;
 
-    const handleDegenLevelChange = level => {
-        setDegenLevel(level);
+    const handleDegenLevelChange = value => {
+        setDegenLevel(value);
+        localStorage.setItem('degenLevel', JSON.stringify(value));
     };
 
-    const handleDirectionChange = level => {
-        setDirection(level);
+    const handleDirectionChange = value => {
+        setDirection(value);
+        localStorage.setItem('direction', JSON.stringify(value));
     };
 
     const setSlippage = (slippage: string) => setSettings({ ...settings, slippageP: slippage });
@@ -74,7 +76,7 @@ export default function SettingsDropdown({
                         onChange={handleDegenLevelChange}
                     />
                 </Row>
-                <Row style={{ marginBottom: 8, marginTop: 8 }}>
+                <Row style={{ marginBottom: 8, marginTop: 16 }}>
                     <Label>Direction</Label>
                     <Tooltip content="Restricts the trade direction">
                         <span style={{ marginLeft: 8 }}>

@@ -3,7 +3,11 @@ import { Dropdown as DefaultDropdown } from 'components/common';
 
 export const Dropdown = styled(DefaultDropdown)`
     && {
-        min-width: 296px;
+        min-width: 340px;
+
+        @media (max-width: 380px) {
+            min-width: 300px;
+        }
     }
 `;
 
