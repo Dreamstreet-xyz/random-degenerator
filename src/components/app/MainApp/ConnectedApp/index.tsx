@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Flip, toast } from 'react-toastify';
 import useApproveDai from 'shared/hooks/useApproveDai';
@@ -22,7 +22,6 @@ import {
     InsufficientFundsContainer,
     InsufficientFunds,
     LinksContainer,
-    LinkButton,
     LinksDivider,
     Link,
     LinkImage,
@@ -445,7 +444,7 @@ export default function ConnectedApp({ gas }) {
                             target="_blank"
                         >
                             <LinkImage src="images/quickswap_logo.png" />
-                            Swap for DAI on Quickswap
+                            Swap for DAI on QuickSwap
                         </Link>
                     </LinksContainer>
                 </InsufficientFundsContainer>

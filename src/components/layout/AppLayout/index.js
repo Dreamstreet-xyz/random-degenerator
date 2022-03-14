@@ -32,6 +32,13 @@ const MiscButton = styled(IconButton)`
     }
 `;
 
+const Telegram = styled.img`
+    &:hover,
+    &:active {
+        filter: brightness(85%);
+    }
+`;
+
 export default function AppLayout({ children }) {
     const [showStars, setShowStars] = useState(true);
     const [chats, setChats] = useState([]);
@@ -101,6 +108,16 @@ export default function AppLayout({ children }) {
                             onClick={toggleStars}
                             color={showStars ? 'gold' : '#52388f'}
                         />
+                    </span>
+                </Tooltip>
+                <Tooltip content="Come join our telegram!">
+                    <span>
+                        <a href="https://t.me/randomdegenerator" target="_blank">
+                            <Telegram
+                                src="images/telegram_logo.png"
+                                style={{ width: 36, height: 36 }}
+                            />
+                        </a>
                     </span>
                 </Tooltip>
                 {/* {chats.length === 0 ? (

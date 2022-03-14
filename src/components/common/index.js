@@ -4,6 +4,7 @@ import Banner from './Banner';
 import Button from './Button';
 import Dropdown from './Dropdown';
 import DropdownToggleButton from './DropdownToggleButton';
+import EmptyStatePlaceholder from './EmptyStatePlaceholder';
 import Icon from './Icon';
 import IconButton from './IconButton';
 import Loading from './Loading';
@@ -20,6 +21,7 @@ export {
     Button,
     Dropdown,
     DropdownToggleButton,
+    EmptyStatePlaceholder,
     Icon,
     IconButton,
     Loading,
