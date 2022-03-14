@@ -41,6 +41,15 @@ const rotate = keyframes`
     }
 `;
 
+const fadeIn = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+`;
+
 export const SquareContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -67,6 +76,7 @@ export const LoadingText = styled.span`
     font-size: 18px;
     font-family: Montserrat;
     text-transform: uppercase;
+    animation: ${fadeIn} 1.6s infinite alternate;
 `;
 
 export const SpinnerContainer = styled.div`

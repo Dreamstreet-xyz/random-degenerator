@@ -1,5 +1,6 @@
 import { animate } from 'framer-motion';
 import { useEffect, useRef } from 'react';
+import useAudio from 'shared/hooks/useAudio';
 import { Overlay, Container, Row, WinAmount, Unit } from './styles';
 
 function WinCounter({ to }) {
@@ -9,7 +10,7 @@ function WinCounter({ to }) {
         const node = nodeRef.current;
 
         const controls = animate(0, to, {
-            duration: 2,
+            duration: 3.1,
             onUpdate(value) {
                 node.textContent = value.toFixed(0);
             },
@@ -22,7 +23,16 @@ function WinCounter({ to }) {
 }
 
 export default function WinPopup({ win, close }) {
+    const { play, stop } = useAudio('audio/big_win.ogg');
+
+    useEffect(() => {
+        if (win) play();
+
+        return () => stop();
+    }, [win]);
+
     if (!win) return null;
+
     return (
         <Overlay onClick={close}>
             <Container>

@@ -17,12 +17,12 @@ export const Container = styled(DefaultContainer)`
     }
     
     ${({ glow }) => glow && css`
-        box-shadow: 0px 0px 8px 2px #ff1b7a61;
+        box-shadow: 0px 0px 8px 2px #851bff5f;
         ${pulsingGlow}
 
         &::after {
-            box-shadow: 0px 0px 16px 4px #ff1bec39;
-            animation-duration: 2s;
+            box-shadow: 0px 0px 16px 4px #b71bff60;
+            animation-duration: 4s;
             z-index: -1;
         }
     `};

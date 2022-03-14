@@ -5,7 +5,7 @@ export const Button = styled.button`
     flex: 1;
     padding: 8px;
     height: 100%;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     border-radius: 0;
     background-color: transparent;
@@ -33,7 +33,7 @@ export const Button = styled.button`
     }
 
     ${({ isSelected }) => isSelected && css`
-        background-color: #5935bd;
+        background-color: #6f48db;
     
         ${({ emphasize }) => emphasize && css`
             background: linear-gradient(-45deg, #6142eb, #b41892); 

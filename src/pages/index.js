@@ -118,7 +118,7 @@ export default function Home() {
                 />
             )}
             <WinPopup win={win} close={() => setWin(null)} />
-            <WinButton onClick={() => setWin(4828.28)} />
+            <WinButton onClick={() => setWin(3282.28)} />
         </Container>
     );
 }

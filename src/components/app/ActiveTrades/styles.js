@@ -1,5 +1,4 @@
 import { IconButton } from 'components/common';
-import { textGradientCustom } from 'shared/styles';
 import styled from 'styled-components';
 
 export const Section = styled.div`

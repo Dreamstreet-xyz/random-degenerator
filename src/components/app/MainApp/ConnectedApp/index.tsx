@@ -89,8 +89,8 @@ export default function ConnectedApp({ gas }) {
     // TODO: migrate bet into playsettings
     const [playSettings, setPlaySettings] = useState<PlayFormSettingsType>({
         slippageP: '2',
-        degenLevel: DegenLevel.normal,
-        direction: TradeDirection.both,
+        degenLevel: JSON.parse(localStorage.getItem('degenLevel')) ?? DegenLevel.normal,
+        direction: JSON.parse(localStorage.getItem('direction')) ?? TradeDirection.both,
         assetTypes: [AssetType.CRYPTO],
         collateralRange: [0, 0], // placeholder, overwritten on submission for now
         details: {
