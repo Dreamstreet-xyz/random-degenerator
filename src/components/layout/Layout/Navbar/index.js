@@ -24,6 +24,7 @@ import {
     CurrencyAmount,
     UserAddress,
     ConnectButton,
+    SpilloverButton,
     SpilloverDropdown,
     NavIcon,
     Spark,
@@ -97,8 +98,12 @@ export default function Navbar() {
                                 )}
                             </ConnectButton>
                         )}
-                        <span style={{ position: 'relative' }}>
-                            <IconButton icon="ellipsis-h" onClick={() => setShowMenu(!showMenu)} />
+                        <span style={{ position: 'relative', cursor: 'pointer' }}>
+                            <SpilloverButton
+                                icon="ellipsis-h"
+                                onClick={() => setShowMenu(!showMenu)}
+                                isOpen={showMenu}
+                            />
                             <SpilloverDropdown
                                 close={() => setShowMenu(false)}
                                 isVisible={showMenu}

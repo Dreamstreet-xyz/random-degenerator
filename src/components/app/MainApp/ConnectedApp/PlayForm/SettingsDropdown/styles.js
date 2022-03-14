@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { textGradientCustom } from 'shared/styles';
 import { Dropdown as DefaultDropdown } from 'components/common';
 
 export const Dropdown = styled(DefaultDropdown)`
     && {
-        min-width: 200px;
+        min-width: 296px;
     }
 `;
 
@@ -15,6 +14,7 @@ export const Row = styled.div`
 
 export const Label = styled.label`
     font-size: 14px;
+    font-weight: bold;
 `;
 
 export const Input = styled.input`

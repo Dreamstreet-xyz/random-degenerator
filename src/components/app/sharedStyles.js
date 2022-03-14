@@ -25,10 +25,18 @@ export const Container = styled(motion.div)`
     background-color: #150736ee;
     border-radius: 20px;
     padding: 48px;
+    z-index: 1;
+
+    &::after {
+        border-radius: 20px;
+    }
 
     @media (max-width: 768px) {
         padding: 16px 8px;
         border-radius: 0;
+        &::after {
+            border-radius: 0px;
+        }
     }
 `;
 

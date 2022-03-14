@@ -138,6 +138,12 @@ const Leverage = styled.p`
     }
 `;
 
+const degenOptions = [
+    { title: 'Beginner' },
+    { title: 'Degen' },
+    { title: 'Ultimate Degen', emphasize: true },
+];
+
 export default function PlayForm({
     gas,
     onPlay,
@@ -169,6 +175,7 @@ export default function PlayForm({
     const [curMinLev, setCurMinLev] = useState(null);
     const { network } = useNetworkDetails();
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+    const [degenLevel, setDegenLevel] = useState(degenOptions[0].title);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -184,7 +191,7 @@ export default function PlayForm({
     const connected = walletConnectionStatus === WalletConnectionStatus.Connected;
 
     return (
-        <Container animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
+        <Container animate={{ opacity: 1 }} initial={{ opacity: 0 }} degenLevel={degenLevel}>
             <Header>
                 <Tooltip content="you know you wanna 🤌">
                     <Title>Place a Trade</Title>
@@ -208,6 +215,9 @@ export default function PlayForm({
                         <SettingsDropdown
                             slippage={slippage}
                             setSlippage={setSlippage}
+                            degenLevel={degenLevel}
+                            degenOptions={degenOptions}
+                            setDegenLevel={setDegenLevel}
                             close={() => setShowSettingsMenu(false)}
                             isVisible={showSettingsMenu}
                         />

@@ -10,6 +10,7 @@ import { Banner as DefaultBanner } from 'components/common';
 import useGasStation from 'shared/hooks/useGasStation';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import { polygon } from 'shared/constants/networks';
+import WinPopup from 'components/app/WinPopup';
 
 const Container = styled.div`
     position: relative;
@@ -46,12 +47,23 @@ export const AnnouncementBanner = styled(DefaultBanner)`
     }
 `;
 
+export const WinButton = styled.button`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    z-index: 5;
+    background-color: #5222aa;
+`;
+
 export default function Home() {
     const { scrollYProgress } = useViewportScroll();
     const translateY = useTransform(scrollYProgress, [0.75, 1], [107, 0]);
     const sunGradientOpacity = useTransform(scrollYProgress, [0.5, 1], [0, 1]);
     const cityGradientOpacity = useTransform(scrollYProgress, [0.8, 1], [0, 1]);
     const [networkInfo, setNetworkInfo] = useState(null);
+    const [win, setWin] = useState(null);
     const { getGasStationPayload } = useGasStation();
     const { network } = useNetworkDetails();
     const [announcement, setAnnouncement] = useState({
@@ -105,6 +117,8 @@ export default function Home() {
                     block={networkInfo.blockNumber}
                 />
             )}
+            <WinPopup win={win} close={() => setWin(null)} />
+            <WinButton onClick={() => setWin(4828.28)} />
         </Container>
     );
 }

@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { lightShine, noSelect, retroTextCursive, retroTextGradient } from 'shared/styles';
-import { Dropdown, Icon } from 'components/common';
+import { Dropdown, Icon, IconButton } from 'components/common';
 import { NavButton } from '../NavLink';
 
 export const NavbarContainer = styled.nav`
@@ -122,6 +122,10 @@ export const UserAddress = styled.button`
     padding: 4px 8px;
     border-radius: 7px;
     background-color: #1c0e3d;
+`;
+
+export const SpilloverButton = styled(IconButton)`
+    pointer-events: ${({ isOpen }) => (isOpen ? 'none' : 'initial')};;
 `;
 
 export const SpilloverDropdown = styled(Dropdown)`

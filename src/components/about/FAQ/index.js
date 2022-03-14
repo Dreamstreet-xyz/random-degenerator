@@ -26,13 +26,21 @@ export default function FAQ() {
             >
                 <FAQContent>
                     <Paragraph>
-                        A trade randomizer for <Anchor href="https://gains.trade">gTrade</Anchor>, a
-                        decentralized leverage trading platform built by{' '}
-                        <Anchor href="https://gainsnetwork.io">Gains Network</Anchor>
+                        A trade randomizer for{' '}
+                        <Anchor href="https://gains.trade" target="_blank">
+                            gTrade
+                        </Anchor>
+                        , a decentralized leverage trading platform built by{' '}
+                        <Anchor href="https://gainsnetwork.io" target="_blank">
+                            Gains Network
+                        </Anchor>
                     </Paragraph>
                     <Paragraph>
                         Transactions are submitted to smart contracts running on the{' '}
-                        <Anchor href="https://polygon.technology">Polygon blockchain</Anchor>.
+                        <Anchor href="https://polygon.technology" target="_blank">
+                            Polygon blockchain
+                        </Anchor>
+                        .
                     </Paragraph>
                 </FAQContent>
             </Accordion>
@@ -80,9 +88,11 @@ export default function FAQ() {
                     </Paragraph>
                     <Paragraph>
                         If this is a trade, head over to{' '}
-                        <Anchor href="https://gains.trade">gTrade</Anchor> and utilize the trading
-                        interface. Yep, that's right, these trades magically appear on your gTrade
-                        dashboard as well.
+                        <Anchor href="https://gains.trade" target="_blank">
+                            gTrade
+                        </Anchor>{' '}
+                        and utilize the trading interface. Yep, that's right, these trades magically
+                        appear on your gTrade dashboard as well.
                     </Paragraph>
                 </FAQContent>
             </Accordion>

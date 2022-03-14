@@ -1,6 +1,7 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Container as DefaultContainer, Title as DefaultTitle } from 'components/app/sharedStyles';
 import { Button, IconButton } from 'components/common';
+import { pulsingGlow } from 'shared/styles';
 
 export const Container = styled(DefaultContainer)`
     max-width: 550px;
@@ -14,6 +15,17 @@ export const Container = styled(DefaultContainer)`
     @media (max-width: 500px) {
         padding: 0px;
     }
+    
+    ${({ degenLevel }) => degenLevel === 'Ultimate Degen' && css`
+        box-shadow: 0px 0px 8px 2px #ff1b7a61;
+        ${pulsingGlow}
+
+        &::after {
+            box-shadow: 0px 0px 16px 4px #ff1bec39;
+            animation-duration: 2s;
+            z-index: -1;
+        }
+    `};
 `;
 
 export const Header = styled.div`

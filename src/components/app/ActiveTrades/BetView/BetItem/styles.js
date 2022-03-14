@@ -96,7 +96,7 @@ export const Indicator = styled(motion.span)`
     justify-content: center;
     padding: 0 4px;
     overflow-y: hidden;
-    transform: translateX(-7px);
+    transform: translateX(-5px);
 
     &:hover {
        ${OpenPrice} {
@@ -119,10 +119,9 @@ export const CurrentPrice = styled(motion.span)`
 export const StopLoss = styled.span`
     position: absolute;
     left: 0;
-    width: 4px;
+    width: 6px;
     height: 100%;
     border-radius: 4px 0 0 4px;
-
 
     &:hover {
         background-color: #ffffff88;
@@ -131,8 +130,8 @@ export const StopLoss = styled.span`
 
 export const TakeProfit = styled.span`
     position: absolute;
-    left: calc(100% - 4px);
-    width: 4px;
+    left: calc(100% - 6px);
+    width: 6px;
     height: 100%;
     border-radius: 0 4px 4px 0;
 
