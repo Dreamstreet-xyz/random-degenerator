@@ -29,6 +29,7 @@ import {
     faSignOutAlt,
     faHistory,
     faList,
+    faArrowCircleRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 export default [
@@ -61,4 +62,5 @@ export default [
     faSignOutAlt,
     faHistory,
     faList,
+    faArrowCircleRight,
 ];

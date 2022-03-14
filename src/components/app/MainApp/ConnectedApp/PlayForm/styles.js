@@ -16,7 +16,7 @@ export const Container = styled(DefaultContainer)`
         padding: 0px;
     }
     
-    ${({ degenLevel }) => degenLevel === 'Ultimate Degen' && css`
+    ${({ glow }) => glow && css`
         box-shadow: 0px 0px 8px 2px #ff1b7a61;
         ${pulsingGlow}
 

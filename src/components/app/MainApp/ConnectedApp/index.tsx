@@ -21,6 +21,11 @@ import {
     Banner,
     InsufficientFundsContainer,
     InsufficientFunds,
+    LinksContainer,
+    LinkButton,
+    LinksDivider,
+    Link,
+    LinkImage,
 } from './styles';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import useRandomTrade, {
@@ -429,6 +434,20 @@ export default function ConnectedApp({ gas }) {
                             {tradingVariables.minPosDaiInt} DAI to play
                         </InsufficientFunds>
                     </h2>
+                    <LinksContainer>
+                        <Link href="https://wallet.polygon.technology/bridge" target="_blank">
+                            <LinkImage src="images/networks/polygon-logo.png" />
+                            Deposit tokens to Polygon via bridge
+                        </Link>
+                        <LinksDivider>- or -</LinksDivider>
+                        <Link
+                            href="https://quickswap.exchange/#/swap?outputCurrency=0x8f3cf7ad23cd3cadbd9735aff958023239c6a063"
+                            target="_blank"
+                        >
+                            <LinkImage src="images/quickswap_logo.png" />
+                            Swap for DAI on Quickswap
+                        </Link>
+                    </LinksContainer>
                 </InsufficientFundsContainer>
                 <WalletOpenTradesContainer />
             </Container>

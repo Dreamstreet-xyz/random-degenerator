@@ -191,7 +191,11 @@ export default function PlayForm({
     const connected = walletConnectionStatus === WalletConnectionStatus.Connected;
 
     return (
-        <Container animate={{ opacity: 1 }} initial={{ opacity: 0 }} degenLevel={degenLevel}>
+        <Container
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            glow={degenLevel === degenOptions[2].title}
+        >
             <Header>
                 <Tooltip content="you know you wanna 🤌">
                     <Title>Place a Trade</Title>

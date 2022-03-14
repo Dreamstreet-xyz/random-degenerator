@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Banner as DefaultBanner } from 'components/common';
-import { retroTextGradient } from 'shared/styles';
+import { noSelect, retroTextGradient, retroTextMarker } from 'shared/styles';
 
 export const Container = styled.div`
     width: 100%;
@@ -12,6 +12,7 @@ export const Container = styled.div`
 
 export const InsufficientFundsContainer = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -67,4 +68,44 @@ export const Banner = styled(DefaultBanner)`
     @media (max-width: 768px) {
         position: relative;
     }
+`;
+
+export const LinksContainer = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 32px;
+
+    @media (max-width: 590px) {
+        flex-direction: column;
+    }
+`;
+
+export const LinksDivider = styled.div`
+    margin: 16px;
+    ${retroTextMarker}
+    font-size: 20px;
+`;
+
+export const Link = styled.a`
+    display: flex;
+    width: 200px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #538de433;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    ${noSelect}
+
+    &:hover,
+    &:active {
+        background-color: #538de455;
+    }
+`;
+
+export const LinkImage = styled.img`
+    width:  32px;
+    height: 32px;
+    margin-right: 12px;
 `;
