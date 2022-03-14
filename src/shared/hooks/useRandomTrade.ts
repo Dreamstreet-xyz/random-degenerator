@@ -55,7 +55,7 @@ const DEGEN_LEVEL_SETTING_UPDATES = {
     [DegenLevel.high]: {
         minLossP: 50,
         maxLossP: MAX_LOSS_P,
-        minGainP: 500,
+        minGainP: 200,
         maxGainP: 'max',
         minLeverage: 100,
         maxLeverage: 150,
