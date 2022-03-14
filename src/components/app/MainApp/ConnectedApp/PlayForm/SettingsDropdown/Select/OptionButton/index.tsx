@@ -1,8 +1,8 @@
 import { Button } from './styles';
 
-export default function OptionButton({ title, isSelected, onClick, emphasize }) {
+export default function OptionButton({ value, title, isSelected, onClick, emphasize }) {
     const handleClick = () => {
-        onClick?.(title);
+        onClick?.(value);
     };
 
     return (

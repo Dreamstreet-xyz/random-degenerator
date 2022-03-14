@@ -7,8 +7,9 @@ export default function Select({ value, options, onChange }) {
             {options.map((option, index) => (
                 <>
                     <OptionButton
+                        value={option.value}
                         title={option.title}
-                        isSelected={option.title === value}
+                        isSelected={option.value === value}
                         onClick={onChange}
                         emphasize={option.emphasize}
                     />

@@ -41,14 +41,58 @@ import {
     getTradeKeyFromTradeStruct,
     getTradeKeyFromTradeOverrides,
 } from 'shared/utils/gains/trade';
+import { AssetType } from 'types/gains/GainsCoreData';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+export enum DegenLevel {
+    low,
+    normal,
+    high,
+}
+
+export enum TradeDirection {
+    long,
+    short,
+    both,
+}
+
+export type DetailsOption = {
+    value: DegenLevel | TradeDirection;
+    title: string;
+    emphasize?: boolean;
+};
+
+export type PlayFormSettingsDetailsType = {
+    degenOptions: DetailsOption[];
+    directionOptions: DetailsOption[];
+};
+
+export type PlayFormSettingsType = {
+    slippageP: string;
+    degenLevel: DegenLevel;
+    direction: TradeDirection;
+    assetTypes: AssetType[];
+    collateralRange: number[];
+    details: PlayFormSettingsDetailsType;
+};
+
+const degenOptions = [
+    { value: DegenLevel.low, title: 'Conservative' },
+    { value: DegenLevel.normal, title: 'Normal' },
+    { value: DegenLevel.high, title: 'Ultimate Degen', emphasize: true },
+];
+
+const directionOptions = [
+    { value: TradeDirection.short, title: 'Short' },
+    { value: TradeDirection.both, title: 'Either' },
+    { value: TradeDirection.long, title: 'Long' },
+];
 
 export default function ConnectedApp({ gas }) {
     const [isPlaying, setPlay] = useState(false);
     const [displayTxMessage, setDisplayTxMessage] = useState(false);
     const [displayDaiMessage, setDisplayDaiMessage] = useState(false);
-    const [slippageP, setSlippageP] = useState('2');
     const { network } = useNetworkDetails();
     const { library } = useEthers();
     const useGainsDataStore = useActiveGainsDataStore(
@@ -75,6 +119,18 @@ export default function ConnectedApp({ gas }) {
         ],
         [user, tradingVariables]
     );
+    // TODO: migrate bet into playsettings
+    const [playSettings, setPlaySettings] = useState<PlayFormSettingsType>({
+        slippageP: '2',
+        degenLevel: DegenLevel.normal,
+        direction: TradeDirection.both,
+        assetTypes: [AssetType.CRYPTO],
+        collateralRange: [0, 0], // placeholder, overwritten on submission for now
+        details: {
+            degenOptions,
+            directionOptions,
+        },
+    });
     const hasMinDai = useMemo(
         () => parseInt(prettifyEther(user.daiBalance || '0')) >= tradingVariables.minPosDaiInt,
         [user, tradingVariables]
@@ -327,11 +383,8 @@ export default function ConnectedApp({ gas }) {
             return;
         }
         try {
-            if (min > max) {
-                generateRandomOverrides(max, min);
-            } else {
-                generateRandomOverrides(min, max);
-            }
+            const collateralRange = min < max ? [min, max] : [max, min];
+            generateRandomOverrides({ ...playSettings, collateralRange });
         } catch (e) {
             console.log(e);
             setBanner({
@@ -343,7 +396,7 @@ export default function ConnectedApp({ gas }) {
             return;
         }
 
-        setPlay(true);
+        // setPlay(true);
     };
 
     const handleBack = () => {
@@ -358,7 +411,10 @@ export default function ConnectedApp({ gas }) {
     };
 
     const handleConfirmTrade = async () => {
-        if (!(await submitRandomTrade(user.address, Number(slippageP)))) {
+        const min = Math.min(parseInt(bet[0]), parseInt(bet[1]));
+        const max = Math.max(parseInt(bet[0]), parseInt(bet[1]));
+        const collateralRange = min < max ? [min, max] : [max, min];
+        if (!(await submitRandomTrade(user.address, { ...playSettings, collateralRange }))) {
             setPlay(false);
             toast.error(
                 'Your position size is either too small or too big, please adjust the band. Sorry!'
@@ -488,8 +544,8 @@ export default function ConnectedApp({ gas }) {
                         onPlay={handlePlay}
                         bet={bet}
                         setBet={setBetFromPlay}
-                        slippage={slippageP}
-                        setSlippage={setSlippageP}
+                        settings={playSettings}
+                        setSettings={setPlaySettings}
                         daiApproved={allowance?.toString() !== '0'}
                         onDaiApprove={() => approveDai()}
                         daiLoading={daiLoading}

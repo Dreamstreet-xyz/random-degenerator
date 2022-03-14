@@ -111,11 +111,21 @@ export default function AppLayout({ children }) {
                     </span>
                 </Tooltip>
                 <Tooltip content="Come join our telegram!">
-                    <span>
+                    <span
+                        style={{
+                            width: 36,
+                            height: 36,
+                        }}
+                    >
                         <a href="https://t.me/randomdegenerator" target="_blank">
                             <Telegram
-                                src="images/telegram_logo.png"
-                                style={{ width: 36, height: 36 }}
+                                src="images/telegram_logo_borderless.png"
+                                style={{
+                                    width: 18,
+                                    height: 18,
+                                    display: 'block',
+                                    margin: '10px 8px 8px 4px',
+                                }}
                             />
                         </a>
                     </span>

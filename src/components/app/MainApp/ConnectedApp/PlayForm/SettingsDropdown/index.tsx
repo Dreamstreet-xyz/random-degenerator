@@ -1,20 +1,42 @@
 import { QuestionIcon, Tooltip } from 'components/common';
 import { Menu } from 'components/common/Dropdown/styles';
+import {
+    PlayFormSettingsType,
+    DegenLevel,
+    TradeDirection,
+} from 'components/app/MainApp/ConnectedApp';
 import { Dropdown, Row, Label, Input } from './styles';
 import Select from './Select';
 
 export default function SettingsDropdown({
-    slippage,
-    setSlippage,
-    degenLevel,
-    degenOptions,
-    setDegenLevel,
+    settings,
+    setSettings,
     isVisible,
     close,
+}: {
+    settings: PlayFormSettingsType;
+    setSettings: (settings: PlayFormSettingsType) => void;
+    isVisible: boolean;
+    close: () => void;
 }) {
+    const {
+        slippageP: slippage,
+        degenLevel,
+        direction,
+        details: { degenOptions, directionOptions },
+    } = settings;
+
     const handleDegenLevelChange = level => {
         setDegenLevel(level);
     };
+
+    const handleDirectionChange = level => {
+        setDirection(level);
+    };
+
+    const setSlippage = (slippage: string) => setSettings({ ...settings, slippageP: slippage });
+    const setDegenLevel = (level: DegenLevel) => setSettings({ ...settings, degenLevel: level });
+    const setDirection = (direction: TradeDirection) => setSettings({ ...settings, direction });
 
     return (
         <Dropdown title="Transaction Settings" close={close} isVisible={isVisible}>
@@ -39,7 +61,7 @@ export default function SettingsDropdown({
                 </Row>
                 <Row style={{ marginBottom: 8 }}>
                     <Label>Degen Level</Label>
-                    <Tooltip content="Select your preferred degen level.">
+                    <Tooltip content="Increases odds to be more or less degen">
                         <span style={{ marginLeft: 8 }}>
                             <QuestionIcon />
                         </span>
@@ -50,6 +72,21 @@ export default function SettingsDropdown({
                         value={degenLevel}
                         options={degenOptions}
                         onChange={handleDegenLevelChange}
+                    />
+                </Row>
+                <Row style={{ marginBottom: 8, marginTop: 8 }}>
+                    <Label>Direction</Label>
+                    <Tooltip content="Restricts the trade direction">
+                        <span style={{ marginLeft: 8 }}>
+                            <QuestionIcon />
+                        </span>
+                    </Tooltip>
+                </Row>
+                <Row>
+                    <Select
+                        value={direction}
+                        options={directionOptions}
+                        onChange={handleDirectionChange}
                     />
                 </Row>
             </Menu>

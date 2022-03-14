@@ -21,22 +21,13 @@ import { formatEther, parseEther } from '@ethersproject/units';
 import { BigNumber } from 'ethers';
 import { transformFinalDetailsToTradeRecord } from 'shared/utils/trade';
 import { transitionTradeToStatus } from 'shared/utils/trade';
+import { PlayFormSettingsType } from 'components/app/MainApp/ConnectedApp';
 
 export interface UseRandomTradeInterface {
-    submitRandomTrade: (
-        trader: string,
-        slippageP: number,
-        minCollateral?: number,
-        maxCollateral?: number,
-        assetTypes?: AssetType[]
-    ) => Promise<boolean>;
+    submitRandomTrade: (trader: string, settings: PlayFormSettingsType) => Promise<boolean>;
     state: TransactionStatus;
     resetState: () => void;
-    generateRandomOverrides: (
-        minCollateral: number,
-        maxCollateral: number,
-        assetTypes?: AssetType[]
-    ) => SubmitTradeOverride;
+    generateRandomOverrides: (settings: PlayFormSettingsType) => SubmitTradeOverride;
     tradeDetails: StorageInterfaceV5.TradeStruct | null;
     tradeOverrides: SubmitTradeOverride | null;
     finalOrderDetails: FinalizedTradeDetailsType | null;
@@ -266,11 +257,11 @@ export default function useRandomTrade(): UseRandomTradeInterface {
         setTradeStatus(transitionTradeToStatus(tradeStatus, TradeStatus.None));
     };
 
-    const generateRandomOverrides = (
-        minCollateral: number,
-        maxCollateral: number,
-        assetTypes: AssetType[] = DEFAULT_ASSET_TYPES
-    ): SubmitTradeOverride => {
+    const generateRandomOverrides = (settings: PlayFormSettingsType): SubmitTradeOverride => {
+        console.log(settings);
+        const { collateralRange, assetTypes } = settings;
+        const minCollateral = collateralRange[0];
+        const maxCollateral = collateralRange[1];
         if (minCollateral === null || maxCollateral === null) {
             throw Error('Collateral not set');
         }
@@ -330,15 +321,13 @@ export default function useRandomTrade(): UseRandomTradeInterface {
 
     const submitRandomTrade = async (
         trader: string,
-        slippageP: number,
-        minCollateral?: number,
-        maxCollateral?: number,
-        assetTypes?: AssetType[]
+        settings: PlayFormSettingsType
     ): Promise<boolean> => {
+        const { slippageP, assetTypes } = settings;
         const _tradeOverrides: SubmitTradeOverride =
-            tradeOverrides || generateRandomOverrides(minCollateral, maxCollateral, assetTypes);
+            tradeOverrides || generateRandomOverrides(settings);
 
-        _tradeOverrides.slippageP = slippageP;
+        _tradeOverrides.slippageP = Number(slippageP);
         _tradeOverrides.referrer = network.referralAddress;
 
         console.log('Submitting trade with overrides', _tradeOverrides);

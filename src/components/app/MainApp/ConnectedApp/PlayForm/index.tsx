@@ -27,6 +27,7 @@ import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import styled from 'styled-components';
 import { textGradientCustom } from 'shared/styles';
 import SettingsDropdown from './SettingsDropdown';
+import { PlayFormSettingsType, DegenLevel } from 'components/app/MainApp/ConnectedApp';
 
 const getCharacterWidth = char => {
     switch (char) {
@@ -138,23 +139,33 @@ const Leverage = styled.p`
     }
 `;
 
-const degenOptions = [
-    { title: 'Beginner' },
-    { title: 'Degen' },
-    { title: 'Ultimate Degen', emphasize: true },
-];
+export interface PlayFormInputType {
+    gas: number;
+    onPlay: () => void;
+    bet: string[];
+    setBet: (bet: string[]) => void;
+    settings: PlayFormSettingsType;
+    setSettings: (settings: PlayFormSettingsType) => void;
+    daiApproved: boolean;
+    onDaiApprove: () => void;
+    daiLoading: boolean;
+}
 
 export default function PlayForm({
     gas,
     onPlay,
     bet,
     setBet,
-    slippage,
-    setSlippage,
+    settings,
+    setSettings,
     daiApproved,
     onDaiApprove,
     daiLoading,
-}) {
+}: PlayFormInputType) {
+    const {
+        degenLevel,
+        details: { degenOptions },
+    } = settings;
     const [loading, setLoading] = useState(false);
     const { user, walletConnectionStatus } = useUser();
     const useGainsDataStore = useActiveGainsDataStore(
@@ -166,7 +177,7 @@ export default function PlayForm({
     const getMinimumLeverage = useCallback(() => {
         console.log('Getting minimum leverage', tradingVariables);
         try {
-            return getMinLevForPosSizeAllPairs(bet[0], tradingVariables);
+            return getMinLevForPosSizeAllPairs(Number(bet[0]), tradingVariables);
         } catch (e) {
             return 0;
         }
@@ -175,7 +186,6 @@ export default function PlayForm({
     const [curMinLev, setCurMinLev] = useState(null);
     const { network } = useNetworkDetails();
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
-    const [degenLevel, setDegenLevel] = useState(degenOptions[0].title);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -189,12 +199,14 @@ export default function PlayForm({
     useEffect(() => setCurMinLev(getMinimumLeverage()), [bet, tradingVariables]);
 
     const connected = walletConnectionStatus === WalletConnectionStatus.Connected;
-
     return (
         <Container
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
-            glow={degenLevel === degenOptions[2].title}
+            glow={
+                (degenOptions.find(d => d.value === degenLevel).title || 'Normal') ===
+                degenOptions[2].title
+            }
         >
             <Header>
                 <Tooltip content="you know you wanna 🤌">
@@ -217,11 +229,8 @@ export default function PlayForm({
                             />
                         </div>
                         <SettingsDropdown
-                            slippage={slippage}
-                            setSlippage={setSlippage}
-                            degenLevel={degenLevel}
-                            degenOptions={degenOptions}
-                            setDegenLevel={setDegenLevel}
+                            settings={settings}
+                            setSettings={setSettings}
                             close={() => setShowSettingsMenu(false)}
                             isVisible={showSettingsMenu}
                         />
