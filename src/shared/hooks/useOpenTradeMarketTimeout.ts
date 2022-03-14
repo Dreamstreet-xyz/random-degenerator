@@ -1,4 +1,4 @@
-import { Web3Provider } from '@usedapp/core/node_modules/@ethersproject/providers';
+import { JsonRpcProvider } from '@ethersproject/providers';
 import { TransactionStatus } from '@usedapp/core';
 import { NetworkInterface } from 'shared/constants/networks';
 import useGasStation from 'shared/hooks//useGasStation';
@@ -7,11 +7,12 @@ import { TradingV6__factory } from 'types/ethers-contracts';
 
 interface UseOpenTradeMarketTimeoutInputInterface {
     network: NetworkInterface;
-    library: Web3Provider;
+    library: JsonRpcProvider;
+    tradeId: string;
 }
 
 interface UseOpenTradeMarketTimeoutInterface {
-    submitMarketTimeout: (orderId: string) => Promise<void>;
+    submitMarketTimeout: (orderIdOverride?: string) => Promise<void>;
     state: TransactionStatus;
     resetState: () => void;
 }
@@ -19,6 +20,7 @@ interface UseOpenTradeMarketTimeoutInterface {
 export default function useOpenTradeMarketTimeout({
     network,
     library,
+    tradeId,
 }: UseOpenTradeMarketTimeoutInputInterface): UseOpenTradeMarketTimeoutInterface {
     const { send, state, resetState } = useContractFunction(
         TradingV6__factory.connect(network.tradingV6ContractAddress, library),
@@ -26,8 +28,9 @@ export default function useOpenTradeMarketTimeout({
     );
     const gasStation = useGasStation();
 
-    const submitMarketTimeout = async (orderId: string) => {
-        console.log('Submitting market timeout', orderId);
+    const submitMarketTimeout = async (orderIdOverride?: string) => {
+        const orderId = orderIdOverride || tradeId;
+        console.log('Submitting market timeout on open', orderId);
         send(orderId, { ...(await gasStation.getOpenTradeMarketTimeoutGas()) });
     };
 

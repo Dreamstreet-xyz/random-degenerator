@@ -27,7 +27,7 @@ import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import styled from 'styled-components';
 import { textGradientCustom } from 'shared/styles';
 import SettingsDropdown from './SettingsDropdown';
-import { PlayFormSettingsType, DegenLevel } from 'components/app/MainApp/ConnectedApp';
+import { PlayFormSettingsType, DegenLevel } from 'types/Trade';
 
 const getCharacterWidth = char => {
     switch (char) {
@@ -205,7 +205,7 @@ export default function PlayForm({
             initial={{ opacity: 0 }}
             glow={
                 (degenOptions.find(d => d.value === degenLevel).title || 'Normal') ===
-                degenOptions[2].title
+                degenOptions.find(d => d.value === DegenLevel.high).title
             }
         >
             <Header>

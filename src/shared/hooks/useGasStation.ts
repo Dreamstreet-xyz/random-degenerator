@@ -14,7 +14,7 @@ const GAS_LIMIT_COEFFICIENT = 1.25;
 
 const AVG_OPEN_TRADE_UNITS = 1315614;
 const AVG_CLOSE_TRADE_UNITS = 1250751;
-const AVG_OPEN_TRADE_MARKET_TIMEOUT_UNITS = 115000;
+const AVG_OPEN_TRADE_MARKET_TIMEOUT_UNITS = 150000;
 
 export default function useGasStation() {
     const { library } = useEthers();

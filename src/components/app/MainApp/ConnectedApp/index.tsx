@@ -32,7 +32,7 @@ import useRandomTrade, {
     UseRandomTradeInterface,
 } from 'shared/hooks/useRandomTrade';
 import WalletOpenTradesContainer from 'containers/WalletOpenTradesContainer';
-import { TradeStatus } from 'types/Trade';
+import { TradeStatus, DegenLevel, TradeDirection, PlayFormSettingsType } from 'types/Trade';
 import ProgressBar from './ProgressBar';
 import TimedOutTrades from 'components/app/TimedOutTrades';
 import { useEthers } from '@usedapp/core';
@@ -45,40 +45,7 @@ import { AssetType } from 'types/gains/GainsCoreData';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-export enum DegenLevel {
-    low,
-    normal,
-    high,
-}
-
-export enum TradeDirection {
-    long,
-    short,
-    both,
-}
-
-export type DetailsOption = {
-    value: DegenLevel | TradeDirection;
-    title: string;
-    emphasize?: boolean;
-};
-
-export type PlayFormSettingsDetailsType = {
-    degenOptions: DetailsOption[];
-    directionOptions: DetailsOption[];
-};
-
-export type PlayFormSettingsType = {
-    slippageP: string;
-    degenLevel: DegenLevel;
-    direction: TradeDirection;
-    assetTypes: AssetType[];
-    collateralRange: number[];
-    details: PlayFormSettingsDetailsType;
-};
-
 const degenOptions = [
-    { value: DegenLevel.low, title: 'Conservative' },
     { value: DegenLevel.normal, title: 'Normal' },
     { value: DegenLevel.high, title: 'Ultimate Degen', emphasize: true },
 ];
@@ -315,7 +282,7 @@ export default function ConnectedApp({ gas }) {
                 setBanner({
                     display: true,
                     message:
-                        'Your trade timed out or we lost connection. Refresh and check active trades below.',
+                        'Your trade timed out or we lost connection. Give ~10 secs and check trades below.',
                     close: () => setBanner({ display: false, message: '', close: false }),
                 });
                 break;
@@ -324,6 +291,14 @@ export default function ConnectedApp({ gas }) {
                     toast: toast.info,
                     content: 'Trade submitted',
                     options: { autoClose: false },
+                });
+                break;
+            case TradeStatus.DelayedExecution:
+            case TradeStatus.DelayedMining:
+                ToastChannel.updateToastInChannel(channel, {
+                    options: {
+                        render: 'Trade is taking longer than usual. Please wait...',
+                    },
                 });
                 break;
             case TradeStatus.PendingExecution:
@@ -396,7 +371,7 @@ export default function ConnectedApp({ gas }) {
             return;
         }
 
-        // setPlay(true);
+        setPlay(true);
     };
 
     const handleBack = () => {
@@ -553,7 +528,7 @@ export default function ConnectedApp({ gas }) {
                 )}
             </AppContainer>
             {!isPlaying && timedOutTradeIds?.length > 0 && (
-                <TimedOutTrades tradeIds={timedOutTradeIds} network={network} library={library} />
+                <TimedOutTrades trades={timedOutTradeIds} network={network} library={library} />
             )}
             {!isPlaying && <WalletOpenTradesContainer />}
         </Container>

@@ -25,6 +25,16 @@ const getTradesForWallet = (
     );
 };
 
+export enum TimeoutType {
+    open,
+    close,
+}
+
+export type TimedOutTrade = {
+    orderId: string;
+    type: TimeoutType;
+};
+
 export interface GainsDataStoreInterface {
     tradingVariables: GainsTradingDataInterface.Data;
     setTradingVariables: (tv: GainsTradingDataInterface.Data) => void;
@@ -64,8 +74,8 @@ export interface GainsDataStoreInterface {
     currentBlock: number;
     setCurrentBlock: (currentBlock: number) => void;
 
-    timedOutTradeIdsForWallet: string[];
-    setTimedOutTradeIdsForWallet: (tradeIds: string[]) => void;
+    timedOutTradeIdsForWallet: TimedOutTrade[];
+    setTimedOutTradeIdsForWallet: (timedOutTrades: TimedOutTrade[]) => void;
 }
 
 export const useGainsDataStoreScaffolding = set => ({
@@ -172,21 +182,21 @@ export const useGainsDataStoreScaffolding = set => ({
     setCurrentBlock: (currentBlock: number) => set(state => ({ currentBlock })),
 
     timedOutTradeIdsForWallet: [],
-    setTimedOutTradeIdsForWallet: (tradeIds: string[]) =>
+    setTimedOutTradeIdsForWallet: (timedOutTrades: TimedOutTrade[]) =>
         set(state => {
-            const existingTradeIds = state.timedOutTradeIdsForWallet || [];
-            console.log('\n\n\nsetTimedOutTradeIdsForWallet');
-            console.log(existingTradeIds);
-            console.log(tradeIds);
-            console.log('\n\n\n');
+            const existingTimedOutTrades = state.timedOutTradeIdsForWallet || [];
             // if all trades are the same, don't touch
             if (
-                existingTradeIds.every(id => tradeIds.includes(id)) &&
-                tradeIds.every(id => existingTradeIds.includes(id))
+                existingTimedOutTrades.every(({ orderId, type }) =>
+                    timedOutTrades.some(t => t.orderId === orderId && t.type === type)
+                ) &&
+                timedOutTrades.every(({ orderId, type }) =>
+                    existingTimedOutTrades.includes(t => t.orderId === orderId && t.type === type)
+                )
             ) {
                 return {};
             }
-            return { timedOutTradeIdsForWallet: tradeIds };
+            return { timedOutTradeIdsForWallet: timedOutTrades };
         }),
 });
 

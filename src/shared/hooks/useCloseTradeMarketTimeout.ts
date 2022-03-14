@@ -30,7 +30,7 @@ export default function useCloseTradeMarketTimeout({
 
     const submitMarketTimeout = async (orderIdOverride?: string) => {
         const orderId = orderIdOverride || tradeId;
-        console.log('Submitting market timeout', orderId);
+        console.log('Submitting market timeout on close', orderId);
         // TODO: find details on closetrademarket and add gas suggestions. for now using open.
         send(orderId, { ...(await gasStation.getOpenTradeMarketTimeoutGas()) });
     };

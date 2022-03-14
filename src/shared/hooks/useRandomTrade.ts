@@ -15,13 +15,19 @@ import {
     ActiveGainsDataStoreInterface,
 } from 'shared/stores/ActiveGainsDataStore';
 import { GainsCoreDataInterface, AssetType } from 'types/gains/GainsCoreData';
-import { FinalizedTradeDetailsType, TradeStatus } from 'types/Trade';
+import {
+    FinalizedTradeDetailsType,
+    TradeStatus,
+    DegenLevel,
+    PlayFormSettingsType,
+    TradeDirection,
+} from 'types/Trade';
 import { getPairString, isValidPair } from 'shared/utils/gains/pairs';
 import { formatEther, parseEther } from '@ethersproject/units';
 import { BigNumber } from 'ethers';
 import { transformFinalDetailsToTradeRecord } from 'shared/utils/trade';
 import { transitionTradeToStatus } from 'shared/utils/trade';
-import { PlayFormSettingsType } from 'components/app/MainApp/ConnectedApp';
+import { toast } from 'react-toastify';
 
 export interface UseRandomTradeInterface {
     submitRandomTrade: (trader: string, settings: PlayFormSettingsType) => Promise<boolean>;
@@ -37,6 +43,24 @@ export interface UseRandomTradeInterface {
 const MAX_LOSS_P = 75;
 const POSITION_TYPE = ['long', 'short'];
 const DEFAULT_ASSET_TYPES = [AssetType.CRYPTO];
+
+const DEGEN_LEVEL_SETTING_UPDATES = {
+    [DegenLevel.normal]: {
+        minLossP: 0,
+        maxLossP: MAX_LOSS_P,
+        minGainP: 0,
+        minLeverage: -1,
+        maxLeverage: -1,
+    },
+    [DegenLevel.high]: {
+        minLossP: 50,
+        maxLossP: MAX_LOSS_P,
+        minGainP: 500,
+        maxGainP: 'max',
+        minLeverage: 100,
+        maxLeverage: 150,
+    },
+};
 
 const getRandomPairIndexFromPosSize = (
     positionSizeDai: number,
@@ -74,19 +98,22 @@ const getRandomPairIndexFromPosSize = (
 export const getRandomFloorNumberIncl = (min: number, max: number): number =>
     Math.floor(Math.random() * (max - min + 1)) + min;
 
-const getRandomStopLossP = (leverage: number, maxLossP: number) => {
+const getRandomStopLossP = (leverage: number, minLossP: number, maxLossP: number) => {
     // too tight of sl on high leverage will instantly trigger so set min based on
-    const minLossP = leverage > 100 ? 50 : leverage > 50 ? 25 : 10;
+    const _minLossP = leverage > 100 ? 50 : leverage > 50 ? 25 : 10;
+    minLossP = Math.max(_minLossP, minLossP);
     return getRandomFloorNumberIncl(minLossP, maxLossP);
 };
-const getRandomTakeProfitP = (leverage: number, maxGainP: number) => {
-    const minGainP = leverage > 100 ? 25 : leverage > 50 ? 15 : 10;
+const getRandomTakeProfitP = (leverage: number, minGainP: number, maxGainP: number) => {
+    const _minGainP = leverage > 100 ? 25 : leverage > 50 ? 15 : 10;
+    minGainP = Math.max(_minGainP, minGainP);
     return getRandomFloorNumberIncl(minGainP, maxGainP);
 };
 
 export default function useRandomTrade(): UseRandomTradeInterface {
     const { network } = useNetworkDetails();
     const [tradeStatus, setTradeStatus] = useState<TradeStatus>(TradeStatus.None);
+    const [submitTradeBlockNumber, setSubmitTradeBlock] = useState<number>();
     const { submitTrade, state, resetState, skip } = useOpenTradeV6({
         tradingAddress: network?.tradingV6ContractAddress,
     });
@@ -121,14 +148,27 @@ export default function useRandomTrade(): UseRandomTradeInterface {
     }, [skip]);
 
     useEffect(() => {
+        const timeoutBlockCount = parseInt(tradingVariables.marketOrdersTimeout);
         if (
             orderTxReceipt &&
             !finalOrderDetails &&
-            tradeStatus === TradeStatus.PendingExecution &&
-            currentBlock - orderTxReceipt.blockNumber >=
-                parseInt(tradingVariables.marketOrdersTimeout)
+            [TradeStatus.PendingExecution, TradeStatus.DelayedExecution].includes(tradeStatus) &&
+            currentBlock - orderTxReceipt.blockNumber >= timeoutBlockCount
         ) {
             setTradeStatus(transitionTradeToStatus(tradeStatus, TradeStatus.TimedOut));
+        } else {
+            const blockWait = currentBlock - submitTradeBlockNumber;
+            if (blockWait === Math.round(timeoutBlockCount * 0.5)) {
+                if (tradeStatus === TradeStatus.Mining) {
+                    setTradeStatus(transitionTradeToStatus(tradeStatus, TradeStatus.DelayedMining));
+                } else if (tradeStatus === TradeStatus.PendingExecution) {
+                    setTradeStatus(
+                        transitionTradeToStatus(tradeStatus, TradeStatus.DelayedExecution)
+                    );
+                } else {
+                    console.log('Hmm... delayed execution but where are we?', tradeStatus);
+                }
+            }
         }
     }, [currentBlock]);
 
@@ -259,9 +299,12 @@ export default function useRandomTrade(): UseRandomTradeInterface {
 
     const generateRandomOverrides = (settings: PlayFormSettingsType): SubmitTradeOverride => {
         console.log(settings);
-        const { collateralRange, assetTypes } = settings;
+        const { collateralRange, assetTypes, degenLevel, direction, details } = settings;
         const minCollateral = collateralRange[0];
         const maxCollateral = collateralRange[1];
+        const degenLevelSettings =
+            DEGEN_LEVEL_SETTING_UPDATES[degenLevel] ||
+            DEGEN_LEVEL_SETTING_UPDATES[DegenLevel.normal];
         if (minCollateral === null || maxCollateral === null) {
             throw Error('Collateral not set');
         }
@@ -288,14 +331,23 @@ export default function useRandomTrade(): UseRandomTradeInterface {
         }
 
         // compute leverage based on pair
-        const [minLeverage, maxLeverage] = getLeverageRangeForPosSizeAndPair(
+        let [minLeverage, maxLeverage] = getLeverageRangeForPosSizeAndPair(
             tradingVariables.pairs[pairIndex],
             positionSizeDai
         );
+
+        // update min // max based on degenLevel
+        minLeverage = Math.max(minLeverage, degenLevelSettings.minLeverage);
+        maxLeverage = Math.max(maxLeverage, degenLevelSettings.maxLeverage);
+
         const leverage = getRandomFloorNumberIncl(minLeverage, maxLeverage);
 
         // get sl & tp percentages
-        const slP = getRandomStopLossP(leverage, MAX_LOSS_P);
+        const slP = getRandomStopLossP(
+            leverage,
+            degenLevelSettings.minLossP,
+            degenLevelSettings.maxLossP
+        );
 
         // stop gap solution for limiting TP size a bit. without trades are too asymmetrical
         let maxTp = getRandomFloorNumberIncl(1, tradingVariables.maxGainP / 100);
@@ -303,8 +355,19 @@ export default function useRandomTrade(): UseRandomTradeInterface {
             // reroll to double odds it's less than 5
             maxTp = getRandomFloorNumberIncl(1, tradingVariables.maxGainP / 100);
         }
-        const tpP = getRandomTakeProfitP(leverage, maxTp * 100);
-        const pIx = getRandomFloorNumberIncl(0, 1);
+        const tpP = getRandomTakeProfitP(
+            leverage,
+            degenLevelSettings.minGainP,
+            (degenLevelSettings.maxGainP === 'max' && tradingVariables.maxGainP) ||
+                degenLevelSettings.maxGainP ||
+                maxTp * 100
+        );
+        const pIx =
+            direction === TradeDirection.both
+                ? getRandomFloorNumberIncl(0, 1)
+                : direction === TradeDirection.long
+                ? 0
+                : 1;
 
         const _tradeOverrides = {
             positionSizeDai,
@@ -332,6 +395,7 @@ export default function useRandomTrade(): UseRandomTradeInterface {
 
         console.log('Submitting trade with overrides', _tradeOverrides);
         const trade = await submitTrade(trader, _tradeOverrides);
+        setSubmitTradeBlock(currentBlock);
         setTradeDetails(trade);
         return true;
     };

@@ -6,6 +6,8 @@ import {
     useGainsMainnetDataStore,
     useGainsTestnetDataStore,
     GainsDataStoreInterface,
+    TimeoutType,
+    TimedOutTrade,
 } from 'shared/stores/GainsDataStore';
 import { useActiveGainsDataStore } from 'shared/stores/ActiveGainsDataStore';
 import { Networks, NetworkInterface } from 'shared/constants/networks';
@@ -81,12 +83,12 @@ export default function GainsNetworkContextProvider({ children }) {
 
     useEffect(() => {
         const checkForTimeouts = async () => {
-            if (account) {
+            const store = useActiveGainsDataStore.getState().store.getState();
+            if (account && store?.tradingVariables) {
                 const tvs = await fetchUserTradingVariables(network, account);
                 const pendingOrders = tvs.pendingMarketOrders;
+                const timedOutOrderIds: TimedOutTrade[] = [];
                 if (pendingOrders && pendingOrders.length > 0) {
-                    const timedOutOrderIds: string[] = [];
-                    const store = useActiveGainsDataStore.getState().store.getState();
                     const curBlock = store.currentBlock;
                     const maxBlocks = Number(store.tradingVariables.marketOrdersTimeout);
                     pendingOrders.forEach((order, index) => {
@@ -94,13 +96,19 @@ export default function GainsNetworkContextProvider({ children }) {
                         if (block) {
                             const blockDiff = curBlock - Number(block);
                             if (blockDiff > maxBlocks) {
-                                timedOutOrderIds.push(tvs?.pendingMarketOrdersIds[index]);
+                                timedOutOrderIds.push({
+                                    orderId: tvs?.pendingMarketOrdersIds[index],
+                                    type:
+                                        order[0]?.length === 10
+                                            ? TimeoutType.open
+                                            : TimeoutType.close,
+                                });
                             }
                         }
                     });
-                    // update store, the update fn will check against existing data
-                    store.setTimedOutTradeIdsForWallet(timedOutOrderIds);
                 }
+                // update store, the update fn will check against existing data
+                store.setTimedOutTradeIdsForWallet(timedOutOrderIds);
             }
         };
         checkForTimeouts();

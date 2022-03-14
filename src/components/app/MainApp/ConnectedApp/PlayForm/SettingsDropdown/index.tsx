@@ -1,10 +1,6 @@
 import { QuestionIcon, Tooltip } from 'components/common';
 import { Menu } from 'components/common/Dropdown/styles';
-import {
-    PlayFormSettingsType,
-    DegenLevel,
-    TradeDirection,
-} from 'components/app/MainApp/ConnectedApp';
+import { PlayFormSettingsType, DegenLevel, TradeDirection } from 'types/Trade';
 import { Dropdown, Row, Label, Input } from './styles';
 import Select from './Select';
 

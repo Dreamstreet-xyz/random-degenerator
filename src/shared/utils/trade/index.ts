@@ -54,16 +54,40 @@ export const transitionTradeToStatus = (from: TradeStatus, to: TradeStatus): Tra
                 return to;
             }
             return from;
+        case TradeStatus.DelayedMining:
+            if ([TradeStatus.Mining, TradeStatus.PendingSignature].includes(from)) {
+                return to;
+            }
+            return from;
         case TradeStatus.PendingExecution:
             if (
-                [TradeStatus.Mining, TradeStatus.PendingSignature, TradeStatus.None].includes(from)
+                [
+                    TradeStatus.DelayedMining,
+                    TradeStatus.Mining,
+                    TradeStatus.PendingSignature,
+                    TradeStatus.None,
+                ].includes(from)
             ) {
                 return to;
             }
             return from;
+        case TradeStatus.DelayedExecution:
+            if (
+                [
+                    TradeStatus.DelayedMining,
+                    TradeStatus.PendingExecution,
+                    TradeStatus.Mining,
+                    TradeStatus.PendingSignature,
+                    TradeStatus.None,
+                ].includes(from)
+            ) {
+                return to;
+            }
         case TradeStatus.Executed:
             if (
                 [
+                    TradeStatus.DelayedExecution,
+                    TradeStatus.DelayedMining,
                     TradeStatus.PendingExecution,
                     TradeStatus.Mining,
                     TradeStatus.PendingSignature,
@@ -113,9 +137,11 @@ export const getTradeProgress = (status: TradeStatus): { cur: number; total: num
             progress.cur = 1;
             break;
         case TradeStatus.Mining:
+        case TradeStatus.DelayedMining:
             progress.cur = 2;
             break;
         case TradeStatus.PendingExecution:
+        case TradeStatus.DelayedExecution:
             progress.cur = 3;
             break;
         case TradeStatus.Unconfirmed:

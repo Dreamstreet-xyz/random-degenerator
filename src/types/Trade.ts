@@ -1,5 +1,6 @@
 import { BigNumberish } from 'ethers';
 import { StorageInterfaceV5 } from './ethers-contracts/TradingV6';
+import { AssetType } from 'types/gains/GainsCoreData';
 
 export interface FinalizedTradeDetailsType extends StorageInterfaceV5.TradeStruct {
     pairString: string;
@@ -38,7 +39,9 @@ export enum TradeStatus {
     None = 'None',
     PendingSignature = 'PendingSignature',
     Mining = 'Mining',
+    DelayedMining = 'DelayedMining',
     PendingExecution = 'PendingExecution',
+    DelayedExecution = 'DelayedExecution',
     Unconfirmed = 'Unconfirmed',
     Executed = 'Executed',
     Canceled = 'Canceled',
@@ -53,4 +56,36 @@ export type PnlType = {
     feeDai: number;
     pnlInclFee: number;
     percentProfitInclFee: number;
+};
+
+export enum DegenLevel {
+    low,
+    normal,
+    high,
+}
+
+export enum TradeDirection {
+    long,
+    short,
+    both,
+}
+
+export type DetailsOption = {
+    value: DegenLevel | TradeDirection;
+    title: string;
+    emphasize?: boolean;
+};
+
+export type PlayFormSettingsDetailsType = {
+    degenOptions: DetailsOption[];
+    directionOptions: DetailsOption[];
+};
+
+export type PlayFormSettingsType = {
+    slippageP: string;
+    degenLevel: DegenLevel;
+    direction: TradeDirection;
+    assetTypes: AssetType[];
+    collateralRange: number[];
+    details: PlayFormSettingsDetailsType;
 };
