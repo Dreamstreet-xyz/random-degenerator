@@ -117,8 +117,8 @@ export default function Home() {
                     block={networkInfo.blockNumber}
                 />
             )}
-            <WinPopup win={win} close={() => setWin(null)} />
-            <WinButton onClick={() => setWin(3282.28)} />
+            {/* <WinPopup win={win} close={() => setWin(null)} />
+            <WinButton onClick={() => setWin(3282.28)} /> */}
         </Container>
     );
 }
