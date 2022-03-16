@@ -113,6 +113,7 @@ export default function Home() {
             <SunGradientCity style={{ opacity: cityGradientOpacity }} />
             {networkInfo && (
                 <NetworkInfo
+                    slow
                     gas={networkInfo.fast.maxPriorityFee}
                     block={networkInfo.blockNumber}
                 />

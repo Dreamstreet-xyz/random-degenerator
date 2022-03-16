@@ -1,3 +1,4 @@
+import { fadeIn, rotate } from 'shared/styles';
 import styled, { keyframes } from 'styled-components';
 
 const dotPulse = keyframes`
@@ -30,24 +31,6 @@ export const Dot = styled.div`
     margin: 0 6px;
     animation: ${dotPulse} 1.2s infinite;
     animation-delay: ${({ delay }) => `${delay}s`};
-`;
-
-const rotate = keyframes`
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-`;
-
-const fadeIn = keyframes`
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
 `;
 
 export const SquareContainer = styled.div`

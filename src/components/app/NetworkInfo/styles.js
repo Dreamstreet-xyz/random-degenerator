@@ -1,5 +1,14 @@
 import styled, { css } from 'styled-components';
-import { animatedTextGradientCustom, shine } from 'shared/styles';
+import { animatedTextGradientCustom, fadeIn, shine } from 'shared/styles';
+
+export const Container = styled.div`
+    position: fixed;
+    bottom: 8px;
+    right: 16px;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+`;
 
 const indicatorStyles = css`
     position: relative;
@@ -12,11 +21,30 @@ const indicatorStyles = css`
     animation: ${shine} 20s linear infinite;
 `;
 
-export const Container = styled.div`
-    position: fixed;
-    bottom: 8px;
-    right: 16px;
-    z-index: 3;
+export const SlowIndicator = styled.a`
+    position: relative;
+    width: 32px;
+    height: 30px;
+
+    &::after {
+        content: '';
+        height: 0.25em;
+        width: 0.25em;
+        border-radius: 50%;
+        background-color: #ffce2f;
+        position: absolute;
+        right: .5em;
+        bottom: 0.38em;
+    }
+`;
+
+export const SlowImage = styled.img`
+    position: absolute;
+    top: 6px;
+    left: -16px;
+    width: 32px;
+    height: 32px;
+    animation: ${fadeIn} 3s infinite alternate;
 `;
 
 export const GasIndicator = styled.a`

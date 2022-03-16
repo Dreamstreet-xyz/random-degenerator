@@ -1,12 +1,21 @@
 import { Tooltip } from 'components/common';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
-import { Container, GasIndicator, BlockIndicator } from './styles';
+import { Container, SlowIndicator, SlowImage, GasIndicator, BlockIndicator } from './styles';
 
-export default function NetworkInfo({ gas, block }) {
+export default function NetworkInfo({ slow, gas, block }) {
     // TODO: add network configs and set in usedapp + use here?
     const { network } = useNetworkDetails();
     return (
         <Container>
+            {slow && (
+                <SlowIndicator target="_blank">
+                    <Tooltip
+                        content={`${network.chainName} is experiencing stability issues, transactions may take longer than normal`}
+                    >
+                        <SlowImage src="images/noun/tortoise.png" />
+                    </Tooltip>
+                </SlowIndicator>
+            )}
             {gas && (
                 <Tooltip content="Most recent Polygon fastest gas price">
                     <GasIndicator
