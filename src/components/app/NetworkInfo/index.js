@@ -10,7 +10,7 @@ export default function NetworkInfo({ slow, gas, block }) {
             {slow && (
                 <SlowIndicator target="_blank">
                     <Tooltip
-                        content={`${network.chainName} is experiencing stability issues, transactions may take longer than normal`}
+                        content={`${network.chainName} is experiencing stability issues. Transactions may take longer than normal`}
                     >
                         <SlowImage src="images/noun/tortoise.png" />
                     </Tooltip>

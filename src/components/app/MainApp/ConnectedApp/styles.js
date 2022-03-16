@@ -82,8 +82,9 @@ export const LinksContainer = styled.div`
 
 export const LinksDivider = styled.div`
     margin: 16px;
-    ${retroTextMarker}
     font-size: 20px;
+    ${retroTextMarker}
+    ${noSelect}
 `;
 
 export const Link = styled.a`

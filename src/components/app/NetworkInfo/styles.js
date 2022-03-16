@@ -31,10 +31,10 @@ export const SlowIndicator = styled.a`
         height: 0.25em;
         width: 0.25em;
         border-radius: 50%;
-        background-color: #ffce2f;
+        background-color: #48cf70;
         position: absolute;
         right: .5em;
-        bottom: 0.38em;
+        bottom: 0.40em;
     }
 `;
 

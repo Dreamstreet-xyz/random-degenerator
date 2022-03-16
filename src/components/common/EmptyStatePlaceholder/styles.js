@@ -21,11 +21,13 @@ export const Title = styled.p`
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+    color: #fff;
 `;
 
 export const Subtitle = styled.p`
     font-size: 16px;
-    color: #ae94f5;
+    color: #ed9efd;
     text-align: center;
     margin-top: 16px;
+    font-weight: bold;
 `;

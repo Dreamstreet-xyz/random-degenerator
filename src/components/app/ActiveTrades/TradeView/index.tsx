@@ -33,7 +33,7 @@ export default function TradeView({ trades, closedTradeKeys, onTradeClosed, onTr
                 </Table>
             ) : (
                 <EmptyStatePlaceholder
-                    image="images/noun/galaxy.png"
+                    image="images/noun/galaxy2.png"
                     title="There's nothing to see here, yet"
                     subtitle="Come back after you've made a trade"
                 />
