@@ -67,6 +67,7 @@ export const SquareSpinner = styled.div`
     width: 32px;
     height: 32px;
     border: 3px solid #ff40d6;
+    box-shadow: 0 0 64px 16px #ff40d610;
     animation: ${rotate} 2s infinite;
 `;
 
@@ -76,6 +77,8 @@ export const LoadingText = styled.span`
     font-size: 18px;
     font-family: Montserrat;
     text-transform: uppercase;
+    filter: drop-shadow(2px 2px 20px #f008b7);
+    -webkit-filter: drop-shadow(2px 2px 20px #f008b7);
     animation: ${fadeIn} 1.6s infinite alternate;
 `;
 
