@@ -87,6 +87,7 @@ export const LogoRow = styled.a`
 
 export const NavIcon = styled(Icon)`
     margin-right: 8px;
+    min-width: 28px;
 `;
 
 export const ConnectButton = styled(NavButton)`

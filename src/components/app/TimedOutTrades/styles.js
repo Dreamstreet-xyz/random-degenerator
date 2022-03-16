@@ -35,22 +35,20 @@ export const TableData = styled.td`
 `;
 
 export const ClaimCollateralButtonWrapper = styled(TableData)`
-
+    width: 220px;
 `;
 
-export const ClaimCollateralButton = styled(Button).attrs({
-    color: '#a51d56',
-})`
-&& {
-    display: inline-flex;
-    background-color: transparent;
+export const ClaimCollateralButton = styled(Button)`
+    && {
+        display: inline-flex;
+        background-color: transparent;
 
-    &:hover:enabled,
-    &:active,
-    &:focus {
-        background-color: #381e77;
+        &:hover:enabled,
+        &:active,
+        &:focus {
+            background-color: #381e77;
+        }
     }
-}
 `;
 
 export const TableRow = styled.tr`

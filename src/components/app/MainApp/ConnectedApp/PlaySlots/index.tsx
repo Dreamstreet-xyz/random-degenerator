@@ -1,7 +1,5 @@
 import { TransactionStatus } from '@usedapp/core';
-import { useEffect, useMemo, useState } from 'react';
-import { formatEther } from '@ethersproject/units';
-import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
 import { GainsDataStoreInterface } from 'shared/stores/GainsDataStore';
 import {
     useActiveGainsDataStore,
@@ -9,18 +7,8 @@ import {
 } from 'shared/stores/ActiveGainsDataStore';
 import { TradeStruct, LONG_POSITION, SHORT_POSITION } from 'shared/hooks/useOpenTradeV6';
 import Slot from './Slot';
-import { Loading } from 'components/common';
-import {
-    Container,
-    BackButton,
-    ActionRow,
-    ConfirmButton,
-    SlotsContainer,
-    TopActionRow,
-} from './styles';
-import { StorageInterfaceV5 } from 'types/ethers-contracts/TradingV6';
-import TradeResultsCard, { TradeResultsTransactionInterface } from './TradeResultsCard';
-import { getPairString } from 'shared/utils/gains/pairs';
+import { Container, BackButton, SlotsContainer, TopActionRow } from './styles';
+import TradeResultsCard from './TradeResultsCard';
 import { FinalizedTradeDetailsType } from 'types/Trade';
 
 type SlotOptionTypeTitle = 'Pair' | 'Collateral' | 'Leverage' | 'Position';
@@ -125,11 +113,9 @@ export default function PlaySlots({
     finalOrderDetails: FinalizedTradeDetailsType | null;
     onShowTradeResults: () => void;
 }) {
-    const [loading, setLoading] = useState(false);
     const [targets, setTargets] = useState([]);
     const [options, setOptions] = useState([]);
     const [slotsFinished, setSlotsFinished] = useState(false);
-    const [displayCard, setDisplayCard] = useState(false);
     const useGainsDataStore = useActiveGainsDataStore(
         (state: ActiveGainsDataStoreInterface) => state.store
     );
@@ -140,13 +126,11 @@ export default function PlaySlots({
         (state: GainsDataStoreInterface) => state.latestMarketOrderForWallet
     );
     const handleConfirm = () => {
-        setLoading(true);
         onConfirm?.();
     };
 
     useEffect(() => {
         if (state?.status === 'Success') {
-            setLoading(false);
             const _ix = (slotOptions && 10) || 4;
             setTargets([_ix, _ix, _ix, _ix]);
             setTimeout(() => {

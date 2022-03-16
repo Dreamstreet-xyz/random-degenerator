@@ -26,6 +26,8 @@ export default function TimedOutTradeItem({
                     loading={loading}
                     rightIconName={isClaimed ? 'check-circle' : 'times'}
                     title={isClaimed ? `Claimed - #${tradeId}` : `Claim Collateral  - #${tradeId}`}
+                    loadingContainerStyle={{ minHeight: 16 }}
+                    style={{ width: '100%' }}
                 />
             </ClaimCollateralButtonWrapper>
         </TableRow>

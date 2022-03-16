@@ -204,8 +204,8 @@ export default function PlayForm({
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             glow={
-                (degenOptions.find(d => d.value === degenLevel).title || 'Normal') ===
-                degenOptions.find(d => d.value === DegenLevel.high).title
+                (degenOptions.find(d => d.value === degenLevel)?.title || 'Normal') ===
+                degenOptions.find(d => d.value === DegenLevel.high)?.title
             }
         >
             <Header>
