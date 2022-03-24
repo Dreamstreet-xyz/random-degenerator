@@ -67,7 +67,7 @@ export default function Home() {
     const { getGasStationPayload } = useGasStation();
     const { network } = useNetworkDetails();
     const [announcement, setAnnouncement] = useState({
-        display: true,
+        display: false,
         message:
             'Polygon is less stable than usual. Extra block confirmations are required so be patient while playing.',
         close: () => setAnnouncement({ ...announcement, display: false }),
@@ -118,8 +118,8 @@ export default function Home() {
                     block={networkInfo.blockNumber}
                 />
             )}
-            {/* <WinPopup win={win} close={() => setWin(null)} />
-            <WinButton onClick={() => setWin(3282.28)} /> */}
+            <WinPopup win={win} close={() => setWin(null)} />
+            <WinButton onClick={() => setWin(1000.28)} />
         </Container>
     );
 }

@@ -1,7 +1,9 @@
-import { animate } from 'framer-motion';
 import { useEffect, useRef } from 'react';
+import { animate } from 'framer-motion';
+import Confetti from 'react-confetti';
 import useAudio from 'shared/hooks/useAudio';
-import { Overlay, Container, Row, WinAmount, Unit } from './styles';
+import useWindowSize from 'shared/hooks/useWindowSize';
+import { Overlay, Container, Row, WinAmount, Unit, Title } from './styles';
 
 function WinCounter({ to }) {
     const nodeRef = useRef();
@@ -24,6 +26,7 @@ function WinCounter({ to }) {
 
 export default function WinPopup({ win, close }) {
     const { play, stop } = useAudio('audio/big_win.ogg');
+    const size = null;
 
     useEffect(() => {
         if (win) play();
@@ -35,7 +38,18 @@ export default function WinPopup({ win, close }) {
 
     return (
         <Overlay onClick={close}>
-            <Container>
+            <Confetti
+                width={size?.width || 1920}
+                height={size?.height || 1080}
+                recycle={false}
+                numberOfPieces={400}
+            />
+            <Container
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', duration: 0.2, bounce: 0.35 }}
+            >
+                <Title>You've won! 🎉</Title>
                 <Row>
                     <WinCounter to={win} />
                     <Unit>DAI</Unit>

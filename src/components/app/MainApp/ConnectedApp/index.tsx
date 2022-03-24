@@ -201,7 +201,7 @@ export default function ConnectedApp({ gas }) {
         const pairOptions: SlotOptionType = {
             title: 'Pair',
             options: PLACEHOLDER_LIST.map(_ => {
-                const ix = getRandomFloorNumberIncl(0, tradingVariables.pairs.length - 1);
+                const ix = getRandomFloorNumberIncl(0, tradingVariables.pairs?.length - 1);
                 const pair = tradingVariables.pairs[ix];
                 return `${pair.from}/${pair.to}`;
             }),

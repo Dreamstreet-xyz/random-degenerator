@@ -6,6 +6,10 @@ const StyledTippy = styled(Tippy)`
     background-color: #4b35af;
     font-weight: bold;
     padding: 4px 6px;
+
+    .tippy-arrow {
+        color: #4b35af;
+    }
 `;
 
 export default function Tooltip({ children, ...rest }) {
