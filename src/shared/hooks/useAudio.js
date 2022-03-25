@@ -6,7 +6,9 @@ export default function useAudio(url) {
 
     const toggle = () => setPlaying(!playing);
 
-    const play = () => setPlaying(true);
+    const play = () => {
+        setPlaying(true);
+    };
 
     const pause = () => setPlaying(false);
 
@@ -16,7 +18,7 @@ export default function useAudio(url) {
     };
 
     useEffect(() => {
-        audio.volume = 0.2;
+        audio.volume = 0.1;
     }, [audio]);
 
     useEffect(() => {

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { noSelect, retroTextCursive, retroTextGradient, retroTextMarker } from 'shared/styles';
+import { noSelect } from 'shared/styles';
 
-export const Overlay = styled.div`
+export const Overlay = styled(motion.div)`
     position: fixed;
     top: 0;
     left: 0;
@@ -23,10 +23,11 @@ export const Container = styled(motion.div)`
     border-radius: 10px;
     padding: 32px;
     z-index: 7;
+    cursor: pointer;
     ${noSelect}
 `;
 
-export const Row = styled.div`
+export const Row = styled(motion.div)`
     display: flex;
     margin-top: 24px;
     justify-content: flex-end;
@@ -43,16 +44,15 @@ export const Title = styled.h4`
 `;
 
 export const WinAmount = styled(motion.p)`
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 900;
     font-family: Montserrat;
     color: #64f087;
 `;
 
 export const Unit = styled.span`
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 700;
     font-family: Montserrat;
-    margin-left: 16px;
-
+    margin-left: 8px;
 `;
