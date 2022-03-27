@@ -33,13 +33,13 @@ export const RightSection = styled.div`
 `;
 
 export const Logo = styled.img`
+    position: relative;
+    top: 16px;
     width: 72px;
     height: 72px;
     object-fit: contain;
-    border-radius: 10px;
-    margin-right: 8px;
+    margin-right: 4px;
     display: inline-block;
-    border: 3px solid #4eddf0;
 `;
 
 export const BrandColumn = styled.div`

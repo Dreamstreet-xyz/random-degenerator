@@ -3,7 +3,17 @@ import { animate, AnimatePresence } from 'framer-motion';
 import Confetti from 'react-confetti';
 import useAudio from 'shared/hooks/useAudio';
 import useWindowSize from 'shared/hooks/useWindowSize';
-import { Overlay, Container, Row, WinAmount, Unit, Title } from './styles';
+import {
+    Overlay,
+    Container,
+    Header,
+    Logo,
+    Title,
+    Content,
+    WinRow,
+    WinAmount,
+    Unit,
+} from './styles';
 
 function BigWinCounter({ to }) {
     const nodeRef = useRef();
@@ -91,23 +101,28 @@ export default function WinPopup({ win, close }) {
                         exit={{ x: 500 }}
                         transition={{ type: 'spring', duration: 0.2, bounce: 0.35 }}
                     >
-                        <Title>You've won! 🎉</Title>
-                        <Row
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{
-                                type: 'spring',
-                                duration: 0.4,
-                                bounce: 0.35,
-                            }}
-                        >
-                            {winType === 'BIG_WIN' ? (
-                                <BigWinCounter to={win?.dai} />
-                            ) : (
-                                <WinCounter to={win?.dai} />
-                            )}
-                            <Unit>DAI</Unit>
-                        </Row>
+                        <Header>
+                            <Logo src="images/rdg_logo.png" />
+                            <Title>You've won! 🎉</Title>
+                        </Header>
+                        <Content>
+                            <WinRow
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{
+                                    type: 'spring',
+                                    duration: 0.4,
+                                    bounce: 0.35,
+                                }}
+                            >
+                                {winType === 'BIG_WIN' ? (
+                                    <BigWinCounter to={win?.dai} />
+                                ) : (
+                                    <WinCounter to={win?.dai} />
+                                )}
+                                <Unit>DAI</Unit>
+                            </WinRow>
+                        </Content>
                     </Container>
                 </Overlay>
             )}

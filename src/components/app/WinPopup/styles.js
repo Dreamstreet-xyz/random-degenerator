@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { noSelect } from 'shared/styles';
+import { noSelect, retroTextGradient } from 'shared/styles';
 
 export const Overlay = styled(motion.div)`
     position: fixed;
@@ -14,7 +14,7 @@ export const Overlay = styled(motion.div)`
 
 export const Container = styled(motion.div)`
     position: absolute;
-    top: 96px;
+    top: 80px;
     right: 16px;
     min-width: 320px;
     height: auto;
@@ -27,11 +27,17 @@ export const Container = styled(motion.div)`
     ${noSelect}
 `;
 
-export const Row = styled(motion.div)`
+export const Header = styled.div`
     display: flex;
-    margin-top: 24px;
-    justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
+`;
+
+export const Logo = styled.img`
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin-right: 8px;
+    display: inline-block;
 `;
 
 export const Title = styled.h4`
@@ -41,6 +47,17 @@ export const Title = styled.h4`
     text-transform: uppercase;
     color: #b8b0ff;
     text-align: right;
+    ${retroTextGradient}
+`;
+
+export const Content = styled.div`
+    margin-top: 24px;
+`;
+
+export const WinRow = styled(motion.div)`
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 `;
 
 export const WinAmount = styled(motion.p)`

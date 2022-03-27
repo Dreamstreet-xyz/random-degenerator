@@ -17,6 +17,7 @@ import {
     LeftSection,
     LogoRow,
     BrandColumn,
+    Logo,
     LogoName,
     LogoName2,
     RightSection,
@@ -29,7 +30,6 @@ import {
     NavIcon,
     Spark,
 } from './styles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Navbar() {
     const { network: selectedNetwork, setNetwork } = useNetworkDetails();
@@ -53,6 +53,7 @@ export default function Navbar() {
                     <LeftSection>
                         <Link href="/" passHref>
                             <LogoRow>
+                                <Logo src="/images/rdg_logo.png" />
                                 <BrandColumn>
                                     <LogoName>
                                         Random

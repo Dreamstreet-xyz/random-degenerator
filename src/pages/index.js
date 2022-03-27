@@ -119,7 +119,7 @@ export default function Home() {
                 />
             )}
             <WinPopup win={win} close={() => setWin(null)} />
-            <WinButton onClick={() => setWin({ dai: 999, percent: 50 })} />
+            <WinButton onClick={() => setWin({ dai: 1800, percent: 500 })} />
         </Container>
     );
 }

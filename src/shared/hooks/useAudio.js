@@ -18,7 +18,7 @@ export default function useAudio(url) {
     };
 
     useEffect(() => {
-        audio.volume = 0.1;
+        audio.volume = 0.04;
     }, [audio]);
 
     useEffect(() => {
