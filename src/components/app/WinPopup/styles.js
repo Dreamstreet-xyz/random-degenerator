@@ -14,14 +14,14 @@ export const Overlay = styled(motion.div)`
 
 export const Container = styled(motion.div)`
     position: absolute;
-    top: 80px;
+    top: 90px;
     right: 16px;
-    min-width: 320px;
+    min-width: 296px;
     height: auto;
     pointer-events: initial;
     background-color: #351c8dcc;
     border-radius: 10px;
-    padding: 32px;
+    padding: 16px 24px 16px 16px;
     z-index: 7;
     cursor: pointer;
     ${noSelect}
@@ -30,6 +30,7 @@ export const Container = styled(motion.div)`
 export const Header = styled.div`
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 `;
 
 export const Logo = styled.img`
@@ -46,12 +47,11 @@ export const Title = styled.h4`
     font-family: Montserrat;
     text-transform: uppercase;
     color: #b8b0ff;
-    text-align: right;
     ${retroTextGradient}
 `;
 
 export const Content = styled.div`
-    margin-top: 24px;
+    margin-top: 6px;
 `;
 
 export const WinRow = styled(motion.div)`

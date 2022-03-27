@@ -21,6 +21,7 @@ export const NavContent = styled.div`
     
     @media (max-width: 650px) {
         padding: 16px;
+        padding-left: 4px;
     }
 `;
 
@@ -40,13 +41,29 @@ export const Logo = styled.img`
     object-fit: contain;
     margin-right: 4px;
     display: inline-block;
+
+    @media (max-width: 768px) {
+        width: 50px;
+        height: 50px;
+        top: 8px;
+    }
+
+    @media (max-width: 710px) {
+        top: 1px;
+        margin-right: 0;
+    }
+
+    @media (max-width: 520px) {
+        width: 36px;
+        height: 36px;
+    }
 `;
 
 export const BrandColumn = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    @media (max-width: 650px) {
+    @media (max-width: 710px) {
         display: none;
     }
 `;
@@ -113,7 +130,7 @@ export const ConnectedUser = styled.div`
 export const CurrencyAmount = styled.div`
     margin-right: 8px;
     color: white;
-    @media (max-width: 450px) {
+    @media (max-width: 500px) {
         display: none
     }
 `;
