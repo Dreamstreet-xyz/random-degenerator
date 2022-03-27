@@ -93,7 +93,7 @@ export default function App({ Component, pageProps }) {
                 <Head>
                     <style>{dom.css()}</style>
                     <title>Random Degenerator</title>
-                    <link rel="icon" href="images/favicon.ico" />
+                    <link rel="icon" href="images/rdg_icon.png" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <link rel="preconnect" href="https://fonts.googleapis.com" />
                     <link
