@@ -113,13 +113,13 @@ export default function Home() {
             <SunGradientCity style={{ opacity: cityGradientOpacity }} />
             {networkInfo && (
                 <NetworkInfo
-                    slow={network.chainId === polygon.chainId}
+                    slow={false}
                     gas={networkInfo.fast.maxPriorityFee}
                     block={networkInfo.blockNumber}
                 />
             )}
             <WinPopup win={win} close={() => setWin(null)} />
-            <WinButton onClick={() => setWin({ dai: 482, percent: 500 })} />
+            {/* <WinButton onClick={() => setWin({ dai: 482, percent: 500 })} /> */}
         </Container>
     );
 }
