@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import styled from 'styled-components';
 import AppLayout from 'components/layout/AppLayout';
 import { gradientShine, retroTextGradient } from 'shared/styles';
@@ -109,15 +110,20 @@ const Section = styled.section`
 `;
 export default function About() {
     return (
-        <PageContainer>
-            <Container>
-                <Content>
-                    <MainContent>
-                        <FAQ />
-                    </MainContent>
-                </Content>
-            </Container>
-        </PageContainer>
+        <>
+            <Head>
+                <title>Random Degenerator | About</title>
+            </Head>
+            <PageContainer>
+                <Container>
+                    <Content>
+                        <MainContent>
+                            <FAQ />
+                        </MainContent>
+                    </Content>
+                </Container>
+            </PageContainer>
+        </>
     );
 }
 

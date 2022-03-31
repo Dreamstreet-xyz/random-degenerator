@@ -10,7 +10,6 @@ import Slot from './Slot';
 import { Container, BackButton, SlotsContainer, TopActionRow } from './styles';
 import TradeResultsCard from './TradeResultsCard';
 import { FinalizedTradeDetailsType } from 'types/Trade';
-import useAudio from 'shared/hooks/useAudio';
 
 type SlotOptionTypeTitle = 'Pair' | 'Collateral' | 'Leverage' | 'Position';
 

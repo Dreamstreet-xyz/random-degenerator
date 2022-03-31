@@ -4,7 +4,8 @@ import Link from 'next/link';
 export const NavItem = css`
     height: 54px;
     line-height: 58px;
-    display: block;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: #e0d1ee;
     padding: 0px 8px;

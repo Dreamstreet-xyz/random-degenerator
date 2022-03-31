@@ -60,7 +60,7 @@ export default function Navbar() {
                                         <Spark delay={7.2} style={{ right: -14 }} />
                                         <Spark delay={1.6} style={{ left: -14 }} />
                                     </LogoName>
-                                    <LogoName2>Degenerator</LogoName2>
+                                    <LogoName2> Degenerator</LogoName2>
                                 </BrandColumn>
                             </LogoRow>
                         </Link>
@@ -111,14 +111,14 @@ export default function Navbar() {
                             >
                                 <Menu>
                                     <NavLink href="/">
-                                        <NavIcon icon="dice" size={20} style={{ color: 'white' }} />
+                                        <NavIcon icon="dice" size={20} style={{ color: '#fff' }} />
                                         Play
                                     </NavLink>
                                     <NavLink href="/history">
                                         <NavIcon
                                             icon="history"
                                             size={20}
-                                            style={{ color: 'white' }}
+                                            style={{ color: '#fff' }}
                                         />
                                         History
                                     </NavLink>
@@ -126,7 +126,7 @@ export default function Navbar() {
                                         <NavIcon
                                             icon={['fab', 'readme']}
                                             size={20}
-                                            style={{ color: '#f0dfc8' }}
+                                            style={{ color: '#fff' }}
                                         />
                                         About
                                     </NavLink>

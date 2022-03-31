@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import styled from 'styled-components';
 import AppLayout from 'components/layout/AppLayout';
 import HistoricalTradesContainer from 'containers/HistoricalTradesContainer';
@@ -47,15 +48,20 @@ const MainContent = styled.div`
 
 export default function History() {
     return (
-        <PageContainer>
-            <Container>
-                <Content>
-                    <MainContent>
-                        <HistoricalTradesContainer />
-                    </MainContent>
-                </Content>
-            </Container>
-        </PageContainer>
+        <>
+            <Head>
+                <title>Random Degenerator | History</title>
+            </Head>
+            <PageContainer>
+                <Container>
+                    <Content>
+                        <MainContent>
+                            <HistoricalTradesContainer />
+                        </MainContent>
+                    </Content>
+                </Container>
+            </PageContainer>
+        </>
     );
 }
 

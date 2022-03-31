@@ -93,7 +93,24 @@ export default function App({ Component, pageProps }) {
                 <Head>
                     <style>{dom.css()}</style>
                     <title>Random Degenerator</title>
-                    <link rel="icon" href="images/rdg_icon.png" />
+                    <link
+                        rel="apple-touch-icon"
+                        sizes="180x180"
+                        href="images/favs/apple-touch-icon.png"
+                    />
+                    <link
+                        rel="icon"
+                        type="image/png"
+                        sizes="32x32"
+                        href="images/favs/favicon-32x32.png"
+                    />
+                    <link
+                        rel="icon"
+                        type="image/png"
+                        sizes="16x16"
+                        href="images/favs/favicon-16x16.png"
+                    />
+                    <link rel="manifest" href="images/favs/site.webmanifest"></link>
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <link rel="preconnect" href="https://fonts.googleapis.com" />
                     <link
