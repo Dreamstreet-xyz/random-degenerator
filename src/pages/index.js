@@ -11,6 +11,9 @@ import useGasStation from 'shared/hooks/useGasStation';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import { polygon } from 'shared/constants/networks';
 import WinPopup from 'components/app/WinPopup';
+import { useTradeCelebrationDataStore } from 'shared/stores/TradeCelebrationDataStore';
+import TradeCelebration from 'shared/utils/trade/TradeCelebration';
+import { getRandomFloorNumberIncl } from 'shared/hooks/useRandomTrade';
 
 const Container = styled.div`
     position: relative;
@@ -73,6 +76,10 @@ export default function Home() {
         close: () => setAnnouncement({ ...announcement, display: false }),
     });
 
+    const activeTradeCelebration = useTradeCelebrationDataStore(
+        store => store.activeTradeCelebration
+    );
+
     useEffect(() => {
         fetchGas();
         const intervalId = setInterval(() => {
@@ -91,6 +98,10 @@ export default function Home() {
 
         return () => clearInterval(intervalId);
     }, [network]);
+
+    useEffect(() => {
+        setWin(activeTradeCelebration);
+    }, [activeTradeCelebration]);
 
     return (
         <Container>
@@ -118,8 +129,15 @@ export default function Home() {
                     block={networkInfo.blockNumber}
                 />
             )}
-            <WinPopup win={win} close={() => setWin(null)} />
-            {/* <WinButton onClick={() => setWin({ dai: 482, percent: 500 })} /> */}
+            <WinPopup win={win} close={() => TradeCelebration.removeActiveCelebration()} />
+            <WinButton
+                onClick={() =>
+                    TradeCelebration.trigger({
+                        dai: getRandomFloorNumberIncl(100, 500),
+                        percent: getRandomFloorNumberIncl(20, 900),
+                    })
+                }
+            />
         </Container>
     );
 }

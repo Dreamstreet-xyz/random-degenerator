@@ -3,6 +3,7 @@ import { animate, AnimatePresence } from 'framer-motion';
 import Confetti from 'react-confetti';
 import useAudio from 'shared/hooks/useAudio';
 import useWindowSize from 'shared/hooks/useWindowSize';
+import { CelebrationType, Win } from 'types/Trade/Celebration';
 import {
     Overlay,
     Container,
@@ -38,14 +39,14 @@ function WinCounter({ to }) {
     return <WinAmount>{Number(to).toFixed(0)}</WinAmount>;
 }
 
-const getWinType = (win, pnlPercent) => {
-    if (win >= 200 && pnlPercent >= 100) return 'BIG_WIN';
-    if (pnlPercent >= 100) return 'BIG_PNL';
-    if (pnlPercent >= 50) return 'NICE_PNL';
-    return 'NORMAL';
+export const getWinType = (win, pnlPercent): CelebrationType => {
+    if (win >= 200 && pnlPercent >= 100) return CelebrationType.BIG_WIN;
+    if (pnlPercent >= 100) return CelebrationType.BIG_PNL;
+    if (pnlPercent >= 50) return CelebrationType.NICE_PNL;
+    return CelebrationType.NORMAL;
 };
 
-export default function WinPopup({ win, close }) {
+export default function WinPopup({ win, close }: { win: Win; close: () => void }) {
     const size = useWindowSize();
     const { play, stop } = useAudio('audio/big_win.ogg');
     const { play: smallPlay, stop: smallStop } = useAudio('audio/win.m4a');
@@ -65,8 +66,9 @@ export default function WinPopup({ win, close }) {
 
     useEffect(() => {
         if (win) {
-            if (winType === 'BIG_WIN') play();
-            if (winType === 'BIG_PNL' || winType === 'NICE_PNL') smallPlay();
+            if (winType === CelebrationType.BIG_WIN) play();
+            if (winType === CelebrationType.BIG_PNL || winType === CelebrationType.NICE_PNL)
+                smallPlay();
         }
 
         return () => {
@@ -75,7 +77,7 @@ export default function WinPopup({ win, close }) {
         };
     }, [win]);
 
-    const showConfetti = winType === 'BIG_PNL' || winType === 'BIG_WIN';
+    const showConfetti = winType === CelebrationType.BIG_PNL || winType === CelebrationType.BIG_WIN;
 
     return (
         <AnimatePresence>
@@ -115,7 +117,7 @@ export default function WinPopup({ win, close }) {
                                     bounce: 0.35,
                                 }}
                             >
-                                {winType === 'BIG_WIN' ? (
+                                {winType === CelebrationType.BIG_WIN ? (
                                     <BigWinCounter to={win?.dai} />
                                 ) : (
                                     <WinCounter to={win?.dai} />

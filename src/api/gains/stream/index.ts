@@ -16,7 +16,7 @@ import { getTradeKey, getTradeKeyFromCloseEvent } from 'shared/utils/gains/trade
 import { toast } from 'react-toastify';
 import ToastChannel from 'shared/utils/toasts/ToastChannel';
 import { formatUnits } from '@ethersproject/units';
-import { runClosedTradeToast } from 'shared/utils/toasts';
+import { handleTradeClosed } from 'shared/utils/trade/close/handler';
 
 const WSS = 'wss://';
 
@@ -91,7 +91,7 @@ export const handleStream = async (
                                             getTradeKeyFromCloseEvent(closeEvent)
                                         );
                                     const tv = dataStore.getState().tradingVariables;
-                                    runClosedTradeToast(closeEvent, tv);
+                                    handleTradeClosed(closeEvent, tv);
                                 }
                             }
                             break;
@@ -124,7 +124,7 @@ export const handleStream = async (
                                             getTradeKeyFromCloseEvent(closeEvent)
                                         );
                                     const tv = dataStore.getState().tradingVariables;
-                                    runClosedTradeToast(closeEvent, tv);
+                                    handleTradeClosed(closeEvent, tv);
                                 }
                             }
                             break;
