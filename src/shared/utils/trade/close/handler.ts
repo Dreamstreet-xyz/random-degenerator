@@ -13,14 +13,12 @@ export const handleTradeClosed = (
     tv: GainsTradingDataInterface.Data
 ) => {
     const pnl = calculatePnLFromCloseEvent(closeEvent, tv);
-    const trade = transformCloseEventToTradeWrapper(closeEvent, tv);
-    const price = Number(formatUnits(closeEvent.price, 10));
 
     // TODO: refactor runClosedTradeToast to use calculated values above
     runClosedTradeToast(closeEvent, tv);
 
     // if a win, submit to the winpopup
     if (pnl.percentProfitInclFee > 0) {
-        TradeCelebration.trigger({ dai: price, percent: pnl.percentProfitInclFee });
+        TradeCelebration.trigger({ dai: pnl.pnlInclFee, percent: pnl.percentProfitInclFee });
     }
 };
