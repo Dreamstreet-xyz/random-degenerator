@@ -130,14 +130,14 @@ export default function Home() {
                 />
             )}
             <WinPopup win={win} close={() => TradeCelebration.removeActiveCelebration()} />
-            <WinButton
+            {/* <WinButton
                 onClick={() =>
                     TradeCelebration.trigger({
                         dai: getRandomFloorNumberIncl(100, 500),
                         percent: getRandomFloorNumberIncl(20, 900),
                     })
                 }
-            />
+            /> */}
         </Container>
     );
 }
