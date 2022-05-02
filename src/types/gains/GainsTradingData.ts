@@ -68,6 +68,7 @@ export declare module GainsTradingDataInterface {
         fees: Fee[];
         cryptos: string[];
         forex: string[];
+        stocks: string[];
         openInterests: OpenInterest[];
         openCollaterals: OpenCollateral[];
         spreadReductionsP: string[];

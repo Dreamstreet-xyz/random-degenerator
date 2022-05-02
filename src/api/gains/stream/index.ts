@@ -219,3 +219,34 @@ export const handleStream = async (
         setIsHealthy(false, network);
     };
 };
+export const handlePricingStream = async (
+    socket: WebSocket,
+    setIsHealthy: (isHealthy: boolean) => void
+) => {
+    console.log(`Starting pricing stream handler`);
+
+    // setup onmessage - price data comes from mainnet always so update that + mainnet tv and others
+    socket.onmessage = async msg => {
+        const data = JSON.parse(msg.data);
+        switch (data.name) {
+            case StreamTypeName.charts:
+                useGainsPriceStore.getState().setPriceData(data);
+                break;
+            default:
+                break;
+        }
+
+        setIsHealthy(true);
+    };
+
+    socket.onerror = error => {
+        console.log(error);
+        socket.close();
+        setIsHealthy(false);
+    };
+
+    socket.onclose = () => {
+        console.log('Socket closed');
+        setIsHealthy(false);
+    };
+};

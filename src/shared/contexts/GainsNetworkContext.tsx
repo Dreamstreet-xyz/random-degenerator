@@ -5,13 +5,12 @@ import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import {
     useGainsMainnetDataStore,
     useGainsTestnetDataStore,
-    GainsDataStoreInterface,
     TimeoutType,
     TimedOutTrade,
 } from 'shared/stores/GainsDataStore';
 import { useActiveGainsDataStore } from 'shared/stores/ActiveGainsDataStore';
 import { Networks, NetworkInterface } from 'shared/constants/networks';
-import { handleStream, getGainsDataStoreFromNetwork } from 'api/gains/stream';
+import { handleStream, handlePricingStream, getGainsDataStoreFromNetwork } from 'api/gains/stream';
 import { useEthers } from '@usedapp/core';
 import fetchUserTradingVariables from 'api/gains/rest/fetchUserTradingVariables';
 import { toast } from 'react-toastify';
@@ -20,6 +19,7 @@ const WSS = 'wss://';
 const isBrowser = typeof window !== 'undefined';
 let mainnetSocket = isBrowser ? new WebSocket(WSS + Networks.Polygon.backendEndpoint) : null;
 let testnetSocket = isBrowser ? new WebSocket(WSS + Networks.Mumbai.backendEndpoint) : null;
+let pricingSocket = isBrowser ? new WebSocket(WSS + Networks.Polygon.pricingEndpoint) : null;
 
 interface GainsNetworkContextInterface {
     streamError: string | null;
@@ -35,6 +35,7 @@ export const useGainsNetwork = () => useContext(GainsNetworkContext);
 
 export default function GainsNetworkContextProvider({ children }) {
     const [streamError, setStreamError] = useState<string | null>(null);
+    const [priceStreamIsHealthy, setPriceStreamIsHealthy] = useState<boolean>(false);
     const [streamIsHealthy, setStreamIsHealthy] = useState<boolean>(false);
     const { network } = useNetworkDetails();
     const { account } = useEthers();
@@ -56,6 +57,18 @@ export default function GainsNetworkContextProvider({ children }) {
         }
     };
 
+    const setIsPriceHealthy = (isHealthy: boolean) => {
+        setPriceStreamIsHealthy(isHealthy);
+
+        // wait 3 secs and try to reconnect
+        if (!isHealthy) {
+            setTimeout(() => {
+                pricingSocket = new WebSocket(WSS + Networks.Polygon.pricingEndpoint);
+                handlePricingStream(pricingSocket, setIsPriceHealthy);
+            }, 3000);
+        }
+    };
+
     const updateDataStore = () => {
         useActiveGainsDataStore.getState().setStore(getGainsDataStoreFromNetwork(network));
     };
@@ -63,6 +76,7 @@ export default function GainsNetworkContextProvider({ children }) {
     useEffect(() => {
         handleStream(mainnetSocket, Networks.Polygon, setIsHealthy);
         handleStream(testnetSocket, Networks.Mumbai, setIsHealthy);
+        handlePricingStream(pricingSocket, setIsPriceHealthy);
 
         const intervalId = setInterval(() => {
             // check for dead sockets
@@ -71,6 +85,10 @@ export default function GainsNetworkContextProvider({ children }) {
             }
             if (testnetSocket === undefined || testnetSocket.readyState === 3) {
                 handleStream(testnetSocket, Networks.Mumbai, setIsHealthy);
+            }
+
+            if (pricingSocket === undefined || pricingSocket.readyState === 3) {
+                handlePricingStream(pricingSocket, setIsPriceHealthy);
             }
         }, 3000);
 

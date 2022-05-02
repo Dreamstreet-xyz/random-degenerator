@@ -48,6 +48,7 @@ export declare module GainsCoreDataInterface {
 export enum AssetType {
     CRYPTO = 'crypto',
     FOREX = 'forex',
+    STOCKS = 'stocks',
 }
 
 export enum ActionType {

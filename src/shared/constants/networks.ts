@@ -16,6 +16,7 @@ export interface NetworkInterface extends Chain {
     referralAddress: string;
     apiKey: string;
     backendEndpoint: string;
+    pricingEndpoint: string;
     tradingV5ContractAddress: string;
     tradingV6ContractAddress: string;
     storageContractAddress: string;
@@ -34,6 +35,7 @@ export const polygon: NetworkInterface = {
     referralAddress: '0x337A00Bb895Ca48A1C9F1865eDC18Aa29D6cB68e',
     apiKey: process.env.NEXT_PUBLIC_POLYGON_API_KEY,
     backendEndpoint: process.env.NEXT_PUBLIC_POLYGON_BACKEND_ENDPOINT,
+    pricingEndpoint: process.env.NEXT_PUBLIC_PRICING_ENDPOINT,
     tradingV5ContractAddress: '0x37c11410b2c2a1cd4b3a0de2bd3a1808e0528ebe',
     tradingV6ContractAddress: '0xF8a140DB8B05BEC52C7e86D0D40D72f8e54Fe559',
     storageContractAddress: '0xaee4d11a16B2bc65EDD6416Fb626EB404a6D65BD',
@@ -52,6 +54,7 @@ export const kovan: NetworkInterface = {
     referralAddress: '0x337A00Bb895Ca48A1C9F1865eDC18Aa29D6cB68e',
     apiKey: process.env.NEXT_PUBLIC_MUMBAI_API_KEY,
     backendEndpoint: process.env.NEXT_PUBLIC_KOVAN_BACKEND_ENDPOINT,
+    pricingEndpoint: process.env.NEXT_PUBLIC_PRICING_ENDPOINT,
     tradingV5ContractAddress: '0xec1c66a898ba26bca60a8f5129802d1727d9f918',
     tradingV6ContractAddress: '0xec1c66a898ba26bca60a8f5129802d1727d9f918',
     storageContractAddress: '0x7ef89abe6830e00580a8fc8c298afdad038cbced',
@@ -70,6 +73,7 @@ export const mumbai: NetworkInterface = {
     referralAddress: '0x337A00Bb895Ca48A1C9F1865eDC18Aa29D6cB68e',
     apiKey: process.env.NEXT_PUBLIC_MUMBAI_API_KEY,
     backendEndpoint: process.env.NEXT_PUBLIC_KOVAN_BACKEND_ENDPOINT,
+    pricingEndpoint: process.env.NEXT_PUBLIC_PRICING_ENDPOINT,
     tradingV5ContractAddress: '',
     tradingV6ContractAddress: '0x49370dc7319d8439c895015cbad8e35d381e7d73',
     storageContractAddress: '0x4d2df485c608aa55a23d8d98dd2b4fa24ba0f2cf',

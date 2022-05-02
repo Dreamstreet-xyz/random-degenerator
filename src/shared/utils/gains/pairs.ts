@@ -93,6 +93,8 @@ export const getAssetTypeForPair = (
         ? AssetType.CRYPTO
         : data?.forex?.includes(pair?.from)
         ? AssetType.FOREX
+        : data?.stocks?.includes(pair?.from)
+        ? AssetType.STOCKS
         : null;
 
 export const isValidPair = (
