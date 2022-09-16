@@ -107,9 +107,9 @@ export const isValidPair = (
     const pair = tradingVariables.pairs[pairIndex];
     const assetName = pair?.from;
     const assetType = getAssetTypeForPair(pair, tradingVariables);
-    console.log(`Asset type for pair ${assetName} is ${assetType}`);
+    console.log(`Asset type for pairIx ${pairIndex}, pair ${assetName} is ${assetType}`);
     if (!assetType) {
-        throw Error('Invalid pair index');
+        return; // throw Error('Invalid pair index');
     }
 
     // check asset type

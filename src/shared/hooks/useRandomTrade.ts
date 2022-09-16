@@ -115,7 +115,7 @@ export default function useRandomTrade(): UseRandomTradeInterface {
     const [tradeStatus, setTradeStatus] = useState<TradeStatus>(TradeStatus.None);
     const [submitTradeBlockNumber, setSubmitTradeBlock] = useState<number>();
     const { submitTrade, state, resetState, skip } = useOpenTradeV6({
-        tradingAddress: network?.tradingV6ContractAddress,
+        tradingAddress: network?.tradingV6_2ContractAddress,
     });
     const useGainsDataStore = useActiveGainsDataStore(
         (state: ActiveGainsDataStoreInterface) => state.store

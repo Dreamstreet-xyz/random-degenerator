@@ -20,14 +20,15 @@ import {
 export default function TradeDetailsModalContent({
     trade,
     tradeInfo,
+    initialAccFees,
     onCloseTrade,
     loading,
     isClosed,
 }) {
     const { pairString, leverage, buy, positionSizeDai, sl, tp, openPrice } = trade;
     const { openInterestDai } = tradeInfo;
-    const { pnl, freeze: pnlFreeze } = useLivePnl({ trade, tradeInfo });
-    const { price, freeze: priceFreeze } = useLivePrice({ trade, tradeInfo });
+    const { pnl, freeze: pnlFreeze } = useLivePnl({ trade, tradeInfo, initialAccFees });
+    const { price, freeze: priceFreeze } = useLivePrice({ trade, tradeInfo, initialAccFees });
 
     const handleClose = e => {
         e.stopPropagation();

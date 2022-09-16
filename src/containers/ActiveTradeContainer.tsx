@@ -108,6 +108,7 @@ export default function ActiveTradeContainer({
                         key={`${tradeWrapper.trade.pairIndex}-${tradeWrapper.trade.index}`}
                         trade={tradeWrapper.trade}
                         tradeInfo={tradeWrapper.tradeInfo}
+                        initialAccFees={tradeWrapper.initialAccFees}
                         onClose={_closeTrade}
                         loading={frozen}
                         isClosed={isClosed || state?.status === 'Success'}
@@ -136,6 +137,7 @@ export default function ActiveTradeContainer({
                         close={onClick}
                         trade={tradeWrapper?.trade}
                         tradeInfo={tradeWrapper?.tradeInfo}
+                        initialAccFees={tradeWrapper?.initialAccFees}
                         onCloseTrade={() =>
                             closeTrade({
                                 pairIndex: tradeWrapper?.trade.pairIndex,

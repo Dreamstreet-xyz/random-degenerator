@@ -64,7 +64,7 @@ export const handleStream = async (
                                     o?.trade?.trader === wallet
                             ) || []
                         ).map(t => transformTradeWrapper(t, tv)) || [];
-
+                    console.log('tradesForWallet', tradesForWallet);
                     dataStore.getState().setOpenTradesForWallet(tradesForWallet);
                 }
                 break;
@@ -91,7 +91,11 @@ export const handleStream = async (
                                             getTradeKeyFromCloseEvent(closeEvent)
                                         );
                                     const tv = dataStore.getState().tradingVariables;
-                                    handleTradeClosed(closeEvent, tv);
+                                    handleTradeClosed(
+                                        closeEvent,
+                                        tv,
+                                        dataStore.getState().currentBlock
+                                    );
                                 }
                             }
                             break;
@@ -124,7 +128,11 @@ export const handleStream = async (
                                             getTradeKeyFromCloseEvent(closeEvent)
                                         );
                                     const tv = dataStore.getState().tradingVariables;
-                                    handleTradeClosed(closeEvent, tv);
+                                    handleTradeClosed(
+                                        closeEvent,
+                                        tv,
+                                        dataStore.getState().currentBlock
+                                    );
                                 }
                             }
                             break;

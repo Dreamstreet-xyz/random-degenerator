@@ -6,6 +6,7 @@ export default function TradeDetailsModal({
     close,
     trade,
     tradeInfo,
+    initialAccFees,
     onCloseTrade,
     loading,
     isClosed,
@@ -21,6 +22,7 @@ export default function TradeDetailsModal({
             <TradeDetailsModalContent
                 trade={trade}
                 tradeInfo={tradeInfo}
+                initialAccFees={initialAccFees}
                 onCloseTrade={onCloseTrade}
                 loading={loading}
                 isClosed={isClosed}

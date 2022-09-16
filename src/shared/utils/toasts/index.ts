@@ -34,10 +34,11 @@ export const runClosedTradeToast = (
     closeEvent:
         | GainsLiveEventDataInterface.MarketExecuted
         | GainsLiveEventDataInterface.LimitExecuted,
-    tv: GainsTradingDataInterface.Data
+    tv: GainsTradingDataInterface.Data,
+    currentBlock: number
 ) => {
     console.log(closeEvent);
-    const pnl = calculatePnLFromCloseEvent(closeEvent, tv);
+    const pnl = calculatePnLFromCloseEvent(closeEvent, tv, currentBlock);
     const trade = transformCloseEventToTradeWrapper(closeEvent, tv);
     ToastChannel.updateToastInChannel(getTradeKeyFromCloseEvent(closeEvent), {
         options: {

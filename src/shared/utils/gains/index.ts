@@ -10,10 +10,6 @@ import { GainsLiveEventDataInterface } from 'types/gains/GainsLiveEventData';
 export const transformTradingVariables = (
     data: GainsTradingDataInterface.Data
 ): GainsTradingDataInterface.Data => {
-    // TODO V6: remove this once on Polygon
-    if (data.maxPosDaiP) {
-        return data;
-    }
     try {
         data.maxPosDaiInt = parseInt(formatEther(data.maxPosDai));
         data.pairs = data.pairs.map(pair => {
@@ -23,7 +19,7 @@ export const transformTradingVariables = (
             );
             return pair;
         });
-
+        console.log(data.pairs);
         data.minPosDaiInt = getMinPositionSizeForAssetTypes(data, [AssetType.CRYPTO]);
     } catch (error) {
         console.error(error);
@@ -96,5 +92,5 @@ export const transformCloseEventToTradeWrapper = (
         beingMarketClosed: true,
     };
 
-    return transformTradeWrapper({ trade, tradeInfo }, tv);
+    return transformTradeWrapper({ trade, tradeInfo, initialAccFees: undefined }, tv);
 };

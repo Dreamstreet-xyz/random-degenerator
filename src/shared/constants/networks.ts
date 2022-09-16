@@ -19,6 +19,7 @@ export interface NetworkInterface extends Chain {
     pricingEndpoint: string;
     tradingV5ContractAddress: string;
     tradingV6ContractAddress: string;
+    tradingV6_2ContractAddress: string;
     storageContractAddress: string;
     isActive: boolean;
     gasStationUrl: string;
@@ -38,6 +39,7 @@ export const polygon: NetworkInterface = {
     pricingEndpoint: process.env.NEXT_PUBLIC_PRICING_ENDPOINT,
     tradingV5ContractAddress: '0x37c11410b2c2a1cd4b3a0de2bd3a1808e0528ebe',
     tradingV6ContractAddress: '0xF8a140DB8B05BEC52C7e86D0D40D72f8e54Fe559',
+    tradingV6_2ContractAddress: '0x65187FeC6eCc4774C1f632C7503466D5B4353Db1',
     storageContractAddress: '0xaee4d11a16B2bc65EDD6416Fb626EB404a6D65BD',
     isActive: true,
     gasStationUrl: 'https://gasstation-mainnet.matic.network/v2',
@@ -57,6 +59,7 @@ export const kovan: NetworkInterface = {
     pricingEndpoint: process.env.NEXT_PUBLIC_PRICING_ENDPOINT,
     tradingV5ContractAddress: '0xec1c66a898ba26bca60a8f5129802d1727d9f918',
     tradingV6ContractAddress: '0xec1c66a898ba26bca60a8f5129802d1727d9f918',
+    tradingV6_2ContractAddress: '0x65187FeC6eCc4774C1f632C7503466D5B4353Db1',
     storageContractAddress: '0x7ef89abe6830e00580a8fc8c298afdad038cbced',
     isActive: false,
     gasStationUrl: 'https://ethgasstation.info/api/ethgasAPI.json?',
@@ -76,6 +79,7 @@ export const mumbai: NetworkInterface = {
     pricingEndpoint: process.env.NEXT_PUBLIC_PRICING_ENDPOINT,
     tradingV5ContractAddress: '',
     tradingV6ContractAddress: '0x49370dc7319d8439c895015cbad8e35d381e7d73',
+    tradingV6_2ContractAddress: '0x81465dF3c64B18b4092990eB73200A3814AF75E5',
     storageContractAddress: '0x4d2df485c608aa55a23d8d98dd2b4fa24ba0f2cf',
     isActive: true,
     gasStationUrl: 'https://gasstation-mumbai.matic.today/v2',

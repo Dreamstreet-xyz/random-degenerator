@@ -52,6 +52,24 @@ export declare module GainsTradingDataInterface {
         short: string;
     }
 
+    export interface PairParams {
+        onePercentDepthAbove: number;
+        onePercentDepthBelow: number;
+        rolloverFeePerBlockP: number;
+        fundingFeePerBlockP: number;
+    }
+
+    export interface PairRolloverFees {
+        accPerCollateral: number;
+        lastUpdateBlock: number;
+    }
+
+    export interface PairFundingFees {
+        accPerOiLong: number;
+        accPerOiShort: number;
+        lastUpdateBlock: number;
+    }
+
     export interface Data {
         paused: boolean;
         maxPosDai: string;
@@ -78,6 +96,19 @@ export declare module GainsTradingDataInterface {
         maxBalanceDai: string;
         vaultFeeP: string;
         allTrades: GainsCoreDataInterface.TradeWrapper[];
+        gnsUsd?: number;
+        stockPairToActiveStockSplit?: Map<string, string>;
+        orderTimeout?: number;
+        maxCollateral: number;
+        daiReserve?: number;
+        forexClosed?: boolean;
+        stocksClosed?: boolean;
+        blockConfirmations?: number;
+        pairParams?: PairParams[];
+        pairRolloverFees?: PairRolloverFees[];
+        pairFundingFees?: PairFundingFees[];
+        vaultSwapFeeP?: number;
+        maxNegativePnlOnOpenP?: number;
 
         // computed
         minPosDaiInt: number;

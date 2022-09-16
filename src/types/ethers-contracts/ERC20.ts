@@ -125,23 +125,13 @@ export interface ERC20 extends BaseContract {
   functions: {
     name(overrides?: CallOverrides): Promise<[string]>;
 
-    "name()"(overrides?: CallOverrides): Promise<[string]>;
-
     approve(
       _spender: string,
       _value: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    "approve(address,uint256)"(
-      _spender: string,
-      _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "totalSupply()"(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     transferFrom(
       _from: string,
@@ -150,38 +140,16 @@ export interface ERC20 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    "transferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     decimals(overrides?: CallOverrides): Promise<[number]>;
-
-    "decimals()"(overrides?: CallOverrides): Promise<[number]>;
 
     balanceOf(
       _owner: string,
       overrides?: CallOverrides
     ): Promise<[BigNumber] & { balance: BigNumber }>;
 
-    "balanceOf(address)"(
-      _owner: string,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber] & { balance: BigNumber }>;
-
     symbol(overrides?: CallOverrides): Promise<[string]>;
 
-    "symbol()"(overrides?: CallOverrides): Promise<[string]>;
-
     transfer(
-      _to: string,
-      _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "transfer(address,uint256)"(
       _to: string,
       _value: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -192,17 +160,9 @@ export interface ERC20 extends BaseContract {
       _spender: string,
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
-
-    "allowance(address,address)"(
-      _owner: string,
-      _spender: string,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
   };
 
   name(overrides?: CallOverrides): Promise<string>;
-
-  "name()"(overrides?: CallOverrides): Promise<string>;
 
   approve(
     _spender: string,
@@ -210,15 +170,7 @@ export interface ERC20 extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  "approve(address,uint256)"(
-    _spender: string,
-    _value: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   transferFrom(
     _from: string,
@@ -227,35 +179,13 @@ export interface ERC20 extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  "transferFrom(address,address,uint256)"(
-    _from: string,
-    _to: string,
-    _value: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   decimals(overrides?: CallOverrides): Promise<number>;
-
-  "decimals()"(overrides?: CallOverrides): Promise<number>;
 
   balanceOf(_owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-  "balanceOf(address)"(
-    _owner: string,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
   symbol(overrides?: CallOverrides): Promise<string>;
 
-  "symbol()"(overrides?: CallOverrides): Promise<string>;
-
   transfer(
-    _to: string,
-    _value: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "transfer(address,uint256)"(
     _to: string,
     _value: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -267,16 +197,8 @@ export interface ERC20 extends BaseContract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
-  "allowance(address,address)"(
-    _owner: string,
-    _spender: string,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
   callStatic: {
     name(overrides?: CallOverrides): Promise<string>;
-
-    "name()"(overrides?: CallOverrides): Promise<string>;
 
     approve(
       _spender: string,
@@ -284,15 +206,7 @@ export interface ERC20 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    "approve(address,uint256)"(
-      _spender: string,
-      _value: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferFrom(
       _from: string,
@@ -301,27 +215,11 @@ export interface ERC20 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    "transferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _value: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
     decimals(overrides?: CallOverrides): Promise<number>;
-
-    "decimals()"(overrides?: CallOverrides): Promise<number>;
 
     balanceOf(_owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    "balanceOf(address)"(
-      _owner: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     symbol(overrides?: CallOverrides): Promise<string>;
-
-    "symbol()"(overrides?: CallOverrides): Promise<string>;
 
     transfer(
       _to: string,
@@ -329,19 +227,7 @@ export interface ERC20 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    "transfer(address,uint256)"(
-      _to: string,
-      _value: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
     allowance(
-      _owner: string,
-      _spender: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "allowance(address,address)"(
       _owner: string,
       _spender: string,
       overrides?: CallOverrides
@@ -375,23 +261,13 @@ export interface ERC20 extends BaseContract {
   estimateGas: {
     name(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "name()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     approve(
       _spender: string,
       _value: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "approve(address,uint256)"(
-      _spender: string,
-      _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferFrom(
       _from: string,
@@ -400,27 +276,11 @@ export interface ERC20 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "transferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     decimals(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "decimals()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     balanceOf(_owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    "balanceOf(address)"(
-      _owner: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     symbol(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "symbol()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     transfer(
       _to: string,
@@ -428,19 +288,7 @@ export interface ERC20 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "transfer(address,uint256)"(
-      _to: string,
-      _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     allowance(
-      _owner: string,
-      _spender: string,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "allowance(address,address)"(
       _owner: string,
       _spender: string,
       overrides?: CallOverrides
@@ -450,23 +298,13 @@ export interface ERC20 extends BaseContract {
   populateTransaction: {
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    "name()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     approve(
       _spender: string,
       _value: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "approve(address,uint256)"(
-      _spender: string,
-      _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "totalSupply()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transferFrom(
       _from: string,
@@ -475,30 +313,14 @@ export interface ERC20 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "transferFrom(address,address,uint256)"(
-      _from: string,
-      _to: string,
-      _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     decimals(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "decimals()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     balanceOf(
       _owner: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "balanceOf(address)"(
-      _owner: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "symbol()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transfer(
       _to: string,
@@ -506,19 +328,7 @@ export interface ERC20 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "transfer(address,uint256)"(
-      _to: string,
-      _value: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     allowance(
-      _owner: string,
-      _spender: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "allowance(address,address)"(
       _owner: string,
       _spender: string,
       overrides?: CallOverrides

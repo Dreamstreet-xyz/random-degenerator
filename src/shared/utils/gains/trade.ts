@@ -2,7 +2,7 @@ import type { GainsTradingDataInterface } from 'types/gains/GainsTradingData';
 import type { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import type { GainsPricingDataInterface } from 'types/gains/GainsPricingData';
 import type { PnlType } from 'types/Trade';
-import { calculateCloseFee } from './fees';
+import { calculateCloseFee, calculateFundingFee, calculateRolloverFee } from './fees';
 import { getLivePairPrice } from './pairs';
 import { formatEther, formatUnits } from '@ethersproject/units';
 import { StorageInterfaceV5 } from 'types/ethers-contracts/TradingV6';
@@ -13,11 +13,16 @@ import { transformCloseEventToTradeWrapper } from 'shared/utils/gains';
 const _calculatePnL = (
     trade: GainsCoreDataInterface.TradeWrapper,
     pc: number,
-    tv: GainsTradingDataInterface.Data
+    tv: GainsTradingDataInterface.Data,
+    currentBlock: number
 ) => {
     const pp = calculatePercentProfit(pc, trade?.trade);
     const pnl = pp * Number(formatEther(trade?.trade?.positionSizeDai));
-    const feeDai = calculateCloseFee(trade, tv);
+    const closingFee = calculateCloseFee(trade, tv);
+    const fundingFee = calculateFundingFee(trade, tv, currentBlock);
+    const rolloverFee = calculateRolloverFee(trade, tv, currentBlock);
+
+    const feeDai = closingFee + fundingFee + rolloverFee;
     return {
         pnl: pnl,
         percentProfit: pp * 100,
@@ -30,7 +35,8 @@ const _calculatePnL = (
 export const calculatePnL = (
     trade: GainsCoreDataInterface.TradeWrapper,
     priceData: GainsPricingDataInterface.Data,
-    tv: GainsTradingDataInterface.Data
+    tv: GainsTradingDataInterface.Data,
+    currentBlock: number
 ): PnlType => {
     if (!trade || !priceData || !tv) {
         return {
@@ -42,14 +48,15 @@ export const calculatePnL = (
         };
     }
     const pc = calculatePriceChangeFromPriceData(trade?.trade, priceData);
-    return _calculatePnL(trade, pc, tv);
+    return _calculatePnL(trade, pc, tv, currentBlock);
 };
 
 export const calculatePnLFromCloseEvent = (
     tradeEvent:
         | GainsLiveEventDataInterface.MarketExecuted
         | GainsLiveEventDataInterface.LimitExecuted,
-    tv: GainsTradingDataInterface.Data
+    tv: GainsTradingDataInterface.Data,
+    currentBlock: number
 ) => {
     const trade = transformCloseEventToTradeWrapper(tradeEvent, tv);
     if (!trade || !tradeEvent || !tv) {
@@ -63,7 +70,7 @@ export const calculatePnLFromCloseEvent = (
     }
 
     const pc = calculatePriceChange(trade?.trade, Number(formatUnits(tradeEvent?.price, 10)));
-    return _calculatePnL(trade, pc, tv);
+    return _calculatePnL(trade, pc, tv, currentBlock);
 };
 
 export const calculatePercentProfit = (

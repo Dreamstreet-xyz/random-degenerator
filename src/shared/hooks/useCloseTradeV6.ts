@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NetworkInterface } from 'shared/constants/networks';
 import { JsonRpcProvider } from '@ethersproject/providers';
 import { useContractFunction } from 'shared/hooks/useContractFunction';
-import { TradingV6__factory } from 'types/ethers-contracts';
+import { TradingV62__factory } from 'types/ethers-contracts';
 import { TransactionStatus } from '@usedapp/core';
 import useGasStation from './useGasStation';
 
@@ -30,7 +30,7 @@ export default function useCloseTradeV6({
 }: UseCloseTradeV6InputInterface): UseCloseTradeV6Interface {
     const [_tradingDetails] = useState(tradingDetails);
     const { send, state, resetState } = useContractFunction(
-        TradingV6__factory.connect(network.tradingV6ContractAddress, library),
+        TradingV62__factory.connect(network.tradingV6_2ContractAddress, library),
         'closeTradeMarket'
     );
     const gasStation = useGasStation();

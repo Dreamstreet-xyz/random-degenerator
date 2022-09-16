@@ -15,7 +15,6 @@ const getTradesForWallet = (
     if (!trades || !tv || !wallet || trades?.length === 0) {
         return [];
     }
-    console.log(trades);
     return (
         (
             trades?.filter(

@@ -3,7 +3,7 @@ import { useEthers, useGasPrice } from '@usedapp/core';
 import { BigNumberish, BigNumber } from 'ethers';
 import { parseUnits } from '@ethersproject/units';
 import { useContractFunction } from 'shared/hooks/useContractFunction';
-import { TradingV6__factory } from 'types/ethers-contracts';
+import { TradingV62__factory } from 'types/ethers-contracts';
 import { useGainsPriceStore, GainsPriceStoreInterface } from 'shared/stores/GainsPriceStore';
 import useGasStation from './useGasStation';
 
@@ -85,7 +85,7 @@ export default function useOpenTradeV6({ tradingAddress }: { tradingAddress: str
     const [slippageP, setSlippageP] = useState(-1);
     const { library } = useEthers();
     const { send, state, resetState } = useContractFunction(
-        TradingV6__factory.connect(tradingAddress, library),
+        TradingV62__factory.connect(tradingAddress, library),
         'openTrade'
     );
     const getLivePairPrice = useGainsPriceStore(

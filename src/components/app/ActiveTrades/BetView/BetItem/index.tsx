@@ -39,10 +39,10 @@ const getStatus = pnl => {
     return '🙌';
 };
 
-export default function BetItem({ trade, tradeInfo, loading, isClosed, onClose }) {
+export default function BetItem({ trade, tradeInfo, initialAccFees, loading, isClosed, onClose }) {
     const { sl, tp, positionSizeDai, openPrice } = trade;
-    const { pnl, freeze: pnlFreeze } = useLivePnl({ trade, tradeInfo });
-    const { price, freeze: priceFreeze } = useLivePrice({ trade, tradeInfo });
+    const { pnl, freeze: pnlFreeze } = useLivePnl({ trade, tradeInfo, initialAccFees });
+    const { price, freeze: priceFreeze } = useLivePrice({ trade, tradeInfo, initialAccFees });
 
     const fsl = Number(formatUnits(sl, 10));
     const ftp = Number(formatUnits(tp, 10));

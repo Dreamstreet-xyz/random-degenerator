@@ -81,54 +81,48 @@ export declare namespace StorageInterfaceV5 {
   };
 }
 
-export interface TradingV6Interface extends utils.Interface {
-  contractName: "TradingV6";
+export interface TradingV62Interface extends utils.Interface {
+  contractName: "TradingV62";
   functions: {
-    "cancelOpenLimitOrder(uint256,uint256)": FunctionFragment;
-    "closeTradeMarket(uint256,uint256)": FunctionFragment;
-    "closeTradeMarketTimeout(uint256)": FunctionFragment;
-    "done()": FunctionFragment;
-    "executeNftOrder(uint8,address,uint256,uint256,uint256,uint256)": FunctionFragment;
+    "_msgSender()": FunctionFragment;
+    "delegatedAction(address,bytes)": FunctionFragment;
+    "delegations(address)": FunctionFragment;
     "isDone()": FunctionFragment;
     "isPaused()": FunctionFragment;
     "limitOrdersTimelock()": FunctionFragment;
     "marketOrdersTimeout()": FunctionFragment;
     "maxPosDai()": FunctionFragment;
-    "openTrade((address,uint256,uint256,uint256,uint256,uint256,bool,uint256,uint256,uint256),uint8,uint256,uint256,address)": FunctionFragment;
-    "openTradeMarketTimeout(uint256)": FunctionFragment;
-    "pause()": FunctionFragment;
+    "nftRewards()": FunctionFragment;
+    "pairInfos()": FunctionFragment;
+    "referrals()": FunctionFragment;
+    "removeDelegate()": FunctionFragment;
+    "setDelegate(address)": FunctionFragment;
+    "storageT()": FunctionFragment;
+    "setMaxPosDai(uint256)": FunctionFragment;
     "setLimitOrdersTimelock(uint256)": FunctionFragment;
     "setMarketOrdersTimeout(uint256)": FunctionFragment;
-    "setMaxPosDai(uint256)": FunctionFragment;
+    "pause()": FunctionFragment;
+    "done()": FunctionFragment;
+    "openTrade((address,uint256,uint256,uint256,uint256,uint256,bool,uint256,uint256,uint256),uint8,uint256,uint256,address)": FunctionFragment;
+    "closeTradeMarket(uint256,uint256)": FunctionFragment;
     "updateOpenLimitOrder(uint256,uint256,uint256,uint256,uint256)": FunctionFragment;
-    "updateSl(uint256,uint256,uint256)": FunctionFragment;
+    "cancelOpenLimitOrder(uint256,uint256)": FunctionFragment;
     "updateTp(uint256,uint256,uint256)": FunctionFragment;
+    "updateSl(uint256,uint256,uint256)": FunctionFragment;
+    "executeNftOrder(uint8,address,uint256,uint256,uint256,uint256)": FunctionFragment;
+    "openTradeMarketTimeout(uint256)": FunctionFragment;
+    "closeTradeMarketTimeout(uint256)": FunctionFragment;
   };
 
   encodeFunctionData(
-    functionFragment: "cancelOpenLimitOrder",
-    values: [BigNumberish, BigNumberish]
+    functionFragment: "_msgSender",
+    values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "closeTradeMarket",
-    values: [BigNumberish, BigNumberish]
+    functionFragment: "delegatedAction",
+    values: [string, BytesLike]
   ): string;
-  encodeFunctionData(
-    functionFragment: "closeTradeMarketTimeout",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "done", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "executeNftOrder",
-    values: [
-      BigNumberish,
-      string,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish
-    ]
-  ): string;
+  encodeFunctionData(functionFragment: "delegations", values: [string]): string;
   encodeFunctionData(functionFragment: "isDone", values?: undefined): string;
   encodeFunctionData(functionFragment: "isPaused", values?: undefined): string;
   encodeFunctionData(
@@ -141,6 +135,32 @@ export interface TradingV6Interface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "maxPosDai", values?: undefined): string;
   encodeFunctionData(
+    functionFragment: "nftRewards",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "pairInfos", values?: undefined): string;
+  encodeFunctionData(functionFragment: "referrals", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "removeDelegate",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "setDelegate", values: [string]): string;
+  encodeFunctionData(functionFragment: "storageT", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "setMaxPosDai",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setLimitOrdersTimelock",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setMarketOrdersTimeout",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "pause", values?: undefined): string;
+  encodeFunctionData(functionFragment: "done", values?: undefined): string;
+  encodeFunctionData(
     functionFragment: "openTrade",
     values: [
       StorageInterfaceV5.TradeStruct,
@@ -151,21 +171,8 @@ export interface TradingV6Interface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "openTradeMarketTimeout",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "pause", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "setLimitOrdersTimelock",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setMarketOrdersTimeout",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setMaxPosDai",
-    values: [BigNumberish]
+    functionFragment: "closeTradeMarket",
+    values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "updateOpenLimitOrder",
@@ -178,29 +185,44 @@ export interface TradingV6Interface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "updateSl",
-    values: [BigNumberish, BigNumberish, BigNumberish]
+    functionFragment: "cancelOpenLimitOrder",
+    values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "updateTp",
     values: [BigNumberish, BigNumberish, BigNumberish]
   ): string;
-
-  decodeFunctionResult(
-    functionFragment: "cancelOpenLimitOrder",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "closeTradeMarket",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "closeTradeMarketTimeout",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "done", data: BytesLike): Result;
-  decodeFunctionResult(
+  encodeFunctionData(
+    functionFragment: "updateSl",
+    values: [BigNumberish, BigNumberish, BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "executeNftOrder",
+    values: [
+      BigNumberish,
+      string,
+      BigNumberish,
+      BigNumberish,
+      BigNumberish,
+      BigNumberish
+    ]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "openTradeMarketTimeout",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "closeTradeMarketTimeout",
+    values: [BigNumberish]
+  ): string;
+
+  decodeFunctionResult(functionFragment: "_msgSender", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "delegatedAction",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "delegations",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "isDone", data: BytesLike): Result;
@@ -214,12 +236,22 @@ export interface TradingV6Interface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "maxPosDai", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "openTrade", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "nftRewards", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "pairInfos", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "referrals", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "openTradeMarketTimeout",
+    functionFragment: "removeDelegate",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "setDelegate",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "storageT", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "setMaxPosDai",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "setLimitOrdersTimelock",
     data: BytesLike
@@ -228,36 +260,53 @@ export interface TradingV6Interface extends utils.Interface {
     functionFragment: "setMarketOrdersTimeout",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "done", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "openTrade", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "setMaxPosDai",
+    functionFragment: "closeTradeMarket",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "updateOpenLimitOrder",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "updateSl", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "cancelOpenLimitOrder",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "updateTp", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "updateSl", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "executeNftOrder",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "openTradeMarketTimeout",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "closeTradeMarketTimeout",
+    data: BytesLike
+  ): Result;
 
   events: {
-    "AddressUpdated(string,address)": EventFragment;
     "ChainlinkCallbackTimeout(uint256,tuple)": EventFragment;
     "CouldNotCloseTrade(address,uint256,uint256)": EventFragment;
     "Done(bool)": EventFragment;
-    "MarketOrderInitiated(address,uint256,bool,uint256)": EventFragment;
-    "NftOrderInitiated(address,address,uint256,uint256)": EventFragment;
+    "MarketOrderInitiated(uint256,address,uint256,bool)": EventFragment;
+    "NftOrderInitiated(uint256,address,address,uint256)": EventFragment;
     "NftOrderSameBlock(address,address,uint256)": EventFragment;
     "NumberUpdated(string,uint256)": EventFragment;
     "OpenLimitCanceled(address,uint256,uint256)": EventFragment;
     "OpenLimitPlaced(address,uint256,uint256)": EventFragment;
     "OpenLimitUpdated(address,uint256,uint256,uint256,uint256,uint256)": EventFragment;
     "Paused(bool)": EventFragment;
-    "SlUpdateInitiated(address,uint256,uint256,uint256,uint256)": EventFragment;
+    "SlUpdateInitiated(uint256,address,uint256,uint256,uint256)": EventFragment;
     "SlUpdated(address,uint256,uint256,uint256)": EventFragment;
     "TpUpdated(address,uint256,uint256,uint256)": EventFragment;
   };
 
-  getEvent(nameOrSignatureOrTopic: "AddressUpdated"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ChainlinkCallbackTimeout"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "CouldNotCloseTrade"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Done"): EventFragment;
@@ -273,13 +322,6 @@ export interface TradingV6Interface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: "SlUpdated"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "TpUpdated"): EventFragment;
 }
-
-export type AddressUpdatedEvent = TypedEvent<
-  [string, string],
-  { name: string; a: string }
->;
-
-export type AddressUpdatedEventFilter = TypedEventFilter<AddressUpdatedEvent>;
 
 export type ChainlinkCallbackTimeoutEvent = TypedEvent<
   [BigNumber, StorageInterfaceV5.PendingMarketOrderStructOutput],
@@ -305,20 +347,20 @@ export type DoneEvent = TypedEvent<[boolean], { done: boolean }>;
 export type DoneEventFilter = TypedEventFilter<DoneEvent>;
 
 export type MarketOrderInitiatedEvent = TypedEvent<
-  [string, BigNumber, boolean, BigNumber],
-  { trader: string; pairIndex: BigNumber; open: boolean; orderId: BigNumber }
+  [BigNumber, string, BigNumber, boolean],
+  { orderId: BigNumber; trader: string; pairIndex: BigNumber; open: boolean }
 >;
 
 export type MarketOrderInitiatedEventFilter =
   TypedEventFilter<MarketOrderInitiatedEvent>;
 
 export type NftOrderInitiatedEvent = TypedEvent<
-  [string, string, BigNumber, BigNumber],
+  [BigNumber, string, string, BigNumber],
   {
+    orderId: BigNumber;
     nftHolder: string;
     trader: string;
     pairIndex: BigNumber;
-    orderId: BigNumber;
   }
 >;
 
@@ -375,13 +417,13 @@ export type PausedEvent = TypedEvent<[boolean], { paused: boolean }>;
 export type PausedEventFilter = TypedEventFilter<PausedEvent>;
 
 export type SlUpdateInitiatedEvent = TypedEvent<
-  [string, BigNumber, BigNumber, BigNumber, BigNumber],
+  [BigNumber, string, BigNumber, BigNumber, BigNumber],
   {
+    orderId: BigNumber;
     trader: string;
     pairIndex: BigNumber;
     index: BigNumber;
     newSl: BigNumber;
-    orderId: BigNumber;
   }
 >;
 
@@ -402,13 +444,13 @@ export type TpUpdatedEvent = TypedEvent<
 
 export type TpUpdatedEventFilter = TypedEventFilter<TpUpdatedEvent>;
 
-export interface TradingV6 extends BaseContract {
-  contractName: "TradingV6";
+export interface TradingV62 extends BaseContract {
+  contractName: "TradingV62";
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: TradingV6Interface;
+  interface: TradingV62Interface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -430,36 +472,15 @@ export interface TradingV6 extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    cancelOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
+    _msgSender(overrides?: CallOverrides): Promise<[string]>;
+
+    delegatedAction(
+      trader: string,
+      call_data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    closeTradeMarket(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    closeTradeMarketTimeout(
-      _order: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    done(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    executeNftOrder(
-      _orderType: BigNumberish,
-      _trader: string,
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _nftId: BigNumberish,
-      _nftType: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    delegations(arg0: string, overrides?: CallOverrides): Promise<[string]>;
 
     isDone(overrides?: CallOverrides): Promise<[boolean]>;
 
@@ -471,12 +492,97 @@ export interface TradingV6 extends BaseContract {
 
     maxPosDai(overrides?: CallOverrides): Promise<[BigNumber]>;
 
+    nftRewards(overrides?: CallOverrides): Promise<[string]>;
+
+    pairInfos(overrides?: CallOverrides): Promise<[string]>;
+
+    referrals(overrides?: CallOverrides): Promise<[string]>;
+
+    removeDelegate(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    setDelegate(
+      delegate: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    storageT(overrides?: CallOverrides): Promise<[string]>;
+
+    setMaxPosDai(
+      value: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    setLimitOrdersTimelock(
+      value: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    setMarketOrdersTimeout(
+      value: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    pause(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    done(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     openTrade(
       t: StorageInterfaceV5.TradeStruct,
-      _type: BigNumberish,
-      _spreadReductionId: BigNumberish,
-      _slippageP: BigNumberish,
-      _referral: string,
+      orderType: BigNumberish,
+      spreadReductionId: BigNumberish,
+      slippageP: BigNumberish,
+      referrer: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    closeTradeMarket(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    updateOpenLimitOrder(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      price: BigNumberish,
+      tp: BigNumberish,
+      sl: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    cancelOpenLimitOrder(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    updateTp(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      newTp: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    updateSl(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      newSl: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    executeNftOrder(
+      orderType: BigNumberish,
+      trader: string,
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      nftId: BigNumberish,
+      nftType: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -485,79 +591,21 @@ export interface TradingV6 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    pause(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    setLimitOrdersTimelock(
-      _blocks: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    setMarketOrdersTimeout(
-      _marketOrdersTimeout: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    setMaxPosDai(
-      _max: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    updateOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _price: BigNumberish,
-      _tp: BigNumberish,
-      _sl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    updateSl(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newSl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    updateTp(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newTp: BigNumberish,
+    closeTradeMarketTimeout(
+      _order: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
   };
 
-  cancelOpenLimitOrder(
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
+  _msgSender(overrides?: CallOverrides): Promise<string>;
+
+  delegatedAction(
+    trader: string,
+    call_data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  closeTradeMarket(
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  closeTradeMarketTimeout(
-    _order: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  done(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  executeNftOrder(
-    _orderType: BigNumberish,
-    _trader: string,
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
-    _nftId: BigNumberish,
-    _nftType: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  delegations(arg0: string, overrides?: CallOverrides): Promise<string>;
 
   isDone(overrides?: CallOverrides): Promise<boolean>;
 
@@ -569,12 +617,97 @@ export interface TradingV6 extends BaseContract {
 
   maxPosDai(overrides?: CallOverrides): Promise<BigNumber>;
 
+  nftRewards(overrides?: CallOverrides): Promise<string>;
+
+  pairInfos(overrides?: CallOverrides): Promise<string>;
+
+  referrals(overrides?: CallOverrides): Promise<string>;
+
+  removeDelegate(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  setDelegate(
+    delegate: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  storageT(overrides?: CallOverrides): Promise<string>;
+
+  setMaxPosDai(
+    value: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  setLimitOrdersTimelock(
+    value: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  setMarketOrdersTimeout(
+    value: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  pause(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  done(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   openTrade(
     t: StorageInterfaceV5.TradeStruct,
-    _type: BigNumberish,
-    _spreadReductionId: BigNumberish,
-    _slippageP: BigNumberish,
-    _referral: string,
+    orderType: BigNumberish,
+    spreadReductionId: BigNumberish,
+    slippageP: BigNumberish,
+    referrer: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  closeTradeMarket(
+    pairIndex: BigNumberish,
+    index: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  updateOpenLimitOrder(
+    pairIndex: BigNumberish,
+    index: BigNumberish,
+    price: BigNumberish,
+    tp: BigNumberish,
+    sl: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  cancelOpenLimitOrder(
+    pairIndex: BigNumberish,
+    index: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  updateTp(
+    pairIndex: BigNumberish,
+    index: BigNumberish,
+    newTp: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  updateSl(
+    pairIndex: BigNumberish,
+    index: BigNumberish,
+    newSl: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  executeNftOrder(
+    orderType: BigNumberish,
+    trader: string,
+    pairIndex: BigNumberish,
+    index: BigNumberish,
+    nftId: BigNumberish,
+    nftType: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -583,77 +716,21 @@ export interface TradingV6 extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  pause(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  setLimitOrdersTimelock(
-    _blocks: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  setMarketOrdersTimeout(
-    _marketOrdersTimeout: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  setMaxPosDai(
-    _max: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  updateOpenLimitOrder(
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
-    _price: BigNumberish,
-    _tp: BigNumberish,
-    _sl: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  updateSl(
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
-    _newSl: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  updateTp(
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
-    _newTp: BigNumberish,
+  closeTradeMarketTimeout(
+    _order: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   callStatic: {
-    cancelOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    _msgSender(overrides?: CallOverrides): Promise<string>;
 
-    closeTradeMarket(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
+    delegatedAction(
+      trader: string,
+      call_data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<string>;
 
-    closeTradeMarketTimeout(
-      _order: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    done(overrides?: CallOverrides): Promise<void>;
-
-    executeNftOrder(
-      _orderType: BigNumberish,
-      _trader: string,
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _nftId: BigNumberish,
-      _nftType: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    delegations(arg0: string, overrides?: CallOverrides): Promise<string>;
 
     isDone(overrides?: CallOverrides): Promise<boolean>;
 
@@ -665,12 +742,85 @@ export interface TradingV6 extends BaseContract {
 
     maxPosDai(overrides?: CallOverrides): Promise<BigNumber>;
 
+    nftRewards(overrides?: CallOverrides): Promise<string>;
+
+    pairInfos(overrides?: CallOverrides): Promise<string>;
+
+    referrals(overrides?: CallOverrides): Promise<string>;
+
+    removeDelegate(overrides?: CallOverrides): Promise<void>;
+
+    setDelegate(delegate: string, overrides?: CallOverrides): Promise<void>;
+
+    storageT(overrides?: CallOverrides): Promise<string>;
+
+    setMaxPosDai(value: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    setLimitOrdersTimelock(
+      value: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    setMarketOrdersTimeout(
+      value: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    pause(overrides?: CallOverrides): Promise<void>;
+
+    done(overrides?: CallOverrides): Promise<void>;
+
     openTrade(
       t: StorageInterfaceV5.TradeStruct,
-      _type: BigNumberish,
-      _spreadReductionId: BigNumberish,
-      _slippageP: BigNumberish,
-      _referral: string,
+      orderType: BigNumberish,
+      spreadReductionId: BigNumberish,
+      slippageP: BigNumberish,
+      referrer: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    closeTradeMarket(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    updateOpenLimitOrder(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      price: BigNumberish,
+      tp: BigNumberish,
+      sl: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    cancelOpenLimitOrder(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    updateTp(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      newTp: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    updateSl(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      newSl: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    executeNftOrder(
+      orderType: BigNumberish,
+      trader: string,
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      nftId: BigNumberish,
+      nftType: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -679,109 +829,71 @@ export interface TradingV6 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    pause(overrides?: CallOverrides): Promise<void>;
-
-    setLimitOrdersTimelock(
-      _blocks: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    setMarketOrdersTimeout(
-      _marketOrdersTimeout: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    setMaxPosDai(_max: BigNumberish, overrides?: CallOverrides): Promise<void>;
-
-    updateOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _price: BigNumberish,
-      _tp: BigNumberish,
-      _sl: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    updateSl(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newSl: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    updateTp(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newTp: BigNumberish,
+    closeTradeMarketTimeout(
+      _order: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
   };
 
   filters: {
-    "AddressUpdated(string,address)"(
-      name?: null,
-      a?: null
-    ): AddressUpdatedEventFilter;
-    AddressUpdated(name?: null, a?: null): AddressUpdatedEventFilter;
-
     "ChainlinkCallbackTimeout(uint256,tuple)"(
-      orderId?: null,
+      orderId?: BigNumberish | null,
       order?: null
     ): ChainlinkCallbackTimeoutEventFilter;
     ChainlinkCallbackTimeout(
-      orderId?: null,
+      orderId?: BigNumberish | null,
       order?: null
     ): ChainlinkCallbackTimeoutEventFilter;
 
     "CouldNotCloseTrade(address,uint256,uint256)"(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null
     ): CouldNotCloseTradeEventFilter;
     CouldNotCloseTrade(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null
     ): CouldNotCloseTradeEventFilter;
 
     "Done(bool)"(done?: null): DoneEventFilter;
     Done(done?: null): DoneEventFilter;
 
-    "MarketOrderInitiated(address,uint256,bool,uint256)"(
-      trader?: null,
-      pairIndex?: null,
-      open?: null,
-      orderId?: null
+    "MarketOrderInitiated(uint256,address,uint256,bool)"(
+      orderId?: BigNumberish | null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
+      open?: null
     ): MarketOrderInitiatedEventFilter;
     MarketOrderInitiated(
-      trader?: null,
-      pairIndex?: null,
-      open?: null,
-      orderId?: null
+      orderId?: BigNumberish | null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
+      open?: null
     ): MarketOrderInitiatedEventFilter;
 
-    "NftOrderInitiated(address,address,uint256,uint256)"(
-      nftHolder?: null,
-      trader?: null,
-      pairIndex?: null,
-      orderId?: null
+    "NftOrderInitiated(uint256,address,address,uint256)"(
+      orderId?: null,
+      nftHolder?: string | null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null
     ): NftOrderInitiatedEventFilter;
     NftOrderInitiated(
-      nftHolder?: null,
-      trader?: null,
-      pairIndex?: null,
-      orderId?: null
+      orderId?: null,
+      nftHolder?: string | null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null
     ): NftOrderInitiatedEventFilter;
 
     "NftOrderSameBlock(address,address,uint256)"(
-      nftHolder?: null,
-      trader?: null,
-      pairIndex?: null
+      nftHolder?: string | null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null
     ): NftOrderSameBlockEventFilter;
     NftOrderSameBlock(
-      nftHolder?: null,
-      trader?: null,
-      pairIndex?: null
+      nftHolder?: string | null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null
     ): NftOrderSameBlockEventFilter;
 
     "NumberUpdated(string,uint256)"(
@@ -791,38 +903,38 @@ export interface TradingV6 extends BaseContract {
     NumberUpdated(name?: null, value?: null): NumberUpdatedEventFilter;
 
     "OpenLimitCanceled(address,uint256,uint256)"(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null
     ): OpenLimitCanceledEventFilter;
     OpenLimitCanceled(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null
     ): OpenLimitCanceledEventFilter;
 
     "OpenLimitPlaced(address,uint256,uint256)"(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null
     ): OpenLimitPlacedEventFilter;
     OpenLimitPlaced(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null
     ): OpenLimitPlacedEventFilter;
 
     "OpenLimitUpdated(address,uint256,uint256,uint256,uint256,uint256)"(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null,
       newPrice?: null,
       newTp?: null,
       newSl?: null
     ): OpenLimitUpdatedEventFilter;
     OpenLimitUpdated(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null,
       newPrice?: null,
       newTp?: null,
@@ -832,79 +944,58 @@ export interface TradingV6 extends BaseContract {
     "Paused(bool)"(paused?: null): PausedEventFilter;
     Paused(paused?: null): PausedEventFilter;
 
-    "SlUpdateInitiated(address,uint256,uint256,uint256,uint256)"(
-      trader?: null,
-      pairIndex?: null,
+    "SlUpdateInitiated(uint256,address,uint256,uint256,uint256)"(
+      orderId?: BigNumberish | null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null,
-      newSl?: null,
-      orderId?: null
+      newSl?: null
     ): SlUpdateInitiatedEventFilter;
     SlUpdateInitiated(
-      trader?: null,
-      pairIndex?: null,
+      orderId?: BigNumberish | null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null,
-      newSl?: null,
-      orderId?: null
+      newSl?: null
     ): SlUpdateInitiatedEventFilter;
 
     "SlUpdated(address,uint256,uint256,uint256)"(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null,
       newSl?: null
     ): SlUpdatedEventFilter;
     SlUpdated(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null,
       newSl?: null
     ): SlUpdatedEventFilter;
 
     "TpUpdated(address,uint256,uint256,uint256)"(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null,
       newTp?: null
     ): TpUpdatedEventFilter;
     TpUpdated(
-      trader?: null,
-      pairIndex?: null,
+      trader?: string | null,
+      pairIndex?: BigNumberish | null,
       index?: null,
       newTp?: null
     ): TpUpdatedEventFilter;
   };
 
   estimateGas: {
-    cancelOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
+    _msgSender(overrides?: CallOverrides): Promise<BigNumber>;
+
+    delegatedAction(
+      trader: string,
+      call_data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    closeTradeMarket(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    closeTradeMarketTimeout(
-      _order: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    done(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    executeNftOrder(
-      _orderType: BigNumberish,
-      _trader: string,
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _nftId: BigNumberish,
-      _nftType: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    delegations(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     isDone(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -916,12 +1007,97 @@ export interface TradingV6 extends BaseContract {
 
     maxPosDai(overrides?: CallOverrides): Promise<BigNumber>;
 
+    nftRewards(overrides?: CallOverrides): Promise<BigNumber>;
+
+    pairInfos(overrides?: CallOverrides): Promise<BigNumber>;
+
+    referrals(overrides?: CallOverrides): Promise<BigNumber>;
+
+    removeDelegate(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    setDelegate(
+      delegate: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    storageT(overrides?: CallOverrides): Promise<BigNumber>;
+
+    setMaxPosDai(
+      value: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    setLimitOrdersTimelock(
+      value: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    setMarketOrdersTimeout(
+      value: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    pause(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    done(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     openTrade(
       t: StorageInterfaceV5.TradeStruct,
-      _type: BigNumberish,
-      _spreadReductionId: BigNumberish,
-      _slippageP: BigNumberish,
-      _referral: string,
+      orderType: BigNumberish,
+      spreadReductionId: BigNumberish,
+      slippageP: BigNumberish,
+      referrer: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    closeTradeMarket(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    updateOpenLimitOrder(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      price: BigNumberish,
+      tp: BigNumberish,
+      sl: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    cancelOpenLimitOrder(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    updateTp(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      newTp: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    updateSl(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      newSl: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    executeNftOrder(
+      orderType: BigNumberish,
+      trader: string,
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      nftId: BigNumberish,
+      nftType: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -930,79 +1106,24 @@ export interface TradingV6 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    pause(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    setLimitOrdersTimelock(
-      _blocks: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    setMarketOrdersTimeout(
-      _marketOrdersTimeout: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    setMaxPosDai(
-      _max: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    updateOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _price: BigNumberish,
-      _tp: BigNumberish,
-      _sl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    updateSl(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newSl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    updateTp(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newTp: BigNumberish,
+    closeTradeMarketTimeout(
+      _order: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    cancelOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
+    _msgSender(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    delegatedAction(
+      trader: string,
+      call_data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    closeTradeMarket(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    closeTradeMarketTimeout(
-      _order: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    done(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    executeNftOrder(
-      _orderType: BigNumberish,
-      _trader: string,
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _nftId: BigNumberish,
-      _nftType: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+    delegations(
+      arg0: string,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     isDone(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1019,12 +1140,97 @@ export interface TradingV6 extends BaseContract {
 
     maxPosDai(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    nftRewards(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    pairInfos(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    referrals(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    removeDelegate(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setDelegate(
+      delegate: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    storageT(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    setMaxPosDai(
+      value: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setLimitOrdersTimelock(
+      value: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setMarketOrdersTimeout(
+      value: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    pause(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    done(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     openTrade(
       t: StorageInterfaceV5.TradeStruct,
-      _type: BigNumberish,
-      _spreadReductionId: BigNumberish,
-      _slippageP: BigNumberish,
-      _referral: string,
+      orderType: BigNumberish,
+      spreadReductionId: BigNumberish,
+      slippageP: BigNumberish,
+      referrer: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    closeTradeMarket(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    updateOpenLimitOrder(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      price: BigNumberish,
+      tp: BigNumberish,
+      sl: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    cancelOpenLimitOrder(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    updateTp(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      newTp: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    updateSl(
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      newSl: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    executeNftOrder(
+      orderType: BigNumberish,
+      trader: string,
+      pairIndex: BigNumberish,
+      index: BigNumberish,
+      nftId: BigNumberish,
+      nftType: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -1033,45 +1239,8 @@ export interface TradingV6 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    pause(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setLimitOrdersTimelock(
-      _blocks: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setMarketOrdersTimeout(
-      _marketOrdersTimeout: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setMaxPosDai(
-      _max: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    updateOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _price: BigNumberish,
-      _tp: BigNumberish,
-      _sl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    updateSl(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newSl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    updateTp(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newTp: BigNumberish,
+    closeTradeMarketTimeout(
+      _order: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };

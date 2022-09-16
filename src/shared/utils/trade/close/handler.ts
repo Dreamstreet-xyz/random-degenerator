@@ -10,12 +10,13 @@ export const handleTradeClosed = (
     closeEvent:
         | GainsLiveEventDataInterface.MarketExecuted
         | GainsLiveEventDataInterface.LimitExecuted,
-    tv: GainsTradingDataInterface.Data
+    tv: GainsTradingDataInterface.Data,
+    currentBlock: number
 ) => {
-    const pnl = calculatePnLFromCloseEvent(closeEvent, tv);
+    const pnl = calculatePnLFromCloseEvent(closeEvent, tv, currentBlock);
 
     // TODO: refactor runClosedTradeToast to use calculated values above
-    runClosedTradeToast(closeEvent, tv);
+    runClosedTradeToast(closeEvent, tv, currentBlock);
 
     // if a win, submit to the winpopup
     if (pnl.percentProfitInclFee > 0) {

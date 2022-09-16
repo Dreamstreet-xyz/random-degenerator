@@ -4,7 +4,9 @@
 export type { ERC20 } from "./ERC20";
 export type { TradingV5 } from "./TradingV5";
 export type { TradingV6 } from "./TradingV6";
+export type { TradingV62 } from "./TradingV62";
 
 export { ERC20__factory } from "./factories/ERC20__factory";
 export { TradingV5__factory } from "./factories/TradingV5__factory";
 export { TradingV6__factory } from "./factories/TradingV6__factory";
+export { TradingV62__factory } from "./factories/TradingV62__factory";

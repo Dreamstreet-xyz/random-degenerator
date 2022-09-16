@@ -416,30 +416,13 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    "cancelOpenLimitOrder(uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     closeTradeMarket(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    "closeTradeMarket(uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     closeTradeMarketTimeout(
-      _order: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "closeTradeMarketTimeout(uint256)"(
       _order: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
@@ -454,42 +437,15 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    "executeNftOrder(uint8,address,uint256,uint256,uint256,uint256)"(
-      _orderType: BigNumberish,
-      _trader: string,
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _nftId: BigNumberish,
-      _nftType: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     isPaused(overrides?: CallOverrides): Promise<[boolean]>;
-
-    "isPaused()"(overrides?: CallOverrides): Promise<[boolean]>;
 
     limitOrdersTimelock(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    "limitOrdersTimelock()"(overrides?: CallOverrides): Promise<[BigNumber]>;
-
     maxPosDaiP(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "maxPosDaiP()"(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     minPosDai(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    "minPosDai()"(overrides?: CallOverrides): Promise<[BigNumber]>;
-
     openTrade(
-      t: StorageInterfaceV5.TradeStruct,
-      _limit: boolean,
-      _spreadReductionId: BigNumberish,
-      _slippageP: BigNumberish,
-      _referral: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "openTrade((address,uint256,uint256,uint256,uint256,uint256,bool,uint256,uint256,uint256),bool,uint256,uint256,address)"(
       t: StorageInterfaceV5.TradeStruct,
       _limit: boolean,
       _spreadReductionId: BigNumberish,
@@ -503,29 +459,13 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    "openTradeMarketTimeout(uint256)"(
-      _order: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     orderTimeout(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "orderTimeout()"(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     pause(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    "pause()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     setLimitOrdersTimelock(
-      _blocks: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "setLimitOrdersTimelock(uint256)"(
       _blocks: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
@@ -535,17 +475,7 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    "setMaxPosDaiP(uint256)"(
-      _maxP: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     setMinPosDai(
-      _min: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "setMinPosDai(uint256)"(
       _min: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
@@ -555,36 +485,14 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    "setOrderTimeout(uint256)"(
-      _orderTimeout: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     setStorageT(
-      _storageT: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "setStorageT(address)"(
       _storageT: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     storageT(overrides?: CallOverrides): Promise<[string]>;
 
-    "storageT()"(overrides?: CallOverrides): Promise<[string]>;
-
     updateOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _price: BigNumberish,
-      _slippageP: BigNumberish,
-      _tp: BigNumberish,
-      _sl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "updateOpenLimitOrder(uint256,uint256,uint256,uint256,uint256,uint256)"(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       _price: BigNumberish,
@@ -601,21 +509,7 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    "updateSl(uint256,uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newSl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     updateTp(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newTp: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "updateTp(uint256,uint256,uint256)"(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       _newTp: BigNumberish,
@@ -629,30 +523,13 @@ export interface TradingV5 extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  "cancelOpenLimitOrder(uint256,uint256)"(
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   closeTradeMarket(
     _pairIndex: BigNumberish,
     _index: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  "closeTradeMarket(uint256,uint256)"(
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   closeTradeMarketTimeout(
-    _order: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "closeTradeMarketTimeout(uint256)"(
     _order: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
@@ -667,42 +544,15 @@ export interface TradingV5 extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  "executeNftOrder(uint8,address,uint256,uint256,uint256,uint256)"(
-    _orderType: BigNumberish,
-    _trader: string,
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
-    _nftId: BigNumberish,
-    _nftType: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   isPaused(overrides?: CallOverrides): Promise<boolean>;
-
-  "isPaused()"(overrides?: CallOverrides): Promise<boolean>;
 
   limitOrdersTimelock(overrides?: CallOverrides): Promise<BigNumber>;
 
-  "limitOrdersTimelock()"(overrides?: CallOverrides): Promise<BigNumber>;
-
   maxPosDaiP(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "maxPosDaiP()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   minPosDai(overrides?: CallOverrides): Promise<BigNumber>;
 
-  "minPosDai()"(overrides?: CallOverrides): Promise<BigNumber>;
-
   openTrade(
-    t: StorageInterfaceV5.TradeStruct,
-    _limit: boolean,
-    _spreadReductionId: BigNumberish,
-    _slippageP: BigNumberish,
-    _referral: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "openTrade((address,uint256,uint256,uint256,uint256,uint256,bool,uint256,uint256,uint256),bool,uint256,uint256,address)"(
     t: StorageInterfaceV5.TradeStruct,
     _limit: boolean,
     _spreadReductionId: BigNumberish,
@@ -716,29 +566,13 @@ export interface TradingV5 extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  "openTradeMarketTimeout(uint256)"(
-    _order: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   orderTimeout(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "orderTimeout()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   pause(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  "pause()"(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   setLimitOrdersTimelock(
-    _blocks: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "setLimitOrdersTimelock(uint256)"(
     _blocks: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
@@ -748,17 +582,7 @@ export interface TradingV5 extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  "setMaxPosDaiP(uint256)"(
-    _maxP: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   setMinPosDai(
-    _min: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "setMinPosDai(uint256)"(
     _min: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
@@ -768,36 +592,14 @@ export interface TradingV5 extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  "setOrderTimeout(uint256)"(
-    _orderTimeout: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   setStorageT(
-    _storageT: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "setStorageT(address)"(
     _storageT: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   storageT(overrides?: CallOverrides): Promise<string>;
 
-  "storageT()"(overrides?: CallOverrides): Promise<string>;
-
   updateOpenLimitOrder(
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
-    _price: BigNumberish,
-    _slippageP: BigNumberish,
-    _tp: BigNumberish,
-    _sl: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "updateOpenLimitOrder(uint256,uint256,uint256,uint256,uint256,uint256)"(
     _pairIndex: BigNumberish,
     _index: BigNumberish,
     _price: BigNumberish,
@@ -814,21 +616,7 @@ export interface TradingV5 extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  "updateSl(uint256,uint256,uint256)"(
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
-    _newSl: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   updateTp(
-    _pairIndex: BigNumberish,
-    _index: BigNumberish,
-    _newTp: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "updateTp(uint256,uint256,uint256)"(
     _pairIndex: BigNumberish,
     _index: BigNumberish,
     _newTp: BigNumberish,
@@ -842,30 +630,13 @@ export interface TradingV5 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "cancelOpenLimitOrder(uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     closeTradeMarket(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "closeTradeMarket(uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     closeTradeMarketTimeout(
-      _order: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "closeTradeMarketTimeout(uint256)"(
       _order: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -880,42 +651,15 @@ export interface TradingV5 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "executeNftOrder(uint8,address,uint256,uint256,uint256,uint256)"(
-      _orderType: BigNumberish,
-      _trader: string,
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _nftId: BigNumberish,
-      _nftType: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     isPaused(overrides?: CallOverrides): Promise<boolean>;
-
-    "isPaused()"(overrides?: CallOverrides): Promise<boolean>;
 
     limitOrdersTimelock(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "limitOrdersTimelock()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     maxPosDaiP(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "maxPosDaiP()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     minPosDai(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "minPosDai()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     openTrade(
-      t: StorageInterfaceV5.TradeStruct,
-      _limit: boolean,
-      _spreadReductionId: BigNumberish,
-      _slippageP: BigNumberish,
-      _referral: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "openTrade((address,uint256,uint256,uint256,uint256,uint256,bool,uint256,uint256,uint256),bool,uint256,uint256,address)"(
       t: StorageInterfaceV5.TradeStruct,
       _limit: boolean,
       _spreadReductionId: BigNumberish,
@@ -929,25 +673,11 @@ export interface TradingV5 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "openTradeMarketTimeout(uint256)"(
-      _order: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     orderTimeout(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "orderTimeout()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     pause(overrides?: CallOverrides): Promise<void>;
 
-    "pause()"(overrides?: CallOverrides): Promise<void>;
-
     setLimitOrdersTimelock(
-      _blocks: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "setLimitOrdersTimelock(uint256)"(
       _blocks: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -957,50 +687,18 @@ export interface TradingV5 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "setMaxPosDaiP(uint256)"(
-      _maxP: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     setMinPosDai(_min: BigNumberish, overrides?: CallOverrides): Promise<void>;
-
-    "setMinPosDai(uint256)"(
-      _min: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
 
     setOrderTimeout(
       _orderTimeout: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "setOrderTimeout(uint256)"(
-      _orderTimeout: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     setStorageT(_storageT: string, overrides?: CallOverrides): Promise<void>;
-
-    "setStorageT(address)"(
-      _storageT: string,
-      overrides?: CallOverrides
-    ): Promise<void>;
 
     storageT(overrides?: CallOverrides): Promise<string>;
 
-    "storageT()"(overrides?: CallOverrides): Promise<string>;
-
     updateOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _price: BigNumberish,
-      _slippageP: BigNumberish,
-      _tp: BigNumberish,
-      _sl: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "updateOpenLimitOrder(uint256,uint256,uint256,uint256,uint256,uint256)"(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       _price: BigNumberish,
@@ -1017,21 +715,7 @@ export interface TradingV5 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "updateSl(uint256,uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newSl: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     updateTp(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newTp: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "updateTp(uint256,uint256,uint256)"(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       _newTp: BigNumberish,
@@ -1166,30 +850,13 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "cancelOpenLimitOrder(uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     closeTradeMarket(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "closeTradeMarket(uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     closeTradeMarketTimeout(
-      _order: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    "closeTradeMarketTimeout(uint256)"(
       _order: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
@@ -1204,42 +871,15 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "executeNftOrder(uint8,address,uint256,uint256,uint256,uint256)"(
-      _orderType: BigNumberish,
-      _trader: string,
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _nftId: BigNumberish,
-      _nftType: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     isPaused(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "isPaused()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     limitOrdersTimelock(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "limitOrdersTimelock()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     maxPosDaiP(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "maxPosDaiP()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     minPosDai(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "minPosDai()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     openTrade(
-      t: StorageInterfaceV5.TradeStruct,
-      _limit: boolean,
-      _spreadReductionId: BigNumberish,
-      _slippageP: BigNumberish,
-      _referral: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    "openTrade((address,uint256,uint256,uint256,uint256,uint256,bool,uint256,uint256,uint256),bool,uint256,uint256,address)"(
       t: StorageInterfaceV5.TradeStruct,
       _limit: boolean,
       _spreadReductionId: BigNumberish,
@@ -1253,29 +893,13 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "openTradeMarketTimeout(uint256)"(
-      _order: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     orderTimeout(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "orderTimeout()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     pause(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "pause()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     setLimitOrdersTimelock(
-      _blocks: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    "setLimitOrdersTimelock(uint256)"(
       _blocks: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
@@ -1285,17 +909,7 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "setMaxPosDaiP(uint256)"(
-      _maxP: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     setMinPosDai(
-      _min: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    "setMinPosDai(uint256)"(
       _min: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
@@ -1305,36 +919,14 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "setOrderTimeout(uint256)"(
-      _orderTimeout: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     setStorageT(
-      _storageT: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    "setStorageT(address)"(
       _storageT: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     storageT(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "storageT()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     updateOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _price: BigNumberish,
-      _slippageP: BigNumberish,
-      _tp: BigNumberish,
-      _sl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    "updateOpenLimitOrder(uint256,uint256,uint256,uint256,uint256,uint256)"(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       _price: BigNumberish,
@@ -1351,21 +943,7 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "updateSl(uint256,uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newSl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     updateTp(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newTp: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    "updateTp(uint256,uint256,uint256)"(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       _newTp: BigNumberish,
@@ -1380,30 +958,13 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "cancelOpenLimitOrder(uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     closeTradeMarket(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "closeTradeMarket(uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     closeTradeMarketTimeout(
-      _order: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "closeTradeMarketTimeout(uint256)"(
       _order: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
@@ -1418,46 +979,17 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "executeNftOrder(uint8,address,uint256,uint256,uint256,uint256)"(
-      _orderType: BigNumberish,
-      _trader: string,
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _nftId: BigNumberish,
-      _nftType: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     isPaused(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "isPaused()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     limitOrdersTimelock(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "limitOrdersTimelock()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     maxPosDaiP(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "maxPosDaiP()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     minPosDai(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    "minPosDai()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     openTrade(
-      t: StorageInterfaceV5.TradeStruct,
-      _limit: boolean,
-      _spreadReductionId: BigNumberish,
-      _slippageP: BigNumberish,
-      _referral: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "openTrade((address,uint256,uint256,uint256,uint256,uint256,bool,uint256,uint256,uint256),bool,uint256,uint256,address)"(
       t: StorageInterfaceV5.TradeStruct,
       _limit: boolean,
       _spreadReductionId: BigNumberish,
@@ -1471,29 +1003,13 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "openTradeMarketTimeout(uint256)"(
-      _order: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     orderTimeout(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "orderTimeout()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     pause(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "pause()"(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     setLimitOrdersTimelock(
-      _blocks: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "setLimitOrdersTimelock(uint256)"(
       _blocks: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
@@ -1503,17 +1019,7 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "setMaxPosDaiP(uint256)"(
-      _maxP: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     setMinPosDai(
-      _min: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "setMinPosDai(uint256)"(
       _min: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
@@ -1523,36 +1029,14 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "setOrderTimeout(uint256)"(
-      _orderTimeout: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     setStorageT(
-      _storageT: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "setStorageT(address)"(
       _storageT: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     storageT(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    "storageT()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     updateOpenLimitOrder(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _price: BigNumberish,
-      _slippageP: BigNumberish,
-      _tp: BigNumberish,
-      _sl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "updateOpenLimitOrder(uint256,uint256,uint256,uint256,uint256,uint256)"(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       _price: BigNumberish,
@@ -1569,21 +1053,7 @@ export interface TradingV5 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "updateSl(uint256,uint256,uint256)"(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newSl: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     updateTp(
-      _pairIndex: BigNumberish,
-      _index: BigNumberish,
-      _newTp: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "updateTp(uint256,uint256,uint256)"(
       _pairIndex: BigNumberish,
       _index: BigNumberish,
       _newTp: BigNumberish,

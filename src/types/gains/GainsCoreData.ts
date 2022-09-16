@@ -23,9 +23,16 @@ export declare module GainsCoreDataInterface {
         beingMarketClosed: boolean;
     }
 
+    export interface TradeInitialAccFees {
+        rollover: number;
+        funding: number;
+        openedAfterUpdate: boolean;
+    }
+
     export interface TradeWrapper {
         trade: Trade;
         tradeInfo: TradeInfo;
+        initialAccFees: TradeInitialAccFees;
     }
 
     export interface HistoricalTrade {

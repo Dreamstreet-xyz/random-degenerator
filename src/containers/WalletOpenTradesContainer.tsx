@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import ActiveTrades from 'components/app/ActiveTrades';
 import {
     useActiveGainsDataStore,
@@ -15,10 +14,6 @@ export default function WalletOpenTradesContainer() {
     const openTradesForWallet = useGainsDataStore(
         (state: GainsDataStoreInterface) => state.openTradesForWallet
     );
-
-    useEffect(() => {
-        console.log(openTradesForWallet);
-    }, [openTradesForWallet]);
 
     return <ActiveTrades trades={openTradesForWallet} network={network} />;
 }

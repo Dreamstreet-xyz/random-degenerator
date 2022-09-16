@@ -3,7 +3,7 @@ import { TransactionStatus } from '@usedapp/core';
 import { NetworkInterface } from 'shared/constants/networks';
 import useGasStation from 'shared/hooks//useGasStation';
 import { useContractFunction } from 'shared/hooks/useContractFunction';
-import { TradingV6__factory } from 'types/ethers-contracts';
+import { TradingV62__factory } from 'types/ethers-contracts';
 
 interface UseOpenTradeMarketTimeoutInputInterface {
     network: NetworkInterface;
@@ -23,7 +23,7 @@ export default function useOpenTradeMarketTimeout({
     tradeId,
 }: UseOpenTradeMarketTimeoutInputInterface): UseOpenTradeMarketTimeoutInterface {
     const { send, state, resetState } = useContractFunction(
-        TradingV6__factory.connect(network.tradingV6ContractAddress, library),
+        TradingV62__factory.connect(network.tradingV6_2ContractAddress, library),
         'openTradeMarketTimeout'
     );
     const gasStation = useGasStation();
