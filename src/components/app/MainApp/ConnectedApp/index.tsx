@@ -233,7 +233,6 @@ export default function ConnectedApp({ gas }) {
             const { pairIndex, positionSizeDai, leverage, position } = tradeOverrides;
 
             const pair = tradingVariables.pairs[pairIndex];
-
             pairOptions.options.push(`${pair.from}/${pair.to}`);
             collateralOptions.options.push(positionSizeDai.toString() + ' DAI');
             leverageOptions.options.push(leverage.toString() + 'x');
@@ -333,15 +332,12 @@ export default function ConnectedApp({ gas }) {
     }, [tradeStatus]);
 
     const handlePlay = async () => {
-        console.log('playing');
         handleBack();
 
         // validate bet
         const min = Math.min(parseInt(bet[0]), parseInt(bet[1]));
         const max = Math.max(parseInt(bet[0]), parseInt(bet[1]));
 
-        console.log('min', min);
-        console.log('max', max);
         if (min < minMaxBet[0]) {
             setBanner({
                 display: true,

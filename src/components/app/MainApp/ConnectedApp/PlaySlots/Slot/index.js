@@ -11,7 +11,6 @@ export default function Slot({ title, options, target, index }) {
     };
 
     const positionInWheel = ix => -ix * (360 / options.length);
-
     return (
         <Container>
             <div style={{ height: 36 }}>

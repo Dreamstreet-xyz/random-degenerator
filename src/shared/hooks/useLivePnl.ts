@@ -28,7 +28,7 @@ export default function useLivePnl(trade: GainsCoreDataInterface.TradeWrapper): 
         if (isActive) {
             setPnl(calculatePnL(trade, priceData, tradingVariables, currentBlock));
         }
-    }, [currentBlock]);
+    }, [trade, tradingVariables, priceData, isActive, currentBlock]);
 
     const freeze = (freeze: boolean) => {
         setIsActive(!freeze);

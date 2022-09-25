@@ -18,7 +18,7 @@ export const transformTradingVariables = (
             );
             return pair;
         });
-        console.log(data.pairs);
+
         data.minPosDaiInt = getMinPositionSizeForAssetTypes(data, [AssetType.CRYPTO]);
     } catch (error) {
         console.error(error);
@@ -41,6 +41,8 @@ export const transformTradingVariables = (
         accPerCollateral: parseFloat(fee.accPerCollateral) / 1e18,
         lastUpdateBlock: parseInt(fee.lastUpdateBlock),
     }));
+
+    data.pairs = data.pairs.filter(pair => !(pair.from === '' && pair.to === ''));
 
     return data;
 };
