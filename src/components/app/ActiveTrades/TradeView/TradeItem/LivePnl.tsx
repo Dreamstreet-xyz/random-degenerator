@@ -17,12 +17,12 @@ export default function LivePnl({
     }, [active]);
     return (
         <PnlData pnl={pnl}>
-            {pnl.pnlInclFee.toLocaleString(undefined, {
+            {pnl?.pnlInclFee?.toLocaleString(undefined, {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
             })}{' '}
-            DAI ( {pnl.pnlInclFee > 0 ? '+' : ''}
-            {(pnl.percentProfitInclFee * 100).toLocaleString(undefined, {
+            DAI ( {pnl?.pnlInclFee > 0 ? '+' : ''}
+            {(pnl?.percentProfitInclFee * 100).toLocaleString(undefined, {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
             })}

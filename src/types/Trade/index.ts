@@ -56,6 +56,9 @@ export type PnlType = {
     feeDai: number;
     pnlInclFee: number;
     percentProfitInclFee: number;
+    rolloverFeeDai?: number;
+    fundingFeeDai?: number;
+    closingFeeDai?: number;
 };
 
 export enum DegenLevel {

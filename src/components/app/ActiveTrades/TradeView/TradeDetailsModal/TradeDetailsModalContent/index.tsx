@@ -72,14 +72,47 @@ export default function TradeDetailsModalContent({
                 <Size>{price}</Size>
             </Row>
             <Row>
+                <Label>Rollover fee</Label>
+                <Size>
+                    {pnl?.rolloverFeeDai
+                        ? pnl.rolloverFeeDai.toLocaleString(undefined, {
+                              maximumFractionDigits: 2,
+                              minimumFractionDigits: 2,
+                          })
+                        : 'N/A'}
+                </Size>
+            </Row>
+            <Row>
+                <Label>Funding fee</Label>
+                <Size>
+                    {pnl?.fundingFeeDai
+                        ? pnl.fundingFeeDai.toLocaleString(undefined, {
+                              maximumFractionDigits: 2,
+                              minimumFractionDigits: 2,
+                          })
+                        : 'N/A'}
+                </Size>
+            </Row>
+            <Row>
+                <Label>Closing fee</Label>
+                <Size>
+                    {pnl?.closingFeeDai
+                        ? pnl.closingFeeDai.toLocaleString(undefined, {
+                              maximumFractionDigits: 2,
+                              minimumFractionDigits: 2,
+                          })
+                        : 'N/A'}
+                </Size>
+            </Row>
+            <Row>
                 <Label>Net PnL</Label>
                 <Pnl pnl={pnl}>
-                    {pnl.pnlInclFee.toLocaleString(undefined, {
+                    {pnl?.pnlInclFee?.toLocaleString(undefined, {
                         maximumFractionDigits: 2,
                         minimumFractionDigits: 2,
                     })}{' '}
-                    DAI ( {pnl.pnlInclFee > 0 ? '+' : ''}
-                    {(pnl.percentProfitInclFee * 100).toLocaleString(undefined, {
+                    DAI ( {pnl?.pnlInclFee > 0 ? '+' : ''}
+                    {(pnl?.percentProfitInclFee * 100).toLocaleString(undefined, {
                         maximumFractionDigits: 2,
                         minimumFractionDigits: 2,
                     })}

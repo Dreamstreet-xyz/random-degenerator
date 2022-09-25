@@ -19,7 +19,7 @@ export const handleTradeClosed = (
     runClosedTradeToast(closeEvent, tv, currentBlock);
 
     // if a win, submit to the winpopup
-    if (pnl.percentProfitInclFee > 0) {
-        TradeCelebration.trigger({ dai: pnl.pnlInclFee, percent: pnl.percentProfitInclFee });
+    if (pnl?.percentProfitInclFee > 0) {
+        TradeCelebration.trigger({ dai: pnl?.pnlInclFee, percent: pnl?.percentProfitInclFee });
     }
 };

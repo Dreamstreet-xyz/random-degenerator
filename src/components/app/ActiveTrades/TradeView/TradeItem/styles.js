@@ -79,7 +79,7 @@ export const Collateral = styled(TableData)`
 `;
 
 export const PnlData = styled(TableData)`
-    color: ${({ pnl }) => (pnl.pnlInclFee > 0 ? '#57e08b' : '#db5c91')};
+    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#57e08b' : '#db5c91')};
     text-align: right;
     /* width: 250px; // if pnl changing length shifting table content is annoying
 

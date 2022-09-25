@@ -43,16 +43,18 @@ export default function BetItem({ trade, tradeInfo, initialAccFees, loading, isC
     const { sl, tp, positionSizeDai, openPrice } = trade;
     const { pnl, freeze: pnlFreeze } = useLivePnl({ trade, tradeInfo, initialAccFees });
     const { price, freeze: priceFreeze } = useLivePrice({ trade, tradeInfo, initialAccFees });
-
+    console.log(pnl);
     const fsl = Number(formatUnits(sl, 10));
     const ftp = Number(formatUnits(tp, 10));
     const fop = Number(formatUnits(openPrice, 10));
     const opPercentage = ((fop - fsl) / (ftp - fsl)) * 100;
     const curPercentage = clamp(((price - fsl) / (ftp - fsl)) * 100, 0, 100);
-    const pnlPercent = (pnl.percentProfitInclFee * 100).toLocaleString(undefined, {
-        maximumFractionDigits: 2,
-        minimumFractionDigits: 2,
-    });
+    const pnlPercent =
+        pnl &&
+        (pnl.percentProfitInclFee * 100).toLocaleString(undefined, {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2,
+        });
 
     useEffect(() => {
         const _freeze = isClosed || loading;
@@ -68,11 +70,11 @@ export default function BetItem({ trade, tradeInfo, initialAccFees, loading, isC
                 </Tooltip>
                 <Tooltip content="Bet PnL">
                     <Pnl pnl={pnl}>
-                        {pnl.pnlInclFee.toLocaleString(undefined, {
+                        {pnl?.pnlInclFee?.toLocaleString(undefined, {
                             maximumFractionDigits: 2,
                             minimumFractionDigits: 2,
                         })}{' '}
-                        DAI ( {pnl.pnlInclFee > 0 ? '+' : ''}
+                        DAI ( {pnl?.pnlInclFee > 0 ? '+' : ''}
                         {pnlPercent}
                         %)
                     </Pnl>

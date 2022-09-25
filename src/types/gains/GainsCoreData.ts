@@ -24,8 +24,8 @@ export declare module GainsCoreDataInterface {
     }
 
     export interface TradeInitialAccFees {
-        rollover: number;
-        funding: number;
+        rollover: string;
+        funding: string;
         openedAfterUpdate: boolean;
     }
 

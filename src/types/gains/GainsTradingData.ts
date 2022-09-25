@@ -104,14 +104,39 @@ export declare module GainsTradingDataInterface {
         forexClosed?: boolean;
         stocksClosed?: boolean;
         blockConfirmations?: number;
-        pairParams?: PairParams[];
-        pairRolloverFees?: PairRolloverFees[];
-        pairFundingFees?: PairFundingFees[];
         vaultSwapFeeP?: number;
         maxNegativePnlOnOpenP?: number;
+        pairInfos: PairInfos;
 
         // computed
         minPosDaiInt: number;
         maxPosDaiInt: number;
+        pairParams?: PairParams[];
+        pairRolloverFees?: PairRolloverFees[];
+        pairFundingFees?: PairFundingFees[];
+    }
+
+    export interface PairInfos {
+        params: PairParamsRaw[];
+        rolloverFees: PairRolloverFeesRaw[];
+        fundingFees: PairFundingFeesRaw[];
+    }
+
+    export interface PairParamsRaw {
+        onePercentDepthAbove: string;
+        onePercentDepthBelow: string;
+        rolloverFeePerBlockP: string;
+        fundingFeePerBlockP: string;
+    }
+
+    export interface PairRolloverFeesRaw {
+        accPerCollateral: string;
+        lastUpdateBlock: string;
+    }
+
+    export interface PairFundingFeesRaw {
+        accPerOiLong: string;
+        accPerOiShort: string;
+        lastUpdateBlock: string;
     }
 }

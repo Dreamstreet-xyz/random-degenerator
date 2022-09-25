@@ -61,7 +61,7 @@ export const Sl = styled.p`
 
 export const Pnl = styled.p`
     ${fieldStyle}
-    color: ${({ pnl }) => (pnl.pnlInclFee > 0 ? '#57e08b' : '#db5c91')};
+    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#57e08b' : '#db5c91')};
 `;
 
 export const CloseButton = styled(Button)`

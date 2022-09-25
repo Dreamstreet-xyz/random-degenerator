@@ -29,6 +29,9 @@ const _calculatePnL = (
         feeDai,
         pnlInclFee: pnl - feeDai,
         percentProfitInclFee: (pnl - feeDai) / Number(formatEther(trade?.trade?.positionSizeDai)),
+        fundingFeeDai: fundingFee,
+        rolloverFeeDai: rolloverFee,
+        closingFeeDai: closingFee,
     };
 };
 

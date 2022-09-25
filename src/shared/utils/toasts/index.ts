@@ -27,7 +27,7 @@ const getActionType = (
         return ActionType.LIQ;
     }
 
-    return pnl.percentProfit > 0 ? ActionType.TP : ActionType.SL;
+    return pnl?.percentProfit > 0 ? ActionType.TP : ActionType.SL;
 };
 
 export const runClosedTradeToast = (

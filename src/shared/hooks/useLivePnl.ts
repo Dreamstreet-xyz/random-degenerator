@@ -22,13 +22,13 @@ export default function useLivePnl(trade: GainsCoreDataInterface.TradeWrapper): 
 
     const priceData = useGainsPriceStore((state: GainsPriceStoreInterface) => state.priceData);
     const [isActive, setIsActive] = useState(true);
-    const [pnl, setPnl] = useState(calculatePnL(trade, priceData, tradingVariables, currentBlock));
+    const [pnl, setPnl] = useState<PnlType>();
 
     useEffect(() => {
         if (isActive) {
             setPnl(calculatePnL(trade, priceData, tradingVariables, currentBlock));
         }
-    }, [tradingVariables, priceData, isActive]);
+    }, [currentBlock]);
 
     const freeze = (freeze: boolean) => {
         setIsActive(!freeze);

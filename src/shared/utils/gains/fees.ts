@@ -1,5 +1,4 @@
 import { formatEther, formatUnits } from '@ethersproject/units';
-import { BigNumber } from 'ethers';
 import type { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import type { GainsTradingDataInterface } from 'types/gains/GainsTradingData';
 
@@ -25,14 +24,14 @@ export const calculateFundingFee = (
     const pairParams = tv.pairParams;
     const pairFundingFees = tv.pairFundingFees;
     const openInterests = tv.openInterests;
-    const initialAccFundingFees = trade.initialAccFees?.funding;
+    const initialAccFundingFees = parseInt(trade.initialAccFees?.funding) / 1e18;
     const openedAfterUpdate = trade.initialAccFees?.openedAfterUpdate;
     const pairIndex = trade.trade.pairIndex;
     const buy = trade.trade.buy;
     const leveragedPosDai =
         Number(formatEther(trade.trade.initialPosToken)) *
-        Number(formatEther(trade.tradeInfo.tokenPriceDai)) *
-        Number(formatEther(trade.trade.leverage));
+        Number(formatUnits(trade.tradeInfo.tokenPriceDai, 10)) *
+        parseInt(trade.trade.leverage);
 
     if (
         !currentBlock ||
@@ -42,9 +41,9 @@ export const calculateFundingFee = (
         pairFundingFees === undefined ||
         pairFundingFees.length === 0 ||
         openInterests === undefined
-    )
+    ) {
         return 0;
-
+    }
     const { accPerOiLong, accPerOiShort, lastUpdateBlock } = pairFundingFees[pairIndex];
     const { fundingFeePerBlockP } = pairParams[pairIndex];
 
@@ -66,9 +65,9 @@ export const calculateRolloverFee = (
 ): number => {
     const posDai =
         Number(formatEther(trade.trade.initialPosToken)) *
-        Number(formatEther(trade.tradeInfo.tokenPriceDai));
+        Number(formatUnits(trade.tradeInfo.tokenPriceDai, 10));
     const pairIndex = trade.trade.pairIndex;
-    const initialAccRolloverFees = trade.initialAccFees?.rollover;
+    const initialAccRolloverFees = parseFloat(trade.initialAccFees?.rollover) / 1e18;
     const openedAfterUpdate = trade.initialAccFees?.openedAfterUpdate;
     const pairParams = tv.pairParams;
     const pairRolloverFees = tv.pairRolloverFees;

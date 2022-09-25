@@ -1,6 +1,5 @@
 import { formatEther } from '@ethersproject/units';
 import { GainsTradingDataInterface } from 'types/gains/GainsTradingData';
-import { GainsStreamingDataInterface } from 'types/gains/GainsStreamingData';
 import { GainsCoreDataInterface, AssetType } from 'types/gains/GainsCoreData';
 import { getMinPositionSizeForAssetTypes, getPairString } from 'shared/utils/gains/pairs';
 import { BigNumber } from 'ethers';
@@ -24,6 +23,24 @@ export const transformTradingVariables = (
     } catch (error) {
         console.error(error);
     }
+
+    data.pairFundingFees = data?.pairInfos?.fundingFees?.map(fee => ({
+        accPerOiLong: parseFloat(fee.accPerOiLong) / 1e18,
+        accPerOiShort: parseFloat(fee.accPerOiShort) / 1e18,
+        lastUpdateBlock: parseInt(fee.lastUpdateBlock),
+    }));
+
+    data.pairParams = data?.pairInfos?.params?.map(param => ({
+        onePercentDepthAbove: parseInt(param.onePercentDepthAbove),
+        onePercentDepthBelow: parseInt(param.onePercentDepthBelow),
+        rolloverFeePerBlockP: parseFloat(param.rolloverFeePerBlockP) / 1e12,
+        fundingFeePerBlockP: parseFloat(param.fundingFeePerBlockP) / 1e12,
+    }));
+
+    data.pairRolloverFees = data?.pairInfos?.rolloverFees?.map(fee => ({
+        accPerCollateral: parseFloat(fee.accPerCollateral) / 1e18,
+        lastUpdateBlock: parseInt(fee.lastUpdateBlock),
+    }));
 
     return data;
 };
@@ -56,6 +73,7 @@ export const transformTradeWrapper = (
                   .div(parseInt(ot?.trade?.leverage) || 1)
                   .toString()
             : ot.trade?.positionSizeDai;
+
     return {
         ...ot,
         trade: {

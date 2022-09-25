@@ -38,13 +38,13 @@ export default function ClosedTradeToast({ type, pair, price, pnl }: ClosedTrade
                 })}
             </Pair>
             <Result pnl={pnl}>
-                {pnl.pnlInclFee >= 0 ? '+' : ''}
-                {pnl.pnlInclFee.toLocaleString(undefined, {
+                {pnl?.pnlInclFee >= 0 ? '+' : ''}
+                {pnl?.pnlInclFee.toLocaleString(undefined, {
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
                 })}{' '}
-                ({pnl.pnlInclFee >= 0 ? '+' : ''}
-                {(pnl.percentProfitInclFee * 100).toLocaleString(undefined, {
+                ({pnl?.pnlInclFee >= 0 ? '+' : ''}
+                {(pnl?.percentProfitInclFee * 100).toLocaleString(undefined, {
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
                 })}
