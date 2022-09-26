@@ -25,7 +25,7 @@ export default function useLivePnl(trade: GainsCoreDataInterface.TradeWrapper): 
     const [pnl, setPnl] = useState<PnlType>();
 
     useEffect(() => {
-        if (isActive) {
+        if (isActive || !pnl) {
             setPnl(calculatePnL(trade, priceData, tradingVariables, currentBlock));
         }
     }, [trade, tradingVariables, priceData, isActive, currentBlock]);
