@@ -1,6 +1,6 @@
 import { formatEther, formatUnits } from '@ethersproject/units';
 import { Tooltip } from 'components/common';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import useLivePnl from 'shared/hooks/useLivePnl';
 import useLivePrice from 'shared/hooks/useLivePrice';
 import {
@@ -43,24 +43,37 @@ export default function BetItem({ trade, tradeInfo, initialAccFees, loading, isC
     const { sl, tp, positionSizeDai, openPrice } = trade;
     const { pnl, freeze: pnlFreeze } = useLivePnl({ trade, tradeInfo, initialAccFees });
     const { price, freeze: priceFreeze } = useLivePrice({ trade, tradeInfo, initialAccFees });
-    console.log(pnl);
-    const fsl = Number(formatUnits(sl, 10));
-    const ftp = Number(formatUnits(tp, 10));
-    const fop = Number(formatUnits(openPrice, 10));
-    const opPercentage = ((fop - fsl) / (ftp - fsl)) * 100;
-    const curPercentage = clamp(((price - fsl) / (ftp - fsl)) * 100, 0, 100);
-    const pnlPercent =
-        pnl &&
-        (pnl.percentProfitInclFee * 100).toLocaleString(undefined, {
-            maximumFractionDigits: 2,
-            minimumFractionDigits: 2,
-        });
+    const [fsl, ftp, fop] = useMemo(
+        () => [
+            Number(formatUnits(sl, 10)),
+            Number(formatUnits(tp, 10)),
+            Number(formatUnits(openPrice, 10)),
+        ],
+        [sl, tp, openPrice]
+    );
+    const opPercentage = useMemo(() => ((fop - fsl) / (ftp - fsl)) * 100, [fop, fsl, ftp]);
+    const curPercentage = useMemo(
+        () => clamp(((price - fsl) / (ftp - fsl)) * 100, 0, 100),
+        [price, fsl, ftp]
+    );
+    const pnlPercent = useMemo(
+        () =>
+            (pnl &&
+                (pnl.percentProfitInclFee * 100).toLocaleString(undefined, {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                })) ||
+            0,
+        [pnl]
+    );
 
     useEffect(() => {
         const _freeze = isClosed || loading;
         pnlFreeze(_freeze);
         priceFreeze(_freeze);
     }, [isClosed, loading]);
+
+    console.log(pnlPercent, getStatus(pnlPercent));
 
     return (
         <Container style={{ opacity: loading || isClosed ? 0.5 : 1 }}>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import {
     useActiveGainsDataStore,
@@ -14,15 +14,11 @@ export type UseLivePriceType = { price: number; freeze: (freeze: boolean) => voi
 export default function useLivePrice(trade: GainsCoreDataInterface.TradeWrapper): UseLivePriceType {
     const priceData = useGainsPriceStore((state: GainsPriceStoreInterface) => state.priceData);
     const [isActive, setIsActive] = useState(true);
-    const [price, setPrice] = useState(
-        getLivePairPrice(parseInt(trade?.trade?.pairIndex), priceData) || -1
+    const price = useMemo(
+        () =>
+            isActive ? getLivePairPrice(parseInt(trade?.trade?.pairIndex), priceData) || -1 : price,
+        [trade, priceData, isActive]
     );
-
-    useEffect(() => {
-        if (isActive) {
-            setPrice(getLivePairPrice(parseInt(trade?.trade?.pairIndex), priceData) || -1);
-        }
-    }, [priceData, isActive]);
 
     const freeze = (freeze: boolean) => {
         console.log('setting freeze', freeze);
