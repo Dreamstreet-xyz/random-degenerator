@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import {
     useActiveGainsDataStore,
@@ -12,6 +12,7 @@ import { PnlType } from 'types/Trade';
 export type UseLivePnlType = { pnl: PnlType; freeze: (freeze: boolean) => void };
 
 export default function useLivePnl(trade: GainsCoreDataInterface.TradeWrapper): UseLivePnlType {
+    const activePnl = useRef<PnlType>();
     const useGainsDataStore = useActiveGainsDataStore(
         (state: ActiveGainsDataStoreInterface) => state.store
     );
@@ -22,10 +23,14 @@ export default function useLivePnl(trade: GainsCoreDataInterface.TradeWrapper): 
 
     const priceData = useGainsPriceStore((state: GainsPriceStoreInterface) => state.priceData);
     const [isActive, setIsActive] = useState(true);
-    const pnl = useMemo(
-        () => (isActive ? calculatePnL(trade, priceData, tradingVariables, currentBlock) : pnl),
-        [trade, tradingVariables, currentBlock, isActive]
-    );
+    const pnl = useMemo(() => {
+        if (isActive) {
+            const _pnl = calculatePnL(trade, priceData, tradingVariables, currentBlock);
+            activePnl.current = _pnl;
+            return _pnl;
+        }
+        return activePnl.current;
+    }, [trade, tradingVariables, currentBlock, isActive]);
     const freeze = (freeze: boolean) => {
         setIsActive(!freeze);
     };
