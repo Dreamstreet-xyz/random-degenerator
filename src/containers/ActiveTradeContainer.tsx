@@ -10,6 +10,11 @@ import TradeItem from 'components/app/ActiveTrades/TradeView/TradeItem';
 import TradeDetailsModal from 'components/app/ActiveTrades/TradeView/TradeDetailsModal';
 import ToastChannel from 'shared/utils/toasts/ToastChannel';
 import BetItem from 'components/app/ActiveTrades/BetView/BetItem';
+import {
+    ActiveGainsDataStoreInterface,
+    useActiveGainsDataStore,
+} from 'shared/stores/ActiveGainsDataStore';
+import { GainsDataStoreInterface } from 'shared/stores/GainsDataStore';
 
 export default function ActiveTradeContainer({
     tradeWrapper,
@@ -36,6 +41,12 @@ export default function ActiveTradeContainer({
     });
     const txMessage = useMemo(() => getTransactionStatusMessage(state), [state]);
     const [frozen, setFrozen] = useState(false);
+    const useGainsDataStore = useActiveGainsDataStore(
+        (state: ActiveGainsDataStoreInterface) => state.store
+    );
+    const tradingVariables = useGainsDataStore(
+        (state: GainsDataStoreInterface) => state.tradingVariables
+    );
 
     useEffect(() => {
         if (tradeWrapper?.tradeInfo?.beingMarketClosed) {
@@ -112,6 +123,7 @@ export default function ActiveTradeContainer({
                         onClose={_closeTrade}
                         loading={frozen}
                         isClosed={isClosed || state?.status === 'Success'}
+                        tradingVariables={tradingVariables}
                     />
                 );
             case 'table':

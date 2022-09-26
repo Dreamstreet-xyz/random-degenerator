@@ -136,3 +136,24 @@ export const getTradeDetailsFromCloseEvent = (
 
     return {};
 };
+
+export const calculateLiqPrice = (
+    tradeWrapper: GainsCoreDataInterface.TradeWrapper,
+    tv: GainsTradingDataInterface.Data,
+    currentBlock: number
+) => {
+    const { trade, tradeInfo } = tradeWrapper;
+    const posDai =
+        Number(formatEther(trade.initialPosToken)) *
+        Number(formatUnits(tradeInfo.tokenPriceDai, 10));
+    const openPrice = Number(formatUnits(trade.openPrice, 10));
+    const leverage = +trade.leverage;
+
+    const rolloverFee = calculateRolloverFee(tradeWrapper, tv, currentBlock);
+    const fundingFee = calculateFundingFee(tradeWrapper, tv, currentBlock);
+
+    const liqPriceDistance =
+        (openPrice * (posDai * 0.9 - rolloverFee - fundingFee)) / posDai / leverage;
+
+    return trade.buy ? openPrice - liqPriceDistance : openPrice + liqPriceDistance;
+};

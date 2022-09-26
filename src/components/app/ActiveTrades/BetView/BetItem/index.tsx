@@ -4,6 +4,12 @@ import { useEffect, useMemo } from 'react';
 import useLivePnl from 'shared/hooks/useLivePnl';
 import useLivePrice from 'shared/hooks/useLivePrice';
 import {
+    ActiveGainsDataStoreInterface,
+    useActiveGainsDataStore,
+} from 'shared/stores/ActiveGainsDataStore';
+import { GainsDataStoreInterface } from 'shared/stores/GainsDataStore';
+import { calculateLiqPrice } from 'shared/utils/gains/trade';
+import {
     Container,
     Row,
     Collateral,
@@ -39,13 +45,30 @@ const getStatus = pnl => {
     return '🙌';
 };
 
-export default function BetItem({ trade, tradeInfo, initialAccFees, loading, isClosed, onClose }) {
+export default function BetItem({
+    trade,
+    tradeInfo,
+    initialAccFees,
+    loading,
+    isClosed,
+    onClose,
+    tradingVariables,
+}) {
     const { sl, tp, positionSizeDai, openPrice } = trade;
     const { pnl, freeze: pnlFreeze } = useLivePnl({ trade, tradeInfo, initialAccFees });
     const { price, freeze: priceFreeze } = useLivePrice({ trade, tradeInfo, initialAccFees });
+    const useGainsDataStore = useActiveGainsDataStore(
+        (state: ActiveGainsDataStoreInterface) => state.store
+    );
+    const currentBlock = useGainsDataStore((state: GainsDataStoreInterface) => state.currentBlock);
+    const liqPrice = useMemo(
+        () =>
+            calculateLiqPrice({ trade, tradeInfo, initialAccFees }, tradingVariables, currentBlock),
+        [trade, tradeInfo, initialAccFees, tradingVariables, currentBlock]
+    );
     const [fsl, ftp, fop] = useMemo(
         () => [
-            Number(formatUnits(sl, 10)),
+            sl !== '0' ? Number(formatUnits(sl, 10)) : liqPrice,
             Number(formatUnits(tp, 10)),
             Number(formatUnits(openPrice, 10)),
         ],
@@ -72,8 +95,6 @@ export default function BetItem({ trade, tradeInfo, initialAccFees, loading, isC
         pnlFreeze(_freeze);
         priceFreeze(_freeze);
     }, [isClosed, loading]);
-
-    console.log(pnlPercent, getStatus(pnlPercent));
 
     return (
         <Container style={{ opacity: loading || isClosed ? 0.5 : 1 }}>
