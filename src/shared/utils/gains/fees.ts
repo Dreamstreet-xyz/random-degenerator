@@ -6,14 +6,19 @@ export const calculateCloseFee = (
     trade: GainsCoreDataInterface.TradeWrapper,
     tv: GainsTradingDataInterface.Data
 ): number => {
-    const oid = Number(formatEther(trade.tradeInfo.openInterestDai));
+    const posDai = Number(formatEther(trade.trade.positionSizeDai));
+    const fees = tv?.fees[tv?.pairs[parseInt(trade?.trade?.pairIndex)]?.feeIndex || 0];
+    const leverage = +trade.trade.leverage;
+    const closeFeeP = Number(formatUnits(fees.closeFeeP, 12));
+    const nftLimitOrderFeeP = Number(formatUnits(fees.nftLimitOrderFeeP, 12));
+
     const feeP = Number(
         formatUnits(
             tv?.fees[tv?.pairs[parseInt(trade?.trade?.pairIndex)]?.feeIndex || 0]?.closeFeeP,
             10
         )
     );
-    return (feeP / 100) * oid;
+    return (closeFeeP + nftLimitOrderFeeP) * posDai * leverage;
 };
 
 export const calculateFundingFee = (
