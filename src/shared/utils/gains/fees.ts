@@ -60,7 +60,7 @@ export const calculateFundingFee = (
         ? accPerOiLong + fundingFeesPaidByLongs / longOi
         : accPerOiShort + (fundingFeesPaidByLongs * -1) / shortOi;
 
-    return leveragedPosDai * (pendingAccFundingFees - initialAccFundingFees);
+    return leveragedPosDai * (pendingAccFundingFees - initialAccFundingFees) || 0;
 };
 
 export const calculateRolloverFee = (

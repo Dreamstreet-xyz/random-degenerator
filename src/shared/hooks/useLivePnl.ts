@@ -34,6 +34,5 @@ export default function useLivePnl(trade: GainsCoreDataInterface.TradeWrapper): 
     const freeze = (freeze: boolean) => {
         setIsActive(!freeze);
     };
-
     return useMemo(() => ({ pnl, freeze }), [pnl, freeze]);
 }
