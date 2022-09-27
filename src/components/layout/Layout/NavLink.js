@@ -35,10 +35,10 @@ export const NavAnchor = styled.a`
 `;
 
 const Button = styled.button`
-    background-color: #613af0;
+    background: linear-gradient(45deg, #ad48f0, #ff46ff);
     color: white;
     padding: 8px 32px;
-    border-radius: 10px;
+    border-radius: 6px;
     font-weight: bold;
     font-size: 18px;
     cursor: pointer;
@@ -46,7 +46,7 @@ const Button = styled.button`
     margin-left: 8px;
 
     &:hover {
-        background-color: #502adb;
+        box-shadow: 0 0 0 3px #5eddfd;
     }
 `;
 

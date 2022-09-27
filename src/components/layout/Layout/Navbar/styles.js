@@ -15,7 +15,7 @@ export const NavContent = styled.div`
     display: flex;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 8px 16px;
+    padding: 16px;
     position: relative;
     z-index: 4;
     
@@ -68,27 +68,47 @@ export const BrandColumn = styled.div`
     }
 `;
 
-export const LogoName = styled.span`
+export const LogoName = styled.h1`
     position: relative;
-    font-size: 36px;
-    line-height: 54px;
-    font-family: Montserrat;
-    color: #dd21d4;
+    font-size: 42px;
+    line-height: 42px;
+    font-family: 'Exo';
+    transform: skew(-15deg);
+    letter-spacing: 0.02em;
     text-transform: uppercase;
-    ${retroTextGradient}
-    ${lightShine('RANDOM')}
+    margin-left: 8px;
+    
     @media (max-width: 768px) {
         font-size: 28px;
     }
+
+    span:first-child {
+        position: absolute;
+        background: linear-gradient(
+            #064274 25%,
+            #15affc 35%,
+            #ffffff 50%,
+            #271574 50%,
+            #6413e7 55%,
+            #ff61af 75%
+        );
+        -webkit-text-stroke: 0.01em #94a0b9;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        ${lightShine('RANDOM')}
+    }
 `;
 
-export const LogoName2 = styled.span`
-    font-size: 32px;
+export const LogoName2 = styled.h2`
+    font-size: 42px;
     position: absolute;
     left: -4px;
-    top: 42px;
-    text-transform: uppercase;
-    ${retroTextCursive}
+    top: 30px;
+    font-family: 'Mr Dafoe';
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 8px #d400ff, 0 0 0.3em #fe05e1, 0 0 0.8em #e100ff;
 
     @media (max-width: 768px) {
         font-size: 24px;

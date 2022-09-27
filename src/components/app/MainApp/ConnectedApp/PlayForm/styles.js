@@ -103,6 +103,6 @@ export const ActionRow = styled.div`
 `;
 
 export const SubmitButton = styled(Button)`
-    padding: 12px 64px;
-    font-size: 28px;
+    padding: 8px 64px;
+    font-size: 24px;
 `;

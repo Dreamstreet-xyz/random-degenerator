@@ -129,6 +129,14 @@ export default function App({ Component, pageProps }) {
                         href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
                         rel="stylesheet"
                     />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Exo:wght@900&display=swap"
+                        rel="stylesheet"
+                    />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap"
+                        rel="stylesheet"
+                    />
                     {/* Global Site Tag (gtag.js) - Google Analytics */}
                     <script
                         async

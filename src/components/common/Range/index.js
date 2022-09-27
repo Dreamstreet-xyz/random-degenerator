@@ -12,7 +12,13 @@ export default function Range({ min, max, value, onChange, tipFormatter }) {
             value={value}
             onChange={onChange}
             tipFormatter={tipFormatter}
-            trackStyle={[{ backgroundColor: '#7339fc', height: 12, cursor: 'pointer' }]}
+            trackStyle={[
+                {
+                    background: 'linear-gradient(to right, #6a34ff, #ff17b9)',
+                    height: 12,
+                    cursor: 'pointer',
+                },
+            ]}
             handleStyle={[
                 {
                     backgroundColor: '#916aff',
@@ -30,8 +36,7 @@ export default function Range({ min, max, value, onChange, tipFormatter }) {
                 },
             ]}
             railStyle={{
-                backgroundColor: '#ff31c1',
-                background: 'linear-gradient(to right, #916aff, #ff31c1)',
+                backgroundColor: '#31326e',
                 height: 12,
             }}
         />

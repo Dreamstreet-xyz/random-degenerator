@@ -128,8 +128,8 @@ export const lightShineAnimation = keyframes`
     50%{
         background-position: 100% 50%
     }
-    100%{
-        background-position: 0% 51%
+    100% {
+        background-position: 100% 50%
     }
 `;
 

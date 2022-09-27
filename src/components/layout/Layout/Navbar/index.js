@@ -53,14 +53,12 @@ export default function Navbar() {
                     <LeftSection>
                         <Link href="/" passHref>
                             <LogoRow>
-                                <Logo src="/images/rdg_logo.png" />
                                 <BrandColumn>
                                     <LogoName>
-                                        Random
-                                        <Spark delay={7.2} style={{ right: -14 }} />
-                                        <Spark delay={1.6} style={{ left: -14 }} />
+                                        <span>Random</span>
+                                        <Spark delay={1.6} style={{ left: -12, top: -4 }} />
                                     </LogoName>
-                                    <LogoName2> Degenerator</LogoName2>
+                                    <LogoName2>Degenerator</LogoName2>
                                 </BrandColumn>
                             </LogoRow>
                         </Link>
