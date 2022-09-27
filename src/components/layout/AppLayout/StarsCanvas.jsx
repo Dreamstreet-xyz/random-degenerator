@@ -64,9 +64,9 @@ function StarsCanvas() {
             const { width, height } = canvas;
 
             const gradient = context.createLinearGradient(width / 2, height, width / 2, 0);
-            gradient.addColorStop(0.02, '#2f1083');
-            gradient.addColorStop(0.5, '#081046');
-            gradient.addColorStop(1, '#04092b');
+            gradient.addColorStop(1, '#07033a');
+            gradient.addColorStop(0.5, '#0d0858');
+            gradient.addColorStop(0.02, '#470a8d');
 
             context.fillStyle = gradient;
             context.fillRect(0, 0, width, height);
@@ -135,11 +135,12 @@ function StarsCanvas() {
 
         init();
         update();
-        setInterval(update, 50);
+        const updateInterval = setInterval(update, 50);
 
         document.addEventListener('visibilitychange', handleVisibilityChange);
         return () => {
             document.removeEventListener('visibilitychange', handleVisibilityChange);
+            clearInterval(updateInterval);
         };
     }, []);
 

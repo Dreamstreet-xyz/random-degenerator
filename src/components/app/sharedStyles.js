@@ -22,7 +22,7 @@ export const Container = styled(motion.div)`
     max-width: 1200px;
     width: 100%;
     box-sizing: border-box;
-    background-color: #150736ee;
+    background-color: #0d083d;
     border-radius: 20px;
     padding: 48px;
     z-index: 1;

@@ -70,9 +70,8 @@ export const SettingsButton = styled(IconButton).attrs(() => ({
 `;
 
 export const FieldContainer = styled.div`
-    background-color: #201442;
     width: 100%;
-    padding: 16px 32px 32px 32px;
+    padding: 0px 0px 16px 0px;
     border-radius: 10px;
 
     @media (max-width: 500px) {

@@ -4,10 +4,11 @@ import Chat from 'components/app/Chat';
 import ChatTaskbar from 'components/app/Chat/ChatTaskbar';
 import { IconButton, Tooltip } from 'components/common';
 import StarsContainer from './StarsContainer';
+import StarsCanvas from './StarsCanvas';
 
 const Container = styled.div`
     position: relative;
-    background: radial-gradient(circle at 50% 1800px, #330f96 0, #160231 100%);
+    background: transparent;
 `;
 
 const Content = styled.div`
@@ -98,7 +99,7 @@ export default function AppLayout({ children }) {
 
     return (
         <Container>
-            <StarsContainer show={showStars} />
+            {showStars && <StarsCanvas />}
             <Content>{children}</Content>
             <MiscControls>
                 <Tooltip content={`${showStars ? 'Disable' : 'Enable'} background stars`}>

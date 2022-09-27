@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
@@ -5,6 +6,21 @@ const { createSliderWithTooltip } = Slider;
 const RCRange = createSliderWithTooltip(Slider.Range);
 
 export default function Range({ min, max, value, onChange, tipFormatter }) {
+    useEffect(() => {
+        const handleMouseUp = () => {
+            const handles = document.querySelectorAll?.('.rc-slider-handle');
+            handles.forEach(handle => handle?.blur());
+        };
+
+        window.addEventListener('mouseup', handleMouseUp);
+        window.addEventListener('touchend', handleMouseUp);
+
+        return () => {
+            window.removeEventListener('mouseup', handleMouseUp);
+            window.removeEventListener('touchend', handleMouseUp);
+        };
+    }, []);
+
     return (
         <RCRange
             min={min}
