@@ -13,6 +13,7 @@ import UserContextProvider from 'shared/contexts/UserContext';
 import GainsNetworkContextProvider from 'shared/contexts/GainsNetworkContext';
 import NetworkDetailsContextProvider from 'shared/contexts/NetworkDetailsContext';
 import networks from 'shared/constants/networks';
+import 'shared/styles/web3modal.css';
 
 library.add(icons);
 
