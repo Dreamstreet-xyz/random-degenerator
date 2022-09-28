@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Chat from 'components/app/Chat';
 import ChatTaskbar from 'components/app/Chat/ChatTaskbar';
 import { IconButton, Tooltip } from 'components/common';
-import StarsContainer from './StarsContainer';
 import StarsCanvas from './StarsCanvas';
 
 const Container = styled.div`
@@ -41,18 +40,7 @@ const Telegram = styled.img`
 `;
 
 export default function AppLayout({ children }) {
-    const [showStars, setShowStars] = useState(true);
     const [chats, setChats] = useState([]);
-
-    useEffect(() => {
-        const storedStars = JSON.parse(localStorage.getItem('ds:stars') ?? true);
-        setShowStars(storedStars);
-    }, []);
-
-    const toggleStars = () => {
-        localStorage.setItem('ds:stars', JSON.stringify(!showStars));
-        setShowStars(!showStars);
-    };
 
     const createChat = () => {
         if (chats.length === 0) {
@@ -99,18 +87,9 @@ export default function AppLayout({ children }) {
 
     return (
         <Container>
-            {showStars && <StarsCanvas />}
+            <StarsCanvas />
             <Content>{children}</Content>
             <MiscControls>
-                <Tooltip content={`${showStars ? 'Disable' : 'Enable'} background stars`}>
-                    <span>
-                        <MiscButton
-                            icon="star"
-                            onClick={toggleStars}
-                            color={showStars ? 'gold' : '#52388f'}
-                        />
-                    </span>
-                </Tooltip>
                 <Tooltip content="Come join our telegram!">
                     <span
                         style={{
