@@ -28,7 +28,7 @@ const Canvas = styled.canvas`
     pointer-events: none;
 `;
 
-const STARS_VELOCITY = -0.0005;
+const STARS_VELOCITY = -0.0003;
 const NUM_OF_STARS = 5000;
 
 function StarsCanvas() {
@@ -54,7 +54,7 @@ function StarsCanvas() {
                     size,
                     min: Math.max(size - 0.15, 0.2),
                     max: Math.min(size + 0.15, 0.5),
-                    change: Math.random() > 0.5 ? Math.random() / 50 : 0,
+                    change: Math.random() > 0.5 ? Math.random() / 80 : 0,
                     color: `rgb(255,255,255,${Math.random()})`, // #d3feff for lightmode
                 });
             }
@@ -80,8 +80,6 @@ function StarsCanvas() {
                     star.size * 5
                 );
             });
-
-            console.log('render stars');
         };
 
         const update = () => {
@@ -91,8 +89,6 @@ function StarsCanvas() {
                 star.y += STARS_VELOCITY;
                 if (star.y < 0) {
                     star.y += 1;
-                } else if (star.y > 1) {
-                    star.y -= 1;
                 }
                 if (star.size <= star.min) {
                     star.change *= -1;
@@ -135,7 +131,7 @@ function StarsCanvas() {
 
         init();
         update();
-        const updateInterval = setInterval(update, 50);
+        const updateInterval = setInterval(update, 30);
 
         document.addEventListener('visibilitychange', handleVisibilityChange);
         return () => {
