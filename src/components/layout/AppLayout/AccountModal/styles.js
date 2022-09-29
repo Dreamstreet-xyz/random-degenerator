@@ -30,6 +30,7 @@ export const UserInfo = styled.div`
 export const Address = styled.h3`
     font-size: 24px;
     font-weight: bold;
+    font-family: 'Fira Mono', monospace;
 `;
 
 export const ActionRow = styled.div`

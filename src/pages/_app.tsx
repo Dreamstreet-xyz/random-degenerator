@@ -138,6 +138,10 @@ export default function App({ Component, pageProps }) {
                         href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap"
                         rel="stylesheet"
                     />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap"
+                        rel="stylesheet"
+                    />
                     {/* Global Site Tag (gtag.js) - Google Analytics */}
                     <script
                         async

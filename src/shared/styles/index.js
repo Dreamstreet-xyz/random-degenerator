@@ -231,4 +231,35 @@ export const retroTextMarker = css`
     -webkit-filter: drop-shadow(2px 2px 20px #f008b7);
 `;
 
+export const newRetroText = css`
+    position: relative;
+    font-family: 'Exo';
+    transform: skew(-15deg);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    span:first-child {
+        position: absolute;
+        background: linear-gradient(
+            #064274 25%,
+            #15affc 35%,
+            #ffffff 50%,
+            #271574 50%,
+            #6413e7 55%,
+            #ff61af 75%
+        );
+        -webkit-text-stroke: 0.01em #94a0b9;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+`;
+
+export const newRetroTextCursive = css`
+    font-family: 'Mr Dafoe';
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 8px #d400ff, 0 0 0.3em #fe05e1, 0 0 0.8em #e100ff;
+`;
+
 export { colors, theme };

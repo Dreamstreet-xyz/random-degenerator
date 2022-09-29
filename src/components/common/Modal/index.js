@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import FocusTrap from 'focus-trap-react';
 import useEscape from 'shared/hooks/useEscape';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
+import useBodyScrollLock from 'shared/hooks/useBodyScrollLock';
 import { Overlay, Container, ModalHeader, ModalTitle, ModalBody, CloseButton } from './styles';
 
 function Modal({
@@ -17,13 +18,7 @@ function Modal({
     const [mouseDown, setMouseDown] = useState(false);
     const containerRef = useRef(null);
 
-    useEffect(() => {
-        if (isVisible) {
-            document.body.style.overflowY = 'hidden';
-        } else {
-            document.body.style.overflowY = 'unset';
-        }
-    }, [isVisible]);
+    useBodyScrollLock(containerRef, isVisible);
 
     useEscape(() => close());
 

@@ -58,10 +58,10 @@ export function NavButton({ onClick, children, disabled, loading, className }) {
     );
 }
 
-export default function NavLink({ href, as, onClick, children }) {
+export default function NavLink({ href, as, onClick, children, className }) {
     return (
         <Link href={href} as={as} onClick={onClick} passHref>
-            <NavAnchor>{children}</NavAnchor>
+            <NavAnchor className={className}>{children}</NavAnchor>
         </Link>
     );
 }

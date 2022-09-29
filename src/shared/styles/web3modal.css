@@ -2,7 +2,8 @@
     --modal-bg: #190c5e;
     --modal-border: #8a1ca5;
     --selected-border: rgb(255, 59, 222);
-    --text-description: rgb(209, 199, 236);
+    --text-description: rgb(200, 189, 228);
+    --text-light: rgb(217, 209, 240);
     --secondary-element-bg: rgb(55, 54, 129);
     --secondary-element-bg-active: rgb(92, 32, 255);
 }

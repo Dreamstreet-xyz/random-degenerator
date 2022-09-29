@@ -2,22 +2,21 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useUser } from 'shared/contexts/UserContext';
 import { truncateAddress } from 'shared/utils/contentHelpers';
-import { IconButton, Loading } from 'components/common';
-import { Menu } from 'components/common/Dropdown/styles';
+import { Loading } from 'components/common';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import { WalletConnectionStatus } from 'types/Wallet';
 import { prettifyEther } from 'shared/utils/wallet';
-import NavLink from '../NavLink';
-import AccountModal from '../../AppLayout/AccountModal';
-import NetworkDropdown from '../../AppLayout/NetworkDropdown';
-import NetworkButton from '../../AppLayout/NetworkButton';
+import NavLink from 'components/common/NavLink';
+import { Spark } from 'components/misc/Spark';
+import AccountModal from '../AccountModal';
+import NetworkDropdown from '../NetworkDropdown';
+import NetworkButton from '../NetworkButton';
 import {
     NavbarContainer,
     NavContent,
     LeftSection,
     LogoRow,
     BrandColumn,
-    Logo,
     LogoName,
     LogoName2,
     RightSection,
@@ -28,7 +27,6 @@ import {
     SpilloverButton,
     SpilloverDropdown,
     NavIcon,
-    Spark,
 } from './styles';
 
 export default function Navbar() {
@@ -107,28 +105,22 @@ export default function Navbar() {
                                 close={() => setShowMenu(false)}
                                 isVisible={showMenu}
                             >
-                                <Menu>
-                                    <NavLink href="/">
-                                        <NavIcon icon="dice" size={20} style={{ color: '#fff' }} />
-                                        Play
-                                    </NavLink>
-                                    <NavLink href="/history">
-                                        <NavIcon
-                                            icon="history"
-                                            size={20}
-                                            style={{ color: '#fff' }}
-                                        />
-                                        History
-                                    </NavLink>
-                                    <NavLink href="/about">
-                                        <NavIcon
-                                            icon={['fab', 'readme']}
-                                            size={20}
-                                            style={{ color: '#fff' }}
-                                        />
-                                        About
-                                    </NavLink>
-                                </Menu>
+                                <NavLink href="/">
+                                    <NavIcon icon="dice" size={20} style={{ color: '#fff' }} />
+                                    Play
+                                </NavLink>
+                                <NavLink href="/history">
+                                    <NavIcon icon="history" size={20} style={{ color: '#fff' }} />
+                                    History
+                                </NavLink>
+                                <NavLink href="/about">
+                                    <NavIcon
+                                        icon={['fab', 'readme']}
+                                        size={20}
+                                        style={{ color: '#fff' }}
+                                    />
+                                    About
+                                </NavLink>
                             </SpilloverDropdown>
                         </span>
                     </RightSection>
