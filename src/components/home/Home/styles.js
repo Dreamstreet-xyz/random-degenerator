@@ -69,10 +69,14 @@ export const ContentSection = styled.div`
 `;
 
 export const SectionTitle = styled.h2`
-    font-size: 64px;
+    font-size: 48px;
     font-weight: 700;
-    font-family: Exo;
-    transform: skew(-15deg);
+    font-family: Montserrat;
+`;
+
+export const Subtitle = styled.p`
+    font-size: 28px;
+    
 `;
 
 export const Row = styled.div`
