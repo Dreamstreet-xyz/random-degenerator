@@ -7,8 +7,8 @@ export const Navbar = ({}: NavbarProps) => {
     return (
         <Container>
             <Content>
-                <Logo src="/images/rdg_logo.png" />
                 <LeftSection>
+                    <Logo src="/images/rdg_logo.png" />
                     <NavLink href="./">App</NavLink>
                     <NavLink href="/about">About</NavLink>
                     <NavLink href="/history">History</NavLink>
