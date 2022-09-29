@@ -43,7 +43,7 @@ export const TableData = styled.td`
 `;
 
 export const PositionData = styled(TableData)`
-    color: ${({ position }) => (position === 'LONG' ? '#57e08b' : '#db5c91')};
+    color: ${({ position }) => (position === 'LONG' ? '#14ffe3' : '#ff5391')};
     @media (max-width: 800px) {
         order: 1;
         padding: 4px 0 4px 4px;
@@ -79,7 +79,7 @@ export const Collateral = styled(TableData)`
 `;
 
 export const PnlData = styled(TableData)`
-    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#57e08b' : '#db5c91')};
+    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#14ffe3' : '#ff5391')};
     text-align: right;
     /* width: 250px; // if pnl changing length shifting table content is annoying
 
@@ -106,7 +106,7 @@ export const CloseButtonWrapper = styled(TableData)`
 `;
 
 export const CloseButton = styled(IconButton).attrs({
-    color: '#a51d56',
+    color: '#db298b',
 })`
     && {
         display: inline-flex;

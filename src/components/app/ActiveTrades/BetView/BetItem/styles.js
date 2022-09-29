@@ -41,7 +41,7 @@ export const Pnl = styled.p`
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#57e08b' : '#db5c91')};
+    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#14ffe3' : '#ff5391')};
     margin-left: auto;
     margin-right: auto;
 
@@ -145,7 +145,7 @@ export const CloseButtonWrapper = styled.div`
 `;
 
 export const CloseButton = styled(IconButton).attrs({
-    color: '#a51d56',
+    color: '#db298b',
 })`
     && {
         display: inline-flex;

@@ -21,7 +21,7 @@ export default function NetworkInfo({ slow, gas, block }) {
                     <GasIndicator
                         href={network.gasUrl}
                         target="_blank"
-                        gradient={['#78f578', '#6affa3', '#78f578']}
+                        gradient={['#14ffe3', '#14ffe3', '#14ffe3']}
                     >
                         {Math.trunc(gas)} gwei
                     </GasIndicator>

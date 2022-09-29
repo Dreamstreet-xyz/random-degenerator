@@ -51,13 +51,13 @@ export const Title = styled(DefaultTitle)`
 
 export const GasIndicator = styled.div`
     display: flex;
-    color: #81f781;
+    color: #14ffe3;
     font-size: 1em;
     margin-right: 8px;
 `;
 
 export const GasPrice = styled.p`
-    color: #81f781;
+    color: #14ffe3;
     font-weight: bold;
 `;
 
