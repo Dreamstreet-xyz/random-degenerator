@@ -5,7 +5,7 @@ export const Container = styled.div``;
 
 export const Table = styled.table`
     width: 100%;
-    background-color: #21115c;
+    background-color: #230f6b;
     border-radius: 10px;
 
     @media (max-width: 800px) {
@@ -14,7 +14,7 @@ export const Table = styled.table`
 `;
 
 export const TableHead = styled.thead`
-    background-color: #21115c;
+    background-color: #230e70;
 
     @media (max-width: 800px) {
         display: none;
@@ -26,7 +26,7 @@ export const TableHeadRow = styled.tr`
 `;
 
 export const TableHeader = styled.th`
-    padding: 24px 16px;
+    padding: 16px 16px 12px;
     font-weight: bold;
     ${textGradientCustom(['#e386ff', '#fd8b8b'])}
 `;

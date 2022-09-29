@@ -15,11 +15,11 @@ export const TableRow = styled.tr`
     }
 
     &:hover {
-        background-color: #261663;
+        background-color: #291774;
     }
 
     &:active {
-        background-color: #2a1a68;
+        background-color: #291772;
     }
     
     @media (max-width: 800px) {

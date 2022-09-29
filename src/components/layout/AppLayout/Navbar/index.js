@@ -27,6 +27,7 @@ import {
     SpilloverButton,
     SpilloverDropdown,
     NavIcon,
+    Logo,
 } from './styles';
 
 export default function Navbar() {
@@ -51,6 +52,7 @@ export default function Navbar() {
                     <LeftSection>
                         <Link href="/" passHref>
                             <LogoRow>
+                                <Logo src="/images/rdg_logo.png" />
                                 <BrandColumn>
                                     <LogoName>
                                         <span>Random</span>

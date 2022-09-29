@@ -33,11 +33,22 @@ export const RightSection = styled.div`
     align-items: center;
 `;
 
+export const Logo = styled.img`
+    position: relative;
+    display: none;
+
+    @media (max-width: 768px) {
+        width: 36px;
+        height: 36px;
+        display: block;
+    }
+`;
+
 export const BrandColumn = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    @media (max-width: 710px) {
+    @media (max-width: 768px) {
         display: none;
     }
 `;
@@ -51,10 +62,6 @@ export const LogoName = styled.h1`
     letter-spacing: 0.02em;
     text-transform: uppercase;
     margin-left: 8px;
-    
-    @media (max-width: 768px) {
-        font-size: 28px;
-    }
 
     span:first-child {
         position: absolute;
@@ -83,11 +90,6 @@ export const LogoName2 = styled.h2`
     font-weight: bold;
     color: #ffffff;
     text-shadow: 0 0 8px #d400ff, 0 0 0.3em #fe05e1, 0 0 0.8em #e100ff;
-
-    @media (max-width: 768px) {
-        font-size: 24px;
-        top: 38px;
-    }
 `;
 
 export const LogoRow = styled.a`
