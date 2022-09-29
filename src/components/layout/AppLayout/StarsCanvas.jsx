@@ -5,11 +5,8 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
     height: 100vh;
+    width: 100%;
     background: transparent;
     z-index: -1;
     pointer-events: none;
@@ -18,11 +15,7 @@ const Container = styled.div`
 
 const Canvas = styled.canvas`
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     user-select: none;
     pointer-events: none;
