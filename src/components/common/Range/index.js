@@ -1,9 +1,25 @@
 import { useEffect } from 'react';
+import styled from 'styled-components';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 const { createSliderWithTooltip } = Slider;
 const RCRange = createSliderWithTooltip(Slider.Range);
+
+const StyledRange = styled(RCRange)`
+    .rc-slider-tooltip-inner {
+        background-color: rgb(98, 24, 236);
+        color: #fff;
+        border: 1px solid #ff05de;
+        font-size: 13px;
+        font-weight: bold;
+        box-shadow: unset;
+    }
+
+    .rc-slider-tooltip-arrow {
+        display: none;
+    }
+`;
 
 export default function Range({ min, max, value, onChange, tipFormatter }) {
     useEffect(() => {
@@ -22,7 +38,7 @@ export default function Range({ min, max, value, onChange, tipFormatter }) {
     }, []);
 
     return (
-        <RCRange
+        <StyledRange
             min={min}
             max={max}
             value={value}
