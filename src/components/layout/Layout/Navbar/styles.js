@@ -1,17 +1,6 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import NavLink from 'components/common/NavLink';
-import { shadowOutline } from 'shared/styles';
-
-const popIn = keyframes`
-    from {
-        transform: scale(0);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity:1;
-    }
-`;
+import { popIn, shadowOutline } from 'shared/styles';
 
 export const Container = styled.nav`
     width: 100%;
@@ -33,16 +22,18 @@ export const Content = styled.div`
 export const LeftSection = styled.div`
     display: flex;
     align-items: center;
-    animation-delay: .6s;
+    opacity: 0;
     animation: ${popIn} .25s ease-in-out forwards;
+    animation-delay: .6s;
 `;
 
 export const RightSection = styled.div`
     margin-left: auto;
     display: flex;
     align-items: center;
-    animation-delay: .6s;
+    opacity: 0;
     animation: ${popIn} .25s ease-in-out forwards;
+    animation-delay: .6s;
 `;
 
 export const AppLink = styled(NavLink)`

@@ -1,5 +1,5 @@
 import NavLink from 'components/common/NavLink';
-import { lightShine, newRetroText, newRetroTextCursive, shadowOutline } from 'shared/styles';
+import { fadeIn, fadeUp, lightShine, newRetroText, newRetroTextCursive, shadowOutline } from 'shared/styles';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -17,6 +17,9 @@ export const HeroSection = styled.div`
 
 export const BrandContainer = styled.div`
     font-size: 96px;
+    opacity: 0;
+    animation: ${fadeIn} .5s ease-in-out forwards;
+    animation-delay: .75s;
 `;
 
 export const FirstName = styled.h1`
@@ -47,6 +50,9 @@ export const PrimaryCta = styled(NavLink)`
         text-decoration: none;
         ${shadowOutline()}
     }
+    opacity: 0;
+    animation: ${fadeUp} .5s ease-in-out forwards;
+    animation-delay: 1s;
 `;
 
 export const PoweredBy = styled.div`
@@ -55,6 +61,9 @@ export const PoweredBy = styled.div`
     align-items: center;
     gap: 24px;
     height: 32px;
+    opacity: 0;
+    animation: ${fadeUp} .5s ease-in-out forwards;
+    animation-delay: 1.25s;
 `;
 
 export const BrandLogo = styled.img`

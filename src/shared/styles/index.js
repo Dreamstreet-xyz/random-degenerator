@@ -205,6 +205,28 @@ export const fadeIn = keyframes`
     }
 `;
 
+export const fadeUp = keyframes`
+    from {
+        transform: translateY(16px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+`;
+
+export const popIn = keyframes`
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity:1;
+    }
+`;
+
 const glow = keyframes`
     0% {
         opacity: 0;
