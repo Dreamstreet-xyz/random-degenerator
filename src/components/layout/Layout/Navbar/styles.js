@@ -1,13 +1,11 @@
-import NavLink, { NavAnchor } from 'components/common/NavLink';
+import NavLink from 'components/common/NavLink';
+import { shadowOutline } from 'shared/styles';
 import styled from 'styled-components';
 
 export const Container = styled.nav`
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
-    background-color: transparent;
     z-index: 9;
+    position: absolute;
 `;
 
 export const Content = styled.div`
@@ -33,20 +31,17 @@ export const RightSection = styled.div`
 `;
 
 export const AppLink = styled(NavLink)`
-    padding: 12px 48px;
+    padding: 10px 32px;
+    background: linear-gradient(45deg, #f838ff, #a31efc);
     border-radius: 5px;
     color: white;
-    background: linear-gradient(45deg, #ff4ef67f, #4ee4ff6f);
-    backdrop-filter: blur(2px);
     text-align: center;
     height: auto;
     line-height: 1;
-    transition: backdrop-filter .15s, filter .15s;
+
     &:hover {
         text-decoration: none;
-        box-shadow: 0 0 0 3px #5eddfd;
-        backdrop-filter: blur(10px);
-        filter: brightness(1.5);
+        ${shadowOutline()}
     }
 `;
 

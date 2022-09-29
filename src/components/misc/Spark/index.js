@@ -35,4 +35,5 @@ export const Spark = styled.span`
     animation: ${blip} 10s infinite;
     animation-delay: ${({ delay }) => `${delay}s`};
     animation-timing-function: ease-in-out;
+    scale: ${({ scale }) => scale && scale};
 `;

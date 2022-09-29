@@ -239,7 +239,6 @@ export const newRetroText = css`
     text-transform: uppercase;
 
     span:first-child {
-        position: absolute;
         background: linear-gradient(
             #064274 25%,
             #15affc 35%,
@@ -260,6 +259,10 @@ export const newRetroTextCursive = css`
     font-weight: bold;
     color: #ffffff;
     text-shadow: 0 0 8px #d400ff, 0 0 0.3em #fe05e1, 0 0 0.8em #e100ff;
+`;
+
+export const shadowOutline = props => css`
+    box-shadow: 0 0 0 ${props?.width || 3}px ${props?.color || '#5eddfd'};
 `;
 
 export { colors, theme };

@@ -14,7 +14,7 @@ export const Navbar = ({}: NavbarProps) => {
                     <NavLink href="/history">History</NavLink>
                 </LeftSection>
                 <RightSection>
-                    <AppLink href="./">Go to App</AppLink>
+                    <AppLink href="./">Launch App</AppLink>
                 </RightSection>
             </Content>
         </Container>
