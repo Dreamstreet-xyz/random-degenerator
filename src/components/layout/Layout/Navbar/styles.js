@@ -39,7 +39,7 @@ export const RightSection = styled.div`
 export const AppLink = styled(NavLink)`
     padding: 10px 32px;
     background: linear-gradient(45deg, #f838ff, #a31efc);
-    border-radius: 10px;
+    border-radius: 8px;
     color: white;
     text-align: center;
     height: auto;
@@ -58,6 +58,7 @@ export const Logo = styled.img`
     width: 48px;
     margin-right: 16px;
     display: inline-block;
+    cursor: pointer;
 
     @media (max-width: 710px) {
         margin-right: 0;

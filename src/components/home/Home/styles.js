@@ -134,7 +134,7 @@ export const SecondaryCta = styled(NavLink)`
     color: #ff62e5;
     height: 32px;
     padding: 8px 48px;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 18px;
     outline: none;
 

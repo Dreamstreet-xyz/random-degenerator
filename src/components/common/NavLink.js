@@ -39,7 +39,7 @@ const Button = styled.button`
     background: linear-gradient(45deg, #ad48f0, #ff46ff);
     color: white;
     padding: 8px 32px;
-    border-radius: 10px;
+    border-radius: 8px;
     font-weight: bold;
     font-size: 18px;
     cursor: pointer;

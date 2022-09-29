@@ -111,10 +111,9 @@ export const ConnectedUser = styled.div`
     display: flex;
     background-color: #3e247a;
     padding: 4px 8px;
-    border-radius: 10px;
+    border-radius: 8px;
     align-items: center;
     border: 1px solid #a400aa;
-    border-radius: 10px;
     font-size: 14px;
     margin: 0 16px;
     box-sizing: border-box;
@@ -134,7 +133,7 @@ export const CurrencyAmount = styled.div`
 export const UserAddress = styled.button`
     color: white;
     padding: 4px 8px;
-    border-radius: 7px;
+    border-radius: 6px;
     background-color: #1c0e3d;
     font-family: 'Fira Mono', monospace;
 `;

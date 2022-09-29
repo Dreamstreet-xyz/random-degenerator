@@ -11,7 +11,7 @@ export const Button = styled.button`
     color: white;
     padding: 4px 8px;
     min-height: 32px;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: ${({ isOpen }) => (isOpen ? '#5025b3' : '#3e1994')};
     font-weight: bold;
     font-size: 14px;
