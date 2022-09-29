@@ -30,14 +30,11 @@ export const Container = styled(motion.div)`
     border: 2px solid #651668;
     padding: ${({ padding }) => (padding ? `${padding}px` : '24px')};
     position: relative;
-
-    ${({ style }) => (style && style)}
 `;
 
 export const ModalTitle = styled.h2`
     font-weight: bold;
     font-size: 20px;
-    ${({ style }) => (style && style)}
 `;
 
 export const ModalHeader = styled.div`
@@ -52,7 +49,10 @@ export const CloseButton = styled(IconButton)`
     height: 24px;
     border-radius: 6px;
 
-    ${({ style }) => (style && style)}
+    &:focus {
+        box-shadow: unset;  
+        color: white;
+    }
 `;
 
 export const ModalBody = styled.div`

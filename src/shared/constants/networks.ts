@@ -28,7 +28,7 @@ export interface NetworkInterface extends Chain {
 export const polygon: NetworkInterface = {
     ...Polygon,
     symbol: 'MATIC',
-    icon: '/images/networks/polygon-logo.png',
+    icon: '/images/networks/polygon_logo.svg',
     gasUrl: 'https://polygonscan.com/gastracker',
     blocksUrl: 'https://polygonscan.com/blocks',
     addressUrl: 'https://polygonscan.com/address',
@@ -68,7 +68,7 @@ export const kovan: NetworkInterface = {
 export const mumbai: NetworkInterface = {
     ...Mumbai,
     symbol: 'muMATIC',
-    icon: '/images/networks/polygon-logo.png',
+    icon: '/images/networks/mumbai_logo.svg',
     gasUrl: 'https://mumbai.polygonscan.io/gastracker',
     blocksUrl: 'https://mumbai.polygonscan.com/blocks',
     addressUrl: 'https://mumbai.polygonscan.com/address',
