@@ -19,7 +19,7 @@ import { useEffect } from 'react';
 
 export const Home = () => {
     const { scrollY } = useViewportScroll();
-    const opacity = useTransform(scrollY, [0, 300, 500], [1, 0.9, 0]);
+    const opacity = useTransform(scrollY, [0, 150, 600], [1, 0.8, 0]);
 
     useEffect(() => {
         window.history.scrollRestoration = 'manual';
