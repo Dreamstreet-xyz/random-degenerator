@@ -14,8 +14,33 @@ import {
     SectionTitle,
     Row,
     Column,
+    CoinsContainer,
+    CoinsMarquee,
+    CoinIcon,
+    SecondaryCta,
 } from './styles';
 import { useEffect } from 'react';
+
+const coins = [
+    'aave',
+    'ada',
+    'algo',
+    'ape',
+    'bnb',
+    'btc',
+    'doge',
+    'eos',
+    'eth',
+    'link',
+    'matic',
+    'mkr',
+    'sol',
+    'sushi',
+    'uni',
+    'xrp',
+    'xtz',
+    'yfi',
+];
 
 export const Home = () => {
     const { scrollY } = useViewportScroll();
@@ -48,7 +73,7 @@ export const Home = () => {
             <ContentSection>
                 <Row>
                     <Column>
-                        <SectionTitle>We've got your favorites!</SectionTitle>
+                        <SectionTitle>Try your luck!</SectionTitle>
                     </Column>
                     <Column>
                         hey
@@ -63,13 +88,37 @@ export const Home = () => {
                     </Column>
                     <Column>hey</Column>
                 </Row>
+                <Row>
+                    <CoinsContainer>
+                        <CoinsMarquee>
+                            {coins.map((coin, index) => (
+                                <CoinIcon
+                                    key={index}
+                                    style={{ rotateY: index * 20, translateZ: 400 }}
+                                    animate={{
+                                        rotateY: -360 + index * 20,
+                                    }}
+                                    transition={{
+                                        type: 'tween',
+                                        duration: 180,
+                                        repeat: Infinity,
+                                        ease: 'linear',
+                                    }}
+                                    src={`images/tokens/${coin}.svg`}
+                                />
+                            ))}
+                        </CoinsMarquee>
+                    </CoinsContainer>
+                </Row>
             </ContentSection>
             <ContentSection>
                 <Row>
                     <Column>
-                        <SectionTitle>We've got your favorites!</SectionTitle>
+                        <SectionTitle>What are you waiting for?</SectionTitle>
                     </Column>
-                    <Column>hey</Column>
+                </Row>
+                <Row>
+                    <SecondaryCta href="./">I'm ready!</SecondaryCta>
                 </Row>
             </ContentSection>
         </Container>

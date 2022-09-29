@@ -1,6 +1,7 @@
+import styled, { keyframes, css } from 'styled-components';
 import NavLink from 'components/common/NavLink';
 import { fadeIn, fadeUp, lightShine, newRetroText, newRetroTextCursive, shadowOutline } from 'shared/styles';
-import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const Container = styled.div`
 `;
@@ -71,11 +72,12 @@ export const BrandLogo = styled.img`
 `;
 
 export const ContentSection = styled.div`
-    padding: 200px 16px;
+    padding: 250px 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 32px;
 `;
 
 export const SectionTitle = styled.h2`
@@ -98,4 +100,48 @@ export const Row = styled.div`
 export const Column = styled.div`
     display: flex;
     flex-direction: column;
+`;
+
+export const CoinsContainer = styled.div`
+    perspective: 1200px;
+    position: relative;
+    margin-top: 32px;
+`;
+
+export const CoinsMarquee = styled.div`
+    position: absolute;
+    display: flex;
+    gap: 16px;
+    backface-visibility: hidden;
+    z-index: 0;
+    transform: translateZ(200px);
+    transform-style: preserve-3d;
+`;
+
+export const CoinIcon = styled(motion.img)`
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    transform-origin: -12px 50% -600px;
+    backface-visibility:  hidden;
+`;
+
+export const SecondaryCta = styled(NavLink)`
+    border: 1px solid #392c58;
+    color: #ff62e5;
+    height: 32px;
+    padding: 8px 48px;
+    border-radius: 5px;
+    font-size: 18px;
+    outline: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        border-color: #372461;
+        color: #f032d0;
+    }
 `;

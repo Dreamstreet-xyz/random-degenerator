@@ -11,7 +11,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: 32px;
-    height: 360px;
+    height: 250px;
     padding-top: 64px;
 `;
 
