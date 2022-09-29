@@ -11,9 +11,12 @@ const StyledRange = styled(RCRange)`
         background-color: rgb(98, 24, 236);
         color: #fff;
         border: 1px solid #ff05de;
-        font-size: 13px;
+        font-size: 14px;
         font-weight: bold;
         box-shadow: unset;
+        padding: 6px;
+        min-height: auto;
+        height: auto;
     }
 
     .rc-slider-tooltip-arrow {
