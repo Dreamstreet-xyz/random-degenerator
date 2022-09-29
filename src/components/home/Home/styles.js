@@ -11,7 +11,7 @@ export const HeroSection = styled.div`
     justify-content: center;
     align-items: center;
     gap: 48px;
-    transform: translateY(-24px);
+    transform: translateY(0px);
     min-height: calc(100vh - 64px);
 `;
 
