@@ -54,6 +54,7 @@ export const PoweredBy = styled.div`
     justify-content: center;
     align-items: center;
     gap: 24px;
+    height: 32px;
 `;
 
 export const BrandLogo = styled.img`
