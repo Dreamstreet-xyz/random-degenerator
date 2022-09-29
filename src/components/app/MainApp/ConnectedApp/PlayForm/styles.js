@@ -65,7 +65,6 @@ export const SettingsButton = styled(IconButton).attrs(() => ({
     icon: 'cog',
 }))`
     background-color: transparent;
-    color: #fff;
     pointer-events: ${({ isOpen }) => (isOpen ? 'none' : 'initial')};
 `;
 

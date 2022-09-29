@@ -1,5 +1,5 @@
 import { Icon } from 'components/common';
-import { pulsingGlow } from 'shared/styles';
+import { pulsingGlow, shadowOutline } from 'shared/styles';
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
@@ -18,7 +18,7 @@ export const Button = styled.button`
     display: flex;
     align-items: center;
     pointer-events: ${({ isOpen }) => (isOpen ? 'none' : 'initial')};;
-
+    outline: none;
     @media (max-width: 700px) {
         span {
             font-size: 12px;
@@ -27,6 +27,10 @@ export const Button = styled.button`
 
     &:hover {
         background-color: #5025b3;
+    }
+
+    &:focus {
+        ${shadowOutline()}
     }
 
     ${({ invalid }) => (invalid && css`
@@ -45,6 +49,7 @@ export const Button = styled.button`
             animation-duration: 1s;
         }
     `)}
+    
 `;
 
 export const NetworkIcon = styled.img`

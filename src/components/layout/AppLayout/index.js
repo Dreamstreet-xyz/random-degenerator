@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { IconButton, Tooltip } from 'components/common';
+import { Tooltip } from 'components/common';
 import StarsCanvas from './StarsCanvas';
 import Navbar from './Navbar';
 
@@ -21,16 +20,6 @@ const MiscControls = styled.div`
     display: flex;
 `;
 
-const MiscButton = styled(IconButton)`
-    && {
-        background-color: transparent;
-        &:hover,
-        &:active {
-            background-color: transparent;
-        }
-    }
-`;
-
 const Telegram = styled.img`
     &:hover,
     &:active {
@@ -39,33 +28,12 @@ const Telegram = styled.img`
 `;
 
 export default function AppLayout({ children }) {
-    const [showStars, setShowStars] = useState(true);
-
-    useEffect(() => {
-        const storedStars = JSON.parse(localStorage.getItem('ds:stars') ?? true);
-        setShowStars(storedStars);
-    }, []);
-
-    const toggleStars = () => {
-        localStorage.setItem('ds:stars', JSON.stringify(!showStars));
-        setShowStars(!showStars);
-    };
-
     return (
         <Container>
             <Navbar />
-            {showStars && <StarsCanvas />}
+            <StarsCanvas />
             <Content>{children}</Content>
             <MiscControls>
-                <Tooltip content={`${showStars ? 'Disable' : 'Enable'} background stars`}>
-                    <span>
-                        <MiscButton
-                            icon="star"
-                            onClick={toggleStars}
-                            color={showStars ? 'gold' : '#52388f'}
-                        />
-                    </span>
-                </Tooltip>
                 <Tooltip content="Come join our telegram!">
                     <span
                         style={{

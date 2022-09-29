@@ -38,12 +38,14 @@ export const PrimaryCta = styled(NavLink)`
     color: white;
     height: 32px;
     padding: 8px 64px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 18px;
+    outline: none;
 
-    &:hover {
-        ${shadowOutline()}
+    &:hover,
+    &:focus {
         text-decoration: none;
+        ${shadowOutline()}
     }
 `;
 
@@ -51,7 +53,7 @@ export const PoweredBy = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 24px;
 `;
 
 export const BrandLogo = styled.img`
@@ -67,8 +69,10 @@ export const ContentSection = styled.div`
 `;
 
 export const SectionTitle = styled.h2`
-    font-size: 48px;
-    font-weight: bold;
+    font-size: 64px;
+    font-weight: 700;
+    font-family: Exo;
+    transform: skew(-15deg);
 `;
 
 export const Row = styled.div`

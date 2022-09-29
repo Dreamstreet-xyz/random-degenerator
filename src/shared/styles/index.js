@@ -40,30 +40,49 @@ export const containerScrollbar = css`
 `;
 
 export const windowScrollbar = css`
-    scrollbar-width: thin;
-
-    ::-webkit-scrollbar {
-        height: 8px;
-        width: 8px;
-        background: transparent;
+    &::-webkit-scrollbar {
+        width: 16px;
+        height: 16px;
+        background: none;
     }
 
-    ::-webkit-scrollbar-thumb {
-        background: #4e28d8;
-        border-radius: 3px;
-        -webkit-border-radius: 3px;
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-button {
+        width: 16px;
+        height: 16px;
+        background: silver;
+        box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px gray;
+        border: 1px solid;
+        border-color: silver #000 #000 silver;
     }
 
-    ::-webkit-scrollbar-thumb:hover {
-        background: #6c48f0;
+    &::-webkit-scrollbar-track {
+        background: #ccc;
     }
 
-    ::-webkit-scrollbar-thumb:active {
-        background: #8c6dff;
+    &::-webkit-scrollbar-button {
+        background-repeat: no-repeat;
+        background-size: 16px;
     }
 
-    ::-webkit-scrollbar-corner {
-        background: #000;
+    &::-webkit-scrollbar-button:single-button:vertical:decrement {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTAuNSAxNiAxNiIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj4KPG1ldGFkYXRhPk1hZGUgd2l0aCBQaXhlbHMgdG8gU3ZnIGh0dHBzOi8vY29kZXBlbi5pby9zaHNoYXcvcGVuL1hieHZOajwvbWV0YWRhdGE+CjxwYXRoIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTcgNWgxTTYgNmgzTTUgN2g1TTQgOGg3IiAvPgo8L3N2Zz4=');
+    }
+
+    &::-webkit-scrollbar-button:single-button:vertical:increment {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTAuNSAxNiAxNiIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj4KPG1ldGFkYXRhPk1hZGUgd2l0aCBQaXhlbHMgdG8gU3ZnIGh0dHBzOi8vY29kZXBlbi5pby9zaHNoYXcvcGVuL1hieHZOajwvbWV0YWRhdGE+CjxwYXRoIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQgNWg3TTUgNmg1TTYgN2gzTTcgOGgxIiAvPgo8L3N2Zz4=');
+    }
+
+    &::-webkit-scrollbar-button:single-button:horizontal:decrement {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTAuNSAxNiAxNiIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj4KPG1ldGFkYXRhPk1hZGUgd2l0aCBQaXhlbHMgdG8gU3ZnIGh0dHBzOi8vY29kZXBlbi5pby9zaHNoYXcvcGVuL1hieHZOajwvbWV0YWRhdGE+CjxwYXRoIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTggM2gxTTcgNGgyTTYgNWgzTTUgNmg0TTYgN2gzTTcgOGgyTTggOWgxIiAvPgo8L3N2Zz4=');
+    }
+
+    &::-webkit-scrollbar-button:single-button:horizontal:increment {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTAuNSAxNiAxNiIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj4KPG1ldGFkYXRhPk1hZGUgd2l0aCBQaXhlbHMgdG8gU3ZnIGh0dHBzOi8vY29kZXBlbi5pby9zaHNoYXcvcGVuL1hieHZOajwvbWV0YWRhdGE+CjxwYXRoIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTYgM2gxTTYgNGgyTTYgNWgzTTYgNmg0TTYgN2gzTTYgOGgyTTYgOWgxIiAvPgo8L3N2Zz4=');
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: silver;
     }
 `;
 

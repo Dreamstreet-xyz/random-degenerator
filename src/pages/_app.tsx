@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         font-family: Roboto;
-        background-color: #0a051f;
+        background-color: #050a1f;
         color: #fff;
         overflow-x: hidden;
         overscroll-behavior-y: none;

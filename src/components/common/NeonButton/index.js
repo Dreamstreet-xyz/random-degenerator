@@ -9,7 +9,7 @@ export default function NeonButton({ forwardRef, disabled, loading, title, type,
             type={type || 'button'}
             {...rest}
         >
-            {loading ? <Loading style={{ backgroundColor: '#ee2dff' }} /> : title}
+            {loading ? <Loading style={{ backgroundColor: 'white' }} /> : title}
         </StyledButton>
     );
 }

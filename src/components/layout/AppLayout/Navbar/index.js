@@ -54,7 +54,7 @@ export default function Navbar() {
                                 <BrandColumn>
                                     <LogoName>
                                         <span>Random</span>
-                                        <Spark delay={1.6} style={{ left: -12, top: -4 }} />
+                                        <Spark delay={1.6} style={{ left: -14, top: -10 }} />
                                     </LogoName>
                                     <LogoName2>Degenerator</LogoName2>
                                 </BrandColumn>

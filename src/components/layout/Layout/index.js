@@ -4,12 +4,12 @@ import Footer from './Footer';
 
 const Content = styled.main``;
 
-export default function Layout({ show, children }) {
+export default function Layout({ children }) {
     return (
         <>
-            {show && <Navbar />}
+            <Navbar />
             <Content>{children}</Content>
-            {/* {show && <Footer />} */}
+            <Footer />
         </>
     );
 }

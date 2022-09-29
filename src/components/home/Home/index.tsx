@@ -15,10 +15,15 @@ import {
     Row,
     Column,
 } from './styles';
+import { useEffect } from 'react';
 
 export const Home = () => {
     const { scrollY } = useViewportScroll();
     const opacity = useTransform(scrollY, [0, 300, 500], [1, 0.9, 0]);
+
+    useEffect(() => {
+        window.history.scrollRestoration = 'manual';
+    }, []);
 
     return (
         <Container>
@@ -45,7 +50,10 @@ export const Home = () => {
                     <Column>
                         <SectionTitle>We've got your favorites!</SectionTitle>
                     </Column>
-                    <Column>hey</Column>
+                    <Column>
+                        hey
+                        <div></div>
+                    </Column>
                 </Row>
             </ContentSection>
             <ContentSection>

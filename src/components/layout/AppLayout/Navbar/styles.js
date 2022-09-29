@@ -135,7 +135,6 @@ export const UserAddress = styled.button`
     border-radius: 7px;
     background-color: #1c0e3d;
     font-family: 'Fira Mono', monospace;
-
 `;
 
 export const SpilloverButton = styled(IconButton)`

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
+import { shadowOutline } from 'shared/styles';
 
 export const NavItem = css`
     height: 54px;
@@ -38,15 +39,18 @@ const Button = styled.button`
     background: linear-gradient(45deg, #ad48f0, #ff46ff);
     color: white;
     padding: 8px 32px;
-    border-radius: 6px;
+    border-radius: 10px;
     font-weight: bold;
     font-size: 18px;
     cursor: pointer;
     text-decoration: none;
     margin-left: 8px;
+    outline: none;
 
-    &:hover {
-        box-shadow: 0 0 0 3px #5eddfd;
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        ${shadowOutline()}
     }
 `;
 

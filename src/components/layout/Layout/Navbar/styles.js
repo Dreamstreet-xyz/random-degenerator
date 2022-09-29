@@ -33,13 +33,15 @@ export const RightSection = styled.div`
 export const AppLink = styled(NavLink)`
     padding: 10px 32px;
     background: linear-gradient(45deg, #f838ff, #a31efc);
-    border-radius: 5px;
+    border-radius: 10px;
     color: white;
     text-align: center;
     height: auto;
     line-height: 1;
+    outline: none;
 
-    &:hover {
+    &:hover,
+    &:focus {
         text-decoration: none;
         ${shadowOutline()}
     }

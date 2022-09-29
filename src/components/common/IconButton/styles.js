@@ -1,3 +1,4 @@
+import { shadowOutline } from 'shared/styles';
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
@@ -11,18 +12,15 @@ export const StyledButton = styled.button`
     border-radius: 10px;
     font-weight: bold;
     outline: none;
-    background-color: #26203d;
-    color: white;
+    background-color: #322958;
+    color: #dcd8ee;
 
     &:hover:enabled {
-        background-color: #211a41;
+        color: #fff;
     }
 
-    &:active {
-        background-color: #2d264d;
-    }
     
-    &:focus {
-        box-shadow: 0px 0px 0px 2px #4a5297;
+    &:focus-visible {
+        ${shadowOutline()}
     }
 `;

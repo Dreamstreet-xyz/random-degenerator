@@ -2,6 +2,7 @@ import Accordion from './Accordion';
 import AccordionButton from './AccordionButton';
 import Banner from './Banner';
 import Button from './Button';
+import CoinLink from './CoinLink';
 import Dropdown from './Dropdown';
 import DropdownToggleButton from './DropdownToggleButton';
 import EmptyStatePlaceholder from './EmptyStatePlaceholder';
@@ -19,6 +20,7 @@ export {
     AccordionButton,
     Banner,
     Button,
+    CoinLink,
     Dropdown,
     DropdownToggleButton,
     EmptyStatePlaceholder,
