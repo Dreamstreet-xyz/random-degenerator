@@ -100,6 +100,7 @@ export const Row = styled.div`
 export const Column = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 32px;
 `;
 
 export const CoinsContainer = styled.div`
@@ -129,13 +130,14 @@ export const CoinIcon = styled(motion.img)`
     backface-visibility:  hidden;
 `;
 
-export const SecondaryCta = styled(NavLink)`
+const secondaryCta = css`
     border: 1px solid #392c58;
     color: #ff62e5;
     height: 32px;
     padding: 8px 48px;
     border-radius: 10px;
     font-size: 18px;
+    font-weight: bold;
     outline: none;
 
     &:hover,
@@ -144,4 +146,22 @@ export const SecondaryCta = styled(NavLink)`
         border-color: #372461;
         color: #f032d0;
     }
+`;
+
+export const SecondaryNavLink = styled(NavLink)`
+    ${secondaryCta}
+`;
+
+export const SecondaryLink = styled.a`
+    ${secondaryCta}
+    display: block;
+    text-decoration: none;
+    width: max-content;
+    line-height: 32px;
+`;
+
+export const Grid = styled.img`
+    width: 300px;
+    filter: invert(1);
+    transform: perspective(80px) rotateX(40deg) rotateY(30deg) rotateZ(30deg) scale(1, .5);
 `;

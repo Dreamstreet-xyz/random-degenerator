@@ -8,7 +8,7 @@ export const NavItem = css`
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #e0d1ee;
+    color: #efeaf8;
     padding: 0px 8px;
     margin: 0px 4px;
     cursor: pointer;

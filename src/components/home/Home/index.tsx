@@ -17,7 +17,9 @@ import {
     CoinsContainer,
     CoinsMarquee,
     CoinIcon,
-    SecondaryCta,
+    SecondaryNavLink,
+    SecondaryLink,
+    Grid,
 } from './styles';
 import { useEffect } from 'react';
 
@@ -114,11 +116,24 @@ export const Home = () => {
             <ContentSection>
                 <Row>
                     <Column>
+                        <SectionTitle>Built on gTrade</SectionTitle>
+                        <SecondaryLink href="https://gains.trade" target="_blank">
+                            Go to gTrade
+                        </SecondaryLink>
+                    </Column>
+                    <Column>
+                        <Grid src="images/home/grid.svg" />
+                    </Column>
+                </Row>
+            </ContentSection>
+            <ContentSection>
+                <Row>
+                    <Column>
                         <SectionTitle>What are you waiting for?</SectionTitle>
                     </Column>
                 </Row>
                 <Row>
-                    <SecondaryCta href="./">I'm ready!</SecondaryCta>
+                    <SecondaryNavLink href="./">I'm ready!</SecondaryNavLink>
                 </Row>
             </ContentSection>
         </Container>

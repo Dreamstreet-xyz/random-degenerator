@@ -82,7 +82,7 @@ export default function Footer() {
                 <LeftSection>
                     <span>© Dreamstreet</span>
                 </LeftSection>
-                <RightSection></RightSection>
+                <RightSection>🍏💪</RightSection>
             </BottomRow>
         </Container>
     );
