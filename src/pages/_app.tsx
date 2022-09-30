@@ -113,6 +113,7 @@ export default function App({ Component, pageProps }) {
                     />
                     <link rel="manifest" href="images/favs/site.webmanifest"></link>
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <meta name="theme-color" content="#1b095a" />
                     <link rel="preconnect" href="https://fonts.googleapis.com" />
                     <link
                         href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
