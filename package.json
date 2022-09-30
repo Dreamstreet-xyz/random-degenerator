@@ -29,7 +29,7 @@
         "ethereum-input-data-decoder": "^0.3.5",
         "ethers": "^5.5.3",
         "focus-trap-react": "^8.9.1",
-        "framer-motion": "^5.6.0",
+        "framer-motion": "^6.5.1",
         "html2canvas": "^1.4.1",
         "next": "12.0.8",
         "rc-slider": "^9.7.5",
