@@ -87,13 +87,14 @@ export const SectionTitle = styled.h2`
 `;
 
 export const Subtitle = styled.p`
-    font-size: 28px;
-    
+    font-size: 20px;
+    color: #9292c5;
 `;
 
 export const Row = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 48px;
 `;
 
@@ -132,7 +133,7 @@ export const CoinIcon = styled(motion.img)`
 
 const secondaryCta = css`
     border: 1px solid #392c58;
-    color: #ff62e5;
+    color: #db2aff;
     height: 32px;
     padding: 8px 48px;
     border-radius: 10px;
@@ -143,8 +144,10 @@ const secondaryCta = css`
     &:hover,
     &:focus {
         text-decoration: none;
-        border-color: #372461;
-        color: #f032d0;
+        border-color: #ff2aed;
+        color: #ff2aed;
+        text-shadow: 0 0 8px #ff2aed50;
+        box-shadow: 0 0 24px 8px #ff2aed50;
     }
 `;
 
@@ -162,6 +165,6 @@ export const SecondaryLink = styled.a`
 
 export const Grid = styled.img`
     width: 300px;
-    filter: invert(1);
-    transform: perspective(80px) rotateX(40deg) rotateY(30deg) rotateZ(30deg) scale(1, .5);
+    filter: invert(.3);
+    transform: perspective(20px) rotateX(30deg) scale(1, .25);
 `;

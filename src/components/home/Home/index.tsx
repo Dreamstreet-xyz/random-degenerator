@@ -12,6 +12,7 @@ import {
     BrandLogo,
     ContentSection,
     SectionTitle,
+    Subtitle,
     Row,
     Column,
     CoinsContainer,
@@ -46,7 +47,7 @@ const coins = [
 
 export const Home = () => {
     const { scrollY } = useViewportScroll();
-    const opacity = useTransform(scrollY, [0, 150, 600], [1, 0.8, 0]);
+    const opacity = useTransform(scrollY, [0, 150, 800], [1, 0.8, 0]);
 
     useEffect(() => {
         window.history.scrollRestoration = 'manual';
@@ -76,6 +77,7 @@ export const Home = () => {
                 <Row>
                     <Column>
                         <SectionTitle>Try your luck!</SectionTitle>
+                        <Subtitle></Subtitle>
                     </Column>
                     <Column>
                         hey
@@ -87,8 +89,8 @@ export const Home = () => {
                 <Row>
                     <Column>
                         <SectionTitle>We've got your favorites!</SectionTitle>
+                        <Subtitle>39 crypto pairs and more coming!</Subtitle>
                     </Column>
-                    <Column>hey</Column>
                 </Row>
                 <Row>
                     <CoinsContainer>

@@ -25,7 +25,7 @@ export default function NetworkDropdown({ isVisible, close, selected, onSelect }
                         </Network>
                         {selected.chainName === network.chainName &&
                             selected.chainName === 'Polygon' && (
-                                <LinksContainer>
+                                <LinksContainer key={network.chainName}>
                                     <Link
                                         href="https://wallet.polygon.technology/bridge"
                                         target="_blank"

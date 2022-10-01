@@ -462,7 +462,7 @@ export default function ConnectedApp({ gas }) {
                     </h2>
                     <LinksContainer>
                         <Link href="https://wallet.polygon.technology/bridge" target="_blank">
-                            <LinkImage src="images/networks/polygon-logo.png" />
+                            <LinkImage src="images/networks/polygon_logo.svg" />
                             Deposit tokens to Polygon via bridge
                         </Link>
                         <LinksDivider>- or -</LinksDivider>
