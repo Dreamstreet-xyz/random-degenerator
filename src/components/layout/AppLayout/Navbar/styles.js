@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { lightShine, noSelect } from 'shared/styles';
-import { Dropdown, Icon, IconButton } from 'components/common';
+import { Dropdown, Icon, IconButton, Identicon } from 'components/common';
 import NavLink, { NavButton } from 'components/common/NavLink';
 
 export const NavbarContainer = styled.nav`
@@ -125,7 +125,7 @@ export const ConnectedUser = styled.div`
 export const CurrencyAmount = styled.div`
     margin-right: 8px;
     color: white;
-    @media (max-width: 500px) {
+    @media (max-width: 850px) {
         display: none
     }
 `;
@@ -139,6 +139,12 @@ export const UserInfo = styled.button`
     display: flex;
     align-items: center;
     gap: 4px;
+`;
+
+export const UserIcon = styled(Identicon)`
+    @media (max-width: 410px) {
+        display: none;
+    }
 `;
 
 export const UserAddress = styled.span`

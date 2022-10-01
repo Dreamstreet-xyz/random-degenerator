@@ -1,5 +1,6 @@
 import { Icon } from 'components/common';
-import { pulsingGlow, shadowOutline } from 'shared/styles';
+import { Practice } from 'components/layout/AppLayout/NetworkDropdown/styles';
+import { pulsingGlow } from 'shared/styles';
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
@@ -9,7 +10,7 @@ export const Container = styled.div`
 export const Button = styled.button`
     position: relative;
     color: white;
-    padding: 4px 8px;
+    padding: 4px 12px;
     min-height: 32px;
     border-radius: 8px;
     background-color: ${({ isOpen }) => (isOpen ? '#5025b3' : '#3e1994')};
@@ -17,10 +18,19 @@ export const Button = styled.button`
     font-size: 14px;
     display: flex;
     align-items: center;
+    gap: 8px;
     outline: none;
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
+        padding: 4px 8px;
         span {
             font-size: 12px;
+            gap: 4px;
+        }
+    }
+
+    @media (max-width: 390px) {
+        span {
+            display: none;
         }
     }
 
@@ -50,12 +60,10 @@ export const Button = styled.button`
 export const NetworkIcon = styled.img`
     width: 24px;
     height: 24px;
-    margin-right: 6px;
 
     @media (max-width: 700px) {
         width: 18px;
         height: 18px;
-        margin-right: 4px;
     }
 `;
 
@@ -65,9 +73,10 @@ export const WrongNetworkIcon = styled(Icon)`
 
 export const Chevron = styled(Icon)`
     color: '#9d8aca';
-    margin-left: 8px;
+`;
 
-    @media (max-width: 700px) {
-        margin-left: 4px;
+export const PracticeBadge = styled(Practice)`
+    @media (max-width: 600px) {
+        display: none;
     }
 `;

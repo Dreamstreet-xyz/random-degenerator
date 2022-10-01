@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { useUser } from 'shared/contexts/UserContext';
 import { truncateAddress } from 'shared/utils/contentHelpers';
-import { Identicon, Loading } from 'components/common';
+import { Loading } from 'components/common';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import { WalletConnectionStatus } from 'types/Wallet';
 import { prettifyEther } from 'shared/utils/wallet';
@@ -29,6 +29,7 @@ import {
     SpilloverLink,
     NavIcon,
     Logo,
+    UserIcon,
 } from './styles';
 import { Menu } from 'components/common/Dropdown/styles';
 
@@ -95,7 +96,7 @@ export default function Navbar() {
                                         <UserAddress onClick={() => setModalVisible(true)}>
                                             {truncateAddress(user.address)}
                                         </UserAddress>
-                                        <Identicon address={user.address} />
+                                        <UserIcon address={user.address} />
                                     </UserInfo>
                                 </ConnectedUser>
                             </>

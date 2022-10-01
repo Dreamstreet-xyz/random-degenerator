@@ -23,11 +23,11 @@ export const Container = styled.div`
   overscroll-behavior: contain;
   background-color: #070324;
   border-radius: 10px;
-  box-shadow: 0 8px 16px 8px #ff3ac430;
+  box-shadow: 0 4px 16px 8px #ff3ac430;
   border: 1px solid #c417a7;
   transform-origin: top;
   z-index: 9999;
-  animation: 0.075s ${scaleIn} ease-in-out forwards;
+  animation: 0.1s ${scaleIn} ease-in-out forwards;
   transform-origin: top;
 `;
 
@@ -38,7 +38,7 @@ export const Content = styled.div`
   max-height: 478px;
   height: 100%;
   width: 100%;
-  background-color: #1d0a49;
+  background-color: #160849;
   color: white;
   overflow: hidden;
 `;

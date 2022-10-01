@@ -1,4 +1,4 @@
-import styled, {css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Dropdown as DefaultDropdown } from 'components/common';
 
 export const Dropdown = styled(DefaultDropdown)`
@@ -7,7 +7,6 @@ export const Dropdown = styled(DefaultDropdown)`
         @media (max-width: 820px) {
             right: auto;
             left: 0px;
-            min-width: 220px;
         }
     }
 `;
@@ -87,8 +86,11 @@ export const Practice = styled.span`
   background-color: rgb(247, 85, 193);
   color: white;
   font-weight: 600;
+`;
 
-  @media (max-width: 600px) {
-    display: none;
-  }
+export const Title = styled.span`
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 0 8px;
+    color: #8f84c2;
 `;

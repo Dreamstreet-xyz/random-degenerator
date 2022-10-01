@@ -4,6 +4,7 @@ import { Menu } from 'components/common/Dropdown/styles';
 import networks from 'shared/constants/networks';
 import {
     Dropdown,
+    Title,
     NetworkContainer,
     Network,
     NetworkIcon,
@@ -20,7 +21,8 @@ export default function NetworkDropdown({ isOpen, close, selected, onSelect, tog
 
     return (
         <Dropdown close={close} isOpen={isOpen} toggleRef={toggleRef}>
-            <Menu>
+            <Menu style={{ paddingTop: 8 }}>
+                <Title>Select a network</Title>
                 {networks.map(network => (
                     <NetworkContainer>
                         <Network

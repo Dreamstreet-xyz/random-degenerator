@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUser } from 'shared/contexts/UserContext';
 import { WalletConnectionStatus } from 'types/Wallet';
-import { Container, Button, NetworkIcon, Chevron, WrongNetworkIcon } from './styles';
+import { Container, Button, NetworkIcon, Chevron, WrongNetworkIcon, PracticeBadge } from './styles';
 
 const NetworkButton = React.forwardRef(({ selected, isOpen, onClick }, ref) => {
     const { walletConnectionStatus } = useUser();
@@ -36,6 +36,7 @@ const NetworkButton = React.forwardRef(({ selected, isOpen, onClick }, ref) => {
                     <>
                         <NetworkIcon src={selected.icon} />
                         <span>{selected.chainName}</span>
+                        {selected.chainName === 'Mumbai' && <PracticeBadge>Practice</PracticeBadge>}
                         <Chevron icon={isOpen ? 'chevron-up' : 'chevron-down'} size={12} />
                     </>
                 )}
