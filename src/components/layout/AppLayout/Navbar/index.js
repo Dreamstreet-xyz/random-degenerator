@@ -92,10 +92,8 @@ export default function Navbar() {
                                     <CurrencyAmount>
                                         {prettifyEther(user.nativeBalance)} {selectedNetwork.symbol}
                                     </CurrencyAmount>
-                                    <UserInfo>
-                                        <UserAddress onClick={() => setModalVisible(true)}>
-                                            {truncateAddress(user.address)}
-                                        </UserAddress>
+                                    <UserInfo onClick={() => setModalVisible(true)}>
+                                        <UserAddress>{truncateAddress(user.address)}</UserAddress>
                                         <UserIcon address={user.address} />
                                     </UserInfo>
                                 </ConnectedUser>

@@ -1,6 +1,6 @@
 import { Icon } from 'components/common';
 import { Practice } from 'components/layout/AppLayout/NetworkDropdown/styles';
-import { pulsingGlow } from 'shared/styles';
+import { pulsingGlow, shadowOutline } from 'shared/styles';
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const Button = styled.button`
     position: relative;
     color: white;
-    padding: 4px 12px;
+    padding: 5px 12px;
     min-height: 32px;
     border-radius: 8px;
     background-color: ${({ isOpen }) => (isOpen ? '#5025b3' : '#3e1994')};
@@ -20,6 +20,9 @@ export const Button = styled.button`
     align-items: center;
     gap: 8px;
     outline: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: ${({ isOpen }) => (isOpen ? '#c417a7' : '#371496')};
     @media (max-width: 600px) {
         padding: 4px 8px;
         span {
@@ -36,6 +39,10 @@ export const Button = styled.button`
 
     &:hover {
         background-color: #5025b3;
+    }
+
+    &:focus-visible {
+        ${shadowOutline()}
     }
 
     ${({ invalid }) => (invalid && css`

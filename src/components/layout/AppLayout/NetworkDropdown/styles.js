@@ -11,11 +11,7 @@ export const Dropdown = styled(DefaultDropdown)`
     }
 `;
 
-export const NetworkContainer = styled.div`
-    border-radius: 10px;
-`;
-
-export const Network = styled.button`
+export const NetworkOption = styled.button`
     position: relative;
     width: 100%;
     padding: 12px 16px;

@@ -5,8 +5,7 @@ import networks from 'shared/constants/networks';
 import {
     Dropdown,
     Title,
-    NetworkContainer,
-    Network,
+    NetworkOption,
     NetworkIcon,
     Link,
     LinksContainer,
@@ -24,18 +23,16 @@ export default function NetworkDropdown({ isOpen, close, selected, onSelect, tog
             <Menu style={{ paddingTop: 8 }}>
                 <Title>Select a network</Title>
                 {networks.map(network => (
-                    <NetworkContainer>
-                        <Network
-                            key={network.chainName}
-                            id={network.chainName}
-                            isSelected={selected.chainName === network.chainName}
-                            onClick={() => handleSelect(network)}
-                        >
-                            <NetworkIcon src={network.icon} />
-                            {network.chainName}
-                            {network.chainName === 'Mumbai' && <Practice>Practice</Practice>}
-                        </Network>
-                    </NetworkContainer>
+                    <NetworkOption
+                        key={network.chainName}
+                        id={network.chainName}
+                        isSelected={selected.chainName === network.chainName}
+                        onClick={() => handleSelect(network)}
+                    >
+                        <NetworkIcon src={network.icon} />
+                        {network.chainName}
+                        {network.chainName === 'Mumbai' && <Practice>Practice</Practice>}
+                    </NetworkOption>
                 ))}
                 {selected.chainName === 'Polygon' && (
                     <LinksContainer>
