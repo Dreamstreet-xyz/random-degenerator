@@ -27,7 +27,7 @@ export const Container = styled(motion.div)`
     align-self: flex-start;
     background: linear-gradient(135deg, #0f065c, #3a025a);
     border-radius: 10px;
-    border: 2px solid #aa08a2;
+    border: 1px solid #aa08a2;
     padding: ${({ padding }) => (padding ? `${padding}px` : '24px')};
     position: relative;
 `;

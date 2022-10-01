@@ -6,6 +6,7 @@ const StyledTippy = styled(Tippy)`
     background-color: #4b35af;
     font-weight: bold;
     padding: 4px 6px;
+    font-family: 'Fira Mono', monospace;
 
     .tippy-arrow {
         color: #4b35af;

@@ -22,7 +22,7 @@ export const Button = styled.button`
     outline: none;
     border-width: 1px;
     border-style: solid;
-    border-color: ${({ isOpen }) => (isOpen ? '#c417a7' : '#371496')};
+    border-color: ${({ isOpen }) => (isOpen ? '#c417a7' : '#5b35c5')};
     @media (max-width: 600px) {
         padding: 4px 8px;
         span {

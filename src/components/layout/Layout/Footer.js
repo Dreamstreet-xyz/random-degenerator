@@ -37,7 +37,12 @@ const shine = keyframes`
 `;
 
 const LeftSection = styled.div`
+    display: flex;
+    align-items: center;
     span {
+        display: flex;
+        gap: 4px;
+        align-items: center;
         font-size: 11px;
         background: linear-gradient(
             to right,
@@ -71,7 +76,7 @@ const GithubCoin = styled(CoinLink)`
     }
 `;
 
-const GainsLink = styled.a`
+const Link = styled.a`
     display: block;
     padding: 4px 8px;
     border-radius: 6px;
@@ -91,12 +96,24 @@ export default function Footer() {
             </CoinsRow>
             <BottomRow>
                 <LeftSection>
-                    <span>© Dreamstreet</span>
+                    <Link href="https://github.com/Dreamstreet-xyz" target="_blank">
+                        <span>
+                            <span
+                                style={{
+                                    display: 'block',
+                                    fontFamily: 'Roboto',
+                                }}
+                            >
+                                ©
+                            </span>{' '}
+                            Dreamstreet
+                        </span>
+                    </Link>
                 </LeftSection>
                 <RightSection>
-                    <GainsLink href="https://gains.trade/decentralized-trading" target="_blank">
-                        🍏💪
-                    </GainsLink>
+                    <Link href="https://gains.trade/decentralized-trading" target="_blank">
+                        🍏💪💪
+                    </Link>
                 </RightSection>
             </BottomRow>
         </Container>
