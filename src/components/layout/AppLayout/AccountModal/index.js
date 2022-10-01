@@ -42,7 +42,7 @@ export default function AccountModal({ isVisible, close, loading }) {
             isVisible={isVisible}
             close={close}
             title="Account"
-            titleStyle={{ color: '#6b69ee' }}
+            titleStyle={{ color: '#9b99fd' }}
             containerStyle={{ maxWidth: 550, width: '100%' }}
         >
             <ModalBody>

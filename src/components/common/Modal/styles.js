@@ -8,7 +8,7 @@ export const Overlay = styled(motion.div)`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #000000bb;
+    background-color: #00000099;
     display: flex;
     justify-content: center;
     z-index: 99;
@@ -25,9 +25,9 @@ export const Container = styled(motion.div)`
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    background-color: #150f36;
+    background: linear-gradient(135deg, #0f065c, #3a025a);
     border-radius: 10px;
-    border: 2px solid #651668;
+    border: 2px solid #aa08a2;
     padding: ${({ padding }) => (padding ? `${padding}px` : '24px')};
     position: relative;
 `;
@@ -44,7 +44,7 @@ export const ModalHeader = styled.div`
 
 export const CloseButton = styled(IconButton)`
     background-color: transparent;
-    color: #ccc;
+    color: #b0a1cc;
     width: 24px;
     height: 24px;
     border-radius: 6px;

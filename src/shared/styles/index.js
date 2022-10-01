@@ -90,10 +90,10 @@ export const retroTextGradient = css`
     color: #c6cbf5;
     background: -webkit-linear-gradient(
         top,
-        #b5b4fa,
-        #48d5f8 40%,
-        #7414c4 40%,
-        #f193d5 65%,
+        #a5a4ff,
+        #30d6ff 40%,
+        #5e00aa 40%,
+        #fc5ecc 65%,
         white 90%
     );
     background-clip: text;
