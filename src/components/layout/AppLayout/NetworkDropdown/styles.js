@@ -48,8 +48,8 @@ export const NetworkOption = styled.button`
 `;
 
 export const NetworkIcon = styled.img`
-    width:  24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 `;
 
 export const LinksContainer = styled.div`

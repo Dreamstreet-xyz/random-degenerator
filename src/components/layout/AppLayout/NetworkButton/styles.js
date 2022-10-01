@@ -10,8 +10,8 @@ export const Container = styled.div`
 export const Button = styled.button`
     position: relative;
     color: white;
-    padding: 5px 12px;
-    min-height: 32px;
+    padding: 6px 12px;
+    min-height: 36px;
     border-radius: 8px;
     background-color: ${({ isOpen }) => (isOpen ? '#5025b3' : '#3e1994')};
     font-weight: bold;
@@ -65,8 +65,8 @@ export const Button = styled.button`
 `;
 
 export const NetworkIcon = styled.img`
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 
     @media (max-width: 700px) {
         width: 18px;
