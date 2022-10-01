@@ -1,5 +1,5 @@
 import StarsCanvas from 'components/layout/AppLayout/StarsCanvas';
-import { motion, useTransform, useViewportScroll } from 'framer-motion';
+import { motion, useTransform, useScroll } from 'framer-motion';
 import { Spark } from 'components/misc/Spark';
 import {
     Container,
@@ -46,7 +46,7 @@ const coins = [
 ];
 
 export const Home = () => {
-    const { scrollY } = useViewportScroll();
+    const { scrollY } = useScroll();
     const opacity = useTransform(scrollY, [0, 150, 800], [1, 0.8, 0]);
 
     useEffect(() => {

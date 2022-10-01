@@ -1,5 +1,5 @@
 import { useUser } from 'shared/contexts/UserContext';
-import { NeonButton } from 'components/common';
+import { PrimaryButton } from 'components/common';
 import { WalletConnectionStatus } from 'types/Wallet';
 import { Section } from './styles';
 import ConnectedApp from './ConnectedApp';
@@ -32,10 +32,14 @@ export default function MainApp({ gas }) {
             case WalletConnectionStatus.JsonRpcError:
                 return <ConnectedApp gas={gas} />;
             case WalletConnectionStatus.Connecting:
-                return <NeonButton title="Connect Wallet" onClick={handleConnect} loading />;
+                return <PrimaryButton title="Connect Wallet" onClick={handleConnect} loading />;
             case WalletConnectionStatus.Disconnected:
                 return (
-                    <NeonButton title="Connect Wallet" onClick={handleConnect} loading={cLoading} />
+                    <PrimaryButton
+                        title="Connect Wallet"
+                        onClick={handleConnect}
+                        loading={cLoading}
+                    />
                 );
             default:
                 return <div>something went wrong</div>;

@@ -1,7 +1,7 @@
 import { Loading } from 'components/common';
 import { StyledButton } from './styles';
 
-export default function NeonButton({ forwardRef, disabled, loading, title, type, ...rest }) {
+export default function PrimaryButton({ forwardRef, disabled, loading, title, type, ...rest }) {
     return (
         <StyledButton
             ref={forwardRef}

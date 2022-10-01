@@ -1,7 +1,7 @@
-import styled, { keyframes } from 'styled-components';
-import { lightShine, noSelect, retroTextCursive, retroTextGradient } from 'shared/styles';
+import styled from 'styled-components';
+import { lightShine, noSelect } from 'shared/styles';
 import { Dropdown, Icon, IconButton } from 'components/common';
-import { NavButton } from 'components/common/NavLink';
+import NavLink, { NavButton } from 'components/common/NavLink';
 
 export const NavbarContainer = styled.nav`
     width: 100%;
@@ -130,18 +130,33 @@ export const CurrencyAmount = styled.div`
     }
 `;
 
-export const UserAddress = styled.button`
+export const UserInfo = styled.button`
     color: white;
     padding: 4px 8px;
     border-radius: 6px;
     background-color: #1c0e3d;
     font-family: 'Fira Mono', monospace;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+`;
+
+export const UserAddress = styled.span`
+
 `;
 
 export const SpilloverButton = styled(IconButton)`
-    pointer-events: ${({ isOpen }) => (isOpen ? 'none' : 'initial')};;
 `;
 
 export const SpilloverDropdown = styled(Dropdown)`
     width: 250px;
+`;
+
+export const SpilloverLink = styled(NavLink)`
+    text-decoration: none;
+    border-radius: 8px;
+    &:hover {
+        background-color: #ffffff11;
+        text-decoration: none;
+    }
 `;

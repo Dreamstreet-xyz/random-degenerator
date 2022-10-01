@@ -17,7 +17,6 @@ export const Button = styled.button`
     font-size: 14px;
     display: flex;
     align-items: center;
-    pointer-events: ${({ isOpen }) => (isOpen ? 'none' : 'initial')};;
     outline: none;
     @media (max-width: 700px) {
         span {
@@ -27,10 +26,6 @@ export const Button = styled.button`
 
     &:hover {
         background-color: #5025b3;
-    }
-
-    &:focus {
-        ${shadowOutline()}
     }
 
     ${({ invalid }) => (invalid && css`

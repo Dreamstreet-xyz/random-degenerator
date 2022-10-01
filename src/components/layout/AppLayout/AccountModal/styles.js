@@ -1,3 +1,4 @@
+import { Identicon } from 'components/common';
 import styled, { css } from 'styled-components';
 
 export const ModalBody = styled.div`
@@ -23,7 +24,9 @@ export const Provider = styled.span`
 export const UserInfo = styled.div`
     padding: 24px;
     border-radius: 10px;
-    //background: linear-gradient(45deg, #6b39df, #c41cc4);
+    display: flex;
+    gap: 12px;
+    align-items: center;
     border: 1px solid #51299c;
 `;
 
@@ -78,4 +81,12 @@ export const CopyButton = styled.button`
 export const DisconnectButton = styled.button`
     ${addressAction}   
     background-color: transparent;
+`;
+
+export const UserIcon = styled(Identicon)`
+    width: 24px;
+    height: 24px;
+    & > div {
+        transform: scale(.33);
+    }
 `;

@@ -1,12 +1,11 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { useUser } from 'shared/contexts/UserContext';
 import { truncateAddress } from 'shared/utils/contentHelpers';
-import { Loading } from 'components/common';
+import { Identicon, Loading } from 'components/common';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import { WalletConnectionStatus } from 'types/Wallet';
 import { prettifyEther } from 'shared/utils/wallet';
-import NavLink from 'components/common/NavLink';
 import { Spark } from 'components/misc/Spark';
 import AccountModal from '../AccountModal';
 import NetworkDropdown from '../NetworkDropdown';
@@ -22,20 +21,25 @@ import {
     RightSection,
     ConnectedUser,
     CurrencyAmount,
+    UserInfo,
     UserAddress,
     ConnectButton,
     SpilloverButton,
     SpilloverDropdown,
+    SpilloverLink,
     NavIcon,
     Logo,
 } from './styles';
+import { Menu } from 'components/common/Dropdown/styles';
 
 export default function Navbar() {
     const { network: selectedNetwork, setNetwork } = useNetworkDetails();
     const { user, walletConnectionStatus, connectWallet, loading: cLoading } = useUser();
     const [isModalVisible, setModalVisible] = useState(false);
-    const [showMenu, setShowMenu] = useState(false);
-    const [showNetworkMenu, setShowNetworkMenu] = useState(false);
+    const [isSpilloverDropdownOpen, setSpilloverDropdownOpen] = useState(false);
+    const [isNetworkDropdownOpen, setNetworkDropdownOpen] = useState(false);
+    const networkToggleRef = useRef(null);
+    const spilloverToggleRef = useRef(null);
 
     const handleNetworkSelect = network => {
         setNetwork(network);
@@ -69,23 +73,30 @@ export default function Navbar() {
                                 <div style={{ position: 'relative' }}>
                                     <NetworkButton
                                         selected={selectedNetwork}
-                                        isOpen={showNetworkMenu}
-                                        onClick={() => setShowNetworkMenu(!showNetworkMenu)}
+                                        isOpen={isNetworkDropdownOpen}
+                                        onClick={() =>
+                                            setNetworkDropdownOpen(!isNetworkDropdownOpen)
+                                        }
+                                        ref={networkToggleRef}
                                     />
                                     <NetworkDropdown
-                                        isVisible={showNetworkMenu}
-                                        close={() => setShowNetworkMenu(false)}
+                                        isOpen={isNetworkDropdownOpen}
+                                        close={() => setNetworkDropdownOpen(false)}
                                         selected={selectedNetwork}
                                         onSelect={handleNetworkSelect}
+                                        toggleRef={networkToggleRef}
                                     />
                                 </div>
                                 <ConnectedUser>
                                     <CurrencyAmount>
                                         {prettifyEther(user.nativeBalance)} {selectedNetwork.symbol}
                                     </CurrencyAmount>
-                                    <UserAddress onClick={() => setModalVisible(true)}>
-                                        {truncateAddress(user.address)}
-                                    </UserAddress>
+                                    <UserInfo>
+                                        <UserAddress onClick={() => setModalVisible(true)}>
+                                            {truncateAddress(user.address)}
+                                        </UserAddress>
+                                        <Identicon address={user.address} />
+                                    </UserInfo>
                                 </ConnectedUser>
                             </>
                         ) : (
@@ -100,29 +111,37 @@ export default function Navbar() {
                         <span style={{ position: 'relative', cursor: 'pointer' }}>
                             <SpilloverButton
                                 icon="ellipsis-h"
-                                onClick={() => setShowMenu(!showMenu)}
-                                isOpen={showMenu}
+                                onClick={() => setSpilloverDropdownOpen(!isSpilloverDropdownOpen)}
+                                isOpen={isSpilloverDropdownOpen}
+                                ref={spilloverToggleRef}
                             />
                             <SpilloverDropdown
-                                close={() => setShowMenu(false)}
-                                isVisible={showMenu}
+                                close={() => setSpilloverDropdownOpen(false)}
+                                isOpen={isSpilloverDropdownOpen}
+                                toggleRef={spilloverToggleRef}
                             >
-                                <NavLink href="/">
-                                    <NavIcon icon="dice" size={20} style={{ color: '#fff' }} />
-                                    Play
-                                </NavLink>
-                                <NavLink href="/history">
-                                    <NavIcon icon="history" size={20} style={{ color: '#fff' }} />
-                                    History
-                                </NavLink>
-                                <NavLink href="/about">
-                                    <NavIcon
-                                        icon={['fab', 'readme']}
-                                        size={20}
-                                        style={{ color: '#fff' }}
-                                    />
-                                    About
-                                </NavLink>
+                                <Menu>
+                                    <SpilloverLink href="/">
+                                        <NavIcon icon="dice" size={20} style={{ color: '#fff' }} />
+                                        Play
+                                    </SpilloverLink>
+                                    <SpilloverLink href="/history">
+                                        <NavIcon
+                                            icon="history"
+                                            size={20}
+                                            style={{ color: '#fff' }}
+                                        />
+                                        History
+                                    </SpilloverLink>
+                                    <SpilloverLink href="/about">
+                                        <NavIcon
+                                            icon={['fab', 'readme']}
+                                            size={20}
+                                            style={{ color: '#fff' }}
+                                        />
+                                        About
+                                    </SpilloverLink>
+                                </Menu>
                             </SpilloverDropdown>
                         </span>
                     </RightSection>

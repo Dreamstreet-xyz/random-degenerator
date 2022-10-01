@@ -12,7 +12,7 @@ type Props = {
     toggleRef?: MutableRefObject<HTMLElement | null>;
 };
 
-export default function Dropdown({ isOpen, children, className, close, toggleRef }: Props) {
+export const Dropdown = ({ isOpen, children, className, close, toggleRef }: Props) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useBodyScrollLock(containerRef, isOpen && window.innerWidth < 450);
@@ -32,4 +32,4 @@ export default function Dropdown({ isOpen, children, className, close, toggleRef
             <Content>{children}</Content>
         </Container>
     );
-}
+};

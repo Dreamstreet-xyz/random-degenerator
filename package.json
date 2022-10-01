@@ -17,6 +17,7 @@
         "@fortawesome/free-regular-svg-icons": "^5.15.4",
         "@fortawesome/free-solid-svg-icons": "^5.15.4",
         "@fortawesome/react-fontawesome": "^0.1.16",
+        "@metamask/jazzicon": "^2.0.0",
         "@prisma/client": "^3.9.2",
         "@tippyjs/react": "^4.2.6",
         "@types/jest": "^27.4.0",

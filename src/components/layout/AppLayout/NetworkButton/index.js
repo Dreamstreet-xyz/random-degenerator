@@ -1,9 +1,9 @@
-import { Icon } from 'components/common';
+import React from 'react';
 import { useUser } from 'shared/contexts/UserContext';
 import { WalletConnectionStatus } from 'types/Wallet';
 import { Container, Button, NetworkIcon, Chevron, WrongNetworkIcon } from './styles';
 
-export default function NetworkButton({ selected, isOpen, onClick }) {
+const NetworkButton = React.forwardRef(({ selected, isOpen, onClick }, ref) => {
     const { walletConnectionStatus } = useUser();
 
     const invalidNetwork =
@@ -11,7 +11,13 @@ export default function NetworkButton({ selected, isOpen, onClick }) {
         walletConnectionStatus === WalletConnectionStatus.UnsupportedNetwork;
     return (
         <Container>
-            <Button type="button" onClick={onClick} invalid={invalidNetwork} isOpen={isOpen}>
+            <Button
+                type="button"
+                onClick={onClick}
+                invalid={invalidNetwork}
+                isOpen={isOpen}
+                ref={ref}
+            >
                 {invalidNetwork ? (
                     <>
                         <div
@@ -36,4 +42,6 @@ export default function NetworkButton({ selected, isOpen, onClick }) {
             </Button>
         </Container>
     );
-}
+});
+
+export default NetworkButton;

@@ -16,6 +16,7 @@ import {
     CopyButton,
     ExplorerLink,
     DisconnectButton,
+    UserIcon,
 } from './styles';
 
 export default function AccountModal({ isVisible, close, loading }) {
@@ -54,9 +55,12 @@ export default function AccountModal({ isVisible, close, loading }) {
                         <ProviderRow>
                             {user?.provider && <Provider>Connected with {user?.provider}</Provider>}
                         </ProviderRow>
-                        <UserInfo>
-                            <Address>{truncateAddress(user?.address)}</Address>
-                        </UserInfo>
+                        {user?.address && (
+                            <UserInfo>
+                                <UserIcon address={user.address} />
+                                <Address>{truncateAddress(user.address)}</Address>
+                            </UserInfo>
+                        )}
                         <ActionRow>
                             <CopyButton onClick={copied ? () => {} : handleCopy}>
                                 <Icon icon={['far', 'copy']} size={20} style={{ marginRight: 8 }} />

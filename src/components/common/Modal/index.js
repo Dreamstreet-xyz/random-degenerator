@@ -48,8 +48,8 @@ function Modal({
                     ref={containerRef}
                     padding={padding}
                     style={containerStyle}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
+                    initial={{ translateY: 32 }}
+                    animate={{ translateY: 0 }}
                     transition={{ type: 'spring', duration: 0.25 }}
                 >
                     <ModalHeader>

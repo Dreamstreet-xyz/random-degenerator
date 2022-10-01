@@ -8,10 +8,11 @@ import DropdownToggleButton from './DropdownToggleButton';
 import EmptyStatePlaceholder from './EmptyStatePlaceholder';
 import Icon from './Icon';
 import IconButton from './IconButton';
+import Identicon from './Identicon';
 import Loading from './Loading';
 import Modal from './Modal';
-import NeonButton from './NeonButton';
 import QuestionIcon from './QuestionIcon';
+import PrimaryButton from './PrimaryButton';
 import Range from './Range';
 import Tooltip from './Tooltip';
 
@@ -26,10 +27,11 @@ export {
     EmptyStatePlaceholder,
     Icon,
     IconButton,
+    Identicon,
     Loading,
     Modal,
-    NeonButton,
     QuestionIcon,
+    PrimaryButton,
     Range,
     Tooltip,
 };

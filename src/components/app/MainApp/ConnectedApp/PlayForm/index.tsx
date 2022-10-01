@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Icon, QuestionIcon, Range, Tooltip } from 'components/common';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Icon, Range, Tooltip } from 'components/common';
 import { useUser } from 'shared/contexts/UserContext';
 import { prettifyEther } from 'shared/utils/wallet';
 import { GainsDataStoreInterface } from 'shared/stores/GainsDataStore';
@@ -185,7 +185,8 @@ export default function PlayForm({
 
     const [curMinLev, setCurMinLev] = useState(null);
     const { network } = useNetworkDetails();
-    const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+    const [isSettingsDropdownOpen, setSettingsDropdownOpen] = useState(false);
+    const settingsToggleRef = useRef(null);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -224,15 +225,17 @@ export default function PlayForm({
                     <div style={{ position: 'relative' }}>
                         <div style={{ cursor: 'pointer' }}>
                             <SettingsButton
-                                onClick={() => setShowSettingsMenu(!showSettingsMenu)}
-                                isOpen={showSettingsMenu}
+                                onClick={() => setSettingsDropdownOpen(!isSettingsDropdownOpen)}
+                                isOpen={isSettingsDropdownOpen}
+                                ref={settingsToggleRef}
                             />
                         </div>
                         <SettingsDropdown
                             settings={settings}
                             setSettings={setSettings}
-                            close={() => setShowSettingsMenu(false)}
-                            isVisible={showSettingsMenu}
+                            close={() => setSettingsDropdownOpen(false)}
+                            isOpen={isSettingsDropdownOpen}
+                            toggleRef={settingsToggleRef}
                         />
                     </div>
                 </HeaderRight>
