@@ -13,6 +13,7 @@ const Container = styled.div`
     gap: 32px;
     height: 250px;
     padding-top: 64px;
+    padding-bottom: 4px;
 `;
 
 const CoinsRow = styled.div`
@@ -70,6 +71,16 @@ const GithubCoin = styled(CoinLink)`
     }
 `;
 
+const GainsLink = styled.a`
+    display: block;
+    padding: 4px 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    &:hover {
+        background-color: #ffffff11;
+    }
+`;
+
 export default function Footer() {
     return (
         <Container>
@@ -82,7 +93,11 @@ export default function Footer() {
                 <LeftSection>
                     <span>© Dreamstreet</span>
                 </LeftSection>
-                <RightSection>🍏💪</RightSection>
+                <RightSection>
+                    <GainsLink href="https://gains.trade/decentralized-trading" target="_blank">
+                        🍏💪
+                    </GainsLink>
+                </RightSection>
             </BottomRow>
         </Container>
     );

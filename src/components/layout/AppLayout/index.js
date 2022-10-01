@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Tooltip } from 'components/common';
-import StarsCanvas from './StarsCanvas';
 import Navbar from './Navbar';
 
 const Container = styled.div`
@@ -31,7 +30,6 @@ export default function AppLayout({ children }) {
     return (
         <Container>
             <Navbar />
-            <StarsCanvas />
             <Content>{children}</Content>
             <MiscControls>
                 <Tooltip content="Come join our telegram!">

@@ -1,5 +1,3 @@
-import StarsCanvas from 'components/layout/AppLayout/StarsCanvas';
-import { motion, useTransform, useViewportScroll } from 'framer-motion';
 import { Spark } from 'components/misc/Spark';
 import {
     Container,
@@ -22,7 +20,6 @@ import {
     SecondaryLink,
     Grid,
 } from './styles';
-import { useEffect } from 'react';
 
 const coins = [
     'aave',
@@ -46,18 +43,8 @@ const coins = [
 ];
 
 export const Home = () => {
-    const { scrollY } = useViewportScroll();
-    const opacity = useTransform(scrollY, [0, 150, 800], [1, 0.8, 0]);
-
-    useEffect(() => {
-        window.history.scrollRestoration = 'manual';
-    }, []);
-
     return (
         <Container>
-            <motion.div style={{ opacity }}>
-                <StarsCanvas />
-            </motion.div>
             <HeroSection>
                 <BrandContainer>
                     <FirstName>
