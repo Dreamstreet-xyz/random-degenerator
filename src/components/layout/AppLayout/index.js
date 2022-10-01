@@ -46,7 +46,8 @@ const Footer = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    height: 32px;
+    height: 30px;
+    font-family: 'Fira Mono', monospace;
 
     &:hover {
         & > div {
@@ -67,21 +68,21 @@ const marquee = keyframes`
 const Marquee = styled.div`
     display: flex;
     gap: 32px;
-    font-size: 13px;
+    font-size: 12px;
     animation-name: ${marquee};
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: normal;
-    animation-duration: 8s;
+    animation-duration: 12s;
 
     @media (min-width: 500px) {
-        animation-duration: 10s;
+        animation-duration: 16s;
     }
     @media (min-width: 850px) {
-        animation-duration: 14s;
+        animation-duration: 20s;
     }
     @media (min-width: 1200px) {
-        animation-duration: 18s;
+        animation-duration: 24s;
     }
 `;
 
