@@ -28,7 +28,7 @@ const NetworkButton = React.forwardRef(({ selected, isOpen, onClick }, ref) => {
                         <span>Wrong Network</span>
                         <Chevron
                             icon={isOpen ? 'chevron-up' : 'chevron-down'}
-                            size={12}
+                            size={10}
                             style={{ color: '#ffc7d3' }}
                         />
                     </>
@@ -37,7 +37,7 @@ const NetworkButton = React.forwardRef(({ selected, isOpen, onClick }, ref) => {
                         <NetworkIcon src={selected.icon} />
                         <span>{selected.chainName}</span>
                         {selected.chainName === 'Mumbai' && <PracticeBadge>Practice</PracticeBadge>}
-                        <Chevron icon={isOpen ? 'chevron-up' : 'chevron-down'} size={12} />
+                        <Chevron icon={isOpen ? 'chevron-up' : 'chevron-down'} size={10} />
                     </>
                 )}
             </Button>
