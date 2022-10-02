@@ -14,6 +14,7 @@ export const HeroSection = styled.div`
     gap: 48px;
     transform: translateY(0px);
     min-height: calc(100vh - 64px);
+    z-index: 9999;
 `;
 
 export const BrandContainer = styled.div`
@@ -80,7 +81,7 @@ export const ContentSection = styled.div`
     gap: 32px;
 `;
 
-export const SectionTitle = styled.h2`
+export const SectionTitle = styled(motion.h2)`
     font-size: 48px;
     font-weight: 700;
     font-family: Montserrat;
@@ -107,7 +108,7 @@ export const Column = styled.div`
 export const CoinsContainer = styled(motion.div)`
     perspective: 1200px;
     position: relative;
-    margin-top: 100px;
+    margin-top: 120px;
 `;
 
 export const CoinsMarquee = styled(motion.div)`
@@ -168,3 +169,5 @@ export const Grid = styled.img`
     filter: invert(.3);
     transform: perspective(20px) rotateX(30deg) scale(1, .25);
 `;
+
+
