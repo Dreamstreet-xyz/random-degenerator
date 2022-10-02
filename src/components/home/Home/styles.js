@@ -104,19 +104,19 @@ export const Column = styled.div`
     gap: 32px;
 `;
 
-export const CoinsContainer = styled.div`
+export const CoinsContainer = styled(motion.div)`
     perspective: 1200px;
     position: relative;
-    margin-top: 32px;
+    margin-top: 100px;
 `;
 
-export const CoinsMarquee = styled.div`
+export const CoinsMarquee = styled(motion.div)`
     position: absolute;
     display: flex;
     gap: 16px;
     backface-visibility: hidden;
     z-index: 0;
-    transform: translateZ(200px);
+    transform: translateZ(100px);
     transform-style: preserve-3d;
 `;
 
@@ -125,10 +125,10 @@ export const CoinIcon = styled(motion.img)`
     left: 10px;
     top: 10px;
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    transform-origin: -12px 50% -600px;
-    backface-visibility:  hidden;
+    width: 48px;
+    height: 48px;
+    transform-origin: -12px 50% -250px;
+    image-rendering: optimizeQuality;
 `;
 
 const secondaryCta = css`

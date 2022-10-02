@@ -48,6 +48,8 @@ const coins = [
 export const Home = () => {
     const { scrollY } = useScroll();
     const opacity = useTransform(scrollY, [0, 150, 800], [1, 0.8, 0]);
+    const translateY = useTransform(scrollY, [1200, 1800], [200, -200]);
+    const containerTranslateY = useTransform(scrollY, [1200, 1800], [-200, 200]);
 
     useEffect(() => {
         window.history.scrollRestoration = 'manual';
@@ -93,8 +95,8 @@ export const Home = () => {
                     </Column>
                 </Row>
                 <Row>
-                    <CoinsContainer>
-                        <CoinsMarquee>
+                    <CoinsContainer style={{ translateY: containerTranslateY }}>
+                        <CoinsMarquee style={{ translateY }}>
                             {coins.map((coin, index) => (
                                 <CoinIcon
                                     key={index}
@@ -104,7 +106,7 @@ export const Home = () => {
                                     }}
                                     transition={{
                                         type: 'tween',
-                                        duration: 180,
+                                        duration: 60,
                                         repeat: Infinity,
                                         ease: 'linear',
                                     }}
