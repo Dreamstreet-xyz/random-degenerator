@@ -94,6 +94,12 @@ export default function App({ Component, pageProps }) {
                 <Head>
                     <style>{dom.css()}</style>
                     <title>Random Degenerator</title>
+                    <meta
+                        name="description"
+                        content="Randomized high-leverage trade generator built around gTrade, running on Polygon."
+                    />
+                    <meta property="og:url" content="https://randomdegenerator.xyz/" />
+                    <link rel="canonical" href="https://randomdegenerator.xyz/" />
                     <link
                         rel="apple-touch-icon"
                         sizes="180x180"
@@ -116,7 +122,11 @@ export default function App({ Component, pageProps }) {
                     <meta name="theme-color" content="#1b095a" />
                     <link rel="preconnect" href="https://fonts.googleapis.com" />
                     <link
-                        href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
+                        href="https://fonts.googleapis.com/css2?family=Exo:wght@900&display=swap"
+                        rel="stylesheet"
+                    />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap"
                         rel="stylesheet"
                     />
                     <link
@@ -132,11 +142,7 @@ export default function App({ Component, pageProps }) {
                         rel="stylesheet"
                     />
                     <link
-                        href="https://fonts.googleapis.com/css2?family=Exo:wght@900&display=swap"
-                        rel="stylesheet"
-                    />
-                    <link
-                        href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap"
+                        href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
                         rel="stylesheet"
                     />
                     <link
