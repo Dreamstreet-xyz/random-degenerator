@@ -1,6 +1,5 @@
-import NavLink from 'components/common/NavLink';
 import Link from 'next/link';
-import { Container, Content, LeftSection, RightSection, AppLink, Logo } from './styles';
+import { Container, Content, LeftSection, RightSection, NavLink, AppLink, Logo } from './styles';
 
 interface NavbarProps {}
 

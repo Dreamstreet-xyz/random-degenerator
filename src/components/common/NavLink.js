@@ -3,23 +3,15 @@ import Link from 'next/link';
 import { shadowOutline } from 'shared/styles';
 
 export const NavItem = css`
-    height: 54px;
-    line-height: 58px;
+    height: 50px;
+    line-height: 54px;
     display: flex;
     align-items: center;
     text-decoration: none;
     color: #efeaf8;
     padding: 0px 8px;
-    margin: 0px 4px;
     cursor: pointer;
     font-weight: bold;
-
-    &:hover {
-        text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-    }
 
     &.active {
         color: #888;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import NavLink from 'components/common/NavLink';
+import Link from 'components/common/NavLink';
 import { popIn, shadowOutline } from 'shared/styles';
 
 export const Container = styled.nav`
@@ -16,15 +16,27 @@ export const Content = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-
+    padding: 8px;
 `;
 
 export const LeftSection = styled.div`
     display: flex;
     align-items: center;
+    gap: 8px;
     opacity: 0;
     animation: ${popIn} .25s ease-in-out forwards;
     animation-delay: .6s;
+`;
+
+export const NavLink = styled(Link)`
+    border-bottom: 4px solid transparent;
+    height: 42px;
+    padding: 4px 8px 0;
+    color: white;
+    
+    &:hover {
+        border-bottom: 4px solid rgb(119, 246, 255);
+    }
 `;
 
 export const RightSection = styled.div`
@@ -36,7 +48,7 @@ export const RightSection = styled.div`
     animation-delay: .6s;
 `;
 
-export const AppLink = styled(NavLink)`
+export const AppLink = styled(Link)`
     padding: 10px 32px;
     background: linear-gradient(45deg, #f838ff, #a31efc);
     border-radius: 8px;

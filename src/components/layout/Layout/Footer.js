@@ -39,6 +39,7 @@ const shine = keyframes`
 const LeftSection = styled.div`
     display: flex;
     align-items: center;
+
     span {
         display: flex;
         gap: 4px;
@@ -64,6 +65,11 @@ const LeftSection = styled.div`
         font-family: 'Fira Mono';
     }
 `;
+
+const Brand = styled.span`
+    height: 16px;
+`;
+
 const RightSection = styled.div`
     margin-left: auto;
 `;
@@ -97,17 +103,19 @@ export default function Footer() {
             <BottomRow>
                 <LeftSection>
                     <Link href="https://github.com/Dreamstreet-xyz" target="_blank">
-                        <span>
-                            <span
-                                style={{
-                                    display: 'block',
-                                    fontFamily: 'Roboto',
-                                }}
-                            >
-                                ©
-                            </span>{' '}
-                            Dreamstreet
-                        </span>
+                        <Brand>
+                            <span>
+                                <span
+                                    style={{
+                                        display: 'block',
+                                        fontFamily: 'Roboto',
+                                    }}
+                                >
+                                    ©
+                                </span>
+                                Dreamstreet
+                            </span>
+                        </Brand>
                     </Link>
                 </LeftSection>
                 <RightSection>
