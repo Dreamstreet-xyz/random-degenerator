@@ -11,9 +11,9 @@ export const Navbar = ({}: NavbarProps) => {
                     <Link href="./">
                         <Logo src="/images/rdg_logo.png" />
                     </Link>
-                    <NavLink href="./">App</NavLink>
-                    <NavLink href="/about">About</NavLink>
+                    <NavLink href="./">Play</NavLink>
                     <NavLink href="/history">History</NavLink>
+                    <NavLink href="/about">About</NavLink>
                 </LeftSection>
                 <RightSection>
                     <AppLink href="./">Launch App</AppLink>
