@@ -37,6 +37,10 @@ export const NavLink = styled(Link)`
     &:hover {
         border-bottom: 4px solid rgb(119, 246, 255);
     }
+
+    @media (max-width: 800px) {
+        display: none;
+    }
 `;
 
 export const RightSection = styled.div`

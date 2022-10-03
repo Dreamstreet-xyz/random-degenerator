@@ -1,12 +1,13 @@
 import styled, { keyframes, css } from 'styled-components';
 import NavLink from 'components/common/NavLink';
-import { fadeIn, fadeUp, lightShine, newRetroText, newRetroTextCursive, shadowOutline } from 'shared/styles';
+import { fadeIn, fadeUp, lightShine, newRetroText, newRetroTextCursive, noSelect, popIn, shadowOutline } from 'shared/styles';
 import { motion } from 'framer-motion';
 
 export const Container = styled.div`
+overflow-x: hidden;
 `;
 
-export const HeroSection = styled.div`
+export const HeroSection = styled(motion.div)`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,7 +83,7 @@ export const ContentSection = styled.div`
 `;
 
 export const SectionTitle = styled(motion.h2)`
-    font-size: 48px;
+    font-size: 64px;
     font-weight: 700;
     font-family: Montserrat;
 `;
@@ -170,4 +171,54 @@ export const Grid = styled.img`
     transform: perspective(20px) rotateX(30deg) scale(1, .25);
 `;
 
+const scroll = keyframes`
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(4px);
+    }
+`;
 
+export const ScrollToExplore = styled(motion.div)`
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    ${noSelect}
+`;
+
+export const ScrollToExploreContent = styled.div`
+    animation: ${popIn} .3s ease-in-out forwards;
+    animation-delay: 1.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+
+    div {
+        width: 16px;
+        height: 24px;
+        border-radius: 40%;
+        border: 2px solid #d1c8f3;
+        position: relative;
+        &::after {
+            position: absolute;
+            content: '';
+            top: 3px;
+            left: calc(50% - 1px);
+            width: 2px;
+            height: 6px;
+            background-color: #d1c8f3;
+            animation: ${scroll} 1.25s ease-in-out infinite alternate;
+        }
+    }
+
+    span {
+        color: #d1c8f3;
+        font-size: 11px;
+        font-weight:bold;
+        text-transform: uppercase;
+    }
+`;

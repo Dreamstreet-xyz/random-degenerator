@@ -22,6 +22,8 @@ import {
     SecondaryNavLink,
     SecondaryLink,
     Grid,
+    ScrollToExplore,
+    ScrollToExploreContent,
 } from './styles';
 import { useEffect } from 'react';
 
@@ -51,7 +53,10 @@ export const Home = () => {
     const opacity = useTransform(scrollY, [0, 150, 800], [1, 0.8, 0]);
     const translateY = useTransform(scrollY, [800, 1800], [400, -300]);
     const containerTranslateY = useTransform(scrollY, [800, 1800], [-400, 300]);
-    const [ref1, vis1] = useInView({ threshold: 1 });
+    const heroOpacity = useTransform(scrollY, [200, 600], [1, 0]);
+    const scrollIndicatorOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+
+    const [ref1, vis1] = useInView({ threshold: 1, delay: 200 });
     const [ref2, vis2] = useInView({ threshold: 1 });
 
     useEffect(() => {
@@ -73,7 +78,7 @@ export const Home = () => {
             >
                 <StarsCanvas />
             </motion.div>
-            <HeroSection>
+            <HeroSection style={{ opacity: heroOpacity }}>
                 <BrandContainer>
                     <FirstName>
                         <span>Random</span>
@@ -87,17 +92,23 @@ export const Home = () => {
                     <BrandLogo src="images/home/polygon_logo.svg" />
                     <BrandLogo src="images/home/arbitrum_logo.svg" />
                 </PoweredBy>
+                <ScrollToExplore style={{ opacity: scrollIndicatorOpacity }}>
+                    <ScrollToExploreContent>
+                        <div />
+                        <span>Scroll to Explore</span>
+                    </ScrollToExploreContent>
+                </ScrollToExplore>
             </HeroSection>
             <ContentSection>
                 <Row>
                     <Column>
                         <SectionTitle
                             ref={ref1}
-                            style={{ opacity: 0, translateY: 24 }}
+                            style={{ opacity: 0, translateY: 32 }}
                             animate={vis1 && { opacity: 1, translateY: 0 }}
                             transition={{
                                 type: 'tween',
-                                duration: 0.75,
+                                duration: 1,
                                 ease: 'easeOut',
                             }}
                         >
@@ -116,7 +127,7 @@ export const Home = () => {
                     <Column>
                         <SectionTitle
                             ref={ref2}
-                            style={{ opacity: 0, scale: 1.075 }}
+                            style={{ opacity: 0, scale: 1.1 }}
                             animate={vis2 && { opacity: 1, scale: 1 }}
                             transition={{
                                 type: 'tween',
