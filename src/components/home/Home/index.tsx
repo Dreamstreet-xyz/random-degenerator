@@ -1,6 +1,5 @@
 import StarsCanvas from 'components/layout/AppLayout/StarsCanvas';
 import { motion, useTransform, useScroll } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { Spark } from 'components/misc/Spark';
 import {
     Container,
@@ -26,6 +25,7 @@ import {
     ScrollToExploreContent,
 } from './styles';
 import { useEffect } from 'react';
+import { PopupIntoView } from 'components/misc/Spark/PopupIntoView';
 
 const coins = [
     'aave',
@@ -55,9 +55,6 @@ export const Home = () => {
     const containerTranslateY = useTransform(scrollY, [800, 1800], [-400, 300]);
     const heroOpacity = useTransform(scrollY, [200, 600], [1, 0]);
     const scrollIndicatorOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-
-    const [ref1, vis1] = useInView({ threshold: 1, delay: 200 });
-    const [ref2, vis2] = useInView({ threshold: 1 });
 
     useEffect(() => {
         window.history.scrollRestoration = 'manual';
@@ -102,18 +99,9 @@ export const Home = () => {
             <ContentSection>
                 <Row>
                     <Column>
-                        <SectionTitle
-                            ref={ref1}
-                            style={{ opacity: 0, translateY: 32 }}
-                            animate={vis1 && { opacity: 1, translateY: 0 }}
-                            transition={{
-                                type: 'tween',
-                                duration: 1,
-                                ease: 'easeOut',
-                            }}
-                        >
-                            Try your luck!
-                        </SectionTitle>
+                        <PopupIntoView>
+                            <SectionTitle>Try your luck!</SectionTitle>
+                        </PopupIntoView>
                         <Subtitle></Subtitle>
                     </Column>
                     <Column>
@@ -125,19 +113,12 @@ export const Home = () => {
             <ContentSection>
                 <Row>
                     <Column>
-                        <SectionTitle
-                            ref={ref2}
-                            style={{ opacity: 0, scale: 1.1 }}
-                            animate={vis2 && { opacity: 1, scale: 1 }}
-                            transition={{
-                                type: 'tween',
-                                duration: 1.25,
-                                ease: 'easeOut',
-                            }}
-                        >
-                            We've got your favorites!
-                        </SectionTitle>
-                        <Subtitle>39 crypto pairs and more coming!</Subtitle>
+                        <PopupIntoView scale={1.1} duration={1.25} distance={0}>
+                            <SectionTitle>We've got your favorites!</SectionTitle>
+                        </PopupIntoView>
+                        <PopupIntoView duration={1.25}>
+                            <Subtitle>39 crypto pairs and more coming!</Subtitle>
+                        </PopupIntoView>
                     </Column>
                 </Row>
                 <Row>
@@ -183,7 +164,9 @@ export const Home = () => {
                     </Column>
                 </Row>
                 <Row>
-                    <SecondaryNavLink href="./">I'm ready!</SecondaryNavLink>
+                    <PopupIntoView scale={0} duration={0.3} distance={0}>
+                        <SecondaryNavLink href="./">I'm ready!</SecondaryNavLink>
+                    </PopupIntoView>
                 </Row>
             </ContentSection>
         </Container>

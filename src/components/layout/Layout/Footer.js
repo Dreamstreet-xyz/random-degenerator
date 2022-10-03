@@ -1,4 +1,5 @@
 import { CoinLink } from 'components/common';
+import { PopupIntoView } from 'components/misc/Spark/PopupIntoView';
 import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
@@ -96,32 +97,42 @@ export default function Footer() {
     return (
         <Container>
             <CoinsRow>
-                <GithubCoin href="https://github.com" />
-                <GithubCoin href="https://github.com" />
-                <GithubCoin href="https://github.com" />
+                <PopupIntoView duration={0.3} delay={0.1} margin="0px">
+                    <GithubCoin href="https://github.com" />
+                </PopupIntoView>
+                <PopupIntoView duration={0.3} delay={0.25} margin="0px">
+                    <GithubCoin href="https://github.com" />
+                </PopupIntoView>
+                <PopupIntoView duration={0.3} delay={0.4} margin="0px">
+                    <GithubCoin href="https://github.com" />
+                </PopupIntoView>
             </CoinsRow>
             <BottomRow>
                 <LeftSection>
-                    <Link href="https://github.com/Dreamstreet-xyz" target="_blank">
-                        <Brand>
-                            <span>
-                                <span
-                                    style={{
-                                        display: 'block',
-                                        fontFamily: 'Roboto',
-                                    }}
-                                >
-                                    ©
+                    <PopupIntoView duration={0.2} delay={0.4} distance={0} scale={0} margin="0px">
+                        <Link href="https://github.com/Dreamstreet-xyz" target="_blank">
+                            <Brand>
+                                <span>
+                                    <span
+                                        style={{
+                                            display: 'block',
+                                            fontFamily: 'Roboto',
+                                        }}
+                                    >
+                                        ©
+                                    </span>
+                                    Dreamstreet
                                 </span>
-                                Dreamstreet
-                            </span>
-                        </Brand>
-                    </Link>
+                            </Brand>
+                        </Link>
+                    </PopupIntoView>
                 </LeftSection>
                 <RightSection>
-                    <Link href="https://gains.trade/decentralized-trading" target="_blank">
-                        🍏💪💪
-                    </Link>
+                    <PopupIntoView duration={0.2} delay={0.5} distance={0} scale={0} margin="0px">
+                        <Link href="https://gains.trade/decentralized-trading" target="_blank">
+                            🍏💪💪
+                        </Link>
+                    </PopupIntoView>
                 </RightSection>
             </BottomRow>
         </Container>
