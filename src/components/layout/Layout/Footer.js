@@ -1,5 +1,5 @@
 import { CoinLink } from 'components/common';
-import { PopupIntoView } from 'components/misc/Spark/PopupIntoView';
+import { PopupIntoView } from 'components/misc';
 import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
@@ -109,7 +109,7 @@ export default function Footer() {
             </CoinsRow>
             <BottomRow>
                 <LeftSection>
-                    <PopupIntoView duration={0.2} delay={0.4} distance={0} scale={0} margin="0px">
+                    <PopupIntoView duration={0.2} delay={0.5} distance={0} scale={0} margin="0px">
                         <Link href="https://github.com/Dreamstreet-xyz" target="_blank">
                             <Brand>
                                 <span>
@@ -128,7 +128,7 @@ export default function Footer() {
                     </PopupIntoView>
                 </LeftSection>
                 <RightSection>
-                    <PopupIntoView duration={0.2} delay={0.5} distance={0} scale={0} margin="0px">
+                    <PopupIntoView duration={0.2} delay={0.65} distance={0} scale={0} margin="0px">
                         <Link href="https://gains.trade/decentralized-trading" target="_blank">
                             🍏💪💪
                         </Link>

@@ -1,6 +1,6 @@
 import StarsCanvas from 'components/layout/AppLayout/StarsCanvas';
 import { motion, useTransform, useScroll } from 'framer-motion';
-import { Spark } from 'components/misc/Spark';
+import { PopupIntoView, Spark } from 'components/misc';
 import {
     Container,
     HeroSection,
@@ -25,7 +25,6 @@ import {
     ScrollToExploreContent,
 } from './styles';
 import { useEffect } from 'react';
-import { PopupIntoView } from 'components/misc/Spark/PopupIntoView';
 
 const coins = [
     'aave',

@@ -6,7 +6,8 @@ import { Loading } from 'components/common';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import { WalletConnectionStatus } from 'types/Wallet';
 import { prettifyEther } from 'shared/utils/wallet';
-import { Spark } from 'components/misc/Spark';
+import { Spark } from 'components/misc';
+import { Menu } from 'components/common/Dropdown/styles';
 import AccountModal from '../AccountModal';
 import NetworkDropdown from '../NetworkDropdown';
 import NetworkButton from '../NetworkButton';
@@ -31,7 +32,6 @@ import {
     Logo,
     UserIcon,
 } from './styles';
-import { Menu } from 'components/common/Dropdown/styles';
 
 export default function Navbar() {
     const { network: selectedNetwork, setNetwork } = useNetworkDetails();
