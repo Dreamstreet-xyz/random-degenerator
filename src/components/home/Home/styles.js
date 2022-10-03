@@ -109,7 +109,7 @@ export const Column = styled.div`
 export const CoinsContainer = styled(motion.div)`
     perspective: 1200px;
     position: relative;
-    margin-top: 120px;
+    margin-top: 64px;
 `;
 
 export const CoinsMarquee = styled(motion.div)`
