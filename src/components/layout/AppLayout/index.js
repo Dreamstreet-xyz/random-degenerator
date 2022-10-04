@@ -46,8 +46,13 @@ const Footer = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
+    overflow: hidden;
     height: 30px;
     font-family: 'Fira Mono', monospace;
+
+    @media (max-width: 500px) {
+        display: none;
+    }
 
     &:hover {
         & > div {
@@ -89,12 +94,14 @@ const Marquee = styled.div`
 const Winners = styled.span`
     display: flex;
     gap: 16px;
+    white-space: nowrap;
     color: #23fca9;
 `;
 
 const Losers = styled.span`
     display: flex;
     gap: 16px;
+    white-space: nowrap;
     color: #fc238f;
 `;
 export default function AppLayout({ children }) {
