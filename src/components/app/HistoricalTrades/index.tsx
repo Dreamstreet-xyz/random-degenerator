@@ -1,8 +1,9 @@
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import HistoricalTradeItem from 'components/app/HistoricalTrades/HistoricalTradeItem';
-import { Container, Title, Subtitle } from '../sharedStyles';
+import { Title, Subtitle } from '../sharedStyles';
 import {
     Section,
+    Container,
     Table,
     TableHead,
     TableHeadRow,

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styled from 'styled-components';
 import AppLayout from 'components/layout/AppLayout';
-import { gradientShine, retroTextGradient } from 'shared/styles';
+import { containerStyle, gradientShine, retroTextGradient } from 'shared/styles';
 import FAQ from 'components/about/FAQ';
 import { Paragraph } from 'components/about/FAQ/styles';
 
@@ -21,7 +21,7 @@ const Container = styled.div`
     align-items: center;
     max-width: 1280px;
     width: 100%;
-    background-color: #150736ee;
+    ${containerStyle}
     border-radius: 20px;
     padding: 64px;
     @media (max-width: 1000px) {

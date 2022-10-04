@@ -25,10 +25,10 @@ export const Decoration = styled.div`
     width: 60px;
     height: 6px;
     border-radius: 6px;
-    background: linear-gradient(45deg, #a526b6, #6625ff);
+    background: linear-gradient(45deg, #f71dff, #996dff);
     margin-bottom: 24px;
-    background-size: 300%;
-    animation: ${gradientShine} 8s linear infinite;
+    background-size: 200%;
+    animation: ${gradientShine} 4s linear infinite;
 `;
 
 export const Section = styled.section`
@@ -38,14 +38,14 @@ export const Section = styled.section`
 
 export const Accordion = styled(DefaultAccordion)`
     &:not(:last-of-type) {
-        border-bottom: 1px solid #3e2566;
+        border-bottom: 1px solid #27226e81;
     }
 `;
 
 export const FAQContent = styled.div`
     padding: 16px 32px 32px 32px;
     line-height: 1.6;
-    color: #b7a8db;
+    color: #c8c7f0;
     @media (max-width: 1000px) {
         padding: 16px;
     }
@@ -60,9 +60,13 @@ export const Paragraph = styled.p`
 `;
 
 export const Anchor = styled.a`
-    color: #4c90f7;
+    color: #28a9ff;
 
     &:visited {
-        color: #8549f5;
+        color: #b575ff;
+    }
+
+    &:hover {
+        opacity: .85;
     }
 `;

@@ -129,10 +129,10 @@ const actionStyle = css`
     background-color: transparent;
     font-weight: bold;
     font-size: 18px;
-    color: #9169ec;
+    color: #826ff0;
 
     &:hover {
-        color: #af91f5;
+        color: #9d8dfd;
     }
 
     @media (max-width: 770px) {
@@ -154,5 +154,5 @@ export const GainsLogo = styled.img`
     width: 16px;
     height: 16px;
     margin-right: 8px;
-    filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(200deg);
+    filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(195deg);
 `;

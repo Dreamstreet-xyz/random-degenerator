@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { retroTextGradient } from 'shared/styles';
+import { containerStyle, retroTextGradient } from 'shared/styles';
 
 export const Container = styled.div`
 `;
@@ -22,8 +22,7 @@ export const Card = styled(motion.div)`
     width: 200px;
     height: 400px;
     border-radius: 10px;
-    background-color: #100731;
-
+    ${containerStyle}
     @media (max-width: 870px) {
         width: 150px;
         height: 200px;

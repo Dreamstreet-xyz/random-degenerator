@@ -15,17 +15,17 @@ export const TableRow = styled.tr`
     }
 
     &:hover {
-        background-color: #291774;
+        background-color: #ffffff08;
     }
 
     &:active {
-        background-color: #291772;
+        background-color: #ffffff0b;
     }
     
     @media (max-width: 800px) {
         display: flex;
         padding: 16px;
-        background-color: #21115c;
+        border: 1px solid #483b9e88;
         border-radius: 10px;
         flex-wrap: wrap;
         align-items: center;
@@ -33,7 +33,7 @@ export const TableRow = styled.tr`
 `;
 
 export const TableData = styled.td`
-    padding: 12px 16px;
+    padding: 12px 8px;
     text-align: center;
     vertical-align:  middle;
 
@@ -105,17 +105,18 @@ export const CloseButtonWrapper = styled(TableData)`
     }
 `;
 
-export const CloseButton = styled(IconButton).attrs({
-    color: '#db298b',
-})`
+export const CloseButton = styled(IconButton)`
     && {
         display: inline-flex;
         background-color: transparent;
+        color: #ff2ca0;
 
         &:hover:enabled,
         &:active,
         &:focus {
-            background-color: #381e77;
+            background-color: #ffffff08;
+            color: #ff2ca0;
+
         }
     }
 `;

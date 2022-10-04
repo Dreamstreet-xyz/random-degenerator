@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     padding: 24px;
-    background-color: #21175e;
+    border: 1px solid #483b9e88;
     border-radius: 10px;
     ${noSelect}
 
@@ -75,7 +75,7 @@ export const Row = styled.div`
 
 export const StatusBar = styled.div`
     position: relative;
-    background: linear-gradient(90deg, #ce3ece, #4f40d4);
+    background: linear-gradient(90deg, #f022c3, #4d3af8);
     height: 36px;
     border-radius: 4px;
     flex: 1;
@@ -144,17 +144,18 @@ export const CloseButtonWrapper = styled.div`
     margin-left: 8px;
 `;
 
-export const CloseButton = styled(IconButton).attrs({
-    color: '#db298b',
-})`
+export const CloseButton = styled(IconButton)`
     && {
         display: inline-flex;
         background-color: transparent;
+        color: #ff2ca0;
 
         &:hover:enabled,
         &:active,
         &:focus {
-            background-color: #381e77;
+            background-color: #ffffff08;
+            color: #ff2ca0;
+
         }
     }
 `;

@@ -26,5 +26,5 @@ export const Row = styled.div`
 
 export const Icon = styled(DefaultIcon)`
     margin-left: auto;
-    color: #7860ce;
+    color: #585ac0;
 `;

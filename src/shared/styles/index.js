@@ -324,4 +324,9 @@ export const shadowOutline = props => css`
     box-shadow: 0 0 0 ${props?.width || 3}px ${props?.color || '#5eddfd'};
 `;
 
+export const containerStyle = css`
+    background-color: #0201146c;
+    backdrop-filter: blur(30px);
+`;
+
 export { colors, theme };

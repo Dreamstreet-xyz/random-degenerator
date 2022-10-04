@@ -5,30 +5,32 @@ export const Container = styled.div``;
 
 export const Table = styled.table`
     width: 100%;
-    background-color: #230f6b;
     border-radius: 10px;
-
-    @media (max-width: 800px) {
-        background-color: transparent;
-    }
 `;
 
 export const TableHead = styled.thead`
-    background-color: #230e70;
-
     @media (max-width: 800px) {
         display: none;
     }
 `; 
 
 export const TableHeadRow = styled.tr`
-    border-bottom: 1px solid #d200b8;
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background:linear-gradient(to right, #cd28ff 5%, #cf00b7);
+    }
 `;
 
 export const TableHeader = styled.th`
-    padding: 16px 16px 12px;
+    padding: 16px 8px 12px;
     font-weight: bold;
-    ${textGradientCustom(['#e386ff', '#fd8b8b'])}
+    ${textGradientCustom(['#d83dff', '#ff6c6c'])}
 `;
 
 export const TableBody = styled.tbody`

@@ -1,11 +1,13 @@
 import styled from 'styled-components';
-import { IconButton } from 'components/common';
 import { ActionType } from 'types/gains/GainsCoreData';
 
 export const TableRow = styled.tr`
     position: relative;
-    cursor: pointer;
     overflow-x: hidden;
+
+    &:hover {
+        background-color: #ffffff05;
+    }
 
     &:last-of-type {
         td:first-of-type {
@@ -14,14 +16,6 @@ export const TableRow = styled.tr`
         td:last-of-type {
             border-radius: 0 0 10px 0;
         }
-    }
-
-    &:hover {
-        background-color: #261663;
-    }
-
-    &:active {
-        background-color: #2a1a68;
     }
 `;
 
@@ -37,7 +31,7 @@ export const TableData = styled.td`
 `;
 
 export const PositionData = styled(TableData)`
-    color: ${({ position }) => (position === 'LONG' ? '#57e08b' : '#db5c91')};
+    color: ${({ position }) => (position === 'LONG' ? '#14ffe3' : '#ff5391')};
 `;
 
 export const Pair = styled(TableData)`
@@ -52,10 +46,10 @@ export const Collateral = styled(TableData)`
 `;
 
 export const PnlData = styled(TableData)`
-    color: ${({ pnl }) => (pnl > 0 ? '#57e08b' : '#db5c91')};
+    color: ${({ pnl }) => (pnl > 0 ? '#14ffe3' : '#ff5391')};
     text-align: right;
 `;
 
 export const Action = styled(TableData)`
-    color: ${({ action }) => ([ActionType.LIQ, ActionType.SL].includes(action) ? '#db5c91' : action === ActionType.TP ? '#57e08b' : '#fff')};
+    color: ${({ action }) => ([ActionType.LIQ, ActionType.SL].includes(action) ? '#ff5391' : action === ActionType.TP ? '#14ffe3' : '#fff')};
 `;
