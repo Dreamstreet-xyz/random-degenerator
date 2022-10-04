@@ -11,6 +11,9 @@ const Container = styled.div`
     z-index: -1;
     pointer-events: none;
     user-select: none;
+    @media (hover: none) {
+        height: 100%;
+    }
 `;
 
 const Canvas = styled.canvas`
@@ -19,6 +22,10 @@ const Canvas = styled.canvas`
     height: 100%;
     user-select: none;
     pointer-events: none;
+
+    @media (hover: none) {
+        position: relative;
+    }
 `;
 
 const STARS_VELOCITY = -0.0003;

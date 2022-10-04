@@ -1,5 +1,5 @@
 import StarsCanvas from 'components/layout/AppLayout/StarsCanvas';
-import { motion, useTransform, useScroll } from 'framer-motion';
+import { useTransform, useScroll } from 'framer-motion';
 import { PopupIntoView, Spark } from 'components/misc';
 import {
     Container,
@@ -23,8 +23,9 @@ import {
     Grid,
     ScrollToExplore,
     ScrollToExploreContent,
+    StarsContainer,
 } from './styles';
-import { useEffect } from 'react';
+import Footer from './Footer';
 
 const coins = [
     'aave',
@@ -53,23 +54,13 @@ export const Home = () => {
     const translateY = useTransform(scrollY, [600, 2000], [800, -300]);
     const containerTranslateY = useTransform(scrollY, [600, 2000], [-800, 300]);
     const heroOpacity = useTransform(scrollY, [200, 600], [1, 0]);
-    const scrollIndicatorOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+    const scrollIndicatorOpacity = useTransform(scrollY, [0, 600], [1, 0]);
 
     return (
         <Container>
-            <motion.div
-                style={{
-                    opacity,
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100vh',
-                    zIndex: -1,
-                }}
-            >
+            <StarsContainer style={{ opacity }}>
                 <StarsCanvas />
-            </motion.div>
+            </StarsContainer>
             <HeroSection style={{ opacity: heroOpacity }}>
                 <BrandContainer>
                     <FirstName>
@@ -164,6 +155,7 @@ export const Home = () => {
                     </PopupIntoView>
                 </Row>
             </ContentSection>
+            <Footer />
         </Container>
     );
 };

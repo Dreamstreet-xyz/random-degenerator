@@ -5,7 +5,6 @@ export const Container = styled.div``;
 
 export const Table = styled.table`
     width: 100%;
-    border-radius: 10px;
 `;
 
 export const TableHead = styled.thead`

@@ -1,7 +1,7 @@
 import { CoinLink } from 'components/common';
 import { PopupIntoView } from 'components/misc';
-import { retroAnimatedGradient, shine } from 'shared/styles';
-import styled, { keyframes } from 'styled-components';
+import { retroAnimatedGradient } from 'shared/styles';
+import styled from 'styled-components';
 
 const Container = styled.div`
     position: relative;

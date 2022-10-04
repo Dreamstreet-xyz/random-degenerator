@@ -4,16 +4,6 @@ import { IconButton } from 'components/common';
 export const TableRow = styled.tr`
     position: relative;
     cursor: pointer;
-
-    &:last-of-type {
-        td:first-of-type {
-            border-radius: 0 0 0 10px;
-        }
-        td:last-of-type {
-            border-radius: 0 0 10px 0;
-        }
-    }
-
     &:hover {
         background-color: #ffffff08;
     }

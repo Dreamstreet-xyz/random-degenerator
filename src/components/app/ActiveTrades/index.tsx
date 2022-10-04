@@ -1,17 +1,14 @@
 import { useState } from 'react';
-import { formatEther } from '@ethersproject/units';
-import { GainsStreamingDataInterface } from 'types/gains/GainsStreamingData';
 import { GainsCoreDataInterface } from 'types/gains/GainsCoreData';
 import ActiveTradeContainer from 'containers/ActiveTradeContainer';
 import { getTradeKey } from 'shared/utils/gains/trade';
-import { Container, Header, Title, Content } from '../sharedStyles';
-import { Section, HeaderRight, Toggle } from './styles';
+import { Header, Title, Content } from '../sharedStyles';
+import { Container, Section, HeaderRight, Toggle } from './styles';
 import {
     ActionLink,
     GainsLogo,
 } from 'components/app/MainApp/ConnectedApp/PlaySlots/TradeResultsCard/styles';
 import { NetworkInterface, polygon } from 'shared/constants/networks';
-import TradeDetailsModal from './TradeView/TradeDetailsModal';
 import BetView from './BetView';
 import TradeView from './TradeView';
 import { Tooltip } from 'components/common';

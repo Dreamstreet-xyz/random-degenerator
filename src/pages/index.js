@@ -62,9 +62,9 @@ export const WinButton = styled.button`
 
 export default function Home() {
     const { scrollYProgress } = useScroll();
-    const translateY = useTransform(scrollYProgress, [0.75, 1], [107, 0]);
-    const sunGradientOpacity = useTransform(scrollYProgress, [0.5, 1], [0, 1]);
-    const cityGradientOpacity = useTransform(scrollYProgress, [0.8, 1], [0, 1]);
+    const translateY = useTransform(scrollYProgress, [0.6, 0.85], [107, 0]);
+    const sunGradientOpacity = useTransform(scrollYProgress, [0.5, 0.98], [0, 1]);
+    const cityGradientOpacity = useTransform(scrollYProgress, [0.8, 0.98], [0, 1]);
     const [networkInfo, setNetworkInfo] = useState(null);
     const [win, setWin] = useState(null);
     const { getGasStationPayload } = useGasStation();

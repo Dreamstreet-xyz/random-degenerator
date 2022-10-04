@@ -7,6 +7,19 @@ export const Container = styled.div`
 overflow-x: hidden;
 `;
 
+export const StarsContainer = styled(motion.div)`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+
+    @media (hover: none) {
+        height: 100%;
+    }
+`;
+
 export const HeroSection = styled(motion.div)`
     display: flex;
     flex-direction: column;
@@ -23,6 +36,14 @@ export const BrandContainer = styled.div`
     opacity: 0;
     animation: ${fadeIn} .5s ease-in-out forwards;
     animation-delay: .75s;
+
+    @media (max-width: 1200px) {
+    font-size: 80px;
+    }
+
+    @media (max-width: 600px) {
+        font-size: 48px;
+    }
 `;
 
 export const FirstName = styled.h1`
@@ -32,6 +53,16 @@ export const FirstName = styled.h1`
     ${newRetroText}
     span:first-child {
         ${lightShine('RANDOM')}
+    }
+
+    @media (max-width: 1200px) {
+        margin-bottom: -22px;
+
+    }
+
+    @media (max-width: 600px) {
+        margin-bottom: -12px;
+        margin-left: 10px;
     }
 `;
 
@@ -120,6 +151,10 @@ export const CoinsMarquee = styled(motion.div)`
     z-index: 0;
     transform: translateZ(100px);
     transform-style: preserve-3d;
+
+    @media (max-width: 800px) {
+        transform: translateZ(50px);
+    }
 `;
 
 export const CoinIcon = styled(motion.img)`
@@ -131,6 +166,17 @@ export const CoinIcon = styled(motion.img)`
     height: 48px;
     transform-origin: -12px 50% -250px;
     image-rendering: optimizeQuality;
+    @media (max-width: 800px) {
+        width: 32px;
+        height: 32px;
+        transform-origin: -12px 50% -160px;
+    }
+
+    @media (max-width: 450px) {
+        width: 24px;
+        height: 24px;
+        transform-origin: -12px 50% -100px;
+    }
 `;
 
 const secondaryCta = css`
@@ -182,7 +228,7 @@ const scroll = keyframes`
 
 export const ScrollToExplore = styled(motion.div)`
     position: absolute;
-    bottom: 0px;
+    bottom: 32px;
     left: 0;
     width: 100%;
     ${noSelect}
