@@ -1,5 +1,5 @@
 :root {
-    --modal-bg: #190c5e;
+    --modal-bg: #170b5085;
     --modal-border: #8a1ca5;
     --selected-border: rgb(255, 59, 222);
     --text-description: rgb(200, 189, 228);
@@ -14,7 +14,7 @@
 }
 
 .web3modal-modal-container .web3modal-modal-card {
-    background-color: var(--modal-bg);
+    background: linear-gradient(135deg, #0f065c, #3a025a);
     border: 1px solid var(--modal-border);
     display: flex;
     flex-direction: column;
