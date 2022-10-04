@@ -7,7 +7,7 @@ export default function OptionButton({ value, title, isSelected, onClick, emphas
 
     return (
         <Button onClick={handleClick} isSelected={isSelected} emphasize={emphasize}>
-            {title}
+            <span>{title}</span>
         </Button>
     );
 }

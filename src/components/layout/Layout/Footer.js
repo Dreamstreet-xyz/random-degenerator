@@ -1,5 +1,6 @@
 import { CoinLink } from 'components/common';
 import { PopupIntoView } from 'components/misc';
+import { retroAnimatedGradient, shine } from 'shared/styles';
 import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
@@ -31,12 +32,6 @@ const BottomRow = styled.div`
     display: flex;
 `;
 
-const shine = keyframes`
-    to {
-      background-position: 200% center;
-    }
-`;
-
 const LeftSection = styled.div`
     display: flex;
     align-items: center;
@@ -46,21 +41,7 @@ const LeftSection = styled.div`
         gap: 4px;
         align-items: center;
         font-size: 11px;
-        background: linear-gradient(
-            to right,
-            #b984ff 10%,
-            #fa66ff 40%,
-            #ff6694 60%,
-            #fa66ff 80%,
-            #b984ff 100%
-        );
-        text-shadow: 0px 0px 12px #ff46c7;
-        background-size: 200% auto;
-        color: #ff38c3;
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: ${shine} 5s linear infinite;
+        ${retroAnimatedGradient}
         letter-spacing: 2px;
         text-transform: uppercase;
         font-family: 'Fira Mono';

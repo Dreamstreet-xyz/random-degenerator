@@ -1,13 +1,15 @@
 import styled, { css } from 'styled-components';
 import { Container as DefaultContainer, Title as DefaultTitle } from 'components/app/sharedStyles';
 import { Button, IconButton } from 'components/common';
-import { pulsingGlow } from 'shared/styles';
+import { fadeIn } from 'shared/styles';
 
 export const Container = styled(DefaultContainer)`
     max-width: 550px;
     padding: 28px 36px;
     box-sizing: border-box;
+    position: relative;
     
+
     @media (max-width: 768px) {
         padding: 16px;
     }
@@ -17,13 +19,15 @@ export const Container = styled(DefaultContainer)`
     }
     
     ${({ glow }) => glow && css`
-        box-shadow: 0px 0px 8px 2px #ff21a35f;
-        ${pulsingGlow}
-
         &::after {
-            box-shadow: 0px 0px 16px 4px #ff46ff5f;
-            animation-duration: 4s;
+            position: absolute;
+            content: "";
+            inset: 0;
+            border-radius: 20px;
+            box-shadow: 0px 0px 0px 3px #ff00955c, 0px 0px 24px 8px #ff1bff3d;
             z-index: -1;
+            opacity: 0;
+            animation: ${fadeIn} .75s ease-in-out forwards;
         }
     `};
 `;

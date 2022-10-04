@@ -42,12 +42,13 @@ import {
     getTradeKeyFromTradeOverrides,
 } from 'shared/utils/gains/trade';
 import { AssetType } from 'types/gains/GainsCoreData';
+import { UltimateDegenIndicator } from 'components/app/MainApp/ConnectedApp/UltimateDegenIndicator';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const degenOptions = [
     { value: DegenLevel.normal, title: 'Normal' },
-    { value: DegenLevel.high, title: 'Ultimate Degen', emphasize: true },
+    { value: DegenLevel.high, title: 'Ultimate', emphasize: true },
 ];
 
 const directionOptions = [

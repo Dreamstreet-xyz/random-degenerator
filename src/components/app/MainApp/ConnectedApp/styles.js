@@ -34,6 +34,7 @@ export const InsufficientFunds = styled.span`
 `;
 
 export const AppContainer = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -63,7 +64,7 @@ export const Banner = styled(DefaultBanner)`
     width: 100%;
     border-radius: 20px;
     z-index: 5;
-    background: linear-gradient(45deg, #f5355f, #ff465f);
+    background: linear-gradient(45deg, #7835f5, #8746ff);
 
     @media (max-width: 768px) {
         position: relative;

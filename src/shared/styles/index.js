@@ -140,6 +140,24 @@ export const shine = keyframes`
     }
 `;
 
+export const retroAnimatedGradient = css`
+    background: linear-gradient(
+        to right,
+        #b984ff 10%,
+        #fa66ff 40%,
+        #ff6694 60%,
+        #fa66ff 80%,
+        #b984ff 100%
+    );
+    text-shadow: 0px 0px 12px #ff46c7;
+    background-size: 200% auto;
+    color: #ff38c3;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: ${shine} 5s linear infinite;
+`;
+
 export const lightShineAnimation = keyframes`
     0% {
         background-position: 0% 51%

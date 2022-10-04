@@ -1,4 +1,4 @@
-import { gradientShine } from 'shared/styles';
+import { gradientShine, shadowOutline } from 'shared/styles';
 import styled, { css } from 'styled-components';
 
 export const Button = styled.button`
@@ -9,7 +9,7 @@ export const Button = styled.button`
     font-weight: bold;
     border-radius: 0;
     background-color: transparent;
-    color: white;
+    color: #7f7ccf;
     outline: none;
     z-index: 1;
 
@@ -23,22 +23,26 @@ export const Button = styled.button`
 
     &:hover:not([disabled]) {
         ${({ isSelected }) => !isSelected && css`
-            background-color: #3a237a;
+            background-color: #331f8d;
+            color: #a6afe0;
         `};
     }
 
-    &:focus {
-        box-shadow: 0px 0px 0px 3px #42bef0;
+    &:focus-visible {
+        ${shadowOutline()}
         z-index: 2;
     }
 
     ${({ isSelected }) => isSelected && css`
-        background-color: #6f48db;
+        background-color: #7050ff;
+        color: white;
     
         ${({ emphasize }) => emphasize && css`
-            background: linear-gradient(-45deg, #6142eb, #b41892); 
+            background: linear-gradient(-45deg, #866aff, #ff3ab4); 
             background-size: 200%;
-            animation: ${gradientShine} 2s linear infinite;
+            animation: ${gradientShine} 4s linear infinite;
+            box-shadow: 0 0 8px 2px #ff3ab37b;
+            color: #fdf4ff;
         `};
     `};
 `;

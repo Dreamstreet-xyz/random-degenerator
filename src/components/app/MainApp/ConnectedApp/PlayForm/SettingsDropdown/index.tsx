@@ -1,3 +1,4 @@
+import { MutableRefObject } from 'react';
 import { QuestionIcon, Tooltip } from 'components/common';
 import { Menu } from 'components/common/Dropdown/styles';
 import { PlayFormSettingsType, DegenLevel, TradeDirection } from 'types/Trade';
@@ -14,6 +15,7 @@ export default function SettingsDropdown({
     settings: PlayFormSettingsType;
     setSettings: (settings: PlayFormSettingsType) => void;
     isOpen: boolean;
+    toggleRef?: MutableRefObject<HTMLElement | null>;
     close: () => void;
 }) {
     const {

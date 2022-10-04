@@ -37,28 +37,37 @@ const Coin = styled.div`
 
 const Center = styled.div`
     position: absolute;
-    top: 33px;
+    top: 1px;
     left: calc(50% - 2px);
     width: 4px;
     height: 46px;
     border-radius: 2px;
     background-color: rgb(236, 160, 18);
     z-index: -1;
+
+    @media (hover: none) {
+        left: calc(50% - 3px);
+        width: 6px;
+    }
 `;
 
 const Link = styled.a`
-    position: relative;
-
     &:hover {
         filter: brightness(1.25);
     }
 `;
 
+const Container = styled.div`
+    position: relative;
+`;
+
 function CoinLink({ href, className }) {
     return (
         <Link href={href}>
-            <Coin className={className} />
-            <Center />
+            <Container>
+                <Coin className={className} />
+                <Center />
+            </Container>
         </Link>
     );
 }

@@ -49,15 +49,11 @@ const coins = [
 
 export const Home = () => {
     const { scrollY } = useScroll();
-    const opacity = useTransform(scrollY, [0, 150, 800], [1, 0.8, 0]);
+    const opacity = useTransform(scrollY, [0, 150, 800], [1, 0.8, 0.15]);
     const translateY = useTransform(scrollY, [600, 2000], [800, -300]);
     const containerTranslateY = useTransform(scrollY, [600, 2000], [-800, 300]);
     const heroOpacity = useTransform(scrollY, [200, 600], [1, 0]);
     const scrollIndicatorOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-
-    useEffect(() => {
-        window.history.scrollRestoration = 'manual';
-    }, []);
 
     return (
         <Container>

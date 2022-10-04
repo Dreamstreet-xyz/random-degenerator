@@ -17,10 +17,8 @@ import {
     GasPrice,
     SettingsButton,
     FieldContainer,
-    Label,
     ActionRow,
     SubmitButton,
-    LabelRow,
 } from './styles';
 import { WalletConnectionStatus } from 'types/Wallet';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
@@ -162,10 +160,7 @@ export default function PlayForm({
     onDaiApprove,
     daiLoading,
 }: PlayFormInputType) {
-    const {
-        degenLevel,
-        details: { degenOptions },
-    } = settings;
+    const { degenLevel } = settings;
     const [loading, setLoading] = useState(false);
     const { user, walletConnectionStatus } = useUser();
     const useGainsDataStore = useActiveGainsDataStore(
@@ -204,10 +199,7 @@ export default function PlayForm({
         <Container
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
-            glow={
-                (degenOptions.find(d => d.value === degenLevel)?.title || 'Normal') ===
-                degenOptions.find(d => d.value === DegenLevel.high)?.title
-            }
+            glow={degenLevel === DegenLevel.high}
         >
             <Header>
                 <Tooltip content="you know you wanna 🤌">
