@@ -155,7 +155,9 @@ export const SpilloverButton = styled(IconButton)`
 `;
 
 export const SpilloverDropdown = styled(Dropdown)`
-    width: 250px;
+    && {
+
+    }
 `;
 
 export const SpilloverLink = styled(NavLink)`

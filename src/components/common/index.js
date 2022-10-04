@@ -12,7 +12,6 @@ import Identicon from './Identicon';
 import Loading from './Loading';
 import Modal from './Modal';
 import QuestionIcon from './QuestionIcon';
-import PrimaryButton from './PrimaryButton';
 import Range from './Range';
 import Tooltip from './Tooltip';
 
@@ -31,7 +30,6 @@ export {
     Loading,
     Modal,
     QuestionIcon,
-    PrimaryButton,
     Range,
     Tooltip,
 };

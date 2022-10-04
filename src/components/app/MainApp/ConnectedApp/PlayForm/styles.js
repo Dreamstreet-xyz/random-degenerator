@@ -105,5 +105,7 @@ export const ActionRow = styled.div`
 
 export const SubmitButton = styled(Button)`
     padding: 8px 64px;
+    min-height: 45px;
     font-size: 24px;
+    margin-left: auto;
 `;

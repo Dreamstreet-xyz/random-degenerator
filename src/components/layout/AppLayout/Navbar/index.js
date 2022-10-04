@@ -103,7 +103,7 @@ export default function Navbar() {
                                 {cLoading ? (
                                     <Loading containerStyle={{ minHeight: 21 }} />
                                 ) : (
-                                    'Connect Wallet'
+                                    'Connect'
                                 )}
                             </ConnectButton>
                         )}

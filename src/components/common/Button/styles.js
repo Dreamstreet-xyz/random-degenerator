@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { gradientShine } from 'shared/styles';
+import { gradientShine, shadowOutline } from 'shared/styles';
 
 export const StyledButton = styled.button`
+    position: relative;
     display: flex;
     box-sizing: border-box;
     justify-content: center;
@@ -10,18 +11,17 @@ export const StyledButton = styled.button`
     font-size: 14px;
     outline: none;
     padding: 8px 16px;
-    margin-left: auto;
     font-weight: bold;
     border-radius: 10px;
     background-color: #e010cf;
-    background: linear-gradient(-45deg, #8342eb, #FF3D77); 
+    background: linear-gradient(-45deg, #914dff, #ff2f6d); 
     background-size: 300%;
     animation: ${gradientShine} 8s linear infinite;
     color: white;
 
     &:hover:not([disabled]),
     &:focus {
-        box-shadow: 0px 0px 0px 3px #42bef0;
+        ${shadowOutline()}
     }
 `;
 
@@ -29,6 +29,7 @@ export const Content = styled.span`
     display: flex;
     justify-content: ${({ center }) => (center && 'center')};
     align-items: ${({ hasSubtitle }) => (hasSubtitle ? 'flex-start' : 'center')};
+    visibility: ${({ hideContent }) => (hideContent ? 'hidden' : 'visible')};
     width: 100%;
 `;
 

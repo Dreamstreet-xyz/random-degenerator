@@ -206,14 +206,6 @@ export default function PlayForm({
                     <Title>Place a Trade</Title>
                 </Tooltip>
                 <HeaderRight>
-                    {gas && (
-                        <Tooltip content="Most recent Polygon fastest gas price">
-                            <GasIndicator gradient={['#78f578', '#6affa3', '#78f578']}>
-                                <Icon icon="gas-pump" size={16} style={{ marginRight: 4 }} />
-                                <GasPrice>{Math.trunc(gas)}</GasPrice>
-                            </GasIndicator>
-                        </Tooltip>
-                    )}
                     <div style={{ position: 'relative' }}>
                         <div style={{ cursor: 'pointer' }}>
                             <SettingsButton

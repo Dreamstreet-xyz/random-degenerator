@@ -37,20 +37,20 @@ export default function Slot({ title, options, target, index }) {
                                 style={{
                                     rotateX: positionInWheel(ix),
                                     opacity: 1,
-                                    color: '#8a26db',
+                                    color: '#6138f3',
                                 }}
                                 animate={{
                                     rotateX: -360 * (6 + target) + positionInWheel(ix - target),
                                     opacity: target ? (ix === target ? 1 : [1, 1, 0]) : 1,
                                     color: target
                                         ? ix === target && [
-                                              '#8a26db',
-                                              '#8a26db',
-                                              '#8a26db',
-                                              '#8a26db',
+                                              '#6138f3',
+                                              '#6138f3',
+                                              '#6138f3',
+                                              '#6138f3',
                                               '#ff57e3',
                                           ]
-                                        : '#8a26db',
+                                        : '#6138f3',
                                 }}
                                 transition={{
                                     type: 'tween',

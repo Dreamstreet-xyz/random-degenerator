@@ -65,10 +65,13 @@ export default function Button({
             hasIcon={!!icon}
             {...rest}
         >
-            {loading ? (
-                <Loading containerStyle={{ minHeight: 24, ...loadingContainerStyle }} />
-            ) : (
-                <Content center={center || (!icon && !iconName)} hasSubtitle={!!subtitle}>
+            <>
+                {loading && <Loading containerStyle={{ ...loadingContainerStyle }} />}
+                <Content
+                    center={center || (!icon && !iconName)}
+                    hasSubtitle={!!subtitle}
+                    hideContent={loading}
+                >
                     {renderLeftIcon()}
                     <TitleContainer>
                         <Title $maxWidth={titleMaxWidth} style={titleStyle}>
@@ -78,7 +81,7 @@ export default function Button({
                     </TitleContainer>
                     {renderRightIcon()}
                 </Content>
-            )}
+            </>
         </StyledButton>
     );
 }
