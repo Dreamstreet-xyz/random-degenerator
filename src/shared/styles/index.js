@@ -317,7 +317,7 @@ export const newRetroTextCursive = css`
     font-family: 'Mr Dafoe';
     font-weight: bold;
     color: #ffffff;
-    text-shadow: 0 0 0.5em #d400ff, 0 0 0.3em #fe05e1, 0 0 0.8em #e100ff;
+    text-shadow: 0 0 0.1em #d400ff, 0 0 0.3em #fe05e1, 0 0 0.8em #e100ff;
 `;
 
 export const shadowOutline = props => css`
