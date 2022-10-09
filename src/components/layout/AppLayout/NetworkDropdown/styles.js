@@ -11,6 +11,12 @@ export const Dropdown = styled(DefaultDropdown)`
     }
 `;
 
+export const Networks = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+`;
+
 export const NetworkOption = styled.button`
     position: relative;
     width: 100%;
@@ -20,7 +26,6 @@ export const NetworkOption = styled.button`
     color: white;
     font-weight: bold;
     font-size: 16px;
-    margin: 4px 0;
     border-radius: 8px;
     background-color: transparent;
     gap: 8px;
@@ -53,6 +58,7 @@ export const NetworkIcon = styled.img`
 `;
 
 export const LinksContainer = styled.div`
+    margin-top: 8px;
     border-top: 1px solid #31225c;
     display: flex;
     flex-direction: column;

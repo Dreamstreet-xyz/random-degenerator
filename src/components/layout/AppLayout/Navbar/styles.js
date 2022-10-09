@@ -139,6 +139,9 @@ export const UserInfo = styled.button`
     display: flex;
     align-items: center;
     gap: 4px;
+    &:hover {
+        background-color: #220f50;
+    }
 `;
 
 export const UserIcon = styled(Identicon)`
@@ -148,16 +151,12 @@ export const UserIcon = styled(Identicon)`
 `;
 
 export const UserAddress = styled.span`
-
 `;
 
 export const SpilloverButton = styled(IconButton)`
 `;
 
 export const SpilloverDropdown = styled(Dropdown)`
-    && {
-
-    }
 `;
 
 export const SpilloverLink = styled(NavLink)`

@@ -5,6 +5,7 @@ import networks from 'shared/constants/networks';
 import {
     Dropdown,
     Title,
+    Networks,
     NetworkOption,
     NetworkIcon,
     Link,
@@ -22,18 +23,20 @@ export default function NetworkDropdown({ isOpen, close, selected, onSelect, tog
         <Dropdown close={close} isOpen={isOpen} toggleRef={toggleRef}>
             <Menu style={{ paddingTop: 8 }}>
                 <Title>Select a network</Title>
-                {networks.map(network => (
-                    <NetworkOption
-                        key={network.chainName}
-                        id={network.chainName}
-                        isSelected={selected.chainName === network.chainName}
-                        onClick={() => handleSelect(network)}
-                    >
-                        <NetworkIcon src={network.icon} />
-                        {network.chainName}
-                        {network.chainName === 'Mumbai' && <Practice>Practice</Practice>}
-                    </NetworkOption>
-                ))}
+                <Networks>
+                    {networks.map(network => (
+                        <NetworkOption
+                            key={network.chainName}
+                            id={network.chainName}
+                            isSelected={selected.chainName === network.chainName}
+                            onClick={() => handleSelect(network)}
+                        >
+                            <NetworkIcon src={network.icon} />
+                            {network.chainName}
+                            {network.chainName === 'Mumbai' && <Practice>Practice</Practice>}
+                        </NetworkOption>
+                    ))}
+                </Networks>
                 {selected.chainName === 'Polygon' && (
                     <LinksContainer>
                         <Link href="https://wallet.polygon.technology/bridge" target="_blank">
