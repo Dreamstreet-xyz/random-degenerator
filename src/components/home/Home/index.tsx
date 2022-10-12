@@ -74,6 +74,7 @@ export const Home = () => {
                     <BrandLogo src="images/home/gains_logo.png" />
                     <BrandLogo src="images/home/polygon_logo.svg" />
                     <BrandLogo src="images/home/arbitrum_logo.svg" />
+                    <BrandLogo src="images/home/chainlink_logo.svg" />
                 </PoweredBy>
                 <ScrollToExplore style={{ opacity: scrollIndicatorOpacity }}>
                     <ScrollToExploreContent>

@@ -1,6 +1,6 @@
 import styled, { keyframes, css } from 'styled-components';
 import NavLink from 'components/common/NavLink';
-import { fadeIn, fadeUp, lightShine, newRetroText, newRetroTextCursive, noSelect, popIn, shadowOutline } from 'shared/styles';
+import { fadeIn, fadeUp, lightShine, newRetroText, newRetroTextCursive, noSelect, shadowOutline } from 'shared/styles';
 import { motion } from 'framer-motion';
 
 export const Container = styled.div`
@@ -95,13 +95,29 @@ export const PoweredBy = styled.div`
     align-items: center;
     gap: 24px;
     height: 32px;
-    opacity: 0;
-    animation: ${fadeUp} .5s ease-in-out forwards;
-    animation-delay: 1.25s;
 `;
 
 export const BrandLogo = styled.img`
     width: 24px;
+    animation: ${fadeUp} .35s ease-in-out forwards;
+    opacity: 0;
+
+    &:nth-child(1) {
+        animation-delay: 1.25s;
+    }
+
+    &:nth-child(2) {
+        animation-delay: 1.45s;
+    }    
+    
+    &:nth-child(3) {
+        animation-delay: 1.65s;
+    }    
+    
+    &:nth-child(4) {
+        animation-delay: 1.85s;
+        filter: brightness(1.25);
+    }
 `;
 
 export const ContentSection = styled.div`
@@ -235,7 +251,7 @@ export const ScrollToExplore = styled(motion.div)`
 `;
 
 export const ScrollToExploreContent = styled.div`
-    animation: ${popIn} .3s ease-in-out forwards;
+    animation: ${fadeUp} .3s ease-in-out forwards;
     animation-delay: 1.5s;
     display: flex;
     flex-direction: column;
