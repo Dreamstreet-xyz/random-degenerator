@@ -51,8 +51,8 @@ const coins = [
 export const Home = () => {
     const { scrollY } = useScroll();
     const opacity = useTransform(scrollY, [0, 150, 800], [1, 0.8, 0.15]);
-    const translateY = useTransform(scrollY, [600, 2000], [800, -300]);
-    const containerTranslateY = useTransform(scrollY, [600, 2000], [-800, 300]);
+    const translateY = useTransform(scrollY, [600, 2000], [600, -300]);
+    const containerTranslateY = useTransform(scrollY, [600, 2000], [-600, 300]);
     const heroOpacity = useTransform(scrollY, [200, 600], [1, 0]);
     const scrollIndicatorOpacity = useTransform(scrollY, [0, 600], [1, 0]);
 
@@ -92,8 +92,9 @@ export const Home = () => {
                         <Subtitle></Subtitle>
                     </Column>
                     <Column>
-                        hey
-                        <div></div>
+                        <PopupIntoView duration={1.25}>
+                            <div>hey</div>
+                        </PopupIntoView>
                     </Column>
                 </Row>
             </ContentSection>
@@ -134,10 +135,14 @@ export const Home = () => {
             <ContentSection>
                 <Row>
                     <Column>
-                        <SectionTitle>Built on gTrade</SectionTitle>
-                        <SecondaryLink href="https://gains.trade" target="_blank">
-                            Go to gTrade
-                        </SecondaryLink>
+                        <PopupIntoView scale={1.1} duration={1.25} distance={0}>
+                            <SectionTitle>Built on gTrade</SectionTitle>
+                        </PopupIntoView>
+                        <PopupIntoView duration={1.25} delay={0.3}>
+                            <SecondaryLink href="https://gains.trade" target="_blank">
+                                Go to gTrade
+                            </SecondaryLink>
+                        </PopupIntoView>
                     </Column>
                     <Column>
                         <Grid src="images/home/grid.svg" />
@@ -147,11 +152,13 @@ export const Home = () => {
             <ContentSection>
                 <Row>
                     <Column>
-                        <SectionTitle>What are you waiting for?</SectionTitle>
+                        <PopupIntoView duration={0.85}>
+                            <SectionTitle>What are you waiting for?</SectionTitle>
+                        </PopupIntoView>
                     </Column>
                 </Row>
                 <Row>
-                    <PopupIntoView scale={0} duration={0.3} distance={0}>
+                    <PopupIntoView scale={0} duration={0.3} distance={0} delay={0.3}>
                         <SecondaryNavLink href="./">I'm ready!</SecondaryNavLink>
                     </PopupIntoView>
                 </Row>
