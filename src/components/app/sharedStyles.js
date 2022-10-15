@@ -50,8 +50,8 @@ export const Header = styled.div`
 export const Title = styled.h2`
     color: #c6cbf5;
     font-family: Roboto;
-    font-size: 1.8rem;
-    font-weight: 1000;
+    font-size: 28px;
+    font-weight: 700;
     line-height: 1.2;
     text-transform: uppercase;
     z-index: 2;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Accordion as DefaultAccordion } from 'components/common';
-import { gradientShine, retroTextGradient } from 'shared/styles';
+import { retroTextGradient } from 'shared/styles';
 
 export const Header = styled.header`
     display: flex;
@@ -11,24 +11,14 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h2`
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
-    font-family: Montserrat;
+    font-family: Roboto;
     ${retroTextGradient}
 
     @media (max-width: 700px) {
         font-size: 24px;
     }
-`;
-
-export const Decoration = styled.div`
-    width: 60px;
-    height: 6px;
-    border-radius: 6px;
-    background: linear-gradient(45deg, #f71dff, #996dff);
-    margin-bottom: 24px;
-    background-size: 200%;
-    animation: ${gradientShine} 4s linear infinite;
 `;
 
 export const Section = styled.section`
@@ -45,7 +35,7 @@ export const Accordion = styled(DefaultAccordion)`
 export const FAQContent = styled.div`
     padding: 16px 32px 32px 32px;
     line-height: 1.6;
-    color: #c8c7f0;
+    color: #d7d7f5;
     @media (max-width: 1000px) {
         padding: 16px;
     }
@@ -60,10 +50,10 @@ export const Paragraph = styled.p`
 `;
 
 export const Anchor = styled.a`
-    color: #28a9ff;
+    color: #42d9ff;
 
     &:visited {
-        color: #b575ff;
+        color: #c267ff;
     }
 
     &:hover {
