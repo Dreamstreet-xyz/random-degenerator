@@ -130,22 +130,7 @@ export default function AppLayout({ children }) {
                 </Tooltip>
             </MiscControls>
             <Footer>
-                <Marquee>
-                    <Winners>
-                        <span>Today's top winners: </span>
-                        <span>0xa14df +332%</span>
-                        <span>0xfd4ac +283%</span>
-                        <span>0xfcd19 +254%</span>
-                        <span>0xd14df +173%</span>
-                    </Winners>
-                    <Losers>
-                        <span>Today's top losers: </span>
-                        <span>0xfdfdf -332%</span>
-                        <span>0xfafafa -283%</span>
-                        <span>0xf5d5d5 -254%</span>
-                        <span>0xa1b1fd -173%</span>
-                    </Losers>
-                </Marquee>
+                <Marquee></Marquee>
             </Footer>
         </Container>
     );
