@@ -98,7 +98,6 @@ export const Link = styled.a`
     border-radius: 10px;
     text-decoration: none;
     color: white;
-    backdrop-filter: blur(4px);
     border: 1px solid #838fc41c;
     ${noSelect}
 
