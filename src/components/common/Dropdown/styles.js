@@ -47,7 +47,6 @@ export const Menu = styled.div`
     display: flex;
     flex-direction: column;
     padding: 16px;
-    box-sizing: border-box;
 `;
 
 export const MenuButton = styled.button`

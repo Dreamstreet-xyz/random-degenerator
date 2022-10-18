@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { lightShine, noSelect } from 'shared/styles';
+import { Menu } from 'components/common/Dropdown/styles';
 import { Dropdown, Icon, IconButton, Identicon } from 'components/common';
 import NavLink, { NavButton } from 'components/common/NavLink';
 
@@ -153,15 +154,20 @@ export const UserIcon = styled(Identicon)`
 export const UserAddress = styled.span`
 `;
 
-export const SpilloverButton = styled(IconButton)`
+export const SpilloverDropdown = styled(Dropdown)`
 `;
 
-export const SpilloverDropdown = styled(Dropdown)`
+export const SpilloverMenu = styled(Menu)`
+    gap: 8px;
+`;
+
+export const SpilloverButton = styled(IconButton)`
 `;
 
 export const SpilloverLink = styled(NavLink)`
     text-decoration: none;
     border-radius: 8px;
+    color: white;
     &:hover {
         background-color: #ffffff11;
         text-decoration: none;

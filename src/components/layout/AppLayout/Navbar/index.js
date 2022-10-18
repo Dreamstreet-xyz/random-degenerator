@@ -7,7 +7,6 @@ import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
 import { WalletConnectionStatus } from 'types/Wallet';
 import { prettifyEther } from 'shared/utils/wallet';
 import { Spark } from 'components/misc';
-import { Menu } from 'components/common/Dropdown/styles';
 import AccountModal from '../AccountModal';
 import NetworkDropdown from '../NetworkDropdown';
 import NetworkButton from '../NetworkButton';
@@ -27,6 +26,7 @@ import {
     ConnectButton,
     SpilloverButton,
     SpilloverDropdown,
+    SpilloverMenu,
     SpilloverLink,
     NavIcon,
     Logo,
@@ -107,7 +107,7 @@ export default function Navbar() {
                                 )}
                             </ConnectButton>
                         )}
-                        <span style={{ position: 'relative', cursor: 'pointer' }}>
+                        <span style={{ position: 'relative' }}>
                             <SpilloverButton
                                 icon="ellipsis-h"
                                 onClick={() => setSpilloverDropdownOpen(!isSpilloverDropdownOpen)}
@@ -119,28 +119,32 @@ export default function Navbar() {
                                 isOpen={isSpilloverDropdownOpen}
                                 toggleRef={spilloverToggleRef}
                             >
-                                <Menu>
+                                <SpilloverMenu>
                                     <SpilloverLink href="/">
-                                        <NavIcon icon="dice" size={20} style={{ color: '#fff' }} />
+                                        <NavIcon
+                                            icon="dice"
+                                            size={16}
+                                            style={{ color: '#d4deff' }}
+                                        />
                                         Play
                                     </SpilloverLink>
                                     <SpilloverLink href="/history">
                                         <NavIcon
                                             icon="history"
-                                            size={20}
-                                            style={{ color: '#fff' }}
+                                            size={16}
+                                            style={{ color: '#d4deff' }}
                                         />
                                         History
                                     </SpilloverLink>
                                     <SpilloverLink href="/about">
                                         <NavIcon
                                             icon={['fab', 'readme']}
-                                            size={20}
-                                            style={{ color: '#fff' }}
+                                            size={16}
+                                            style={{ color: '#d4deff' }}
                                         />
                                         About
                                     </SpilloverLink>
-                                </Menu>
+                                </SpilloverMenu>
                             </SpilloverDropdown>
                         </span>
                     </RightSection>
