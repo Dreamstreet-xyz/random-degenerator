@@ -36,21 +36,15 @@ function Modal({
     if (!isVisible) return null;
 
     return (
-        <Overlay
-            onMouseUp={handleMouseUp}
-            onTouchEnd={handleMouseUp}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ type: 'tween', duration: 0.15 }}
-        >
+        <Overlay onMouseUp={handleMouseUp} onTouchEnd={handleMouseUp}>
             <FocusTrap>
                 <Container
                     ref={containerRef}
                     padding={padding}
                     style={containerStyle}
-                    initial={{ translateY: 32 }}
+                    initial={{ translateY: 16 }}
                     animate={{ translateY: 0 }}
-                    transition={{ type: 'spring', duration: 0.25 }}
+                    transition={{ type: 'spring', duration: 0.35 }}
                 >
                     <ModalHeader>
                         <ModalTitle style={titleStyle}>{title}</ModalTitle>

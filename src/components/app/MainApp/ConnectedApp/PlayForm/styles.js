@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { Container as DefaultContainer, Title as DefaultTitle } from 'components/app/sharedStyles';
 import { Button, IconButton } from 'components/common';
 import { fadeIn } from 'shared/styles';
+import { DegenLevel } from 'types/Trade';
 
 export const Container = styled(DefaultContainer)`
     max-width: 550px;
@@ -69,6 +70,10 @@ export const SettingsButton = styled(IconButton).attrs(() => ({
     icon: 'cog',
 }))`
     background-color: transparent;
+
+    ${({ degenLevel }) => degenLevel === DegenLevel.high && css`
+        color: #ff3eef !important;
+    `};
 `;
 
 export const FieldContainer = styled.div`

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Icon, Range, Tooltip } from 'components/common';
+import styled from 'styled-components';
+import { Range, Tooltip } from 'components/common';
 import { useUser } from 'shared/contexts/UserContext';
 import { prettifyEther } from 'shared/utils/wallet';
 import { GainsDataStoreInterface } from 'shared/stores/GainsDataStore';
@@ -13,8 +14,6 @@ import {
     Header,
     HeaderRight,
     Title,
-    GasIndicator,
-    GasPrice,
     SettingsButton,
     FieldContainer,
     ActionRow,
@@ -22,10 +21,9 @@ import {
 } from './styles';
 import { WalletConnectionStatus } from 'types/Wallet';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
-import styled from 'styled-components';
 import { textGradientCustom } from 'shared/styles';
 import SettingsDropdown from './SettingsDropdown';
-import { PlayFormSettingsType, DegenLevel } from 'types/Trade';
+import { PlayFormSettingsType } from 'types/Trade';
 
 const getCharacterWidth = char => {
     switch (char) {
@@ -196,11 +194,7 @@ export default function PlayForm({
 
     const connected = walletConnectionStatus === WalletConnectionStatus.Connected;
     return (
-        <Container
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            glow={degenLevel === DegenLevel.high}
-        >
+        <Container animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
             <Header>
                 <Tooltip content="you know you wanna 🤌">
                     <Title>Place a Trade</Title>
@@ -212,6 +206,7 @@ export default function PlayForm({
                                 onClick={() => setSettingsDropdownOpen(!isSettingsDropdownOpen)}
                                 isOpen={isSettingsDropdownOpen}
                                 ref={settingsToggleRef}
+                                degenLevel={degenLevel}
                             />
                         </div>
                         <SettingsDropdown

@@ -10,8 +10,9 @@ export const Overlay = styled(motion.div)`
     height: 100vh;
     background-color: #00000099;
     display: flex;
+    align-items: center;
     justify-content: center;
-    z-index: 99;
+    z-index: 9999;
     overflow-y: auto;
     padding: 128px;
     box-sizing: border-box;
@@ -24,7 +25,6 @@ export const Overlay = styled(motion.div)`
 export const Container = styled(motion.div)`
     display: flex;
     flex-direction: column;
-    align-self: flex-start;
     background: linear-gradient(135deg, #0f065c, #3a025a);
     border-radius: 10px;
     border: 1px solid #aa08a2;
