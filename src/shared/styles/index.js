@@ -327,7 +327,7 @@ export const shadowOutline = props => css`
 export const containerStyle = css`
     background-color: #0201146c;
     backdrop-filter: blur(30px);
-    box-shadow: rgba(74, 131, 253, 0.2) 0px 40px 120px;
+    box-shadow: rgba(74, 131, 253, 0.1) 0px 40px 120px;
 `;
 
 export { colors, theme };
