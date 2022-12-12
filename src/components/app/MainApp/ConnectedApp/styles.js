@@ -4,7 +4,6 @@ import { noSelect, retroTextGradient, retroTextMarker } from 'shared/styles';
 
 export const Container = styled.div`
     width: 100%;
-    overflow-x: hidden;
     @media (max-width: 500px) {
         margin-top: 80px;
     }
