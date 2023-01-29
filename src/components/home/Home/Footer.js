@@ -56,11 +56,27 @@ const RightSection = styled.div`
     margin-left: auto;
 `;
 
-const GithubCoin = styled(CoinLink)`
-    background-image: url('/images/home/github_coin.png');
+const TelegramCoin = styled(CoinLink)`
+    background-image: url('/images/home/coin_telegram.png');
 
     &::before {
-        background-image: url('/images/home/github_coin.png');
+        background-image: url('/images/home/coin_telegram.png');
+    }
+`;
+
+const TwitterCoin = styled(CoinLink)`
+    background-image: url('/images/home/coin_twitter.png');
+
+    &::before {
+        background-image: url('/images/home/coin_twitter.png');
+    }
+`;
+
+const GithubCoin = styled(CoinLink)`
+    background-image: url('/images/home/coin_github.png');
+
+    &::before {
+        background-image: url('/images/home/coin_github.png');
     }
 `;
 
@@ -79,13 +95,13 @@ export default function Footer() {
         <Container>
             <CoinsRow>
                 <PopupIntoView duration={0.3} delay={0.1} margin="0px">
-                    <GithubCoin href="https://github.com" />
+                    <TelegramCoin href="https://t.me/randomdegenerator" />
                 </PopupIntoView>
                 <PopupIntoView duration={0.3} delay={0.25} margin="0px">
-                    <GithubCoin href="https://github.com" />
+                    <TwitterCoin href="https://twitter.com/rdgxyz" />
                 </PopupIntoView>
                 <PopupIntoView duration={0.3} delay={0.4} margin="0px">
-                    <GithubCoin href="https://github.com" />
+                    <GithubCoin href="https://github.com/Dreamstreet-xyz/random-degenerator" />
                 </PopupIntoView>
             </CoinsRow>
             <BottomRow>
