@@ -63,7 +63,7 @@ const Container = styled.div`
 
 function CoinLink({ href, className }) {
     return (
-        <Link href={href}>
+        <Link href={href} target="_blank" rel="noreferrer">
             <Container>
                 <Coin className={className} />
                 <Center />
