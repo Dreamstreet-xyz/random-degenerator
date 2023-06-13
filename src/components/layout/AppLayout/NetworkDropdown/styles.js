@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Dropdown as DefaultDropdown } from 'components/common';
 
 export const Dropdown = styled(DefaultDropdown)`
@@ -7,40 +7,59 @@ export const Dropdown = styled(DefaultDropdown)`
         @media (max-width: 820px) {
             right: auto;
             left: 0px;
-            min-width: 220px;
         }
     }
 `;
 
-export const NetworkContainer = styled.div`
-    background-color: ${({ selected }) => (selected ? '#1f1341' : 'transparent')};;
-    border-radius: 10px;
+export const Networks = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 `;
 
-export const Network = styled.button`
+export const NetworkOption = styled.button`
+    position: relative;
     width: 100%;
-    padding: 8px 16px;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
     color: white;
     font-weight: bold;
     font-size: 16px;
-    margin: 4px 0;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: transparent;
+    gap: 8px;
     
-    &:hover {
-        text-decoration: underline;
-    }
+    ${({ isSelected }) => (isSelected && css`
+        background-color: #ffffff1c;
+    
+        &::after {
+            position: absolute;
+            top: calc(50% - 4px);
+            right: 16px;
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #14ffe3;
+        }
+    `)}
+
+    ${({ isSelected }) => (!isSelected && css`
+        &:hover {
+            background-color: #ffffff11;
+        }
+    `)}
 `;
 
 export const NetworkIcon = styled.img`
-    width:  24px;
-    height: 24px;
-    margin-right: 8px;
+    width: 20px;
+    height: 20px;
 `;
 
 export const LinksContainer = styled.div`
+    margin-top: 8px;
+    border-top: 1px solid #31225c;
     display: flex;
     flex-direction: column;
 `;
@@ -50,12 +69,30 @@ export const Link = styled.a`
     align-items: center;
     padding: 16px;
     font-size: 14px;
-    border-radius: 10px;
     text-decoration: none;
+    font-weight: bold;
     color: #b79ff0;
     
     &:hover,
     &:active {
-        text-decoration: underline;
+        text-decoration: none;
+        color: white;
     }
+`;
+
+export const Practice = styled.span`
+  border-radius: 4px;
+  padding: 2px 4px;
+  text-transform: uppercase;
+  font-size: 11px;
+  background-color: rgb(247, 85, 193);
+  color: white;
+  font-weight: 600;
+`;
+
+export const Title = styled.span`
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 0 8px;
+    color: #8f84c2;
 `;

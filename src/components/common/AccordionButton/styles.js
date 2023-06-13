@@ -7,7 +7,7 @@ export const Button = styled.button`
     font-size: 24px;
     font-weight: bold;
     background-color: transparent;
-    color: #e9e4f5;
+    color: #ffffff;
     text-align: left;
 
     @media (max-width: 1000px) {
@@ -26,5 +26,5 @@ export const Row = styled.div`
 
 export const Icon = styled(DefaultIcon)`
     margin-left: auto;
-    color: #7860ce;
+    color: #585ac0;
 `;

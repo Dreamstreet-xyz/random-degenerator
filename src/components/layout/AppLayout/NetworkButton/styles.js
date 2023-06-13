@@ -1,5 +1,6 @@
 import { Icon } from 'components/common';
-import { pulsingGlow } from 'shared/styles';
+import { Practice } from 'components/layout/AppLayout/NetworkDropdown/styles';
+import { pulsingGlow, shadowOutline } from 'shared/styles';
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
@@ -9,24 +10,39 @@ export const Container = styled.div`
 export const Button = styled.button`
     position: relative;
     color: white;
-    padding: 4px 8px;
-    min-height: 32px;
-    border-radius: 10px;
+    padding: 6px 12px;
+    min-height: 36px;
+    border-radius: 8px;
     background-color: ${({ isOpen }) => (isOpen ? '#5025b3' : '#3e1994')};
     font-weight: bold;
     font-size: 14px;
     display: flex;
     align-items: center;
-    pointer-events: ${({ isOpen }) => (isOpen ? 'none' : 'initial')};;
-
-    @media (max-width: 700px) {
+    gap: 8px;
+    outline: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: ${({ isOpen }) => (isOpen ? '#c417a7' : '#5b35c5')};
+    @media (max-width: 600px) {
+        padding: 4px 8px;
         span {
             font-size: 12px;
+            gap: 4px;
+        }
+    }
+
+    @media (max-width: 390px) {
+        span {
+            display: none;
         }
     }
 
     &:hover {
         background-color: #5025b3;
+    }
+
+    &:focus-visible {
+        ${shadowOutline()}
     }
 
     ${({ invalid }) => (invalid && css`
@@ -45,17 +61,16 @@ export const Button = styled.button`
             animation-duration: 1s;
         }
     `)}
+    
 `;
 
 export const NetworkIcon = styled.img`
-    width: 24px;
-    height: 24px;
-    margin-right: 6px;
+    width: 20px;
+    height: 20px;
 
     @media (max-width: 700px) {
         width: 18px;
         height: 18px;
-        margin-right: 4px;
     }
 `;
 
@@ -65,9 +80,10 @@ export const WrongNetworkIcon = styled(Icon)`
 
 export const Chevron = styled(Icon)`
     color: '#9d8aca';
-    margin-left: 8px;
+`;
 
-    @media (max-width: 700px) {
-        margin-left: 4px;
+export const PracticeBadge = styled(Practice)`
+    @media (max-width: 600px) {
+        display: none;
     }
 `;

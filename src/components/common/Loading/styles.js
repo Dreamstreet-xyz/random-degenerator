@@ -17,8 +17,9 @@ const dotPulse = keyframes`
 `;
 
 export const Container = styled.div`
+    position: absolute;
+    inset: 0;
     display: flex;
-    min-height: 32px;
     align-items: center;
     justify-content: center;
 `;

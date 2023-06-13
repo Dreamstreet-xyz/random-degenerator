@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import FocusTrap from 'focus-trap-react';
 import useEscape from 'shared/hooks/useEscape';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
+import useBodyScrollLock from 'shared/hooks/useBodyScrollLock';
 import { Overlay, Container, ModalHeader, ModalTitle, ModalBody, CloseButton } from './styles';
 
 function Modal({
@@ -17,13 +18,7 @@ function Modal({
     const [mouseDown, setMouseDown] = useState(false);
     const containerRef = useRef(null);
 
-    useEffect(() => {
-        if (isVisible) {
-            document.body.style.overflowY = 'hidden';
-        } else {
-            document.body.style.overflowY = 'unset';
-        }
-    }, [isVisible]);
+    useBodyScrollLock(containerRef, isVisible);
 
     useEscape(() => close());
 
@@ -41,21 +36,15 @@ function Modal({
     if (!isVisible) return null;
 
     return (
-        <Overlay
-            onMouseUp={handleMouseUp}
-            onTouchEnd={handleMouseUp}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ type: 'tween', duration: 0.15 }}
-        >
+        <Overlay onMouseUp={handleMouseUp} onTouchEnd={handleMouseUp}>
             <FocusTrap>
                 <Container
                     ref={containerRef}
                     padding={padding}
                     style={containerStyle}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: 'spring', duration: 0.25 }}
+                    initial={{ translateY: 16 }}
+                    animate={{ translateY: 0 }}
+                    transition={{ type: 'spring', duration: 0.35 }}
                 >
                     <ModalHeader>
                         <ModalTitle style={titleStyle}>{title}</ModalTitle>

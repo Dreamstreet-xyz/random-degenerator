@@ -40,30 +40,49 @@ export const containerScrollbar = css`
 `;
 
 export const windowScrollbar = css`
-    scrollbar-width: thin;
-
-    ::-webkit-scrollbar {
-        height: 8px;
-        width: 8px;
-        background: transparent;
+    &::-webkit-scrollbar {
+        width: 16px;
+        height: 16px;
+        background: none;
     }
 
-    ::-webkit-scrollbar-thumb {
-        background: #4e28d8;
-        border-radius: 3px;
-        -webkit-border-radius: 3px;
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-button {
+        width: 16px;
+        height: 16px;
+        background: silver;
+        box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px gray;
+        border: 1px solid;
+        border-color: silver #000 #000 silver;
     }
 
-    ::-webkit-scrollbar-thumb:hover {
-        background: #6c48f0;
+    &::-webkit-scrollbar-track {
+        background: #ccc;
     }
 
-    ::-webkit-scrollbar-thumb:active {
-        background: #8c6dff;
+    &::-webkit-scrollbar-button {
+        background-repeat: no-repeat;
+        background-size: 16px;
     }
 
-    ::-webkit-scrollbar-corner {
-        background: #000;
+    &::-webkit-scrollbar-button:single-button:vertical:decrement {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTAuNSAxNiAxNiIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj4KPG1ldGFkYXRhPk1hZGUgd2l0aCBQaXhlbHMgdG8gU3ZnIGh0dHBzOi8vY29kZXBlbi5pby9zaHNoYXcvcGVuL1hieHZOajwvbWV0YWRhdGE+CjxwYXRoIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTcgNWgxTTYgNmgzTTUgN2g1TTQgOGg3IiAvPgo8L3N2Zz4=');
+    }
+
+    &::-webkit-scrollbar-button:single-button:vertical:increment {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTAuNSAxNiAxNiIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj4KPG1ldGFkYXRhPk1hZGUgd2l0aCBQaXhlbHMgdG8gU3ZnIGh0dHBzOi8vY29kZXBlbi5pby9zaHNoYXcvcGVuL1hieHZOajwvbWV0YWRhdGE+CjxwYXRoIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTQgNWg3TTUgNmg1TTYgN2gzTTcgOGgxIiAvPgo8L3N2Zz4=');
+    }
+
+    &::-webkit-scrollbar-button:single-button:horizontal:decrement {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTAuNSAxNiAxNiIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj4KPG1ldGFkYXRhPk1hZGUgd2l0aCBQaXhlbHMgdG8gU3ZnIGh0dHBzOi8vY29kZXBlbi5pby9zaHNoYXcvcGVuL1hieHZOajwvbWV0YWRhdGE+CjxwYXRoIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTggM2gxTTcgNGgyTTYgNWgzTTUgNmg0TTYgN2gzTTcgOGgyTTggOWgxIiAvPgo8L3N2Zz4=');
+    }
+
+    &::-webkit-scrollbar-button:single-button:horizontal:increment {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTAuNSAxNiAxNiIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj4KPG1ldGFkYXRhPk1hZGUgd2l0aCBQaXhlbHMgdG8gU3ZnIGh0dHBzOi8vY29kZXBlbi5pby9zaHNoYXcvcGVuL1hieHZOajwvbWV0YWRhdGE+CjxwYXRoIHN0cm9rZT0iIzAwMDAwMCIgZD0iTTYgM2gxTTYgNGgyTTYgNWgzTTYgNmg0TTYgN2gzTTYgOGgyTTYgOWgxIiAvPgo8L3N2Zz4=');
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: silver;
     }
 `;
 
@@ -71,10 +90,10 @@ export const retroTextGradient = css`
     color: #c6cbf5;
     background: -webkit-linear-gradient(
         top,
-        #b5b4fa,
-        #48d5f8 40%,
-        #7414c4 40%,
-        #f193d5 65%,
+        #a5a4ff,
+        #30d6ff 40%,
+        #5e00aa 40%,
+        #fc5ecc 65%,
         white 90%
     );
     background-clip: text;
@@ -121,15 +140,33 @@ export const shine = keyframes`
     }
 `;
 
+export const retroAnimatedGradient = css`
+    background: linear-gradient(
+        to right,
+        #b984ff 10%,
+        #fa66ff 40%,
+        #ff6694 60%,
+        #fa66ff 80%,
+        #b984ff 100%
+    );
+    text-shadow: 0px 0px 12px #ff46c7;
+    background-size: 200% auto;
+    color: #ff38c3;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: ${shine} 5s linear infinite;
+`;
+
 export const lightShineAnimation = keyframes`
     0% {
-        background-position: 0% 51%
+        background-position: 0% 51%;
     }
     50%{
-        background-position: 100% 50%
+        background-position: 100% 50%;
     }
-    100%{
-        background-position: 0% 51%
+    100% {
+        background-position: 100% 50%;
     }
 `;
 
@@ -186,6 +223,28 @@ export const fadeIn = keyframes`
     }
 `;
 
+export const fadeUp = keyframes`
+    from {
+        transform: translateY(16px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+`;
+
+export const popIn = keyframes`
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity:1;
+    }
+`;
+
 const glow = keyframes`
     0% {
         opacity: 0;
@@ -229,6 +288,46 @@ export const retroTextMarker = css`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-filter: drop-shadow(2px 2px 20px #f008b7);
+`;
+
+export const newRetroText = css`
+    position: relative;
+    font-family: 'Exo';
+    transform: skew(-15deg);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    span:first-child {
+        background: linear-gradient(
+            #064274 25%,
+            #15affc 35%,
+            #ffffff 50%,
+            #271574 50%,
+            #6413e7 55%,
+            #ff61af 75%
+        );
+        -webkit-text-stroke: 0.01em #94a0b9;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+`;
+
+export const newRetroTextCursive = css`
+    font-family: 'Mr Dafoe';
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 0.1em #d400ff, 0 0 0.3em #fe05e1, 0 0 0.8em #e100ff;
+`;
+
+export const shadowOutline = props => css`
+    box-shadow: 0 0 0 ${props?.width || 3}px ${props?.color || '#5eddfd'};
+`;
+
+export const containerStyle = css`
+    background-color: #0201146c;
+    backdrop-filter: blur(30px);
+    box-shadow: rgba(74, 131, 253, 0.1) 0px 40px 120px;
 `;
 
 export { colors, theme };

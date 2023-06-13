@@ -34,7 +34,7 @@ export const Pair = styled.p`
 export const Position = styled.p`
     font-size: 24px;
     font-weight: bold;
-    color: ${({ buy }) => (buy ? '#57e08b' : '#db5c91')};
+    color: ${({ buy }) => (buy ? '#14ffe3' : '#ff5391')};
     text-align: center;
     margin-bottom: 32px;
 `;
@@ -61,7 +61,7 @@ export const Sl = styled.p`
 
 export const Pnl = styled.p`
     ${fieldStyle}
-    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#57e08b' : '#db5c91')};
+    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#14ffe3' : '#ff5391')};
 `;
 
 export const CloseButton = styled(Button)`

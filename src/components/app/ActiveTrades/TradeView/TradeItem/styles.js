@@ -4,28 +4,18 @@ import { IconButton } from 'components/common';
 export const TableRow = styled.tr`
     position: relative;
     cursor: pointer;
-
-    &:last-of-type {
-        td:first-of-type {
-            border-radius: 0 0 0 10px;
-        }
-        td:last-of-type {
-            border-radius: 0 0 10px 0;
-        }
-    }
-
     &:hover {
-        background-color: #261663;
+        background-color: #ffffff08;
     }
 
     &:active {
-        background-color: #2a1a68;
+        background-color: #ffffff0b;
     }
     
     @media (max-width: 800px) {
         display: flex;
         padding: 16px;
-        background-color: #21115c;
+        border: 1px solid #483b9e88;
         border-radius: 10px;
         flex-wrap: wrap;
         align-items: center;
@@ -33,7 +23,7 @@ export const TableRow = styled.tr`
 `;
 
 export const TableData = styled.td`
-    padding: 12px 16px;
+    padding: 12px 8px;
     text-align: center;
     vertical-align:  middle;
 
@@ -43,7 +33,7 @@ export const TableData = styled.td`
 `;
 
 export const PositionData = styled(TableData)`
-    color: ${({ position }) => (position === 'LONG' ? '#57e08b' : '#db5c91')};
+    color: ${({ position }) => (position === 'LONG' ? '#14ffe3' : '#ff5391')};
     @media (max-width: 800px) {
         order: 1;
         padding: 4px 0 4px 4px;
@@ -79,7 +69,7 @@ export const Collateral = styled(TableData)`
 `;
 
 export const PnlData = styled(TableData)`
-    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#57e08b' : '#db5c91')};
+    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#14ffe3' : '#ff5391')};
     text-align: right;
     /* width: 250px; // if pnl changing length shifting table content is annoying
 
@@ -105,17 +95,18 @@ export const CloseButtonWrapper = styled(TableData)`
     }
 `;
 
-export const CloseButton = styled(IconButton).attrs({
-    color: '#a51d56',
-})`
+export const CloseButton = styled(IconButton)`
     && {
         display: inline-flex;
         background-color: transparent;
+        color: #ff2ca0;
 
         &:hover:enabled,
         &:active,
         &:focus {
-            background-color: #381e77;
+            background-color: #ffffff08;
+            color: #ff2ca0;
+
         }
     }
 `;

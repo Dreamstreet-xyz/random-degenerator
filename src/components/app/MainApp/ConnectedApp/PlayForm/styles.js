@@ -1,13 +1,16 @@
 import styled, { css } from 'styled-components';
 import { Container as DefaultContainer, Title as DefaultTitle } from 'components/app/sharedStyles';
 import { Button, IconButton } from 'components/common';
-import { pulsingGlow } from 'shared/styles';
+import { fadeIn } from 'shared/styles';
+import { DegenLevel } from 'types/Trade';
 
 export const Container = styled(DefaultContainer)`
     max-width: 550px;
     padding: 28px 36px;
     box-sizing: border-box;
+    position: relative;
     
+
     @media (max-width: 768px) {
         padding: 16px;
     }
@@ -17,13 +20,15 @@ export const Container = styled(DefaultContainer)`
     }
     
     ${({ glow }) => glow && css`
-        box-shadow: 0px 0px 8px 2px #851bff5f;
-        ${pulsingGlow}
-
         &::after {
-            box-shadow: 0px 0px 16px 4px #b71bff60;
-            animation-duration: 4s;
+            position: absolute;
+            content: "";
+            inset: 0;
+            border-radius: 20px;
+            box-shadow: 0px 0px 0px 3px #ff00955c, 0px 0px 24px 8px #ff1bff3d;
             z-index: -1;
+            opacity: 0;
+            animation: ${fadeIn} .75s ease-in-out forwards;
         }
     `};
 `;
@@ -51,13 +56,13 @@ export const Title = styled(DefaultTitle)`
 
 export const GasIndicator = styled.div`
     display: flex;
-    color: #81f781;
+    color: #14ffe3;
     font-size: 1em;
     margin-right: 8px;
 `;
 
 export const GasPrice = styled.p`
-    color: #81f781;
+    color: #14ffe3;
     font-weight: bold;
 `;
 
@@ -65,14 +70,15 @@ export const SettingsButton = styled(IconButton).attrs(() => ({
     icon: 'cog',
 }))`
     background-color: transparent;
-    color: #fff;
-    pointer-events: ${({ isOpen }) => (isOpen ? 'none' : 'initial')};
+
+    ${({ degenLevel }) => degenLevel === DegenLevel.high && css`
+        color: #ff3eef !important;
+    `};
 `;
 
 export const FieldContainer = styled.div`
-    background-color: #201442;
     width: 100%;
-    padding: 16px 32px 32px 32px;
+    padding: 0px 0px 16px 0px;
     border-radius: 10px;
 
     @media (max-width: 500px) {
@@ -103,6 +109,8 @@ export const ActionRow = styled.div`
 `;
 
 export const SubmitButton = styled(Button)`
-    padding: 12px 64px;
-    font-size: 28px;
+    padding: 8px 64px;
+    min-height: 45px;
+    font-size: 24px;
+    margin-left: auto;
 `;

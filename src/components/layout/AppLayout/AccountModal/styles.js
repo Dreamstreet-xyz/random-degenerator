@@ -1,3 +1,4 @@
+import { Identicon } from 'components/common';
 import styled, { css } from 'styled-components';
 
 export const ModalBody = styled.div`
@@ -23,13 +24,16 @@ export const Provider = styled.span`
 export const UserInfo = styled.div`
     padding: 24px;
     border-radius: 10px;
-    //background: linear-gradient(45deg, #6b39df, #c41cc4);
-    border: 1px solid #291849;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border: 1px solid #51299c;
 `;
 
 export const Address = styled.h3`
     font-size: 24px;
     font-weight: bold;
+    font-family: 'Fira Mono', monospace;
 `;
 
 export const ActionRow = styled.div`
@@ -45,13 +49,13 @@ export const ActionRow = styled.div`
 export const addressAction = css`
     display: flex;
     align-items: center;
-    color: #7245ee;
+    color: #8860f8;
     padding: 8px 4px;
     font-size: 16px;
     text-align: left;
 
     &:hover {
-        color: #8861f5;
+        color: #a180fc;
     }
 
     @media (max-width: 495px) {
@@ -77,4 +81,12 @@ export const CopyButton = styled.button`
 export const DisconnectButton = styled.button`
     ${addressAction}   
     background-color: transparent;
+`;
+
+export const UserIcon = styled(Identicon)`
+    width: 24px;
+    height: 24px;
+    & > div {
+        transform: scale(.33);
+    }
 `;

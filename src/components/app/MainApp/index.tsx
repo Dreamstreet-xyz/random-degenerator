@@ -1,7 +1,6 @@
 import { useUser } from 'shared/contexts/UserContext';
-import { NeonButton } from 'components/common';
 import { WalletConnectionStatus } from 'types/Wallet';
-import { Section } from './styles';
+import { Section, ConnectButton } from './styles';
 import ConnectedApp from './ConnectedApp';
 import { GainsDataStoreInterface } from 'shared/stores/GainsDataStore';
 import {
@@ -32,10 +31,10 @@ export default function MainApp({ gas }) {
             case WalletConnectionStatus.JsonRpcError:
                 return <ConnectedApp gas={gas} />;
             case WalletConnectionStatus.Connecting:
-                return <NeonButton title="Connect Wallet" onClick={handleConnect} loading />;
+                return <ConnectButton title="Press Start" onClick={handleConnect} loading />;
             case WalletConnectionStatus.Disconnected:
                 return (
-                    <NeonButton title="Connect Wallet" onClick={handleConnect} loading={cLoading} />
+                    <ConnectButton title="Press Start" onClick={handleConnect} loading={cLoading} />
                 );
             default:
                 return <div>something went wrong</div>;
@@ -46,9 +45,6 @@ export default function MainApp({ gas }) {
         !tradingVariables ||
         (walletConnectionStatus === WalletConnectionStatus.Connected && !user.daiBalance)
     ) {
-        // console.log(walletConnectionStatus);
-        // console.log(user.daiBalance);
-        // console.log(user);
         return (
             <Section style={{ alignItems: 'center' }}>
                 <SquareLoadingSpinner />

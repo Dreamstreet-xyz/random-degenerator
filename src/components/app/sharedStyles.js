@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { retroTextGradient } from 'shared/styles';
+import { containerStyle, retroTextGradient } from 'shared/styles';
 import { motion } from 'framer-motion';
 
 export const Section = styled.section`
@@ -22,7 +22,7 @@ export const Container = styled(motion.div)`
     max-width: 1200px;
     width: 100%;
     box-sizing: border-box;
-    background-color: #150736ee;
+    ${containerStyle}
     border-radius: 20px;
     padding: 48px;
     z-index: 1;
@@ -50,8 +50,8 @@ export const Header = styled.div`
 export const Title = styled.h2`
     color: #c6cbf5;
     font-family: Roboto;
-    font-size: 1.8rem;
-    font-weight: 1000;
+    font-size: 28px;
+    font-weight: 700;
     line-height: 1.2;
     text-transform: uppercase;
     z-index: 2;
@@ -63,9 +63,9 @@ export const Title = styled.h2`
 `;
 
 export const Subtitle = styled.h2`
-    font-size: 1rem;
+    font-size: 14px;
     font-weight: 500;
     z-index: 2;
     padding: 8px;
-    color: #e9e9e9;
+    color: #abbceb;
 `;

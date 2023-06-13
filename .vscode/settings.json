@@ -1,0 +1,6 @@
+{
+  "search.exclude": {
+    "**/package-lock.json": true,
+  },
+  "editor.tabSize": 4
+}

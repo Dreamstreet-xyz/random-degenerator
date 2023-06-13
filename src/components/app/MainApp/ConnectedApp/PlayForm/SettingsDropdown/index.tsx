@@ -1,3 +1,4 @@
+import { MutableRefObject } from 'react';
 import { QuestionIcon, Tooltip } from 'components/common';
 import { Menu } from 'components/common/Dropdown/styles';
 import { PlayFormSettingsType, DegenLevel, TradeDirection } from 'types/Trade';
@@ -7,12 +8,14 @@ import Select from './Select';
 export default function SettingsDropdown({
     settings,
     setSettings,
-    isVisible,
+    isOpen,
+    toggleRef,
     close,
 }: {
     settings: PlayFormSettingsType;
     setSettings: (settings: PlayFormSettingsType) => void;
-    isVisible: boolean;
+    isOpen: boolean;
+    toggleRef?: MutableRefObject<HTMLElement | null>;
     close: () => void;
 }) {
     const {
@@ -37,7 +40,7 @@ export default function SettingsDropdown({
     const setDirection = (direction: TradeDirection) => setSettings({ ...settings, direction });
 
     return (
-        <Dropdown title="Transaction Settings" close={close} isVisible={isVisible}>
+        <Dropdown title="Transaction Settings" close={close} isOpen={isOpen} toggleRef={toggleRef}>
             <Menu>
                 <Row>
                     <Label htmlFor="slippage">Slippage Tolerance</Label>

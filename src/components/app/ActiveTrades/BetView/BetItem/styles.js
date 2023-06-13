@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     padding: 24px;
-    background-color: #21175e;
+    border: 1px solid #483b9e88;
     border-radius: 10px;
     ${noSelect}
 
@@ -41,7 +41,7 @@ export const Pnl = styled.p`
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#57e08b' : '#db5c91')};
+    color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#14ffe3' : '#ff5391')};
     margin-left: auto;
     margin-right: auto;
 
@@ -75,7 +75,7 @@ export const Row = styled.div`
 
 export const StatusBar = styled.div`
     position: relative;
-    background: linear-gradient(90deg, #ce3ece, #4f40d4);
+    background: linear-gradient(90deg, #f022c3, #4d3af8);
     height: 36px;
     border-radius: 4px;
     flex: 1;
@@ -144,17 +144,18 @@ export const CloseButtonWrapper = styled.div`
     margin-left: 8px;
 `;
 
-export const CloseButton = styled(IconButton).attrs({
-    color: '#a51d56',
-})`
+export const CloseButton = styled(IconButton)`
     && {
         display: inline-flex;
         background-color: transparent;
+        color: #ff2ca0;
 
         &:hover:enabled,
         &:active,
         &:focus {
-            background-color: #381e77;
+            background-color: #ffffff08;
+            color: #ff2ca0;
+
         }
     }
 `;

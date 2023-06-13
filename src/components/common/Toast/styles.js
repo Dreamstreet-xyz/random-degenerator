@@ -4,7 +4,7 @@ export const Type = styled.div`
     color: ${({ pnl }) => (pnl?.pnlInclFee > 0 ? '#57e08b' : '#db5c91')};
     font-size: 18px;
     text-transform: uppercase;
-    padding: 3px
+    padding: 3px;
 `;
 
 export const Pair = styled.div`

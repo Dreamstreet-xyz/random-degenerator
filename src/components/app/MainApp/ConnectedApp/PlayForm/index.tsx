@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Icon, QuestionIcon, Range, Tooltip } from 'components/common';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import { Range, Tooltip } from 'components/common';
 import { useUser } from 'shared/contexts/UserContext';
 import { prettifyEther } from 'shared/utils/wallet';
 import { GainsDataStoreInterface } from 'shared/stores/GainsDataStore';
@@ -13,21 +14,16 @@ import {
     Header,
     HeaderRight,
     Title,
-    GasIndicator,
-    GasPrice,
     SettingsButton,
     FieldContainer,
-    Label,
     ActionRow,
     SubmitButton,
-    LabelRow,
 } from './styles';
 import { WalletConnectionStatus } from 'types/Wallet';
 import { useNetworkDetails } from 'shared/contexts/NetworkDetailsContext';
-import styled from 'styled-components';
 import { textGradientCustom } from 'shared/styles';
 import SettingsDropdown from './SettingsDropdown';
-import { PlayFormSettingsType, DegenLevel } from 'types/Trade';
+import { PlayFormSettingsType } from 'types/Trade';
 
 const getCharacterWidth = char => {
     switch (char) {
@@ -162,10 +158,7 @@ export default function PlayForm({
     onDaiApprove,
     daiLoading,
 }: PlayFormInputType) {
-    const {
-        degenLevel,
-        details: { degenOptions },
-    } = settings;
+    const { degenLevel } = settings;
     const [loading, setLoading] = useState(false);
     const { user, walletConnectionStatus } = useUser();
     const useGainsDataStore = useActiveGainsDataStore(
@@ -185,7 +178,8 @@ export default function PlayForm({
 
     const [curMinLev, setCurMinLev] = useState(null);
     const { network } = useNetworkDetails();
-    const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+    const [isSettingsDropdownOpen, setSettingsDropdownOpen] = useState(false);
+    const settingsToggleRef = useRef(null);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -200,39 +194,27 @@ export default function PlayForm({
 
     const connected = walletConnectionStatus === WalletConnectionStatus.Connected;
     return (
-        <Container
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            glow={
-                (degenOptions.find(d => d.value === degenLevel)?.title || 'Normal') ===
-                degenOptions.find(d => d.value === DegenLevel.high)?.title
-            }
-        >
+        <Container animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
             <Header>
                 <Tooltip content="you know you wanna 🤌">
                     <Title>Place a Trade</Title>
                 </Tooltip>
                 <HeaderRight>
-                    {gas && (
-                        <Tooltip content="Most recent Polygon fastest gas price">
-                            <GasIndicator gradient={['#78f578', '#6affa3', '#78f578']}>
-                                <Icon icon="gas-pump" size={16} style={{ marginRight: 4 }} />
-                                <GasPrice>{Math.trunc(gas)}</GasPrice>
-                            </GasIndicator>
-                        </Tooltip>
-                    )}
                     <div style={{ position: 'relative' }}>
                         <div style={{ cursor: 'pointer' }}>
                             <SettingsButton
-                                onClick={() => setShowSettingsMenu(!showSettingsMenu)}
-                                isOpen={showSettingsMenu}
+                                onClick={() => setSettingsDropdownOpen(!isSettingsDropdownOpen)}
+                                isOpen={isSettingsDropdownOpen}
+                                ref={settingsToggleRef}
+                                degenLevel={degenLevel}
                             />
                         </div>
                         <SettingsDropdown
                             settings={settings}
                             setSettings={setSettings}
-                            close={() => setShowSettingsMenu(false)}
-                            isVisible={showSettingsMenu}
+                            close={() => setSettingsDropdownOpen(false)}
+                            isOpen={isSettingsDropdownOpen}
+                            toggleRef={settingsToggleRef}
                         />
                     </div>
                 </HeaderRight>

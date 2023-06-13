@@ -10,7 +10,6 @@ const PageContainer = styled.div`
     align-items: center;
     padding: 16px;
     padding-top: min(150px, 15vh);
-    padding-bottom: 76px;
 
     @media (max-width: 768px) {
         padding-left: 0;
@@ -26,14 +25,6 @@ const Container = styled.div`
     max-height: 6000px;
     width: 100%;
     border-radius: 20px;
-    padding: 64px;
-    @media (max-width: 1000px) {
-        padding: 32px 16px;
-    }
-
-    @media (max-width: 768px) {
-        padding: 16px 0;
-    }
 `;
 
 const Content = styled.div`

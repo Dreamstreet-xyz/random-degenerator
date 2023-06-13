@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Chat from 'components/app/Chat';
-import ChatTaskbar from 'components/app/Chat/ChatTaskbar';
-import { IconButton, Tooltip } from 'components/common';
-import StarsContainer from './StarsContainer';
+import styled, { keyframes } from 'styled-components';
+import { Tooltip } from 'components/common';
+import StarsCanvas from './StarsCanvas';
+import Navbar from './Navbar';
 
 const Container = styled.div`
     position: relative;
-    background: radial-gradient(circle at 50% 1800px, #330f96 0, #160231 100%);
+    background: transparent;
 `;
 
 const Content = styled.div`
@@ -16,138 +14,126 @@ const Content = styled.div`
 
 const MiscControls = styled.div`
     position: fixed;
-    bottom: 4px;
-    left: 4px;
+    bottom: 0;
+    left: 0;
     z-index: 3;
     display: flex;
-`;
-
-const MiscButton = styled(IconButton)`
-    && {
-        background-color: transparent;
-        &:hover,
-        &:active {
-            background-color: transparent;
-        }
-    }
+    align-items: center;
+    gap: 16px;
+    padding: 4px 8px;
 `;
 
 const Telegram = styled.img`
+    width: 18px;
+    height: 18px;
     &:hover,
     &:active {
         filter: brightness(85%);
     }
 `;
 
-export default function AppLayout({ children }) {
-    const [showStars, setShowStars] = useState(true);
-    const [chats, setChats] = useState([]);
+const SpotifyLink = styled.a``;
 
-    useEffect(() => {
-        const storedStars = JSON.parse(localStorage.getItem('ds:stars') ?? true);
-        setShowStars(storedStars);
-    }, []);
+const SpotifyLogo = styled.img`
+    width: 20px;
+    background-color: black;
+    border-radius: 50%;
+`;
 
-    const toggleStars = () => {
-        localStorage.setItem('ds:stars', JSON.stringify(!showStars));
-        setShowStars(!showStars);
-    };
+const Footer = styled.div`
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    height: 30px;
+    font-family: 'Fira Mono', monospace;
 
-    const createChat = () => {
-        if (chats.length === 0) {
-            setChats(prev => [
-                ...prev,
-                { id: 'The Degen Zone', zIndex: chats.length, isVisible: true },
-            ]);
+    @media (max-width: 500px) {
+        display: none;
+    }
+
+    &:hover {
+        & > div {
+            animation-play-state: paused;
         }
-    };
+    }
+`;
 
-    const handleCloseChat = id => {
-        const filteredChats = chats.filter(chat => chat.id !== id);
-        setChats(filteredChats);
-    };
+const marquee = keyframes`
+    from {
+        transform: translateX(100vw);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+`;
 
-    const handleFocusChat = id => {
-        const focusedIndex = chats.findIndex(chat => chat.id === id);
-        const focused = chats[focusedIndex];
-        const newFocused = { ...focused, zIndex: chats.length - 1 };
-        const newChats = [...chats];
-        newChats.splice(focusedIndex, 1);
-        newChats.splice(focusedIndex, 0, newFocused);
+const Marquee = styled.div`
+    display: flex;
+    gap: 32px;
+    font-size: 12px;
+    animation-name: ${marquee};
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-duration: 12s;
 
-        newChats.forEach((chat, index) => {
-            if (chat.id !== id && chat.zIndex >= focused.zIndex) {
-                const updatedChat = { ...chat, zIndex: chat.zIndex - 1 };
-                newChats.splice(index, 1);
-                newChats.splice(index, 0, updatedChat);
-            }
-        });
+    @media (min-width: 500px) {
+        animation-duration: 16s;
+    }
+    @media (min-width: 850px) {
+        animation-duration: 20s;
+    }
+    @media (min-width: 1200px) {
+        animation-duration: 24s;
+    }
+`;
 
-        setChats(newChats);
-    };
+const Winners = styled.span`
+    display: flex;
+    gap: 16px;
+    white-space: nowrap;
+    color: #23fca9;
+`;
 
-    const toggleChatVisibility = id => {
-        const chatIndex = chats.findIndex(chat => chat.id === id);
-        const chat = chats[chatIndex];
-        const newChat = { ...chat, isVisible: !chat.isVisible };
-        const newChats = [...chats];
-        newChats.splice(chatIndex, 1);
-        newChats.splice(chatIndex, 0, newChat);
-        setChats(newChats);
-    };
-
+const Losers = styled.span`
+    display: flex;
+    gap: 16px;
+    white-space: nowrap;
+    color: #fc238f;
+`;
+export default function AppLayout({ children }) {
     return (
         <Container>
-            <StarsContainer show={showStars} />
+            <Navbar />
+            <StarsCanvas />
             <Content>{children}</Content>
             <MiscControls>
-                <Tooltip content={`${showStars ? 'Disable' : 'Enable'} background stars`}>
-                    <span>
-                        <MiscButton
-                            icon="star"
-                            onClick={toggleStars}
-                            color={showStars ? 'gold' : '#52388f'}
-                        />
-                    </span>
-                </Tooltip>
                 <Tooltip content="Come join our telegram!">
-                    <span
-                        style={{
-                            width: 36,
-                            height: 36,
-                        }}
-                    >
+                    <span>
                         <a href="https://t.me/randomdegenerator" target="_blank">
-                            <Telegram
-                                src="images/telegram_logo_borderless.png"
-                                style={{
-                                    width: 18,
-                                    height: 18,
-                                    display: 'block',
-                                    margin: '10px 8px 8px 4px',
-                                }}
-                            />
+                            <Telegram src="images/telegram_logo_borderless.png" />
                         </a>
                     </span>
                 </Tooltip>
-                {/* {chats.length === 0 ? (
-                    <Tooltip content="Join the Dreamstreet chat channel">
-                        <span>
-                            <MiscButton icon="plus" onClick={createChat} />
-                        </span>
-                    </Tooltip>
-                ) : (
-                    <ChatTaskbar chats={chats} onClick={toggleChatVisibility} />
-                )} */}
+                <Tooltip content="Listen to our Spotify playlist!">
+                    <span>
+                        <SpotifyLink
+                            href="https://open.spotify.com/playlist/7pZlODVzhEr1kTE0MupUUW"
+                            target="_blank"
+                        >
+                            <SpotifyLogo src="images/spotify_logo.svg" />
+                        </SpotifyLink>
+                    </span>
+                </Tooltip>
             </MiscControls>
-            <Chat
-                chats={chats}
-                onMinimize={toggleChatVisibility}
-                onClose={handleCloseChat}
-                onFocus={handleFocusChat}
-            />
+            <Footer>
+                <Marquee></Marquee>
+            </Footer>
         </Container>
     );
 }
 
-AppLayout.showMainLayout = true;
+AppLayout.showMainLayout = false;

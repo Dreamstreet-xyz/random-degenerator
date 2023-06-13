@@ -13,6 +13,7 @@ import UserContextProvider from 'shared/contexts/UserContext';
 import GainsNetworkContextProvider from 'shared/contexts/GainsNetworkContext';
 import NetworkDetailsContextProvider from 'shared/contexts/NetworkDetailsContext';
 import networks from 'shared/constants/networks';
+import 'shared/styles/web3modal.css';
 
 library.add(icons);
 
@@ -32,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         font-family: Roboto;
-        background-color: #190744;
+        background-color: #050a1f;
         color: #fff;
         overflow-x: hidden;
         overscroll-behavior-y: none;
@@ -93,6 +94,12 @@ export default function App({ Component, pageProps }) {
                 <Head>
                     <style>{dom.css()}</style>
                     <title>Random Degenerator</title>
+                    <meta
+                        name="description"
+                        content="Randomized high-leverage trade generator built around gTrade, running on Polygon."
+                    />
+                    <meta property="og:url" content="https://randomdegenerator.xyz/" />
+                    <link rel="canonical" href="https://randomdegenerator.xyz/" />
                     <link
                         rel="apple-touch-icon"
                         sizes="180x180"
@@ -112,9 +119,14 @@ export default function App({ Component, pageProps }) {
                     />
                     <link rel="manifest" href="images/favs/site.webmanifest"></link>
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <meta name="theme-color" content="#1b095a" />
                     <link rel="preconnect" href="https://fonts.googleapis.com" />
                     <link
-                        href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
+                        href="https://fonts.googleapis.com/css2?family=Exo:wght@900&display=swap"
+                        rel="stylesheet"
+                    />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap"
                         rel="stylesheet"
                     />
                     <link
@@ -127,6 +139,14 @@ export default function App({ Component, pageProps }) {
                     />
                     <link
                         href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+                        rel="stylesheet"
+                    />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap"
+                        rel="stylesheet"
+                    />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap"
                         rel="stylesheet"
                     />
                     {/* Global Site Tag (gtag.js) - Google Analytics */}

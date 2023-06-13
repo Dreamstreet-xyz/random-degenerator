@@ -19,6 +19,7 @@ const indicatorStyles = css`
     text-decoration: none;
     ${({ gradient }) => gradient && animatedTextGradientCustom(gradient)}
     animation: ${shine} 20s linear infinite;
+    font-family: 'Fira Mono', monospace;
 `;
 
 export const SlowIndicator = styled.a`

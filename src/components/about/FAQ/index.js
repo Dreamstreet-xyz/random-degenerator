@@ -1,21 +1,11 @@
 import { AccordionButton } from 'components/common';
-import {
-    Section,
-    Header,
-    Decoration,
-    Title,
-    Accordion,
-    FAQContent,
-    Paragraph,
-    Anchor,
-} from './styles';
+import { Section, Header, Title, Accordion, FAQContent, Paragraph, Anchor } from './styles';
 
 export default function FAQ() {
     return (
         <Section>
             <Header>
-                <Decoration />
-                <Title>F.A.Q.</Title>
+                <Title>ABOUT</Title>
             </Header>
             <Accordion
                 renderButton={({ handleClick, isOpen }) => (

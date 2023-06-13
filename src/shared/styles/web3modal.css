@@ -1,0 +1,110 @@
+:root {
+    --modal-bg: #170b5085;
+    --modal-border: #8a1ca5;
+    --selected-border: rgb(255, 59, 222);
+    --text-description: rgb(200, 189, 228);
+    --text-light: rgb(217, 209, 240);
+    --secondary-element-bg: rgb(55, 54, 129);
+    --secondary-element-bg-active: rgb(92, 32, 255);
+}
+
+#WEB3_CONNECT_MODAL_ID {
+    z-index: 9999 !important;
+    position: absolute;
+}
+
+.web3modal-modal-container .web3modal-modal-card {
+    background: linear-gradient(135deg, #0f065c, #3a025a);
+    border: 1px solid var(--modal-border);
+    display: flex;
+    flex-direction: column;
+    max-width: 350px !important;
+    width: 100% !important;
+    padding: 24px;
+    gap: 8px;
+    position: relative;
+    border-radius: 10px;
+}
+
+.web3modal-modal-container .web3modal-modal-card::before {
+    content: 'Connect a wallet';
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 4px;
+    letter-spacing: -0.03em;
+}
+
+.web3modal-modal-card .web3modal-provider-wrapper {
+    background-color: var(--modal-bg);
+    overflow: hidden;
+    border-radius: 5px;
+    padding: 0px !important;
+    border-color: var(--modal-border) !important;
+}
+
+.web3modal-modal-card .web3modal-provider-wrapper:hover {
+    border-color: var(--selected-border) !important;
+}
+
+.web3modal-provider-wrapper .web3modal-provider-container {
+    background-color: var(--modal-bg);
+    flex-direction: row-reverse;
+    justify-content: space-between !important;
+    gap: 16px;
+    width: 100%;
+    border-radius: 0px !important;
+    padding: 12px 16px !important;
+}
+
+.web3modal-provider-wrapper .web3modal-provider-container:hover {
+    background-color: transparent !important;
+}
+
+.web3modal-provider-icon {
+    height: auto !important;
+    width: 36px !important;
+}
+
+.web3modal-provider-container .web3modal-provider-name {
+    color: var(--text-description);
+    margin-top: 0;
+    font-size: 18px !important;
+    line-height: 18px;
+    text-align: left;
+}
+
+.web3modal-provider-description {
+    display: none;
+}
+
+.walletconnect-modal__base {
+    background-color: var(--modal-bg) !important;
+}
+
+.walletconnect-modal__base__row:hover {
+    background-color: var(--modal-bg) !important;
+}
+.walletconnect-modal__base {
+    color: var(--text-description) !important;
+}
+.walletconnect-qrcode__text,
+.walletconnect-modal__base__row h3,
+.walletconnect-modal__base__row__right__caret {
+    color: var(--text-description) !important;
+}
+.walletconnect-modal__mobile__toggle {
+    cursor: pointer;
+    background-color: var(--secondary-element-bg) !important;
+}
+.walletconnect-modal__mobile__toggle_selector {
+    background-color: var(--secondary-element-bg-active) !important;
+}
+.walletconnect-connect__button__text {
+    color: var(--text-light) !important;
+}
+
+.walletconnect-qrcode__image {
+    border: 8px solid white;
+}

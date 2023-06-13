@@ -42,12 +42,14 @@ import {
     getTradeKeyFromTradeOverrides,
 } from 'shared/utils/gains/trade';
 import { AssetType } from 'types/gains/GainsCoreData';
+import { UltimateDegenIndicator } from 'components/app/MainApp/ConnectedApp/UltimateDegenIndicator';
+import { PopupIntoView } from 'components/misc';
 
 const PLACEHOLDER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const degenOptions = [
     { value: DegenLevel.normal, title: 'Normal' },
-    { value: DegenLevel.high, title: 'Ultimate Degen', emphasize: true },
+    { value: DegenLevel.high, title: 'Ultimate', emphasize: true },
 ];
 
 const directionOptions = [
@@ -454,25 +456,33 @@ export default function ConnectedApp({ gas }) {
         return (
             <Container>
                 <InsufficientFundsContainer>
-                    <h2 style={{ marginTop: -50 }}>
-                        <InsufficientFunds>You need at least </InsufficientFunds>
-                        <InsufficientFunds>
-                            {tradingVariables.minPosDaiInt} DAI to play
-                        </InsufficientFunds>
-                    </h2>
+                    <PopupIntoView delay={0.15} duration={0.2} distance={16}>
+                        <h2 style={{ marginTop: -50 }}>
+                            <InsufficientFunds>You need at least </InsufficientFunds>
+                            <InsufficientFunds>
+                                {tradingVariables.minPosDaiInt} DAI to play
+                            </InsufficientFunds>
+                        </h2>
+                    </PopupIntoView>
                     <LinksContainer>
-                        <Link href="https://wallet.polygon.technology/bridge" target="_blank">
-                            <LinkImage src="images/networks/polygon-logo.png" />
-                            Deposit tokens to Polygon via bridge
-                        </Link>
-                        <LinksDivider>- or -</LinksDivider>
-                        <Link
-                            href="https://quickswap.exchange/#/swap?outputCurrency=0x8f3cf7ad23cd3cadbd9735aff958023239c6a063"
-                            target="_blank"
-                        >
-                            <LinkImage src="images/quickswap_logo.png" />
-                            Swap for DAI on QuickSwap
-                        </Link>
+                        <PopupIntoView delay={0.3} duration={0.2} distance={16}>
+                            <Link href="https://wallet.polygon.technology/bridge" target="_blank">
+                                <LinkImage src="images/networks/polygon_logo.svg" />
+                                Deposit tokens to Polygon via bridge
+                            </Link>
+                        </PopupIntoView>
+                        <PopupIntoView delay={0.45} distance={0}>
+                            <LinksDivider>- or -</LinksDivider>
+                        </PopupIntoView>
+                        <PopupIntoView delay={0.6} duration={0.2} distance={16}>
+                            <Link
+                                href="https://quickswap.exchange/#/swap?outputCurrency=0x8f3cf7ad23cd3cadbd9735aff958023239c6a063"
+                                target="_blank"
+                            >
+                                <LinkImage src="images/quickswap_logo.png" />
+                                Swap for DAI on QuickSwap
+                            </Link>
+                        </PopupIntoView>
                     </LinksContainer>
                 </InsufficientFundsContainer>
                 <WalletOpenTradesContainer />

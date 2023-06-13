@@ -4,7 +4,6 @@ import { noSelect, retroTextGradient, retroTextMarker } from 'shared/styles';
 
 export const Container = styled.div`
     width: 100%;
-    overflow-x: hidden;
     @media (max-width: 500px) {
         margin-top: 80px;
     }
@@ -34,6 +33,7 @@ export const InsufficientFunds = styled.span`
 `;
 
 export const AppContainer = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -63,7 +63,7 @@ export const Banner = styled(DefaultBanner)`
     width: 100%;
     border-radius: 20px;
     z-index: 5;
-    background: linear-gradient(45deg, #f5355f, #ff465f);
+    background: linear-gradient(45deg, #7835f5, #8746ff);
 
     @media (max-width: 768px) {
         position: relative;
@@ -97,6 +97,7 @@ export const Link = styled.a`
     border-radius: 10px;
     text-decoration: none;
     color: white;
+    border: 1px solid #838fc41c;
     ${noSelect}
 
     &:hover,
